@@ -1,6 +1,9 @@
 ﻿using Computer_house.DataBase;
+using Computer_house.DataBase.Entities.Warehouse;
 using Computer_house.OtherClasses;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
@@ -9,6 +12,7 @@ namespace Computer_house
     public partial class AuthentificationForm : Form
     {
         private SetupIP setIP;
+        private List<Users> Users;
 
         public AuthentificationForm()
         {
@@ -27,12 +31,18 @@ namespace Computer_house
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-
+                    if (db.Users.Count() != 0)
+                    {
+                        foreach (Users u in db.Users)
+                        {
+                            MessageBox.Show(u.Login);
+                        }
+                    }
                 } 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка подключения к бд");
+                MessageBox.Show("Ошибка подключения к бд " + ex.Message);
                 string newIP = Microsoft.VisualBasic.Interaction.InputBox("Введите IP-адрес сервера БД:",
                     "Установка IP");
                 setIP = new SetupIP(newIP);
