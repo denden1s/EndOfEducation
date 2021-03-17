@@ -203,6 +203,7 @@
     <Compile Include="DataBase\Interfaces\ISizes_of_components.cs" />
     <Compile Include="DataBase\Interfaces\IStorage_devices_options.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
+    <Compile Include="OtherClasses\SQLRequests.cs" />
     <Compile Include="OtherClasses\SystemFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

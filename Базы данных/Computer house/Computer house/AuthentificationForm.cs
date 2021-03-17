@@ -38,16 +38,11 @@ namespace Computer_house
                             MessageBox.Show(u.Login);
                         }
                     }
-                } 
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка подключения к бд " + ex.Message);
-                string newIP = Microsoft.VisualBasic.Interaction.InputBox("Введите IP-адрес сервера БД:",
-                    "Установка IP");
-                setIP = new SetupIP(newIP);
-                setIP.ChangeXmlFile();
-                Application.Restart();
+                SystemFunctions.SetNewDataBaseAdress(ex);
             }
         }
     }
