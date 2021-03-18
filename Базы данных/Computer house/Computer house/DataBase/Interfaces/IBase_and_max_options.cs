@@ -7,7 +7,7 @@ namespace Computer_house.DataBase.Interfaces
         int Base_state { get; set; }
         int Max_state { get; set; }
 
-        void SetBaseAndMaxOptions();
+        void SetBaseAndMaxOptions(ApplicationContext db);
 
 
     }

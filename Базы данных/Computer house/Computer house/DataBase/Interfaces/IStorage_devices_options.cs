@@ -13,6 +13,6 @@ namespace Computer_house.DataBase.Interfaces
         int Random_read_speed { get; set; }
         int Random_write_speed { get; set; }
 
-        void SetStorageOptions();
+        void SetStorageOptions(string deviceType);
     }
 }

@@ -6,6 +6,6 @@ namespace Computer_house.DataBase.Interfaces
         int Product_ID { get; set; }
         int Capacity { get; set; }
 
-        void SetMemoryCapacity();
+        void SetMemoryCapacity(ApplicationContext db);
     }
 }

@@ -1,9 +1,10 @@
-﻿using Computer_house.OtherClasses;
+﻿using Computer_house.DataBase.Interfaces;
+using Computer_house.OtherClasses;
 using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities
 {
-    class GPU
+    class GPU : IMemory_capacity
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -24,40 +25,42 @@ namespace Computer_house.DataBase.Entities
         public string GPU_type { get; set; }
         public string PowerType { get; set; }
 
+        //Реализация интерфейса IMemory_capacity
+        public int Product_ID { get; set; }
+        public int Capacity { get; set; }
+
         public GPU() { }
         
-        public GPU(string[] _strArgs, int[] _intArgs, bool _overClock, bool _sli)
+        public GPU(string _id)
         {
-            ID = _strArgs[0];
-            Name = _strArgs[1];
-            Interface_ID = _intArgs[0];
-            Manufacturer = _strArgs[2];
-            Overclocking = _overClock;
-            GPU_type_ID = _intArgs[1];
-            Bus_width = _intArgs[2];
-            DirectX = _strArgs[3];
-            SLI_support = _sli;
-            External_interfaces = _strArgs[4];
-            Power_type_ID = _intArgs[3];
-            Coolers_count = _intArgs[4];
-            Cooling_system_thikness = _intArgs[5];
-            GetMemTypeInfo();
-            GetPowerTypeInfo();
-            GetConnectionInterfaceInfo();
+            ID = _id;
+
         }
         //Выборка данных из БД
-        private void GetMemTypeInfo()
+
+        public void GetDataFromDB()
         {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var listOfGpuTypes = (from b in db.MemoryTypes
-                                          where b.Device_type == "GPU"
-                                          select b).ToList();
-
-                    var gpuType = listOfGpuTypes.Single(i => i.ID == GPU_type_ID);
-                    GPU_type = gpuType.Name;
+                    var GPU_info = db.GPUs.Single(i => i.ID == ID);
+                    Name = GPU_info.Name;
+                    Interface_ID = GPU_info.Interface_ID;
+                    Manufacturer = GPU_info.Manufacturer;
+                    Overclocking = GPU_info.Overclocking;
+                    GPU_type_ID = GPU_info.GPU_type_ID;
+                    Bus_width = GPU_info.Bus_width;
+                    DirectX = GPU_info.DirectX;
+                    SLI_support = GPU_info.SLI_support;
+                    External_interfaces = GPU_info.External_interfaces;
+                    Power_type_ID = GPU_info.Power_type_ID;
+                    Coolers_count = GPU_info.Coolers_count;
+                    Cooling_system_thikness = GPU_info.Cooling_system_thikness;
+                    PowerType = db.PowerConnectors.Single(i => i.ID == Power_type_ID).Connectors;
+                    ConnectionInterface = db.ConectInterfaces.Single(i => i.ID == Interface_ID).Name;
+                    GetMemTypeInfo(db);
+                    SetMemoryCapacity(db);
                 }
             }
             catch (Exception ex)
@@ -65,37 +68,19 @@ namespace Computer_house.DataBase.Entities
                 SystemFunctions.SetNewDataBaseAdress(ex);
             }
         }
-
-        private void GetPowerTypeInfo()
+        private void GetMemTypeInfo(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var powerType = db.PowerConnectors.Single(i => i.ID == Power_type_ID);
-                    PowerType = powerType.Connectors;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            var listOfGpuTypes = (from b in db.MemoryTypes
+                                    where b.Device_type == "GPU"
+                                    select b).ToList();
+
+            GPU_type = listOfGpuTypes.Single(i => i.ID == GPU_type_ID).Name;
         }
 
-        private void GetConnectionInterfaceInfo()
+        public void SetMemoryCapacity(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var connectInterface = db.ConectInterfaces.Single(i => i.ID == Interface_ID);
-                    ConnectionInterface = connectInterface.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+            Capacity = db.MemoryCapacity.Single(i => i.Product_ID == Product_ID).Capacity;
         }
     }
 }

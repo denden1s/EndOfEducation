@@ -1,10 +1,11 @@
-﻿using Computer_house.OtherClasses;
+﻿using Computer_house.DataBase.Interfaces;
+using Computer_house.OtherClasses;
 using System;
 using System.Linq;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class Motherboard
+    class Motherboard : IMemory_capacity
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -27,41 +28,44 @@ namespace Computer_house.DataBase.Entities.PC_Components
         public string FormFactor { get; set; }
         public string RAM_type { get; set; }
         public string RAM_chanel { get; set; }
+        
+        //Реализация интерфейса IMemory_capacity
+        public int Product_ID { get; set; }
+        public int Capacity { get; set; } //Максимальный объём ОЗУ
 
         public Motherboard() { }
 
-        public Motherboard(bool _SLI,bool _integrated_graphic, 
-            int[] _iArr, params string[] _strArr)
+        public Motherboard(string _id)
         {
-            ID = _strArr[0];
-            Name = _strArr[1];
-            Supported_CPU = _strArr[2];
-            Socket_ID = _iArr[0];
-            Chipset_ID = _iArr[1];
-            Form_factor_ID = _iArr[2];
-            RAM_type_ID = _iArr[3];
-            RAM_chanels_ID = _iArr[4];
-            Count_of_memory_slots = _iArr[5];
-            Expansion_slots = _strArr[3];
-            Storage_interfaces = _strArr[4];
-            SLI_support = _SLI;
-            Integrated_graphic = _integrated_graphic;
-            Connectors = _strArr[5];
-            GetSocketInfo();
-            GetChipsetInfo();
-            GetFormFactorInfo();
-            GetRAMTypeInfo();
-            GetRAMChanelsInfo();
+            ID = _id;
         }
         //Выборка данных из БД 
-        private void GetSocketInfo()
+        public void GetDataFromDB()
         {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var socket = db.Sockets.Single(i => i.ID == Socket_ID);
-                    Socket = socket.Name;
+                    var mbInfo = db.Motherboards.Single(i => i.ID == ID);
+                    Name = mbInfo.Name;
+                    Supported_CPU = mbInfo.Supported_CPU;
+                    Socket_ID = mbInfo.Socket_ID;
+                    Chipset_ID = mbInfo.Chipset_ID;
+                    Form_factor_ID = mbInfo.Form_factor_ID;
+                    RAM_type_ID = mbInfo.RAM_type_ID;
+                    RAM_chanels_ID = mbInfo.RAM_chanels_ID;
+                    Count_of_memory_slots = mbInfo.Count_of_memory_slots;
+                    Expansion_slots = mbInfo.Expansion_slots;
+                    Storage_interfaces = mbInfo.Storage_interfaces;
+                    SLI_support = mbInfo.SLI_support;
+                    Integrated_graphic = mbInfo.Integrated_graphic;
+                    Connectors = mbInfo.Connectors;
+                    Socket = db.Sockets.Single(i => i.ID == Socket_ID).Name;
+                    Chipset = db.Chipsets.Single(i => i.ID == Chipset_ID).Name;
+                    RAM_chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID).Name;
+                    GetFormFactorInfo(db);
+                    GetRAMTypeInfo(db);
+                    SetMemoryCapacity(db);
                 }
             }
             catch (Exception ex)
@@ -69,77 +73,29 @@ namespace Computer_house.DataBase.Entities.PC_Components
                 SystemFunctions.SetNewDataBaseAdress(ex);
             }
         }
-
-        private void GetChipsetInfo()
+        
+        private void GetFormFactorInfo(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var chipset = db.Chipsets.Single(i => i.ID == Chipset_ID);
-                    Chipset = chipset.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            var listOfFormFactors = (from b in db.FormFactors
+                                        where b.Device_type == "Motherboard"
+                                        select b).ToList();
+
+            FormFactor = listOfFormFactors.Single(i => i.ID == Form_factor_ID).Name;
         }
 
-        private void GetFormFactorInfo()
+        private void GetRAMTypeInfo(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var listOfFormFactors = (from b in db.FormFactors
-                                             where b.Device_type == "Motherboard"
-                                             select b).ToList();
+            var listOfRamTypes = (from b in db.MemoryTypes
+                                    where b.Device_type == "RAM"
+                                    select b).ToList();
 
-                    var formFactor = listOfFormFactors.Single(i => i.ID == Form_factor_ID);
-                    FormFactor = formFactor.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            RAM_type = listOfRamTypes.Single(i => i.ID == RAM_type_ID).Name;
         }
 
-        private void GetRAMTypeInfo()
+        public void SetMemoryCapacity(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var listOfRamTypes = (from b in db.MemoryTypes
-                                          where b.Device_type == "RAM"
-                                          select b).ToList();
-
-                    var ramType = listOfRamTypes.Single(i => i.ID == RAM_type_ID);
-                    RAM_type = ramType.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
-        }
-
-        private void GetRAMChanelsInfo()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID);
-                    RAM_chanel = chanel.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            Product_ID = db.Mediator.Single(i => i.Motherboard_ID == ID).ID;
+            Capacity = db.MemoryCapacity.Single(i => i.Product_ID == Product_ID).Capacity;
         }
     }
 }

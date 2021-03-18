@@ -1,10 +1,11 @@
-﻿using Computer_house.OtherClasses;
+﻿using Computer_house.DataBase.Interfaces;
+using Computer_house.OtherClasses;
 using System;
 using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class CPU
+    class CPU : IBase_and_max_options
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -28,41 +29,41 @@ namespace Computer_house.DataBase.Entities
         public string RAM_type { get; set; }
         public string RAM_chanel { get; set; }
 
+        //Реализация интерфейса IBase_and_max_options
+        public int Product_ID { get; set; }
+        public int Base_state { get; set; }//Частота процессора
+        public int Max_state { get; set; }//Частота процессора
+
         public CPU() { }
 
-        
-        public CPU(string _id, string _name, string _deliveryType,
-            bool _multiCore, bool _integratedGraphic, params int[] _iArr)
+        public CPU(string _id)
         {
             ID = _id;
-            Name = _name;
-            Series_ID = _iArr[0];
-            Delivery_type = _deliveryType;
-            Codename_ID = _iArr[1];
-            Socket_ID = _iArr[2];
-            Сores_count = _iArr[3];
-            RAM_frequency_ID = _iArr[4];
-            Multithreading = _multiCore;
-            Integrated_graphic = _integratedGraphic;
-            Technical_process = _iArr[5];
-            RAM_type_ID = _iArr[6];
-            RAM_chanels_ID = _iArr[7];
-            GetSeriesName();
-            GetCodeName();
-            GetSocketInfo();
-            GetRAMFrequencyInfo();
-            GetRAMTypeInfo();
-            GetRAMChanelsInfo();
         }
         //Выгрузка данных из бд
-        private void GetSeriesName()
+        public void GetDataFromDB()
         {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var series = db.CPUSeries.Single(i => i.ID == Series_ID);
-                    SeriesName = series.Name;
+                    var cpuInfo = db.CPUs.Single(i => i.ID == ID);
+                    Series_ID = cpuInfo.Series_ID;
+                    Delivery_type = cpuInfo.Delivery_type;
+                    Сores_count = cpuInfo.Сores_count;
+                    RAM_frequency_ID = cpuInfo.RAM_frequency_ID;
+                    Multithreading = cpuInfo.Multithreading;
+                    Integrated_graphic = cpuInfo.Integrated_graphic;
+                    Technical_process = cpuInfo.Technical_process;
+                    RAM_type_ID = cpuInfo.RAM_type_ID;
+                    RAM_chanels_ID = cpuInfo.RAM_chanels_ID;
+                    SeriesName = db.CPUSeries.Single(i => i.ID == Series_ID).Name;
+                    CodeName = db.CPUCodenames.Single(i => i.ID == Codename_ID).Name;
+                    Socket = db.Sockets.Single(i => i.ID == Socket_ID).Name;
+                    RAM_frequency = db.RAMFrequencies.Single(i => i.ID == RAM_frequency_ID).Frequency;
+                    RAM_chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID).Name;
+                    GetRAMTypeInfo(db);
+                    SetBaseAndMaxOptions(db);
                 }
             }
             catch (Exception ex)
@@ -71,88 +72,21 @@ namespace Computer_house.DataBase.Entities
             }
         }
 
-        private void GetCodeName()
+        private void GetRAMTypeInfo(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var codeName = db.CPUCodenames.Single(i => i.ID == Codename_ID);
-                    CodeName = codeName.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            var listOfRamTypes = (from b in db.MemoryTypes
+                                    where b.Device_type == "RAM"
+                                    select b).ToList();
+
+            RAM_type = listOfRamTypes.Single(i => i.ID == RAM_type_ID).Name;
         }
 
-        private void GetSocketInfo()
+        public void SetBaseAndMaxOptions(ApplicationContext db)
         {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var socket = db.Sockets.Single(i => i.ID == Socket_ID);
-                    Socket = socket.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
-        }
-
-        private void GetRAMFrequencyInfo()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var frequency = db.RAMFrequencies.Single(i => i.ID == RAM_frequency_ID);
-                    RAM_frequency = frequency.Frequency;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
-        }
-
-        private void GetRAMTypeInfo()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var listOfRamTypes = (from b in db.MemoryTypes
-                                          where b.Device_type == "RAM"
-                                          select b).ToList();
-
-                    var ramType = listOfRamTypes.Single(i => i.ID == RAM_type_ID);
-                    RAM_type = ramType.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
-        }
-
-        private void GetRAMChanelsInfo()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    var chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID);
-                    RAM_chanel = chanel.Name;
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemFunctions.SetNewDataBaseAdress(ex);
-            }
+            Product_ID = db.Mediator.Single(i => i.CPU_ID == ID).ID;
+            var baseAndMaxOptions = db.BaseMaxOptions.Single(i => i.Product_ID == Product_ID);
+            Base_state = baseAndMaxOptions.Base_state;
+            Max_state = baseAndMaxOptions.Max_state;
         }
     }
 }
