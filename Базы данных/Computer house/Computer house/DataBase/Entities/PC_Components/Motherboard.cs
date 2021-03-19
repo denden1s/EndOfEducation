@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class Motherboard : IMemory_capacity
+    class Motherboard //: IMemory_capacity, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -23,15 +23,19 @@ namespace Computer_house.DataBase.Entities.PC_Components
         public string Connectors { get; set; }
 
         //Доп сведения из БД
-        public string Socket { get; set; }
-        public string Chipset { get; set; }
-        public string FormFactor { get; set; }
-        public string RAM_type { get; set; }
-        public string RAM_chanel { get; set; }
-        
+        internal string Socket { get; set; }
+        internal string Chipset { get; set; }
+        internal string FormFactor { get; set; }
+        internal string RAM_type { get; set; }
+        internal string RAM_chanel { get; set; }
+
         //Реализация интерфейса IMemory_capacity
-        public int Product_ID { get; set; }
-        public int Capacity { get; set; } //Максимальный объём ОЗУ
+        internal int Product_ID { get; set; }
+        internal int Capacity { get; set; } //Максимальный объём ОЗУ
+
+        //Реализация интерфейса ISizes_of_components 
+        internal int Length { get; set; } //Длина платы
+        internal int Width { get; set; } //Ширина платы
 
         public Motherboard() { }
 
@@ -46,7 +50,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var mbInfo = db.Motherboards.Single(i => i.ID == ID);
+                    var mbInfo = db.Motherboard.Single(i => i.ID == ID);
                     Name = mbInfo.Name;
                     Supported_CPU = mbInfo.Supported_CPU;
                     Socket_ID = mbInfo.Socket_ID;
@@ -61,11 +65,12 @@ namespace Computer_house.DataBase.Entities.PC_Components
                     Integrated_graphic = mbInfo.Integrated_graphic;
                     Connectors = mbInfo.Connectors;
                     Socket = db.Sockets.Single(i => i.ID == Socket_ID).Name;
-                    Chipset = db.Chipsets.Single(i => i.ID == Chipset_ID).Name;
-                    RAM_chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID).Name;
+                    Chipset = db.Chipset.Single(i => i.ID == Chipset_ID).Name;
+                    RAM_chanel = db.RAM_chanels.Single(i => i.ID == RAM_chanels_ID).Name;
                     GetFormFactorInfo(db);
                     GetRAMTypeInfo(db);
                     SetMemoryCapacity(db);
+                    SetSizesOptions(db);
                 }
             }
             catch (Exception ex)
@@ -76,8 +81,8 @@ namespace Computer_house.DataBase.Entities.PC_Components
         
         private void GetFormFactorInfo(ApplicationContext db)
         {
-            var listOfFormFactors = (from b in db.FormFactors
-                                        where b.Device_type == "Motherboard"
+            var listOfFormFactors = (from b in db.Form_factors
+                                     where b.Device_type == "Motherboard"
                                         select b).ToList();
 
             FormFactor = listOfFormFactors.Single(i => i.ID == Form_factor_ID).Name;
@@ -85,17 +90,25 @@ namespace Computer_house.DataBase.Entities.PC_Components
 
         private void GetRAMTypeInfo(ApplicationContext db)
         {
-            var listOfRamTypes = (from b in db.MemoryTypes
-                                    where b.Device_type == "RAM"
+            var listOfRamTypes = (from b in db.Memory_types
+                                  where b.Device_type == "RAM"
                                     select b).ToList();
 
             RAM_type = listOfRamTypes.Single(i => i.ID == RAM_type_ID).Name;
         }
 
-        public void SetMemoryCapacity(ApplicationContext db)
+        private void SetMemoryCapacity(ApplicationContext db)
         {
             Product_ID = db.Mediator.Single(i => i.Motherboard_ID == ID).ID;
-            Capacity = db.MemoryCapacity.Single(i => i.Product_ID == Product_ID).Capacity;
+            Capacity = db.Memory_capacity.Single(i => i.Product_ID == Product_ID).Capacity;
+        }
+
+        private void SetSizesOptions(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.Motherboard_ID == ID).ID;
+            var sizesInfo = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
+            Length = sizesInfo.Length;
+            Width = sizesInfo.Width;
         }
     }
 }

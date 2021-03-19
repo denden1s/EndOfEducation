@@ -11,6 +11,6 @@ namespace Computer_house.DataBase.Interfaces
         float Thickness { get; set; }
         int Depth { get; set; }
 
-        void SetSezesOptions();
+        void SetSezesOptions(ApplicationContext db);
     }
 }

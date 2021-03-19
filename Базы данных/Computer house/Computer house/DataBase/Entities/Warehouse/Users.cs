@@ -1,7 +1,7 @@
 ﻿
 namespace Computer_house.DataBase.Entities.Warehouse
 {
-    class Users
+    public class Users
     {
         public int ID { get; set; }
 
@@ -11,9 +11,11 @@ namespace Computer_house.DataBase.Entities.Warehouse
 
         public bool Authorization_status { get; set; } = false;
 
-        public Users()
+        public Users() { }
+        public Users(string _login, string _password)
         {
-
+            Login = _login;
+            Password = _password;
         }
     }
 }

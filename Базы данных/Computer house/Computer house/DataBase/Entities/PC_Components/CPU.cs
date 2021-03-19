@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class CPU : IBase_and_max_options
+    class CPU //: IBase_and_max_options, IEnergy_consumption
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -22,17 +22,20 @@ namespace Computer_house.DataBase.Entities
         public int Technical_process { get; set; }
 
         //Дополнения к БД
-        public string SeriesName { get; set; }
-        public string CodeName { get; set; }
-        public string Socket { get; set; }
-        public int RAM_frequency { get; set; }
-        public string RAM_type { get; set; }
-        public string RAM_chanel { get; set; }
+        internal string SeriesName { get; set; }
+        internal string CodeName { get; set; }
+        internal string Socket { get; set; }
+        internal int RAM_frequency { get; set; }
+        internal string RAM_type { get; set; }
+        internal string RAM_chanel { get; set; }
 
         //Реализация интерфейса IBase_and_max_options
-        public int Product_ID { get; set; }
-        public int Base_state { get; set; }//Частота процессора
-        public int Max_state { get; set; }//Частота процессора
+        internal int Product_ID { get; set; }
+        internal int Base_state { get; set; }//Частота процессора
+        internal int Max_state { get; set; }//Частота процессора
+
+        //Реализация интерфейса IEnergy_consumption
+        internal int Consumption { get; set; }
 
         public CPU() { }
 
@@ -47,9 +50,12 @@ namespace Computer_house.DataBase.Entities
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var cpuInfo = db.CPUs.Single(i => i.ID == ID);
+                    var cpuInfo = db.CPU.Single(i => i.ID == ID);
+                    Name = cpuInfo.Name;
                     Series_ID = cpuInfo.Series_ID;
                     Delivery_type = cpuInfo.Delivery_type;
+                    Codename_ID = cpuInfo.Codename_ID;
+                    Socket_ID = cpuInfo.Socket_ID;
                     Сores_count = cpuInfo.Сores_count;
                     RAM_frequency_ID = cpuInfo.RAM_frequency_ID;
                     Multithreading = cpuInfo.Multithreading;
@@ -57,13 +63,14 @@ namespace Computer_house.DataBase.Entities
                     Technical_process = cpuInfo.Technical_process;
                     RAM_type_ID = cpuInfo.RAM_type_ID;
                     RAM_chanels_ID = cpuInfo.RAM_chanels_ID;
-                    SeriesName = db.CPUSeries.Single(i => i.ID == Series_ID).Name;
-                    CodeName = db.CPUCodenames.Single(i => i.ID == Codename_ID).Name;
+                    SeriesName = db.CPU_series.Single(i => i.ID == Series_ID).Name;
+                    CodeName = db.CPU_codename.Single(i => i.ID == Codename_ID).Name;
                     Socket = db.Sockets.Single(i => i.ID == Socket_ID).Name;
-                    RAM_frequency = db.RAMFrequencies.Single(i => i.ID == RAM_frequency_ID).Frequency;
-                    RAM_chanel = db.RAMChanels.Single(i => i.ID == RAM_chanels_ID).Name;
+                    RAM_frequency = db.RAM_frequency.Single(i => i.ID == RAM_frequency_ID).Frequency;
+                    RAM_chanel = db.RAM_chanels.Single(i => i.ID == RAM_chanels_ID).Name;
                     GetRAMTypeInfo(db);
                     SetBaseAndMaxOptions(db);
+                    SetEnergy_consumption(db);
                 }
             }
             catch (Exception ex)
@@ -74,8 +81,8 @@ namespace Computer_house.DataBase.Entities
 
         private void GetRAMTypeInfo(ApplicationContext db)
         {
-            var listOfRamTypes = (from b in db.MemoryTypes
-                                    where b.Device_type == "RAM"
+            var listOfRamTypes = (from b in db.Memory_types
+                                  where b.Device_type == "RAM"
                                     select b).ToList();
 
             RAM_type = listOfRamTypes.Single(i => i.ID == RAM_type_ID).Name;
@@ -84,9 +91,15 @@ namespace Computer_house.DataBase.Entities
         public void SetBaseAndMaxOptions(ApplicationContext db)
         {
             Product_ID = db.Mediator.Single(i => i.CPU_ID == ID).ID;
-            var baseAndMaxOptions = db.BaseMaxOptions.Single(i => i.Product_ID == Product_ID);
+            var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
             Base_state = baseAndMaxOptions.Base_state;
             Max_state = baseAndMaxOptions.Max_state;
+        }
+
+        public void SetEnergy_consumption(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.CPU_ID == ID).ID;
+            Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities
 {
-    class Cooling_system : IBase_and_max_options
+    class Cooling_system //: IBase_and_max_options, IEnergy_consumption, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -17,11 +17,16 @@ namespace Computer_house.DataBase.Entities
         public float Noise_level { get; set; }
 
         //Доп сведения из БД
-        public string PowerType { get; set; }
+        internal string PowerType { get; set; }
         //Реализация интерфейса IBase_and_max_options
-        public int Product_ID { get; set; }
-        public int Base_state { get; set; } //Не используется
-        public int Max_state { get; set; } //Максимальная скорость вращения кулера
+        internal int Product_ID { get; set; }
+        internal int Max_state { get; set; } //Максимальная скорость вращения кулера
+
+        //Реализация интерфейса IEnergy_consumption
+        internal int Consumption { get; set; }
+        //Реализация интерфейса ISizes_of_component
+
+        internal int Diameter { get; set; } //Диаметр вентилятора
 
         public Cooling_system() { }
 
@@ -31,13 +36,13 @@ namespace Computer_house.DataBase.Entities
         }
         //Выборка данных из БД
 
-        private void GetDataFromDB()
+        public  void GetDataFromDB()
         {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var CoolingSys = db.CoolingSystems.Single(i => i.ID == ID);
+                    var CoolingSys = db.Cooling_system.Single(i => i.ID == ID);
                     Name = CoolingSys.Name;
                     Supported_sockets = CoolingSys.Supported_sockets;
                     Count_of_heat_pipes = CoolingSys.Count_of_heat_pipes;
@@ -46,8 +51,10 @@ namespace Computer_house.DataBase.Entities
                     Rotation_speed_control = CoolingSys.Rotation_speed_control;
                     Power_type_ID = CoolingSys.Power_type_ID;
                     Noise_level = CoolingSys.Noise_level;
-                    PowerType = db.PowerConnectors.Single(i => i.ID == Power_type_ID).Connectors;
+                    PowerType = db.Power_connectors.Single(i => i.ID == Power_type_ID).Connectors;
                     SetBaseAndMaxOptions(db);
+                    SetEnergy_consumption(db);
+                    SetSizesOptions(db);
                 }
             }
             catch (Exception ex)
@@ -56,11 +63,24 @@ namespace Computer_house.DataBase.Entities
             }
         }
 
-        public void SetBaseAndMaxOptions(ApplicationContext db)
+        private void SetBaseAndMaxOptions(ApplicationContext db)
         {
             Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
-            var baseAndMaxOptions = db.BaseMaxOptions.Single(i => i.Product_ID == Product_ID);
+            var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
             Max_state = baseAndMaxOptions.Max_state;
+        }
+
+        private void SetEnergy_consumption(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
+            Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
+        }
+
+        private void SetSizesOptions(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
+            var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
+            Diameter = sizes.Diameter;
         }
     }
 }

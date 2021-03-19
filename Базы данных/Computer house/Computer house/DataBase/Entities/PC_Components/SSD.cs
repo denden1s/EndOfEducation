@@ -5,8 +5,9 @@ using Computer_house.DataBase.Entities.PC_Options;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class SSD : Storage_devices_options
+    class SSD //: Storage_devices_options
     {
+        public string ID { get; set; }
         public string Name { get; set; }
         public int Record_resource { get; set; }
         public int Work_time_for_fail { get; set; }
@@ -22,11 +23,11 @@ namespace Computer_house.DataBase.Entities.PC_Components
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var ssdInfo = db.SSDs.Single(i => i.ID == ID);
+                    var ssdInfo = db.SSD.Single(i => i.ID == ID);
                     Name = ssdInfo.Name;
                     Record_resource = ssdInfo.Record_resource;
                     Work_time_for_fail = ssdInfo.Work_time_for_fail;
-                    SetStorageOptions("SSD");
+                    //SetStorageOptions("SSD");
                 }
             }
             catch (Exception ex)

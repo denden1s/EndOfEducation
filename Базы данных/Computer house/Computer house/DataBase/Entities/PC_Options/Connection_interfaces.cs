@@ -5,5 +5,10 @@ namespace Computer_house.DataBase.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public Connection_interfaces() { }
+        public Connection_interfaces(string _name)
+        {
+            Name = _name;
+        }
     }
 }

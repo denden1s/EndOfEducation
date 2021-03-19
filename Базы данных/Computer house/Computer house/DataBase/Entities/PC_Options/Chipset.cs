@@ -5,5 +5,11 @@ namespace Computer_house.DataBase.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public Chipset() { }
+        public Chipset(string _name)
+        {
+            Name = _name;
+        }
     }
 }

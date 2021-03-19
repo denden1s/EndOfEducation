@@ -1,9 +1,10 @@
-﻿using Computer_house.OtherClasses;
+﻿using Computer_house.DataBase.Interfaces;
+using Computer_house.OtherClasses;
 using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class PSU
+    class PSU //: IEnergy_consumption
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -20,8 +21,11 @@ namespace Computer_house.DataBase.Entities.PC_Components
         public bool Power_USB { get; set; }
 
         //Доп сведения из БД
-        public string PowerMotherboardType { get; set; }
+        internal string PowerMotherboardType { get; set; }
 
+        //Реализация интерфейса IEnergy_consumption
+        internal int Product_ID { get; set; }
+        internal int Consumption { get; set; }
 
         public PSU() { }
         public PSU(string _id)
@@ -35,7 +39,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var psuInfo = db.PSUs.Single(i => i.ID == ID);
+                    var psuInfo = db.PSU.Single(i => i.ID == ID);
                     Name = psuInfo.Name;
                     PSU_standart = psuInfo.PSU_standart;
                     Line_plus_twelve_V_count = psuInfo.Line_plus_twelve_V_count;
@@ -48,13 +52,20 @@ namespace Computer_house.DataBase.Entities.PC_Components
                     Power_IDE = psuInfo.Power_IDE;
                     Sata_power_count = psuInfo.Sata_power_count;
                     Power_USB = psuInfo.Power_USB;
-                    PowerMotherboardType = db.PowerConnectors.Single(i => i.ID == Power_motherboard_type_ID).Connectors;
+                    PowerMotherboardType = db.Power_connectors.Single(i => i.ID == Power_motherboard_type_ID).Connectors;
+                    SetEnergy_consumption(db);
                 }
             }
             catch (Exception ex)
             {
                 SystemFunctions.SetNewDataBaseAdress(ex);
             }
+        }
+
+        private void SetEnergy_consumption(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.PSU_ID == ID).ID;
+            Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
         }
     }
 }

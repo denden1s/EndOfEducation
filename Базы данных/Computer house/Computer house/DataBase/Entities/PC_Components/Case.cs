@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class Case : IBase_and_max_options
+    class Case //: IBase_and_max_options, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -28,11 +28,16 @@ namespace Computer_house.DataBase.Entities
         public float Weight { get; set; }
 
         //Доп сведения из БД
-        public string FormFactor { get; set; }
+        internal string FormFactor { get; set; }
         //Реализация интерфейса IBase_and_max_options
-        public int Product_ID { get; set; }
-        public int Base_state { get; set; }//Количество установленных кулеров
-        public int Max_state { get; set; }//Всего слотов для установки кулеров
+        internal int Product_ID { get; set; }
+        internal int Base_state { get; set; }//Количество установленных кулеров
+        internal int Max_state { get; set; }//Всего слотов для установки кулеров
+
+        //Реализация интерфейса ISizes_of_components
+        internal int Height { get; set; } //Высота корпуса
+        internal int Width { get; set; } //Ширина корпуса
+        public int Depth { get; set; } //Глубина корпуса
 
         public Case() { }
 
@@ -48,7 +53,7 @@ namespace Computer_house.DataBase.Entities
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var caseInfo = db.Cases.Single(i => i.ID == ID);
+                    var caseInfo = db.Case.Single(i => i.ID == ID);
                     Name = caseInfo.Name;
                     Power_supply_unit = caseInfo.Power_supply_unit;
                     Form_factor_ID = caseInfo.Form_factor_ID;
@@ -69,6 +74,7 @@ namespace Computer_house.DataBase.Entities
                     Weight = caseInfo.Weight;
                     GetFormFactorInfo(db);
                     SetBaseAndMaxOptions(db);
+                    SetSizesOptions(db);
                 }
             }
             catch (Exception ex)
@@ -78,19 +84,28 @@ namespace Computer_house.DataBase.Entities
         }
         private void GetFormFactorInfo(ApplicationContext db)
         {
-            var listOfFormFactors = (from b in db.FormFactors
-                                        where b.Device_type == "Case"
-                                        select b).ToList();
+            var listOfFormFactors = (from b in db.Form_factors
+                                     where b.Device_type == "Case"
+                                     select b).ToList();
 
             FormFactor = listOfFormFactors.Single(i => i.ID == Form_factor_ID).Name;
         }
 
-        public void SetBaseAndMaxOptions(ApplicationContext db)
+        private void SetBaseAndMaxOptions(ApplicationContext db)
         {
             Product_ID = db.Mediator.Single(i => i.Case_ID == ID).ID;
-            var baseAndMaxOptions = db.BaseMaxOptions.Single(i => i.Product_ID == Product_ID);
+            var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
             Base_state = baseAndMaxOptions.Base_state;
             Max_state = baseAndMaxOptions.Max_state;
+        }
+
+        private void SetSizesOptions(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.Case_ID == ID).ID;
+            var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
+            Height = sizes.Height;
+            Width = sizes.Width;
+            Depth = sizes.Depth;
         }
     }
 }

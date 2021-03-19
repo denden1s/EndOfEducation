@@ -6,6 +6,6 @@ namespace Computer_house.DataBase.Interfaces
         int Product_ID { get; set; }
         int Consumption { get; set; }
 
-        void SetEnergy_consumption();
+        void SetEnergy_consumption(ApplicationContext db);
     }
 }

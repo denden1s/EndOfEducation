@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities
 {
-    class GPU : IMemory_capacity
+    class GPU //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -21,13 +21,20 @@ namespace Computer_house.DataBase.Entities
         public int Cooling_system_thikness { get; set; }
 
         //Доп данные из БД
-        public string ConnectionInterface { get; set; }
-        public string GPU_type { get; set; }
-        public string PowerType { get; set; }
+        internal string ConnectionInterface { get; set; }
+        internal string GPU_type { get; set; }
+        internal string PowerType { get; set; }
 
         //Реализация интерфейса IMemory_capacity
-        public int Product_ID { get; set; }
-        public int Capacity { get; set; }
+        internal int Product_ID { get; set; }
+        internal int Capacity { get; set; }
+
+        //Реализация интерфейса IEnergy_consumption
+        internal int Consumption { get; set; }
+
+        //Реализация интерфейса ISizes_of_components
+        internal int Length { get; set; } //Длина видеокарты
+        internal int Height { get; set; } //Высота видеокарты
 
         public GPU() { }
         
@@ -44,7 +51,7 @@ namespace Computer_house.DataBase.Entities
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var GPU_info = db.GPUs.Single(i => i.ID == ID);
+                    var GPU_info = db.GPU.Single(i => i.ID == ID);
                     Name = GPU_info.Name;
                     Interface_ID = GPU_info.Interface_ID;
                     Manufacturer = GPU_info.Manufacturer;
@@ -57,10 +64,12 @@ namespace Computer_house.DataBase.Entities
                     Power_type_ID = GPU_info.Power_type_ID;
                     Coolers_count = GPU_info.Coolers_count;
                     Cooling_system_thikness = GPU_info.Cooling_system_thikness;
-                    PowerType = db.PowerConnectors.Single(i => i.ID == Power_type_ID).Connectors;
-                    ConnectionInterface = db.ConectInterfaces.Single(i => i.ID == Interface_ID).Name;
+                    PowerType = db.Power_connectors.Single(i => i.ID == Power_type_ID).Connectors;
+                    ConnectionInterface = db.Connection_interfaces.Single(i => i.ID == Interface_ID).Name;
                     GetMemTypeInfo(db);
                     SetMemoryCapacity(db);
+                    SetEnergy_consumption(db);
+                    SetSizesOptions(db);
                 }
             }
             catch (Exception ex)
@@ -70,17 +79,31 @@ namespace Computer_house.DataBase.Entities
         }
         private void GetMemTypeInfo(ApplicationContext db)
         {
-            var listOfGpuTypes = (from b in db.MemoryTypes
-                                    where b.Device_type == "GPU"
+            var listOfGpuTypes = (from b in db.Memory_types
+                                  where b.Device_type == "GPU"
                                     select b).ToList();
 
             GPU_type = listOfGpuTypes.Single(i => i.ID == GPU_type_ID).Name;
         }
 
-        public void SetMemoryCapacity(ApplicationContext db)
+        private void SetMemoryCapacity(ApplicationContext db)
         {
             Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
-            Capacity = db.MemoryCapacity.Single(i => i.Product_ID == Product_ID).Capacity;
+            Capacity = db.Memory_capacity.Single(i => i.Product_ID == Product_ID).Capacity;
+        }
+
+        private void SetEnergy_consumption(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+            Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
+        }
+
+        private void SetSizesOptions(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+            var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
+            Length = sizes.Length;
+            Height = sizes.Height;
         }
     }
 }
