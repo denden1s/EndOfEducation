@@ -19,7 +19,8 @@ namespace Computer_house
 {
     public partial class AuthorizedForm : Form
     {
-        string[][] info;
+        //string[][] info;
+        private int movePoroductCount;
         private List<Warehouse_info> WarehouseInformation = new List<Warehouse_info>();
         private List<Case> Cases;
         private List<Cooling_system> CoolingSystems;
@@ -46,8 +47,12 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
+
+            
+            movePoroductCount = 0;
             LoadAll();
             LoadInfoAboutCPU();
+            //dataGridView1.SelectedCells[0].Selected = false;
         }
 
         private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -303,7 +308,7 @@ namespace Computer_house
                             $"Модельный ряд: {currentCPU.SeriesName};\n" +
                             $"Тип поставки: {currentCPU.Delivery_type};\n" +
                             $"Кодовое название кристалла: {currentCPU.CodeName};\n" +
-                            $"Сокет {currentCPU.Socket};\n" +
+                            $"Сокет: {currentCPU.Socket};\n" +
                             $"Кол-во ядер: {currentCPU.Сores_count}, потоков: {currentCPU.Сores_count * multi};\n" +
                             $"Частоты (min/max): " +
                             $"{(float)currentCPU.Base_state/1000}/{(float)currentCPU.Max_state/1000} Ghz;\n" +
@@ -341,6 +346,30 @@ namespace Computer_house
                 }
             }
             
+        }
+
+        private void plus_Click(object sender, EventArgs e)
+        {
+            movePoroductCount++;
+            AddProduct.Text = Convert.ToString(movePoroductCount);
+        }
+
+        private void minus_Click(object sender, EventArgs e)
+        {
+            movePoroductCount--;
+            AddProduct.Text = Convert.ToString(movePoroductCount);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SystemFunctions.SetNewDataBaseAdress();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user);
+            this.Hide();
+            addComponentsOptionsForm.Show();
         }
     }
 }

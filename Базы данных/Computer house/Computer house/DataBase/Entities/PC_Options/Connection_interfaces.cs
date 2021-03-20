@@ -10,5 +10,11 @@ namespace Computer_house.DataBase.Entities
         {
             Name = _name;
         }
+
+        public Connection_interfaces(int _id, string _name)
+        {
+            ID = _id;
+            Name = _name;
+        }
     }
 }

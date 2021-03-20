@@ -97,7 +97,7 @@ namespace Computer_house.DataBase
             modelBuilder.Entity<Sizes_of_components>().HasKey(i => i.Product_ID);
             modelBuilder.Entity<Storage_devices_options>().HasKey(i => i.Product_ID);
             modelBuilder.Entity<Case>().HasKey(i => i.ID);
-            modelBuilder.Entity<Chipset>().HasNoKey();
+            modelBuilder.Entity<Chipset>().HasKey(i => i.ID);
             modelBuilder.Entity<Cooling_system>().HasKey(i => i.ID);
             modelBuilder.Entity<CPU>().HasKey(i => i.ID);
             modelBuilder.Entity<GPU>().HasKey(i => i.ID);

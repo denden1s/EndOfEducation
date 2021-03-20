@@ -10,5 +10,10 @@ namespace Computer_house.DataBase.Entities
         {
             Name = _name;
         }
+        public CPU_series(int _id, string _name)
+        {
+            ID = _id;
+            Name = _name;
+        }
     }
 }

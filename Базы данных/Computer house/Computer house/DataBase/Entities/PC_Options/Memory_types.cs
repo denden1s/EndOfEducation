@@ -13,5 +13,11 @@ namespace Computer_house.DataBase.Entities.PC_Options
             Name = _name;
             Device_type = _deviceType;
         }
+        public Memory_types(int _id, string _name, string _deviceType)
+        {
+            ID = _id;
+            Name = _name;
+            Device_type = _deviceType;
+        }
     }
 }

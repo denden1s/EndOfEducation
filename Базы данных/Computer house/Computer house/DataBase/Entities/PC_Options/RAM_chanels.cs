@@ -11,5 +11,10 @@ namespace Computer_house.DataBase.Entities.PC_Options
         {
             Name = _name;
         }
+        public RAM_chanels(int _id, string _name)
+        {
+            ID = _id;
+            Name = _name;
+        }
     }
 }

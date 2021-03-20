@@ -13,6 +13,11 @@ namespace Computer_house.DataBase.Entities
             Name = _name;
             Device_type = _deviceType;
         }
-
+        public Form_factors(int _id, string _name, string _deviceType)
+        {
+            ID = _id;
+            Name = _name;
+            Device_type = _deviceType;
+        }
     }
 }

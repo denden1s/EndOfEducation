@@ -10,5 +10,10 @@ namespace Computer_house.DataBase.Entities.PC_Options
         {
             Frequency = _frequency;
         }
+        public RAM_frequency(int _id, int _frequency)
+        {
+            ID = _id;
+            Frequency = _frequency;
+        }
     }
 }

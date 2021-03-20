@@ -11,5 +11,11 @@ namespace Computer_house.DataBase.Entities.PC_Options
         {
             Connectors = _connectors;
         }
+        public Power_connectors(int _id, string _connectors)
+        {
+            ID = _id;
+            Connectors = _connectors;
+        }
     }
 }
+

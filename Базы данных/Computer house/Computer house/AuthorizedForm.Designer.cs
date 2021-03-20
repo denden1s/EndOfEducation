@@ -32,15 +32,17 @@ namespace Computer_house
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.AllProductInfo = new System.Windows.Forms.RichTextBox();
             this.Move = new System.Windows.Forms.Button();
             this.AddProduct = new System.Windows.Forms.Label();
             this.minus = new System.Windows.Forms.Button();
             this.plus = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.AllProductInfo = new System.Windows.Forms.RichTextBox();
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +74,16 @@ namespace Computer_house
             this.panel2.Size = new System.Drawing.Size(428, 503);
             this.panel2.TabIndex = 2;
             // 
+            // AllProductInfo
+            // 
+            this.AllProductInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllProductInfo.Location = new System.Drawing.Point(0, 0);
+            this.AllProductInfo.Name = "AllProductInfo";
+            this.AllProductInfo.ReadOnly = true;
+            this.AllProductInfo.Size = new System.Drawing.Size(425, 379);
+            this.AllProductInfo.TabIndex = 4;
+            this.AllProductInfo.Text = "";
+            // 
             // Move
             // 
             this.Move.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,6 +114,7 @@ namespace Computer_house
             this.minus.TabIndex = 1;
             this.minus.Text = "-";
             this.minus.UseVisualStyleBackColor = false;
+            this.minus.Click += new System.EventHandler(this.minus_Click);
             // 
             // plus
             // 
@@ -113,6 +126,7 @@ namespace Computer_house
             this.plus.TabIndex = 0;
             this.plus.Text = "+";
             this.plus.UseVisualStyleBackColor = false;
+            this.plus.Click += new System.EventHandler(this.plus_Click);
             // 
             // dataGridView1
             // 
@@ -134,16 +148,6 @@ namespace Computer_house
             this.dataGridView1.Size = new System.Drawing.Size(472, 448);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
-            // 
-            // AllProductInfo
-            // 
-            this.AllProductInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AllProductInfo.Location = new System.Drawing.Point(0, 0);
-            this.AllProductInfo.Name = "AllProductInfo";
-            this.AllProductInfo.ReadOnly = true;
-            this.AllProductInfo.Size = new System.Drawing.Size(425, 379);
-            this.AllProductInfo.TabIndex = 4;
-            this.AllProductInfo.Text = "";
             // 
             // Product_ID
             // 
@@ -170,12 +174,36 @@ namespace Computer_house
             this.Count.ReadOnly = true;
             this.Count.Width = 125;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(764, 522);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(260, 40);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Настроить IP";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1084, 522);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(105, 40);
+            this.button2.TabIndex = 5;
+            this.button2.Text = ">>";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // AuthorizedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1204, 527);
+            this.ClientSize = new System.Drawing.Size(1204, 574);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.textBox1);
@@ -209,5 +237,7 @@ namespace Computer_house
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
