@@ -5,7 +5,7 @@ using Computer_house.DataBase.Entities.PC_Options;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class SSD //: Storage_devices_options
+    public class SSD //: Storage_devices_options
     {
         public string ID { get; set; }
         public string Name { get; set; }

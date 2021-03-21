@@ -19,16 +19,7 @@ namespace Computer_house
 {
     public partial class ComponentsOptionsForm : Form
     {
-        Thread firstThread;
-        Thread secondThread;
-        Thread thirdThread;
-        Thread fourthThread;
-        Thread fifthThread;
-        Thread sixthThread;
-        Thread seventhThread;
-        Thread eightThread;
-        Thread ninthThread;
-        Thread tenthThread;
+        Thread[] threads = new Thread[10];
         private AuthorizedForm authorizedForm;
         private Users user;  
         //Списки для получения данных из БД
@@ -43,13 +34,21 @@ namespace Computer_house
         private List<Connection_interfaces> ConnectionInterfacesList = new List<Connection_interfaces>();
         private List<Power_connectors> PowerConnectorsList = new List<Power_connectors>();
 
+        //Компоненты ПК
+        private List<Warehouse_info> WarehouseInfo = new List<Warehouse_info>();
+        private List<CPU> CPUList = new List<CPU>();
+        //сведения о процессоре
+
+
         public ComponentsOptionsForm()
         {
             InitializeComponent();
         }
-        public ComponentsOptionsForm(Users _user)
+        public ComponentsOptionsForm(Users _user,List<Warehouse_info> _wareHouse, List<CPU> _cpus)
         {
-            InitializeComponent(); ;
+            InitializeComponent();
+            WarehouseInfo = _wareHouse;
+            CPUList = _cpus;
             user = _user;
         }
 
@@ -64,34 +63,39 @@ namespace Computer_house
         {
             //Настройки перед загрузкой формы
             SetVisible(false);
-            button1.Enabled = false;
-            button1.Text = "";
-            button1.BackColor = Color.Transparent;
+            ActToComponent.Enabled = false;
+            ActToComponent.Text = "";
+            ActToComponent.BackColor = Color.Transparent;
+            FindCPUIDButton.Enabled = false;
+            ActWithCPU.Enabled = false;
+            ActWithCPU.Text = "";
+            ActWithCPU.BackColor = Color.Transparent;
+
             //Запуск потоков на выгрузку данных из БД
-            firstThread = new Thread(new ThreadStart(LoadCPUSeries));
-            secondThread = new Thread(new ThreadStart(LoadCPUCodeName));
-            thirdThread = new Thread(new ThreadStart(LoadSocketInfo));
-            fourthThread = new Thread(new ThreadStart(LoadChipsetInfo));
-            fifthThread = new Thread(new ThreadStart(LoadChanelInfo));
-            sixthThread = new Thread(new ThreadStart(LoadFrequensyInfo));
-            seventhThread = new Thread(new ThreadStart(LoadFormFactors));
-            eightThread = new Thread(new ThreadStart(LoadMemoryTypes));
-            ninthThread = new Thread(new ThreadStart(LoadConnectionInterfaces));
-            tenthThread = new Thread(new ThreadStart(LoadPowerConnectors));
-            firstThread.Start();
-            secondThread.Start();
-            thirdThread.Start();
-            fourthThread.Start();
-            fifthThread.Start();
-            sixthThread.Start();
-            seventhThread.Start();
-            eightThread.Start();
-            ninthThread.Start();
-            tenthThread.Start();
+            threads[0] = new Thread(new ThreadStart(LoadCPUSeriesFromDB));
+            threads[1] = new Thread(new ThreadStart(LoadCPUCodeNameFromDB));
+            threads[2] = new Thread(new ThreadStart(LoadSocketInfoFromDB));
+            threads[3] = new Thread(new ThreadStart(LoadChipsetInfoFromDB));
+            threads[4] = new Thread(new ThreadStart(LoadChanelInfoFromDB));
+            threads[5] = new Thread(new ThreadStart(LoadFrequensyInfoFromDB));
+            threads[6] = new Thread(new ThreadStart(LoadFormFactorsFromDB));
+            threads[7] = new Thread(new ThreadStart(LoadMemoryTypesFromDB));
+            threads[8] = new Thread(new ThreadStart(LoadConnectionInterfacesFromDB));
+            threads[9] = new Thread(new ThreadStart(LoadPowerConnectorsFromDB));
+            foreach (var thread in threads)
+            {
+                thread.Start();
+            }
+            ViewCPUInfoInDataGrid();
+            LoadSeriesInfoInComboBox();
+            LoadCodeNameInfoInComboBox();
+            LoadSocketInfoInComboBox(CPUSocketComboBox);
+            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
+            LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
+            LoadRamFrequencyInComboBox(CPURamFrequencyComboBox);
         }
 
-        //Загрузка сведений из БД в список Series
-        private void LoadCPUSeries()
+        private void LoadCPUSeriesFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -100,10 +104,9 @@ namespace Computer_house
                     SeriesList.Add(new CPU_series(I.ID, I.Name));  
                 }
             }
-            firstThread.Interrupt();
+            threads[0].Interrupt();
         }
-        //Загрузка сведений из БД в список CPUCodeName
-        private void LoadCPUCodeName()
+        private void LoadCPUCodeNameFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -112,10 +115,9 @@ namespace Computer_house
                     CPUCodeNamesList.Add(new CPU_codename(I.ID,I.Name));
                 }
             }
-            secondThread.Interrupt();
+            threads[1].Interrupt();
         }
-
-        private void LoadSocketInfo()
+        private void LoadSocketInfoFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -124,10 +126,9 @@ namespace Computer_house
                     SocketsList.Add(new Sockets(I.ID, I.Name));
                 }
             }
-            thirdThread.Interrupt();
+            threads[2].Interrupt();
         }
-
-        private void LoadChipsetInfo()
+        private void LoadChipsetInfoFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -136,10 +137,9 @@ namespace Computer_house
                     ChipsetsList.Add(new Chipset(I.ID, I.Name));
                 }
             }
-            fourthThread.Interrupt();
+            threads[2].Interrupt();
         }
-
-        private void LoadChanelInfo()
+        private void LoadChanelInfoFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -148,10 +148,9 @@ namespace Computer_house
                     RAMChanelsList.Add(new RAM_chanels(I.ID, I.Name));
                 }
             }
-            fifthThread.Interrupt();
+            threads[4].Interrupt();
         }
-
-        private void LoadFrequensyInfo()
+        private void LoadFrequensyInfoFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -160,9 +159,9 @@ namespace Computer_house
                     RAMFrequencyList.Add(new RAM_frequency(I.ID, I.Frequency));
                 }
             }
-            sixthThread.Interrupt();
+            threads[5].Interrupt();
         }
-        private void LoadFormFactors()
+        private void LoadFormFactorsFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -171,9 +170,9 @@ namespace Computer_house
                     FormFactorsList.Add(new Form_factors(I.ID, I.Name, I.Device_type));
                 }
             }
-            seventhThread.Interrupt();
+            threads[6].Interrupt();
         }
-        private void LoadMemoryTypes()
+        private void LoadMemoryTypesFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -182,9 +181,9 @@ namespace Computer_house
                     MemoryTypesList.Add(new Memory_types(I.ID, I.Name, I.Device_type));
                 }
             }
-            eightThread.Interrupt();
+            threads[7].Interrupt();
         }
-        private void LoadConnectionInterfaces()
+        private void LoadConnectionInterfacesFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -193,9 +192,9 @@ namespace Computer_house
                     ConnectionInterfacesList.Add(new Connection_interfaces(I.ID, I.Name));
                 }
             }
-            ninthThread.Interrupt();
+            threads[8].Interrupt();
         }
-        private void LoadPowerConnectors()
+        private void LoadPowerConnectorsFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -204,61 +203,71 @@ namespace Computer_house
                     PowerConnectorsList.Add(new Power_connectors(I.ID, I.Connectors));
                 }
             }
-            tenthThread.Interrupt();
+            threads[9].Interrupt();
+        }
+
+        //Нужны для того чтобы не увеличивая форму вместить как можно больше элементов управления
+        private void tabPage2_Enter(object sender, EventArgs e)
+        {
+            this.AutoScroll = false;
+        }
+        private void tabPage1_MouseEnter(object sender, EventArgs e)
+        {
+            this.AutoScroll = true;
         }
 
         //Нужен для динамического изменения списка элементов
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TypesOfComponentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetVisible(false);
-            textBox1.Clear();
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
+            ComponentNameTextBox.Clear();
+            AddNewComponent.Checked = false;
+            EditComponent.Checked = false;
             //textBox1.Enabled = true;
-            button1.Enabled = false;
-            button1.Text = "";
-            button1.BackColor = Color.Transparent;
-            switch (comboBox1.SelectedIndex)
+            ActToComponent.Enabled = false;
+            ActToComponent.Text = "";
+            ActToComponent.BackColor = Color.Transparent;
+            switch (TypesOfComponentComboBox.SelectedIndex)
             {
                 case 0:
-                    ViewCPUSeries();
+                    ViewCPUSeriesToListBox();
                     break;
                 case 1:
-                    ViewCodeName();
+                    ViewCodeNameToListBox();
                     break;
                 case 2:
-                    ViewSocketInfo();
+                    ViewSocketInfoToListBox();
                     break;
                 case 3:
-                    ViewChipsetInfo();
+                    ViewChipsetInfoToListBox();
                     break;
                 case 4:
-                    ViewChanelInfo();
+                    ViewChanelInfoToListBox();
                     break;
                 case 5:
-                    ViewFrequencyInfo();
+                    ViewFrequencyInfoToListBox();
                     break;
                 case 6:
-                    ViewFormFactors();
+                    ViewFormFactorsToListBox();
                     SetVisible(true);
-                    comboBox2.Items.Clear();
-                    comboBox2.Items.AddRange(new string[] { "Motherboard", "Case", "HDD", "SSD" });
+                    ComponentTypeComboBox.Items.Clear();
+                    ComponentTypeComboBox.Items.AddRange(new string[] { "Motherboard", "Case", "HDD", "SSD" });
                     break;
                 case 7:
-                    ViewMemoryTypes();
+                    ViewMemoryTypesToListBox();
                     SetVisible(true);
-                    comboBox2.Items.Clear();
-                    comboBox2.Items.AddRange(new string[] { "RAM", "GPU"});
+                    ComponentTypeComboBox.Items.Clear();
+                    ComponentTypeComboBox.Items.AddRange(new string[] { "RAM", "GPU"});
                     break;
                 case 8:
-                    ViewConnectionInterfaces();
+                    ViewConnectionInterfacesToListBox();
                     break;
                 case 9:
-                    ViewPowerConnectors();
+                    ViewPowerConnectorsToListBox();
                     break;
                 default: 
                     SetVisible(false);
-                    listBox1.Items.Clear();
+                    ComponentsListBox.Items.Clear();
                     break;
             }
         }
@@ -266,78 +275,75 @@ namespace Computer_house
         private void SetVisible(bool _state)
         {
             label4.Visible = _state;
-            comboBox2.Visible = _state;
+            ComponentTypeComboBox.Visible = _state;
         }
 
-        //Установка режима изменения
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void EditComponent_CheckedChanged(object sender, EventArgs e)
         {
            
-            if (comboBox1.Text == "")
+            if (TypesOfComponentComboBox.Text == "")
             {
-                radioButton2.Checked = false;
+                EditComponent.Checked = false;
             }
             else
             {
-                button1.Enabled = true;
-                button1.Text = "Изменить";
-                button1.BackColor = Color.BlueViolet;
+                ActToComponent.Enabled = true;
+                ActToComponent.Text = "Изменить";
+                ActToComponent.BackColor = Color.BlueViolet;
             }
-            LockButton();
+            LockButtonInSecondTab();
         }
 
-        //Установка режима добавления
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void AddNewComponent_CheckedChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "")
+            if (TypesOfComponentComboBox.Text == "")
             {
-                radioButton1.Checked = false;
+                AddNewComponent.Checked = false;
             }
             else
             {
-                button1.Text = "Добавить";
-                button1.Enabled = true;
-                button1.BackColor = Color.Green;
+                ActToComponent.Text = "Добавить";
+                ActToComponent.Enabled = true;
+                ActToComponent.BackColor = Color.Green;
             }
-            LockButton();
+            LockButtonInSecondTab();
         }
 
-        //Обработка полученных данных в элементах пк
-        private void button1_Click(object sender, EventArgs e)
+        private void ActToComponent_Click(object sender, EventArgs e)
         {
             bool exception = false;
-            if (textBox1.Text != "")
+            if (ComponentNameTextBox.Text != "")
             {
-                if (radioButton1.Checked)
+                if (AddNewComponent.Checked)
                 {
-                    switch (comboBox1.SelectedIndex)
+                    switch (TypesOfComponentComboBox.SelectedIndex)
                     {
                         case 0:
-                            CPU_series newSeries = new CPU_series(textBox1.Text);
-                            if (listBox1.Items.Contains(newSeries.Name))
+                            CPU_series newSeries = new CPU_series(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newSeries.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddCPUSeries(newSeries, true);
                                 SeriesList.Add(newSeries);
-                                ViewCPUSeries();
+                                ViewCPUSeriesToListBox();
                             }
 
                             break;
                         case 1:
-                            CPU_codename newCodeName = new CPU_codename(textBox1.Text);
-                            if (listBox1.Items.Contains(newCodeName.Name))
+                            CPU_codename newCodeName = new CPU_codename(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newCodeName.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddCPUCodeName(newCodeName, true);
                                 CPUCodeNamesList.Add(newCodeName);
-                                ViewCodeName();
+                                ViewCodeNameToListBox();
                             }
                             break;
                         case 2:
-                            Sockets newSocket = new Sockets(textBox1.Text);
-                            if (listBox1.Items.Contains(newSocket.Name))
+                            Sockets newSocket = new Sockets(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newSocket.Name))
                                 exception = true;
                             else
                             {
@@ -345,34 +351,34 @@ namespace Computer_house
                             }
                             break;
                         case 3:
-                            Chipset newChipset = new Chipset(textBox1.Text);
-                            if (listBox1.Items.Contains(newChipset.Name))
+                            Chipset newChipset = new Chipset(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newChipset.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddChipset(newChipset, true);
                                 ChipsetsList.Add(newChipset);
-                                ViewChipsetInfo();
+                                ViewChipsetInfoToListBox();
                             }
                             break;
                         case 4:
-                            RAM_chanels newChanel = new RAM_chanels(textBox1.Text);
-                            if (listBox1.Items.Contains(newChanel.Name))
+                            RAM_chanels newChanel = new RAM_chanels(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newChanel.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddChanel(newChanel, true);
                                 RAMChanelsList.Add(newChanel);
-                                ViewChanelInfo();
+                                ViewChanelInfoToListBox();
                             }
                             break;
                         case 5:
                             //frequency - int 
                             int res;
-                            bool isInt = Int32.TryParse(textBox1.Text, out res);
+                            bool isInt = Int32.TryParse(ComponentNameTextBox.Text, out res);
                             if (isInt)
                             {
-                                
+                                //Везде где наименование атрибута отлично от Name возникают проблемы
                                 var find1 = RAMFrequencyList.Single(i => i.Frequency == res);
                                 if (find1!=null)
                                     exception = true;
@@ -389,42 +395,41 @@ namespace Computer_house
                             }
                             break;
                         case 6:
-                            Form_factors newForm = new Form_factors(textBox1.Text, comboBox2.Text);
-                            if (listBox1.Items.Contains(newForm.Name))
+                            Form_factors newForm = new Form_factors(ComponentNameTextBox.Text, ComponentTypeComboBox.Text);
+                            if (ComponentsListBox.Items.Contains(newForm.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddFormFactor(newForm, true);
                                 FormFactorsList.Add(newForm);
 
-                                ViewFormFactors();
+                                ViewFormFactorsToListBox();
                             }
                             break;
                         case 7:
-                            Memory_types newMType = new Memory_types(textBox1.Text, comboBox2.Text);
-                            if (listBox1.Items.Contains(newMType.Name))
+                            Memory_types newMType = new Memory_types(ComponentNameTextBox.Text, ComponentTypeComboBox.Text);
+                            if (ComponentsListBox.Items.Contains(newMType.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddMemoryType(newMType, true);
                                 MemoryTypesList.Add(newMType);
-                                ViewFormFactors();
+                                ViewFormFactorsToListBox();
                             }
                             break;
                         case 8:
-                            Connection_interfaces newInterface = new Connection_interfaces(textBox1.Text);
-                            if (listBox1.Items.Contains(newInterface.Name))
+                            Connection_interfaces newInterface = new Connection_interfaces(ComponentNameTextBox.Text);
+                            if (ComponentsListBox.Items.Contains(newInterface.Name))
                                 exception = true;
                             else
                             {
                                 SQLRequests.AddConnectionInterface(newInterface, true);
                                 ConnectionInterfacesList.Add(newInterface);
-                                ViewConnectionInterfaces();
+                                ViewConnectionInterfacesToListBox();
                             }
                             break;
                         case 9:
-                            
-                            Power_connectors newConnector = new Power_connectors(textBox1.Text);
+                            Power_connectors newConnector = new Power_connectors(ComponentNameTextBox.Text);
                             var find = PowerConnectorsList.Single(i => i.Connectors == newConnector.Connectors);
                             if (find != null)
                                 exception = true;
@@ -433,7 +438,7 @@ namespace Computer_house
                                 
                                 SQLRequests.AddPowerConnector(newConnector, true);
                                 PowerConnectorsList.Add(newConnector);
-                                ViewPowerConnectors();
+                                ViewPowerConnectorsToListBox();
                             }
                             break;
                         default:
@@ -443,46 +448,46 @@ namespace Computer_house
                     if (exception)
                         MessageBox.Show("Данный элемент присутствует в базе данных");
 
-                    textBox1.Clear();
+                    ComponentNameTextBox.Clear();
                 }
-                else if ((listBox1.SelectedItem != null))
+                else if ((ComponentsListBox.SelectedItem != null))
                 {
-                    switch (comboBox1.SelectedIndex)
+                    switch (TypesOfComponentComboBox.SelectedIndex)
                     {
                         case 0:
-                            SeriesList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeSeries(SeriesList[listBox1.SelectedIndex], false);
-                            ViewCPUSeries();
+                            SeriesList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeSeries(SeriesList[ComponentsListBox.SelectedIndex], false);
+                            ViewCPUSeriesToListBox();
 
                             break;
                         case 1:
-                            CPUCodeNamesList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeCodeName(CPUCodeNamesList[listBox1.SelectedIndex], false);
-                            ViewCodeName();
+                            CPUCodeNamesList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeCodeName(CPUCodeNamesList[ComponentsListBox.SelectedIndex], false);
+                            ViewCodeNameToListBox();
                             break;
                         case 2:
-                            SocketsList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeSocketInfo(SocketsList[listBox1.SelectedIndex], false);
-                            ViewSocketInfo();
+                            SocketsList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeSocketInfo(SocketsList[ComponentsListBox.SelectedIndex], false);
+                            ViewSocketInfoToListBox();
                             break;
                         case 3:
-                            ChipsetsList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeChipsetInfo(ChipsetsList[listBox1.SelectedIndex], false);
-                            ViewChipsetInfo();
+                            ChipsetsList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeChipsetInfo(ChipsetsList[ComponentsListBox.SelectedIndex], false);
+                            ViewChipsetInfoToListBox();
                             break;
                         case 4:
-                            RAMChanelsList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeChanelInfo(RAMChanelsList[listBox1.SelectedIndex], false);
-                            ViewChanelInfo();
+                            RAMChanelsList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeChanelInfo(RAMChanelsList[ComponentsListBox.SelectedIndex], false);
+                            ViewChanelInfoToListBox();
                             break;
                         case 5:
                             int res;
-                            bool isInt = Int32.TryParse(textBox1.Text, out res);
+                            bool isInt = Int32.TryParse(ComponentNameTextBox.Text, out res);
                             if (isInt)
                             {
-                                RAMFrequencyList[listBox1.SelectedIndex].Frequency = res;
-                                SQLRequests.ChangeFrequencyInfo(RAMFrequencyList[listBox1.SelectedIndex], false);
-                                ViewFrequencyInfo();
+                                RAMFrequencyList[ComponentsListBox.SelectedIndex].Frequency = res;
+                                SQLRequests.ChangeFrequencyInfo(RAMFrequencyList[ComponentsListBox.SelectedIndex], false);
+                                ViewFrequencyInfoToListBox();
                             }
                             else
                             {
@@ -490,170 +495,401 @@ namespace Computer_house
                             }
                             break;
                         case 6:
-                            FormFactorsList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            FormFactorsList[listBox1.SelectedIndex].Device_type = comboBox2.Text;
-                            SQLRequests.ChangeFormFactors(FormFactorsList[listBox1.SelectedIndex], false);
-                            ViewFormFactors();
+                            FormFactorsList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            FormFactorsList[ComponentsListBox.SelectedIndex].Device_type = ComponentTypeComboBox.Text;
+                            SQLRequests.ChangeFormFactors(FormFactorsList[ComponentsListBox.SelectedIndex], false);
+                            ViewFormFactorsToListBox();
                             break;
                         case 7:
-                            MemoryTypesList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            MemoryTypesList[listBox1.SelectedIndex].Device_type = comboBox2.Text;
-                            SQLRequests.ChangeMemoryType(MemoryTypesList[listBox1.SelectedIndex], false);
-                            ViewMemoryTypes();
+                            MemoryTypesList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            MemoryTypesList[ComponentsListBox.SelectedIndex].Device_type = ComponentTypeComboBox.Text;
+                            SQLRequests.ChangeMemoryType(MemoryTypesList[ComponentsListBox.SelectedIndex], false);
+                            ViewMemoryTypesToListBox();
                             break;
                         case 8:
-                            ConnectionInterfacesList[listBox1.SelectedIndex].Name = textBox1.Text;
-                            SQLRequests.ChangeConnectionInterface(ConnectionInterfacesList[listBox1.SelectedIndex], false);
-                            ViewConnectionInterfaces();
+                            ConnectionInterfacesList[ComponentsListBox.SelectedIndex].Name = ComponentNameTextBox.Text;
+                            SQLRequests.ChangeConnectionInterface(ConnectionInterfacesList[ComponentsListBox.SelectedIndex], false);
+                            ViewConnectionInterfacesToListBox();
                             break;
                         case 9:
-                            PowerConnectorsList[listBox1.SelectedIndex].Connectors = textBox1.Text;
-                            SQLRequests.ChangePowerConnector(PowerConnectorsList[listBox1.SelectedIndex], false);
-                            ViewPowerConnectors();
+                            PowerConnectorsList[ComponentsListBox.SelectedIndex].Connectors = ComponentNameTextBox.Text;
+                            SQLRequests.ChangePowerConnector(PowerConnectorsList[ComponentsListBox.SelectedIndex], false);
+                            ViewPowerConnectorsToListBox();
                             break;
                         default:
                             break;
                     }
-                    textBox1.Clear();
+                    ComponentNameTextBox.Clear();
                 }
                 else
                     MessageBox.Show("Элемент для изменения не выбран!");
 
-                textBox1.Clear();
+                ComponentNameTextBox.Clear();
             }
             else MessageBox.Show("Поле для ввода не заполнено.");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            LockButton();
+            LockButtonInSecondTab();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComponentsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox2.Items.Clear();
-            if (comboBox1.SelectedIndex == 6)
+            if(EditComponent.Checked)
             {
-                comboBox2.Items.AddRange(new string[] { "Motherboard", "Case", "HDD", "SSD" });
-                switch (FormFactorsList[listBox1.SelectedIndex].Device_type)
+                ComponentNameTextBox.Text = Convert.ToString(ComponentsListBox.Items[ComponentsListBox.SelectedIndex]);
+                ComponentTypeComboBox.Items.Clear();
+                if (TypesOfComponentComboBox.SelectedIndex == 6)
                 {
-                    case "Motherboard":
-                        comboBox2.SelectedIndex = 0;
-                        break;
-                    case "Case":
-                        comboBox2.SelectedIndex = 1;
-                        break;
-                    case "HDD":
-                        comboBox2.SelectedIndex = 2;
-                        break;
-                    case "SSD":
-                        comboBox2.SelectedIndex = 3;
-                        break;
-                    default:
-                        break;
+                    ComponentTypeComboBox.Items.AddRange(new string[] { "Motherboard", "Case", "HDD", "SSD" });
+                    switch (FormFactorsList[ComponentsListBox.SelectedIndex].Device_type)
+                    {
+                        case "Motherboard":
+                            ComponentTypeComboBox.SelectedIndex = 0;
+                            break;
+                        case "Case":
+                            ComponentTypeComboBox.SelectedIndex = 1;
+                            break;
+                        case "HDD":
+                            ComponentTypeComboBox.SelectedIndex = 2;
+                            break;
+                        case "SSD":
+                            ComponentTypeComboBox.SelectedIndex = 3;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (TypesOfComponentComboBox.SelectedIndex == 7)
+                {
+                    ComponentTypeComboBox.Items.AddRange(new string[] { "RAM", "GPU" });
+                    if (MemoryTypesList[ComponentsListBox.SelectedIndex].Device_type == "RAM")
+                        ComponentTypeComboBox.SelectedIndex = 0;
+                    else
+                        ComponentTypeComboBox.SelectedIndex = 1;
                 }
             }
-            if (comboBox1.SelectedIndex == 7)
-            {
-                comboBox2.Items.AddRange(new string[] { "RAM", "GPU" });
-                if (MemoryTypesList[listBox1.SelectedIndex].Device_type == "RAM")
-                    comboBox2.SelectedIndex = 0;
-                else
-                    comboBox2.SelectedIndex = 1;
-            }
+                
+          
         }
             
         
-        private void LockButton()
+        private void LockButtonInSecondTab()
         {
-            if ((textBox1.Text == "")||((radioButton1.Checked == false)&&(radioButton2.Checked == false)))
-                button1.Enabled = false;
+            if ((ComponentNameTextBox.Text == "")||((AddNewComponent.Checked == false)&&(EditComponent.Checked == false)))
+                ActToComponent.Enabled = false;
             else
-                button1.Enabled = true;
+                ActToComponent.Enabled = true;
         }
 
-        //Отображение сведений в списке
-        private void ViewCPUSeries()
+
+        private void ViewCPUSeriesToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in SeriesList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-        private void ViewCodeName()
+        private void ViewCodeNameToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in CPUCodeNamesList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-        private void ViewSocketInfo()
+        private void ViewSocketInfoToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in SocketsList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-        private void ViewChipsetInfo()
+        private void ViewChipsetInfoToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in ChipsetsList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-        private void ViewChanelInfo()
+        private void ViewChanelInfoToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in RAMChanelsList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-
-        private void ViewFrequencyInfo()
+        private void ViewFrequencyInfoToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in RAMFrequencyList)
             {
-                listBox1.Items.Add(Convert.ToString(i.Frequency));
+                ComponentsListBox.Items.Add(Convert.ToString(i.Frequency));
             }
         }
-        private void ViewFormFactors()
+        private void ViewFormFactorsToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in FormFactorsList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
             }
         }
-
-        private void ViewMemoryTypes()
+        private void ViewMemoryTypesToListBox()
         {
-            listBox1.Items.Clear();
+            ComponentsListBox.Items.Clear();
             foreach (var i in MemoryTypesList)
             {
-                listBox1.Items.Add(i.Name);
+                ComponentsListBox.Items.Add(i.Name);
+            }
+        }
+        private void ViewConnectionInterfacesToListBox()
+        {
+            ComponentsListBox.Items.Clear();
+            foreach (var i in ConnectionInterfacesList)
+            {
+                ComponentsListBox.Items.Add(i.Name);
+            }
+        }
+        private void ViewPowerConnectorsToListBox()
+        {
+            ComponentsListBox.Items.Clear();
+            foreach (var i in PowerConnectorsList)
+            {
+                ComponentsListBox.Items.Add(i.Connectors);
             }
         }
 
-        private void ViewConnectionInterfaces()
+        //Нужен для загрузки сведений о процесорах в таблицу
+        private void ViewCPUInfoInDataGrid()
         {
-            listBox1.Items.Clear();
-            foreach (var i in ConnectionInterfacesList)
+            dataGridView1.Rows.Clear();
+            using (ApplicationContext db = new ApplicationContext())
             {
-                listBox1.Items.Add(i.Name);
+                int numerator = 0;
+                foreach (Warehouse_info wi in WarehouseInfo)
+                {
+                    dataGridView1.Rows.Add(CPUList[numerator].ID, wi.ProductName);
+                    numerator++;
+                }
             }
         }
-        private void ViewPowerConnectors()
+
+        private void AddCPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            foreach (var i in PowerConnectorsList)
+           
+            ActWithCPU.Text = "Добавить";
+            ActWithCPU.BackColor = Color.Green;
+            FindCPUIDButton.Enabled = true;
+
+            ActWithCPU.Enabled = true;
+        }
+
+        private void ChangeCPURadio_CheckedChanged(object sender, EventArgs e)
+        {
+            ActWithCPU.Enabled = true;
+            ActWithCPU.Text = "Изменить";
+            ActWithCPU.BackColor = Color.BlueViolet;
+            FindCPUIDButton.Enabled = true;
+        }
+
+        private void FindCPUIDButton_Click(object sender, EventArgs e)
+        {
+            bool findCPU = false;
+            foreach (CPU cp in CPUList)
             {
-                listBox1.Items.Add(i.Connectors);
+                if (CPUIDTextBox.Text == cp.ID)
+                    findCPU = true;
+            }
+            if (findCPU)
+            {
+                ActWithCPU.Enabled = false;
+                MessageBox.Show("Такой серийный номер присутствует в базе");
+            }
+            else
+            {
+                MessageBox.Show("Такой серийный номер отсутствует в базе");
+                ActWithCPU.Enabled = true;
+            }    
+        }
+
+        private void CPUIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if ((AddCPURadio.Checked)||(ChangeCPURadio.Checked))
+            {
+                if (CPUIDTextBox.Text == "")
+                    FindCPUIDButton.Enabled = false;
+                else
+                {
+                    FindCPUIDButton.Enabled = true;
+                    FindCPU();
+                }
+            }    
+        }
+
+        //Необходим для проверки наличия процессора в базе по уникальному идентификатору
+        private void FindCPU()
+        {
+            bool findCPU = false;
+            foreach (CPU cp in CPUList)
+            {
+                if (CPUIDTextBox.Text == cp.ID)
+                    findCPU = true;
+            }
+            if (findCPU)
+                ActWithCPU.Enabled = false;
+            else
+                ActWithCPU.Enabled = true;
+        }
+
+        //Необходим для проверки на заполненность всех полей для работы с процессором
+        private bool CheckNull()
+        {
+            if(CPUIDTextBox.TextLength == 0)
+                return true;
+            if(CPUNameTextBox.TextLength == 0)
+                return true;
+            if(CPUSeriesComboBox.Text == "")
+                return true;
+            if (DeliveryTypeTextBox.TextLength == 0)
+                return true;
+            if (CPUCodeNameComboBox.Text == "")
+                return true;
+            if(CPUSocketComboBox.Text == "")
+                return true;
+            if (CPUCoresTextBox.TextLength == 0)
+                return true;
+            if (CPUBaseStateTextBox.TextLength == 0)
+                return true;
+            if (CPUMaxState.TextLength == 0)
+                return true;
+            if (CPUMemoryTypeComboBox.Text == "")
+                return true;
+            if (CPUChanelsComboBox.Text == "")
+                return true;
+            if (CPURamFrequencyComboBox.Text == "")
+                return true;
+            if (CPUTDPTextBox.TextLength == 0)
+                return true;
+            if (CPUTechprocessTextBox.TextLength == 0)
+                return true;
+            if (CPUBuyingPriceTextBox.TextLength == 0)
+                return true;
+            if (CPUSalePercentTextBox.TextLength == 0)
+                return true;
+            return false;
+        }
+        //Нужен для проверки на наличие числовых значений в необходимых полях
+        private bool CheckIntParse()
+        {
+            int res;
+            bool isInt = Int32.TryParse(CPUCoresTextBox.Text, out res);
+            //true - если распарсит
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUBaseStateTextBox.Text, out res);
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUMaxState.Text, out res);
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUTDPTextBox.Text, out res);
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUTechprocessTextBox.Text, out res);
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUBuyingPriceTextBox.Text, out res);
+            if (!isInt)
+                return false;
+            isInt = Int32.TryParse(CPUSalePercentTextBox.Text, out res);
+            if (!isInt)
+                return false;
+            return true;
+        }
+
+        private void ActWithCPU_Click(object sender, EventArgs e)
+        {
+            bool exception = false;
+            if (CheckNull())
+            {
+                exception = true;
+                MessageBox.Show("Не все поля заполнены");
+            }
+            if(!CheckIntParse())
+            {
+                exception = true;
+                MessageBox.Show("Не все значения можно привести к числовому виду");
+            }
+
+            if(!exception)
+            {
+                if (AddCPURadio.Checked)
+                {
+                    //Добавление процессора
+                }
+                else
+                {
+                    //изменение
+                }
+            }
+        }
+
+        //Необходимы для загрузки данных из списков в выпадающие списки (для CPU)
+        private void LoadSeriesInfoInComboBox()
+        {
+            CPUSeriesComboBox.Items.Clear();
+            foreach (var i in SeriesList)
+            {
+                CPUSeriesComboBox.Items.Add(i.Name);
+            }
+        }
+        private void LoadCodeNameInfoInComboBox()
+        {
+            CPUCodeNameComboBox.Items.Clear();
+            foreach (var i in CPUCodeNamesList)
+            {
+                CPUCodeNameComboBox.Items.Add(i.Name);
+            }
+        }
+        private void LoadSocketInfoInComboBox(ComboBox _comboBox)
+        {
+            _comboBox.Items.Clear();
+            foreach (var i in SocketsList)
+            {
+                _comboBox.Items.Add(i.Name);
+            }
+        }
+        private void LoadMemoryTypeInComboBox(ComboBox _comboBox, string _deviceType)
+        {
+            _comboBox.Items.Clear();
+            List<Memory_types> tempMemoryTypes = (from b in MemoryTypesList
+                                                  where b.Device_type == _deviceType
+                                                  select b).ToList();
+            foreach (var i in tempMemoryTypes)
+            {
+                _comboBox.Items.Add(i.Name);
+            }
+        }
+        private void LoadMemoryChanelsInComboBox(ComboBox _comboBox)
+        {
+            _comboBox.Items.Clear();
+            foreach (var i in RAMChanelsList)
+            {
+                _comboBox.Items.Add(i.Name);
+            }
+        }
+        private void LoadRamFrequencyInComboBox(ComboBox _comboBox)
+        {
+            _comboBox.Items.Clear();
+            foreach (var i in RAMFrequencyList)
+            {
+                _comboBox.Items.Add(i.Frequency);
             }
         }
     }

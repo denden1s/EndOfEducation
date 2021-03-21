@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities
 {
-    class GPU //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
+    public class GPU //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
     {
         public string ID { get; set; }
         public string Name { get; set; }

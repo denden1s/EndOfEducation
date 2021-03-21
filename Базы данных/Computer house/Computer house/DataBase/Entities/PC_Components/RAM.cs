@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class RAM //: IBase_and_max_options, IMemory_capacity
+    public class RAM //: IBase_and_max_options, IMemory_capacity
     {
         public string ID { get; set; }
         public string Name { get; set; }

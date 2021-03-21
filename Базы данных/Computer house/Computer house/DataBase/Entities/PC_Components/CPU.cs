@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class CPU //: IBase_and_max_options, IEnergy_consumption
+    public class CPU //: IBase_and_max_options, IEnergy_consumption
     {
         public string ID { get; set; }
         public string Name { get; set; }

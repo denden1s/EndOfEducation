@@ -6,7 +6,7 @@ using Computer_house.OtherClasses;
 
 namespace Computer_house.DataBase.Entities
 {
-    class HDD //: Storage_devices_options
+    public class HDD //: Storage_devices_options
     {
         public string ID { get; set; }
         public string Name { get; set; }

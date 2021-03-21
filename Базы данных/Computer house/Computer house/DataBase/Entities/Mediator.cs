@@ -1,7 +1,7 @@
 ﻿
 namespace Computer_house.DataBase.Entities
 {
-    class Mediator
+    public class Mediator
     {
         public int ID { get; set; }
         public string Components_type { get; set; }

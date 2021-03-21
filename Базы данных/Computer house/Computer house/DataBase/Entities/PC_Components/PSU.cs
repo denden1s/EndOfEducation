@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class PSU //: IEnergy_consumption
+    public class PSU //: IEnergy_consumption
     {
         public string ID { get; set; }
         public string Name { get; set; }

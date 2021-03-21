@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
-    class Storage_devices_options //: IStorage_devices_options, IMemory_capacity, IEnergy_consumption, ISizes_of_components
+    public class Storage_devices_options //: IStorage_devices_options, IMemory_capacity, IEnergy_consumption, ISizes_of_components
     {
         public  string ID { get; set; }
         public int Storage_device_ID { get; set; }

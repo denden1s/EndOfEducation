@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
-    class Sizes_of_components //: ISizes_of_components
+    public class Sizes_of_components //: ISizes_of_components
     {
         public int Product_ID { get; set; }
         public int Length { get; set; }

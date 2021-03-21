@@ -337,5 +337,7 @@ namespace Computer_house.OtherClasses
                 return false;   
             }
         }
+
+        //Добавление в бд через объект класса !!!
     }
 }

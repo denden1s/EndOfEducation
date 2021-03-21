@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class Case //: IBase_and_max_options, ISizes_of_components
+    public class Case //: IBase_and_max_options, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities
 {
-    class Holding_document
+   public  class Holding_document
     {
         public int ID { get; set; }
         public int Product_ID { get; set; }

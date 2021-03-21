@@ -1,7 +1,7 @@
 ﻿
 namespace Computer_house.DataBase.Entities
 {
-    class Locations_in_warehouse
+   public  class Locations_in_warehouse
     {
         public int ID { get; set; }
         public string Location_label { get; set; }

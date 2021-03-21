@@ -214,7 +214,6 @@
     <Compile Include="DataBase\Interfaces\IMemory_capacity.cs" />
     <Compile Include="DataBase\Interfaces\ISizes_of_components.cs" />
     <Compile Include="DataBase\Interfaces\IStorage_devices_options.cs" />
-    <Compile Include="DataBase\Product.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
     <Compile Include="OtherClasses\SQLRequests.cs" />
     <Compile Include="OtherClasses\SystemFunctions.cs" />
@@ -239,8 +238,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Computer_house.DataBase.Entities.CPU_series.datasource" />
-    <None Include="Properties\DataSources\Computer_house.DataBase.Entities.Warehouse.Warehouse_info.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

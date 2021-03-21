@@ -30,9 +30,11 @@ namespace Computer_house
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SearchInfo = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.EnterEditForm = new System.Windows.Forms.Button();
             this.AllProductInfo = new System.Windows.Forms.RichTextBox();
+            this.SetIP = new System.Windows.Forms.Button();
             this.Move = new System.Windows.Forms.Button();
             this.AddProduct = new System.Windows.Forms.Label();
             this.minus = new System.Windows.Forms.Button();
@@ -41,8 +43,6 @@ namespace Computer_house
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,17 +54,19 @@ namespace Computer_house
             this.panel1.Size = new System.Drawing.Size(200, 503);
             this.panel1.TabIndex = 0;
             // 
-            // textBox1
+            // SearchInfo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(262, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(472, 30);
-            this.textBox1.TabIndex = 1;
+            this.SearchInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchInfo.Location = new System.Drawing.Point(262, 12);
+            this.SearchInfo.Name = "SearchInfo";
+            this.SearchInfo.Size = new System.Drawing.Size(472, 30);
+            this.SearchInfo.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.EnterEditForm);
             this.panel2.Controls.Add(this.AllProductInfo);
+            this.panel2.Controls.Add(this.SetIP);
             this.panel2.Controls.Add(this.Move);
             this.panel2.Controls.Add(this.AddProduct);
             this.panel2.Controls.Add(this.minus);
@@ -73,6 +75,17 @@ namespace Computer_house
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(428, 503);
             this.panel2.TabIndex = 2;
+            // 
+            // EnterEditForm
+            // 
+            this.EnterEditForm.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnterEditForm.Location = new System.Drawing.Point(187, 440);
+            this.EnterEditForm.Name = "EnterEditForm";
+            this.EnterEditForm.Size = new System.Drawing.Size(226, 40);
+            this.EnterEditForm.TabIndex = 5;
+            this.EnterEditForm.Text = ">>";
+            this.EnterEditForm.UseVisualStyleBackColor = true;
+            this.EnterEditForm.Click += new System.EventHandler(this.EnterEditForm_Click);
             // 
             // AllProductInfo
             // 
@@ -84,12 +97,23 @@ namespace Computer_house
             this.AllProductInfo.TabIndex = 4;
             this.AllProductInfo.Text = "";
             // 
+            // SetIP
+            // 
+            this.SetIP.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetIP.Location = new System.Drawing.Point(187, 387);
+            this.SetIP.Name = "SetIP";
+            this.SetIP.Size = new System.Drawing.Size(226, 40);
+            this.SetIP.TabIndex = 4;
+            this.SetIP.Text = "Настроить IP";
+            this.SetIP.UseVisualStyleBackColor = true;
+            this.SetIP.Click += new System.EventHandler(this.SetIP_Click);
+            // 
             // Move
             // 
             this.Move.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Move.Location = new System.Drawing.Point(97, 437);
+            this.Move.Location = new System.Drawing.Point(12, 436);
             this.Move.Name = "Move";
-            this.Move.Size = new System.Drawing.Size(234, 44);
+            this.Move.Size = new System.Drawing.Size(169, 44);
             this.Move.TabIndex = 3;
             this.Move.Text = "Провести";
             this.Move.UseVisualStyleBackColor = true;
@@ -98,7 +122,7 @@ namespace Computer_house
             // 
             this.AddProduct.AutoSize = true;
             this.AddProduct.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProduct.Location = new System.Drawing.Point(202, 393);
+            this.AddProduct.Location = new System.Drawing.Point(85, 392);
             this.AddProduct.Name = "AddProduct";
             this.AddProduct.Size = new System.Drawing.Size(29, 32);
             this.AddProduct.TabIndex = 2;
@@ -108,7 +132,7 @@ namespace Computer_house
             // 
             this.minus.BackColor = System.Drawing.Color.Red;
             this.minus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minus.Location = new System.Drawing.Point(280, 386);
+            this.minus.Location = new System.Drawing.Point(136, 385);
             this.minus.Name = "minus";
             this.minus.Size = new System.Drawing.Size(45, 45);
             this.minus.TabIndex = 1;
@@ -120,7 +144,7 @@ namespace Computer_house
             // 
             this.plus.BackColor = System.Drawing.Color.Lime;
             this.plus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plus.Location = new System.Drawing.Point(97, 386);
+            this.plus.Location = new System.Drawing.Point(12, 385);
             this.plus.Name = "plus";
             this.plus.Size = new System.Drawing.Size(45, 45);
             this.plus.TabIndex = 0;
@@ -174,39 +198,15 @@ namespace Computer_house
             this.Count.ReadOnly = true;
             this.Count.Width = 125;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(764, 522);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(260, 40);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Настроить IP";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1084, 522);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 40);
-            this.button2.TabIndex = 5;
-            this.button2.Text = ">>";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // AuthorizedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1204, 574);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1204, 528);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.SearchInfo);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -226,7 +226,7 @@ namespace Computer_house
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SearchInfo;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button Move;
@@ -237,7 +237,7 @@ namespace Computer_house
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SetIP;
+        private System.Windows.Forms.Button EnterEditForm;
     }
 }

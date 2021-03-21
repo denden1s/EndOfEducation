@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
-    class Energy_consumption //: IEnergy_consumption
+    public class Energy_consumption //: IEnergy_consumption
     {
         public int Product_ID { get; set; }
         public int Consumption { get; set; }

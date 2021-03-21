@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    class Motherboard //: IMemory_capacity, ISizes_of_components
+    public class Motherboard //: IMemory_capacity, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }

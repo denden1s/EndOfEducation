@@ -47,12 +47,9 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
-
-            
             movePoroductCount = 0;
             LoadAll();
             LoadInfoAboutCPU();
-            //dataGridView1.SelectedCells[0].Selected = false;
         }
 
         private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -360,14 +357,14 @@ namespace Computer_house
             AddProduct.Text = Convert.ToString(movePoroductCount);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SetIP_Click(object sender, EventArgs e)
         {
             SystemFunctions.SetNewDataBaseAdress();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void EnterEditForm_Click(object sender, EventArgs e)
         {
-            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user);
+            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformation, Cpus);
             this.Hide();
             addComponentsOptionsForm.Show();
         }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Computer_house.DataBase
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         private string ip;
         private SetupIP Adress;

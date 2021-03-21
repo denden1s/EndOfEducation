@@ -82,5 +82,13 @@ namespace Computer_house
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string newIP = Microsoft.VisualBasic.Interaction.InputBox("Введите IP-адрес сервера БД:",
+                "Установка IP");
+            SetupIP setIP = new SetupIP(newIP);
+            setIP.ChangeXmlFile();
+        }
     }
 }

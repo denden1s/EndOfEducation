@@ -33,6 +33,7 @@
             this.LoginInfo = new System.Windows.Forms.TextBox();
             this.PasswordInfo = new System.Windows.Forms.TextBox();
             this.LPassword = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BAuthentificate
@@ -62,7 +63,7 @@
             this.LoginInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginInfo.Location = new System.Drawing.Point(121, 13);
             this.LoginInfo.Name = "LoginInfo";
-            this.LoginInfo.Size = new System.Drawing.Size(249, 30);
+            this.LoginInfo.Size = new System.Drawing.Size(182, 30);
             this.LoginInfo.TabIndex = 2;
             // 
             // PasswordInfo
@@ -71,7 +72,7 @@
             this.PasswordInfo.Location = new System.Drawing.Point(121, 71);
             this.PasswordInfo.Name = "PasswordInfo";
             this.PasswordInfo.PasswordChar = '*';
-            this.PasswordInfo.Size = new System.Drawing.Size(249, 30);
+            this.PasswordInfo.Size = new System.Drawing.Size(182, 30);
             this.PasswordInfo.TabIndex = 4;
             // 
             // LPassword
@@ -84,12 +85,24 @@
             this.LPassword.TabIndex = 3;
             this.LPassword.Text = "Пароль:";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(309, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(61, 88);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "IP";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AuthentificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(382, 199);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.PasswordInfo);
             this.Controls.Add(this.LPassword);
             this.Controls.Add(this.LoginInfo);
@@ -117,6 +130,7 @@
         private System.Windows.Forms.TextBox LoginInfo;
         private System.Windows.Forms.TextBox PasswordInfo;
         private System.Windows.Forms.Label LPassword;
+        private System.Windows.Forms.Button button1;
     }
 }
 
