@@ -21,7 +21,7 @@ namespace Computer_house
     {
         //string[][] info;
         private int movePoroductCount;
-        private List<Warehouse_info> WarehouseInformation = new List<Warehouse_info>();
+        private List<Warehouse_info> WarehouseInformationList = new List<Warehouse_info>();
         private List<Case> Cases;
         private List<Cooling_system> CoolingSystems;
         private List<CPU> Cpus = new List<CPU>();
@@ -31,6 +31,8 @@ namespace Computer_house
         private List<PSU> Psus;
         private List<RAM> Rams;
         private List<SSD> Ssds;
+        private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
+        private List<Products_location> ProductLocationsList = new List<Products_location>();
         private Thread[] threads = new Thread[9];
 
         private Users user;
@@ -47,9 +49,16 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             movePoroductCount = 0;
-            LoadAll();
-            LoadInfoAboutCPU();
+            LoadAllInfoFromDB();
+            threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
+            threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
+            //Сделать потоки
+            LoadInfoAboutCPUFromDB();
+            LoadLocationInWarehouseFromDB();
+            LoadProductLocationFromDB();
+
         }
 
         private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -99,7 +108,7 @@ namespace Computer_house
                 SystemFunctions.SetNewDataBaseAdress(ex);
             }
         }
-        private void LoadInfoAboutCPU()
+        private void LoadInfoAboutCPUFromDB()
         {
             try
             {
@@ -253,7 +262,43 @@ namespace Computer_house
         //    }
         //}
 
-        private void LoadAll()
+        private void LoadProductLocationFromDB()
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach (Products_location i in db.Products_location)
+                    {
+                        ProductLocationsList.Add(new Products_location(i.Product_ID, i.Location_ID, i.Items_count));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemFunctions.SetNewDataBaseAdress(ex);
+            }
+        }
+        private void LoadLocationInWarehouseFromDB()
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach (Locations_in_warehouse i in db.Locations_in_warehouse)
+                    {
+                        LocationInWarehouseList.Add(new Locations_in_warehouse(i.ID,i.Location_label,i.Current_item_count,
+                            i.Max_item_count));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemFunctions.SetNewDataBaseAdress(ex);
+            }
+        }
+
+        private void LoadAllInfoFromDB()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -264,7 +309,7 @@ namespace Computer_house
                     foreach (Warehouse_info c in db.Warehouse_info)
                     {
                         if (c.Current_items_count > 0)
-                            WarehouseInformation.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                            WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
                     }
                 }
             }
@@ -273,7 +318,7 @@ namespace Computer_house
 
         public void ViewInfo()
         {
-            foreach (Warehouse_info wi in WarehouseInformation)
+            foreach (Warehouse_info wi in WarehouseInformationList)
             {
                 dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
             }
@@ -287,7 +332,7 @@ namespace Computer_house
                 int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
                 DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
 
-                Warehouse_info obj = WarehouseInformation.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
+                Warehouse_info obj = WarehouseInformationList.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
 
 
                 switch (obj.ProductType)
@@ -312,7 +357,18 @@ namespace Computer_house
                             $"Тип памяти / кол-во каналов: {currentCPU.RAM_type} / {currentCPU.RAM_chanel}\n" +
                             $"Макс частота ОЗУ: {currentCPU.RAM_frequency} Mhz;\n" +
                             $"Встроенная графика: {integratedGPU};\n" +
-                            $"Техпроцесс: {currentCPU.Technical_process} нм";
+                            $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
+                            $"Количество на складе: \n";
+                            //Вывод данных на складе
+                           foreach(var i in LocationInWarehouseList)
+                           {
+
+                            var productLocation = (from b in ProductLocationsList
+                                                   where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
+                                                   select b).SingleOrDefault();
+                            if(productLocation !=null)
+                                AllProductInfo.Text += i.Location_label + ": " + productLocation.Items_count + "\n";
+                           }
                         break;
                     case "Case":
 
@@ -364,9 +420,15 @@ namespace Computer_house
 
         private void EnterEditForm_Click(object sender, EventArgs e)
         {
-            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformation, Cpus);
+            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformationList, Cpus);
             this.Hide();
             addComponentsOptionsForm.Show();
+        }
+
+        //Нужен для того, чтобы после добавления данных обновить список в таблице
+        private void AuthorizedForm_Enter(object sender, EventArgs e)
+        {
+            AuthorizedForm_Load(sender, e);
         }
     }
 }

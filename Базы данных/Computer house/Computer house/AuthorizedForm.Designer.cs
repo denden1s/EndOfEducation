@@ -215,6 +215,7 @@ namespace Computer_house
             this.Text = "Computer house";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthorizedForm_FormClosed);
             this.Load += new System.EventHandler(this.AuthorizedForm_Load);
+            this.Enter += new System.EventHandler(this.AuthorizedForm_Enter);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

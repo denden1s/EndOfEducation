@@ -8,6 +8,11 @@ namespace Computer_house.DataBase.Entities.Warehouse
         public int Markup_percent { get; set; }
 
         public Price_list() { }
+        public Price_list(decimal _price, int _markupPrecent)
+        {
+            Purchasable_price = _price;
+            Markup_percent = _markupPrecent;
+        }
         public Price_list(int _productID, decimal _price, int _markupPrecent) 
         {
             Product_ID = _productID;

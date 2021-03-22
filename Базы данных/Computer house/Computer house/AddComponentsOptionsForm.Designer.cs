@@ -33,19 +33,16 @@ namespace Computer_house
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.CPUSalePercentTextBox = new System.Windows.Forms.TextBox();
-            this.CPUBuyingPriceTextBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.ActWithCPU = new System.Windows.Forms.Button();
             this.CPUTechprocessTextBox = new System.Windows.Forms.TextBox();
             this.CPUTDPTextBox = new System.Windows.Forms.TextBox();
-            this.CPUIntegratedGraphicChekBox = new System.Windows.Forms.CheckBox();
+            this.CPUIntegratedGraphicCheckBox = new System.Windows.Forms.CheckBox();
             this.CPURamFrequencyComboBox = new System.Windows.Forms.ComboBox();
             this.CPUChanelsComboBox = new System.Windows.Forms.ComboBox();
             this.CPUMemoryTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.CPUMaxState = new System.Windows.Forms.TextBox();
+            this.CPUMaxStateTextBox = new System.Windows.Forms.TextBox();
             this.CPUBaseStateTextBox = new System.Windows.Forms.TextBox();
-            this.MultithreadingChekBox = new System.Windows.Forms.CheckBox();
+            this.MultithreadingCheckBox = new System.Windows.Forms.CheckBox();
             this.CPUCoresTextBox = new System.Windows.Forms.TextBox();
             this.CPUSocketComboBox = new System.Windows.Forms.ComboBox();
             this.CPUCodeNameComboBox = new System.Windows.Forms.ComboBox();
@@ -112,7 +109,7 @@ namespace Computer_house
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(829, 1084);
+            this.tabControl1.Size = new System.Drawing.Size(829, 1057);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -121,7 +118,7 @@ namespace Computer_house
             this.tabPage1.Location = new System.Drawing.Point(4, 37);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(821, 1043);
+            this.tabPage1.Size = new System.Drawing.Size(821, 1016);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Комплектующие";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -142,24 +139,21 @@ namespace Computer_house
             this.tabControl2.Location = new System.Drawing.Point(3, 6);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(812, 1031);
+            this.tabControl2.Size = new System.Drawing.Size(812, 1006);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.CPUSalePercentTextBox);
-            this.tabPage3.Controls.Add(this.CPUBuyingPriceTextBox);
-            this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.ActWithCPU);
             this.tabPage3.Controls.Add(this.CPUTechprocessTextBox);
             this.tabPage3.Controls.Add(this.CPUTDPTextBox);
-            this.tabPage3.Controls.Add(this.CPUIntegratedGraphicChekBox);
+            this.tabPage3.Controls.Add(this.CPUIntegratedGraphicCheckBox);
             this.tabPage3.Controls.Add(this.CPURamFrequencyComboBox);
             this.tabPage3.Controls.Add(this.CPUChanelsComboBox);
             this.tabPage3.Controls.Add(this.CPUMemoryTypeComboBox);
-            this.tabPage3.Controls.Add(this.CPUMaxState);
+            this.tabPage3.Controls.Add(this.CPUMaxStateTextBox);
             this.tabPage3.Controls.Add(this.CPUBaseStateTextBox);
-            this.tabPage3.Controls.Add(this.MultithreadingChekBox);
+            this.tabPage3.Controls.Add(this.MultithreadingCheckBox);
             this.tabPage3.Controls.Add(this.CPUCoresTextBox);
             this.tabPage3.Controls.Add(this.CPUSocketComboBox);
             this.tabPage3.Controls.Add(this.CPUCodeNameComboBox);
@@ -189,41 +183,16 @@ namespace Computer_house
             this.tabPage3.Location = new System.Drawing.Point(4, 32);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(804, 995);
+            this.tabPage3.Size = new System.Drawing.Size(804, 970);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Процессор";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // CPUSalePercentTextBox
-            // 
-            this.CPUSalePercentTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUSalePercentTextBox.Location = new System.Drawing.Point(642, 903);
-            this.CPUSalePercentTextBox.Name = "CPUSalePercentTextBox";
-            this.CPUSalePercentTextBox.Size = new System.Drawing.Size(137, 30);
-            this.CPUSalePercentTextBox.TabIndex = 39;
-            // 
-            // CPUBuyingPriceTextBox
-            // 
-            this.CPUBuyingPriceTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUBuyingPriceTextBox.Location = new System.Drawing.Point(476, 904);
-            this.CPUBuyingPriceTextBox.Name = "CPUBuyingPriceTextBox";
-            this.CPUBuyingPriceTextBox.Size = new System.Drawing.Size(156, 30);
-            this.CPUBuyingPriceTextBox.TabIndex = 38;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(19, 904);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(455, 32);
-            this.label13.TabIndex = 37;
-            this.label13.Text = "Закупочная стоимость / % надбавки";
+            this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
             // 
             // ActWithCPU
             // 
             this.ActWithCPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithCPU.Location = new System.Drawing.Point(25, 942);
+            this.ActWithCPU.Location = new System.Drawing.Point(25, 912);
             this.ActWithCPU.Name = "ActWithCPU";
             this.ActWithCPU.Size = new System.Drawing.Size(754, 47);
             this.ActWithCPU.TabIndex = 36;
@@ -247,16 +216,16 @@ namespace Computer_house
             this.CPUTDPTextBox.Size = new System.Drawing.Size(336, 30);
             this.CPUTDPTextBox.TabIndex = 34;
             // 
-            // CPUIntegratedGraphicChekBox
+            // CPUIntegratedGraphicCheckBox
             // 
-            this.CPUIntegratedGraphicChekBox.AutoSize = true;
-            this.CPUIntegratedGraphicChekBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CPUIntegratedGraphicChekBox.Location = new System.Drawing.Point(587, 764);
-            this.CPUIntegratedGraphicChekBox.Name = "CPUIntegratedGraphicChekBox";
-            this.CPUIntegratedGraphicChekBox.Size = new System.Drawing.Size(192, 32);
-            this.CPUIntegratedGraphicChekBox.TabIndex = 33;
-            this.CPUIntegratedGraphicChekBox.Text = "Поддерживается";
-            this.CPUIntegratedGraphicChekBox.UseVisualStyleBackColor = true;
+            this.CPUIntegratedGraphicCheckBox.AutoSize = true;
+            this.CPUIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CPUIntegratedGraphicCheckBox.Location = new System.Drawing.Point(587, 764);
+            this.CPUIntegratedGraphicCheckBox.Name = "CPUIntegratedGraphicCheckBox";
+            this.CPUIntegratedGraphicCheckBox.Size = new System.Drawing.Size(192, 32);
+            this.CPUIntegratedGraphicCheckBox.TabIndex = 33;
+            this.CPUIntegratedGraphicCheckBox.Text = "Поддерживается";
+            this.CPUIntegratedGraphicCheckBox.UseVisualStyleBackColor = true;
             // 
             // CPURamFrequencyComboBox
             // 
@@ -324,13 +293,13 @@ namespace Computer_house
             this.CPUMemoryTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUMemoryTypeComboBox.TabIndex = 30;
             // 
-            // CPUMaxState
+            // CPUMaxStateTextBox
             // 
-            this.CPUMaxState.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUMaxState.Location = new System.Drawing.Point(443, 576);
-            this.CPUMaxState.Name = "CPUMaxState";
-            this.CPUMaxState.Size = new System.Drawing.Size(336, 30);
-            this.CPUMaxState.TabIndex = 29;
+            this.CPUMaxStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CPUMaxStateTextBox.Location = new System.Drawing.Point(443, 576);
+            this.CPUMaxStateTextBox.Name = "CPUMaxStateTextBox";
+            this.CPUMaxStateTextBox.Size = new System.Drawing.Size(336, 30);
+            this.CPUMaxStateTextBox.TabIndex = 29;
             // 
             // CPUBaseStateTextBox
             // 
@@ -340,16 +309,16 @@ namespace Computer_house
             this.CPUBaseStateTextBox.Size = new System.Drawing.Size(419, 30);
             this.CPUBaseStateTextBox.TabIndex = 28;
             // 
-            // MultithreadingChekBox
+            // MultithreadingCheckBox
             // 
-            this.MultithreadingChekBox.AutoSize = true;
-            this.MultithreadingChekBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MultithreadingChekBox.Location = new System.Drawing.Point(576, 475);
-            this.MultithreadingChekBox.Name = "MultithreadingChekBox";
-            this.MultithreadingChekBox.Size = new System.Drawing.Size(203, 32);
-            this.MultithreadingChekBox.TabIndex = 27;
-            this.MultithreadingChekBox.Text = "Многопоточность";
-            this.MultithreadingChekBox.UseVisualStyleBackColor = true;
+            this.MultithreadingCheckBox.AutoSize = true;
+            this.MultithreadingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultithreadingCheckBox.Location = new System.Drawing.Point(576, 475);
+            this.MultithreadingCheckBox.Name = "MultithreadingCheckBox";
+            this.MultithreadingCheckBox.Size = new System.Drawing.Size(203, 32);
+            this.MultithreadingCheckBox.TabIndex = 27;
+            this.MultithreadingCheckBox.Text = "Многопоточность";
+            this.MultithreadingCheckBox.UseVisualStyleBackColor = true;
             // 
             // CPUCoresTextBox
             // 
@@ -503,6 +472,7 @@ namespace Computer_house
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(607, 150);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // CPU_ID
             // 
@@ -675,7 +645,7 @@ namespace Computer_house
             this.tabPage4.Location = new System.Drawing.Point(4, 32);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(804, 995);
+            this.tabPage4.Size = new System.Drawing.Size(804, 970);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Видеокарта";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -685,7 +655,7 @@ namespace Computer_house
             this.tabPage5.Location = new System.Drawing.Point(4, 32);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(804, 995);
+            this.tabPage5.Size = new System.Drawing.Size(804, 970);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Материнская плата";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -695,7 +665,7 @@ namespace Computer_house
             this.tabPage6.Location = new System.Drawing.Point(4, 32);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(804, 995);
+            this.tabPage6.Size = new System.Drawing.Size(804, 970);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Корпус";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -705,7 +675,7 @@ namespace Computer_house
             this.tabPage7.Location = new System.Drawing.Point(4, 32);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(804, 995);
+            this.tabPage7.Size = new System.Drawing.Size(804, 970);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.Text = "Оперативная память";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -715,7 +685,7 @@ namespace Computer_house
             this.tabPage8.Location = new System.Drawing.Point(4, 32);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(804, 995);
+            this.tabPage8.Size = new System.Drawing.Size(804, 970);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.Text = "Охлаждение";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -725,7 +695,7 @@ namespace Computer_house
             this.tabPage9.Location = new System.Drawing.Point(4, 32);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(804, 995);
+            this.tabPage9.Size = new System.Drawing.Size(804, 970);
             this.tabPage9.TabIndex = 6;
             this.tabPage9.Text = "Блок питания";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -735,7 +705,7 @@ namespace Computer_house
             this.tabPage10.Location = new System.Drawing.Point(4, 32);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(804, 995);
+            this.tabPage10.Size = new System.Drawing.Size(804, 970);
             this.tabPage10.TabIndex = 7;
             this.tabPage10.Text = "HDD";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -745,7 +715,7 @@ namespace Computer_house
             this.tabPage11.Location = new System.Drawing.Point(4, 32);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(804, 995);
+            this.tabPage11.Size = new System.Drawing.Size(804, 970);
             this.tabPage11.TabIndex = 8;
             this.tabPage11.Text = "SSD";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -766,7 +736,7 @@ namespace Computer_house
             this.tabPage2.Location = new System.Drawing.Point(4, 37);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(821, 1043);
+            this.tabPage2.Size = new System.Drawing.Size(821, 1016);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Доп. сведения о комплектующих";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -916,7 +886,7 @@ namespace Computer_house
             this.tabPage12.Location = new System.Drawing.Point(4, 37);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(821, 1043);
+            this.tabPage12.Size = new System.Drawing.Size(821, 1016);
             this.tabPage12.TabIndex = 2;
             this.tabPage12.Text = "Складские материалы";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -927,7 +897,7 @@ namespace Computer_house
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(863, 773);
+            this.ClientSize = new System.Drawing.Size(905, 773);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -996,7 +966,7 @@ namespace Computer_house
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPU_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPU_Name;
-        private System.Windows.Forms.CheckBox MultithreadingChekBox;
+        private System.Windows.Forms.CheckBox MultithreadingCheckBox;
         private System.Windows.Forms.TextBox CPUCoresTextBox;
         private System.Windows.Forms.ComboBox CPUSocketComboBox;
         private System.Windows.Forms.ComboBox CPUCodeNameComboBox;
@@ -1005,17 +975,14 @@ namespace Computer_house
         private System.Windows.Forms.Button FindCPUIDButton;
         private System.Windows.Forms.TextBox CPUNameTextBox;
         private System.Windows.Forms.TextBox CPUIDTextBox;
-        private System.Windows.Forms.TextBox CPUMaxState;
+        private System.Windows.Forms.TextBox CPUMaxStateTextBox;
         private System.Windows.Forms.TextBox CPUBaseStateTextBox;
         private System.Windows.Forms.TextBox CPUTechprocessTextBox;
         private System.Windows.Forms.TextBox CPUTDPTextBox;
-        private System.Windows.Forms.CheckBox CPUIntegratedGraphicChekBox;
+        private System.Windows.Forms.CheckBox CPUIntegratedGraphicCheckBox;
         private System.Windows.Forms.ComboBox CPURamFrequencyComboBox;
         private System.Windows.Forms.ComboBox CPUChanelsComboBox;
         private System.Windows.Forms.ComboBox CPUMemoryTypeComboBox;
         private System.Windows.Forms.Button ActWithCPU;
-        private System.Windows.Forms.TextBox CPUSalePercentTextBox;
-        private System.Windows.Forms.TextBox CPUBuyingPriceTextBox;
-        private System.Windows.Forms.Label label13;
     }
 }

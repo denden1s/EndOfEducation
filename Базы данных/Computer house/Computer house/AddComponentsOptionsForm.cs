@@ -671,11 +671,9 @@ namespace Computer_house
             dataGridView1.Rows.Clear();
             using (ApplicationContext db = new ApplicationContext())
             {
-                int numerator = 0;
-                foreach (Warehouse_info wi in WarehouseInfo)
+                foreach (CPU i in CPUList)
                 {
-                    dataGridView1.Rows.Add(CPUList[numerator].ID, wi.ProductName);
-                    numerator++;
+                    dataGridView1.Rows.Add(i.ID, i.Name);
                 }
             }
         }
@@ -696,6 +694,7 @@ namespace Computer_house
             ActWithCPU.Text = "Изменить";
             ActWithCPU.BackColor = Color.BlueViolet;
             FindCPUIDButton.Enabled = true;
+            ViewCPUInfoToChange();
         }
 
         private void FindCPUIDButton_Click(object sender, EventArgs e)
@@ -766,7 +765,7 @@ namespace Computer_house
                 return true;
             if (CPUBaseStateTextBox.TextLength == 0)
                 return true;
-            if (CPUMaxState.TextLength == 0)
+            if (CPUMaxStateTextBox.TextLength == 0)
                 return true;
             if (CPUMemoryTypeComboBox.Text == "")
                 return true;
@@ -777,10 +776,6 @@ namespace Computer_house
             if (CPUTDPTextBox.TextLength == 0)
                 return true;
             if (CPUTechprocessTextBox.TextLength == 0)
-                return true;
-            if (CPUBuyingPriceTextBox.TextLength == 0)
-                return true;
-            if (CPUSalePercentTextBox.TextLength == 0)
                 return true;
             return false;
         }
@@ -795,19 +790,13 @@ namespace Computer_house
             isInt = Int32.TryParse(CPUBaseStateTextBox.Text, out res);
             if (!isInt)
                 return false;
-            isInt = Int32.TryParse(CPUMaxState.Text, out res);
+            isInt = Int32.TryParse(CPUMaxStateTextBox.Text, out res);
             if (!isInt)
                 return false;
             isInt = Int32.TryParse(CPUTDPTextBox.Text, out res);
             if (!isInt)
                 return false;
             isInt = Int32.TryParse(CPUTechprocessTextBox.Text, out res);
-            if (!isInt)
-                return false;
-            isInt = Int32.TryParse(CPUBuyingPriceTextBox.Text, out res);
-            if (!isInt)
-                return false;
-            isInt = Int32.TryParse(CPUSalePercentTextBox.Text, out res);
             if (!isInt)
                 return false;
             return true;
@@ -831,7 +820,37 @@ namespace Computer_house
             {
                 if (AddCPURadio.Checked)
                 {
+                    CPU newCPU = new CPU();
+                    newCPU.ID = CPUIDTextBox.Text;
+                    newCPU.Name = CPUNameTextBox.Text;
+                    newCPU.Series_ID = SeriesList.Single(i => i.Name == CPUSeriesComboBox.Text).ID;
+                    newCPU.SeriesName = CPUSeriesComboBox.Text;
+                    newCPU.Delivery_type = DeliveryTypeTextBox.Text;
+                    newCPU.Codename_ID = CPUCodeNamesList.Single(i => i.Name == CPUCodeNameComboBox.Text).ID;
+                    newCPU.CodeName = CPUCodeNameComboBox.Text;
+                    newCPU.Socket_ID = SocketsList.Single(i => i.Name == CPUSocketComboBox.Text).ID;
+                    newCPU.Socket = CPUSocketComboBox.Text;
+                    newCPU.Сores_count = Convert.ToInt32(CPUCoresTextBox.Text);
+                    newCPU.Multithreading = MultithreadingCheckBox.Checked;
+                    newCPU.Base_state = Convert.ToInt32(CPUBaseStateTextBox.Text);
+                    newCPU.Max_state = Convert.ToInt32(CPUMaxStateTextBox.Text);
+                    newCPU.RAM_type_ID = (from b in MemoryTypesList
+                                          where b.Device_type == "RAM" && b.Name == CPUMemoryTypeComboBox.Text
+                                          select b.ID).SingleOrDefault();
+                    newCPU.RAM_type = CPUMemoryTypeComboBox.Text;
+                    newCPU.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == CPUChanelsComboBox.Text).ID;
+                    newCPU.RAM_chanel = CPUChanelsComboBox.Text;
+                    newCPU.RAM_frequency_ID = RAMFrequencyList.Single(i => 
+                          i.Frequency == Convert.ToInt32(CPURamFrequencyComboBox.Text)).ID;
+                    newCPU.RAM_frequency = Convert.ToInt32(CPURamFrequencyComboBox.Text);
+                    newCPU.Integrated_graphic = CPUIntegratedGraphicCheckBox.Checked;
+                    newCPU.Technical_process = Convert.ToInt32(CPUTechprocessTextBox);
                     //Добавление процессора
+                    SQLRequests.AddCPU(newCPU);
+                    //добавление в таблицу mediator
+                    //Добавить в warehouseInfo
+                    CPUList.Add(newCPU);
+                    ViewCPUInfoInDataGrid();
                 }
                 else
                 {
@@ -891,6 +910,43 @@ namespace Computer_house
             {
                 _comboBox.Items.Add(i.Frequency);
             }
+        }
+
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            LoadSeriesInfoInComboBox();
+            LoadCodeNameInfoInComboBox();
+            LoadSocketInfoInComboBox(CPUSocketComboBox);
+            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
+            LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
+            LoadRamFrequencyInComboBox(CPURamFrequencyComboBox);
+        }
+
+        private void ViewCPUInfoToChange()
+        {
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
+                //Отображение данных из списка CPU
+                CPU currentCPU = new CPU();
+                currentCPU = CPUList.Single(i => i.ID == (string)currentRow.Cells[0].Value);
+                CPUIDTextBox.Text = currentCPU.ID;
+                CPUNameTextBox.Text = currentCPU.Name;
+                CPUSeriesComboBox.SelectedItem = currentCPU.SeriesName;
+                DeliveryTypeTextBox.Text = currentCPU.Delivery_type;
+                CPUCodeNameComboBox.SelectedItem = currentCPU.CodeName;
+                CPUSocketComboBox.SelectedItem = currentCPU.Socket;
+                CPUCoresTextBox.Text = Convert.ToString(currentCPU.Сores_count);
+                MultithreadingCheckBox.Checked = currentCPU.Multithreading;
+                //...
+
+            }
+        }
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ChangeCPURadio.Checked)
+                ViewCPUInfoToChange();
         }
     }
 }

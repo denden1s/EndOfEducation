@@ -14,5 +14,7 @@ namespace Computer_house.DataBase.Entities
         public string HDD_ID { get; set; }
         public string SSD_ID { get; set; }
         public string Motherboard_ID { get; set; }
+
+        public Mediator() { }
     }
 }
