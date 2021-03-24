@@ -1,5 +1,4 @@
-﻿
-namespace Computer_house.DataBase.Entities.Warehouse
+﻿namespace Computer_house.DataBase.Entities.Warehouse
 {
     public class Users
     {

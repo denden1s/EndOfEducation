@@ -1,14 +1,10 @@
-﻿
-using Computer_house.DataBase.Entities.Warehouse;
-using Computer_house.OtherClasses;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
-   public  class Holding_document
+    public  class Holding_document
     {
         public int ID { get; set; }
         public int Product_ID { get; set; }

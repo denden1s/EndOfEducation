@@ -2,14 +2,8 @@
 using Computer_house.DataBase.Entities.PC_Components;
 using Computer_house.DataBase.Entities.PC_Options;
 using Computer_house.DataBase.Entities.Warehouse;
-using Computer_house.DataBase.Interfaces;
 using Computer_house.OtherClasses;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Computer_house.DataBase
 {
@@ -18,7 +12,6 @@ namespace Computer_house.DataBase
         private string ip;
         private SetupIP Adress;
 
-        //Все имена совпадают с именами из БД
 
         //Информация склада
         public DbSet<Users> Users { get; set; }
@@ -69,22 +62,12 @@ namespace Computer_house.DataBase
         //Нужен для конфигурации подключения к БД
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //192.168.1.2
-            
             optionsBuilder.UseSqlServer("Server = " + ip + "\\SQLEXPRESS, 1433;" +
                 " Database = Computer_house; User ID = root; Password = root; ");
-                //optionsBuilder.UseSqlServer("Server = " + ip + "\\SQLEXPRESS,1433; Database =  Computer_house;  User ID = Inna; Password =123;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //первичные ключи
-            //modelBuilder.Entity<Users>().HasKey(k => k.ID);
-            //modelBuilder.Entity<Holding_document>().HasKey(k => k.ID);
-            //modelBuilder.Entity<Holding_document>().HasKey(k => k.ID);
-            //ПОКА СОЙДЕТ ТАК 
-
-            //ToDo: Исправить 
             modelBuilder.Entity<Users>().HasKey(i => i.ID);
             modelBuilder.Entity<Holding_document>().HasKey(i => i.ID);
             modelBuilder.Entity<Locations_in_warehouse>().HasKey(i => i.ID);

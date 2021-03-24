@@ -1,5 +1,4 @@
-﻿
-namespace Computer_house.DataBase.Entities.PC_Options
+﻿namespace Computer_house.DataBase.Entities.PC_Options
 {
     public class RAM_chanels
     {

@@ -1,11 +1,4 @@
-﻿using Computer_house.DataBase.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Computer_house.DataBase.Entities.PC_Options
+﻿namespace Computer_house.DataBase.Entities.PC_Options
 {
     public class Base_and_max_options //: IBase_and_max_options
     {

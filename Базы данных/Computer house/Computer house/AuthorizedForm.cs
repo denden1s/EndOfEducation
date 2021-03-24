@@ -467,7 +467,7 @@ namespace Computer_house
         {
             //Открыть PDF
             string fbPath = Application.StartupPath;
-            string fname = "Настройка SQL Management Studio 18.pdf";
+            string fname = "Справка.pdf";
             string filename = fbPath + @"\" + fname;
             Help.ShowHelp(this, filename, HelpNavigator.Find, "");
         }

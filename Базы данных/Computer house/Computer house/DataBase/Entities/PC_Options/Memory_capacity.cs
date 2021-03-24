@@ -1,11 +1,4 @@
-﻿using Computer_house.DataBase.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Computer_house.DataBase.Entities.PC_Options
+﻿namespace Computer_house.DataBase.Entities.PC_Options
 {
     public class Memory_capacity //: IMemory_capacity
     {

@@ -1,5 +1,4 @@
-﻿
-namespace Computer_house.DataBase.Entities
+﻿namespace Computer_house.DataBase.Entities
 {
    public  class Locations_in_warehouse
     {
