@@ -451,7 +451,7 @@ namespace Computer_house.OtherClasses
             }
         }
 
-        private static bool Warning(bool _act, string _name)
+        public static bool Warning(bool _act, string _name)
         {
             string[] words;
             if (_act)
@@ -481,22 +481,41 @@ namespace Computer_house.OtherClasses
         //Добавление в бд через объект класса !!!
 
 
-        public static void ADDCPUInMediatorAndInWarehouseInfo(string _cpuID)
+        public static void EditCPUInMediator(CPU _cpu, string _method)
         {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     Mediator mediator = new Mediator();
+
                     mediator.Components_type = "CPU";
-                    mediator.CPU_ID = _cpuID;
-                    db.Mediator.Add(mediator);
-                    db.SaveChanges();
+                    mediator.CPU_ID = _cpu.ID;
+                    if(_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
                     int tempMediatorID = (from b in db.Mediator
-                                          where b.Components_type == "CPU" && b.CPU_ID == _cpuID
+                                          where b.Components_type == "CPU" && b.CPU_ID == _cpu.ID
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
-                    db.Warehouse_info.Add(info);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if(_method == "Edit")
+                        db.Warehouse_info.Update(info);
+
+                    Energy_consumption energy = new Energy_consumption(tempMediatorID, _cpu.Consumption);
+                    if (_method == "Add")
+                        db.Energy_consumption.Add(energy);
+                    else if (_method == "Edit")
+                        db.Energy_consumption.Update(energy);
+
+                    Base_and_max_options baseAndMaxOptions = new Base_and_max_options(tempMediatorID, _cpu.Base_state, _cpu.Max_state); ;
+                    if (_method == "Add")
+                        db.Base_and_max_options.Add(baseAndMaxOptions);
+                    else if (_method == "Edit")
+                        db.Base_and_max_options.Update(baseAndMaxOptions);
                     db.SaveChanges();
                 }
                 //После добавления в медиатор вытянуть этот же объект 
@@ -515,6 +534,25 @@ namespace Computer_house.OtherClasses
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     db.CPU.Add(_cpu);
+                    db.SaveChanges();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void ChangeCPU(CPU _cpu)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.CPU.Update(_cpu);
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -523,5 +561,107 @@ namespace Computer_house.OtherClasses
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user)
+        {
+            if (_itemsCount < 0)
+            {
+                //расход 
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    //Выбор мест откуда можно взять компонент
+                    //Сделать switch case
+                    List<Products_location> locations = (from b in db.Products_location
+                                                         where b.Product_ID == _infoAboutProduct.Product_ID
+                                                         && b.Items_count + _itemsCount > 0
+                                                         select b).ToList();
+                    if (locations.Count != 0)
+                    {
+                        locations[0].Items_count += _itemsCount;
+                        _infoAboutProduct.Current_items_count += _itemsCount;
+                        Locations_in_warehouse locationInWarehouse = new Locations_in_warehouse();
+                        locationInWarehouse = db.Locations_in_warehouse.Single(i => i.ID == locations[0].Location_ID);
+                        locationInWarehouse.Current_item_count += _itemsCount;
+                        db.Warehouse_info.Update(_infoAboutProduct);
+                        db.Locations_in_warehouse.Update(locationInWarehouse);
+                        db.Products_location.Update(locations[0]);
+                        //добавить холдинг документ
+                        Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
+                           _itemsCount, _user.ID, locations[0].Location_ID);
+                        db.Holding_document.Add(holding_Document);
+                        db.SaveChanges();
+                        MessageBox.Show("Снятие со склада прошло успешно.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Товар отсутствует на складе");
+                    }
+
+                }
+            }
+            else if (_itemsCount > 0)
+            {
+                int location_ID = -1;
+                //приход
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    //Выбор мест куда можно определить компонент
+                    //Сделать switch case
+                    List<Locations_in_warehouse> locations = (from b in db.Locations_in_warehouse
+                                                              where b.Location_label.Contains("CPU") &&
+                                                              b.Max_item_count > b.Current_item_count + _itemsCount
+                                                              select b).ToList();
+
+                    if (locations.Count != 0)
+                    {
+                        int numerator = 0;
+                        List<Products_location> LocationsWithThisCPU = new List<Products_location>();
+                        LocationsWithThisCPU = db.Products_location.Where(i => i.Product_ID == _infoAboutProduct.Product_ID).ToList();
+                        foreach (var i in locations)
+                        {
+                            foreach (var a in LocationsWithThisCPU)
+                            {
+                                if ((i.ID == a.Location_ID) && (a.Product_ID == _infoAboutProduct.Product_ID))
+                                    location_ID = a.Location_ID;
+                            }
+                        }
+                        //Если такого нет то добавить в первый блок
+                        if (location_ID == -1)
+                        {
+                            location_ID = locations[0].ID;
+                            Products_location productsLocation1 = new Products_location(_infoAboutProduct.Product_ID, location_ID, _itemsCount);
+                            productsLocation1.Items_count += _itemsCount;
+                            db.Products_location.Add(productsLocation1);
+                        }
+                        else
+                        {
+                            Products_location productsLocation = (from b in db.Products_location
+                                                                  where b.Location_ID == location_ID && b.Product_ID == _infoAboutProduct.Product_ID
+                                                                  select b).Single();
+                            productsLocation.Items_count += _itemsCount;
+                            db.Products_location.Update(productsLocation);
+                        }
+                        Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Приход",
+                            _itemsCount, _user.ID, location_ID);
+
+
+                        Locations_in_warehouse locations_InWarehouse = db.Locations_in_warehouse.Single(i => i.ID == location_ID);
+                        locations_InWarehouse.Current_item_count += _itemsCount;
+                        db.Locations_in_warehouse.Update(locations_InWarehouse);
+
+                        db.Holding_document.Add(holding_Document);
+                        _infoAboutProduct.Current_items_count += _itemsCount;
+                        db.Warehouse_info.Update(_infoAboutProduct);
+                        db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно");
+                    }
+                    else
+                        MessageBox.Show("На складе нет места");
+                }
+
+
+            }
+        }
+
     }
 }

@@ -19,7 +19,7 @@ namespace Computer_house
 {
     public partial class ComponentsOptionsForm : Form
     {
-        Thread[] threads = new Thread[10];
+        Thread[] threads = new Thread[11];
         private AuthorizedForm authorizedForm;
         private Users user;  
         //Списки для получения данных из БД
@@ -37,6 +37,7 @@ namespace Computer_house
         //Компоненты ПК
         private List<Warehouse_info> WarehouseInfo = new List<Warehouse_info>();
         private List<CPU> CPUList = new List<CPU>();
+        private List<Holding_document> HoldingDocuments = new List<Holding_document>();
         //сведения о процессоре
 
 
@@ -47,7 +48,7 @@ namespace Computer_house
         public ComponentsOptionsForm(Users _user,List<Warehouse_info> _wareHouse, List<CPU> _cpus)
         {
             InitializeComponent();
-            WarehouseInfo = _wareHouse;
+            //WarehouseInfo = _wareHouse;
             CPUList = _cpus;
             user = _user;
         }
@@ -82,6 +83,7 @@ namespace Computer_house
             threads[7] = new Thread(new ThreadStart(LoadMemoryTypesFromDB));
             threads[8] = new Thread(new ThreadStart(LoadConnectionInterfacesFromDB));
             threads[9] = new Thread(new ThreadStart(LoadPowerConnectorsFromDB));
+            threads[10] = new Thread(new ThreadStart(LoadHoldingDocs));
             foreach (var thread in threads)
             {
                 thread.Start();
@@ -92,116 +94,194 @@ namespace Computer_house
             LoadSocketInfoInComboBox(CPUSocketComboBox);
             LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
             LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
-            LoadRamFrequencyInComboBox(CPURamFrequencyComboBox);
+            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
+            SetEnableStatusOfCPUTextBoxes(false);
+            ViewDocsInDataGrid();
         }
 
         private void LoadCPUSeriesFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.CPU_series)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    SeriesList.Add(new CPU_series(I.ID, I.Name));  
+                    foreach (var I in db.CPU_series)
+                    {
+                        SeriesList.Add(new CPU_series(I.ID, I.Name));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
             threads[0].Interrupt();
         }
         private void LoadCPUCodeNameFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.CPU_codename)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    CPUCodeNamesList.Add(new CPU_codename(I.ID,I.Name));
+                    foreach (var I in db.CPU_codename)
+                    {
+                        CPUCodeNamesList.Add(new CPU_codename(I.ID, I.Name));
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            } 
             threads[1].Interrupt();
         }
         private void LoadSocketInfoFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Sockets)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    SocketsList.Add(new Sockets(I.ID, I.Name));
+                    foreach (var I in db.Sockets)
+                    {
+                        SocketsList.Add(new Sockets(I.ID, I.Name));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
             threads[2].Interrupt();
         }
         private void LoadChipsetInfoFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Chipset)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    ChipsetsList.Add(new Chipset(I.ID, I.Name));
+                    foreach (var I in db.Chipset)
+                    {
+                        ChipsetsList.Add(new Chipset(I.ID, I.Name));
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }          
             threads[2].Interrupt();
         }
         private void LoadChanelInfoFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.RAM_chanels)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    RAMChanelsList.Add(new RAM_chanels(I.ID, I.Name));
+                    foreach (var I in db.RAM_chanels)
+                    {
+                        RAMChanelsList.Add(new RAM_chanels(I.ID, I.Name));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             threads[4].Interrupt();
         }
         private void LoadFrequensyInfoFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.RAM_frequency)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    RAMFrequencyList.Add(new RAM_frequency(I.ID, I.Frequency));
+                    foreach (var I in db.RAM_frequency)
+                    {
+                        RAMFrequencyList.Add(new RAM_frequency(I.ID, I.Frequency));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             threads[5].Interrupt();
         }
         private void LoadFormFactorsFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Form_factors)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    FormFactorsList.Add(new Form_factors(I.ID, I.Name, I.Device_type));
+                    foreach (var I in db.Form_factors)
+                    {
+                        FormFactorsList.Add(new Form_factors(I.ID, I.Name, I.Device_type));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
             threads[6].Interrupt();
         }
         private void LoadMemoryTypesFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Memory_types)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    MemoryTypesList.Add(new Memory_types(I.ID, I.Name, I.Device_type));
+                    foreach (var I in db.Memory_types)
+                    {
+                        MemoryTypesList.Add(new Memory_types(I.ID, I.Name, I.Device_type));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             threads[7].Interrupt();
         }
         private void LoadConnectionInterfacesFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Connection_interfaces)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    ConnectionInterfacesList.Add(new Connection_interfaces(I.ID, I.Name));
+                    foreach (var I in db.Connection_interfaces)
+                    {
+                        ConnectionInterfacesList.Add(new Connection_interfaces(I.ID, I.Name));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
             threads[8].Interrupt();
         }
         private void LoadPowerConnectorsFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                foreach (var I in db.Power_connectors)
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    PowerConnectorsList.Add(new Power_connectors(I.ID, I.Connectors));
+                    foreach (var I in db.Power_connectors)
+                    {
+                        PowerConnectorsList.Add(new Power_connectors(I.ID, I.Connectors));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             threads[9].Interrupt();
         }
@@ -574,7 +654,6 @@ namespace Computer_house
           
         }
             
-        
         private void LockButtonInSecondTab()
         {
             if ((ComponentNameTextBox.Text == "")||((AddNewComponent.Checked == false)&&(EditComponent.Checked == false)))
@@ -582,7 +661,6 @@ namespace Computer_house
             else
                 ActToComponent.Enabled = true;
         }
-
 
         private void ViewCPUSeriesToListBox()
         {
@@ -680,20 +758,22 @@ namespace Computer_house
 
         private void AddCPURadio_CheckedChanged(object sender, EventArgs e)
         {
-           
+            SetEnableStatusOfCPUTextBoxes(true);
             ActWithCPU.Text = "Добавить";
             ActWithCPU.BackColor = Color.Green;
             FindCPUIDButton.Enabled = true;
-
             ActWithCPU.Enabled = true;
+            ClearCPUInfoInTextBoxes();
         }
 
         private void ChangeCPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            ActWithCPU.Enabled = true;
+            SetEnableStatusOfCPUTextBoxes(true);
             ActWithCPU.Text = "Изменить";
+            CPUIDTextBox.Enabled = false;
             ActWithCPU.BackColor = Color.BlueViolet;
-            FindCPUIDButton.Enabled = true;
+            FindCPUIDButton.Enabled = false;
+            ActWithCPU.Enabled = true;
             ViewCPUInfoToChange();
         }
 
@@ -707,7 +787,7 @@ namespace Computer_house
             }
             if (findCPU)
             {
-                ActWithCPU.Enabled = false;
+                //ActWithCPU.Enabled = false;
                 MessageBox.Show("Такой серийный номер присутствует в базе");
             }
             else
@@ -719,7 +799,7 @@ namespace Computer_house
 
         private void CPUIDTextBox_TextChanged(object sender, EventArgs e)
         {
-            if ((AddCPURadio.Checked)||(ChangeCPURadio.Checked))
+            if (AddCPURadio.Checked)
             {
                 if (CPUIDTextBox.Text == "")
                     FindCPUIDButton.Enabled = false;
@@ -755,7 +835,7 @@ namespace Computer_house
                 return true;
             if(CPUSeriesComboBox.Text == "")
                 return true;
-            if (DeliveryTypeTextBox.TextLength == 0)
+            if (DeliveryTypeComboBox.Text == "")
                 return true;
             if (CPUCodeNameComboBox.Text == "")
                 return true;
@@ -771,7 +851,7 @@ namespace Computer_house
                 return true;
             if (CPUChanelsComboBox.Text == "")
                 return true;
-            if (CPURamFrequencyComboBox.Text == "")
+            if (CPURamFrequaencyComboBox.Text == "")
                 return true;
             if (CPUTDPTextBox.TextLength == 0)
                 return true;
@@ -820,41 +900,54 @@ namespace Computer_house
             {
                 if (AddCPURadio.Checked)
                 {
-                    CPU newCPU = new CPU();
-                    newCPU.ID = CPUIDTextBox.Text;
-                    newCPU.Name = CPUNameTextBox.Text;
-                    newCPU.Series_ID = SeriesList.Single(i => i.Name == CPUSeriesComboBox.Text).ID;
-                    newCPU.SeriesName = CPUSeriesComboBox.Text;
-                    newCPU.Delivery_type = DeliveryTypeTextBox.Text;
-                    newCPU.Codename_ID = CPUCodeNamesList.Single(i => i.Name == CPUCodeNameComboBox.Text).ID;
-                    newCPU.CodeName = CPUCodeNameComboBox.Text;
-                    newCPU.Socket_ID = SocketsList.Single(i => i.Name == CPUSocketComboBox.Text).ID;
-                    newCPU.Socket = CPUSocketComboBox.Text;
-                    newCPU.Сores_count = Convert.ToInt32(CPUCoresTextBox.Text);
-                    newCPU.Multithreading = MultithreadingCheckBox.Checked;
-                    newCPU.Base_state = Convert.ToInt32(CPUBaseStateTextBox.Text);
-                    newCPU.Max_state = Convert.ToInt32(CPUMaxStateTextBox.Text);
-                    newCPU.RAM_type_ID = (from b in MemoryTypesList
-                                          where b.Device_type == "RAM" && b.Name == CPUMemoryTypeComboBox.Text
-                                          select b.ID).SingleOrDefault();
-                    newCPU.RAM_type = CPUMemoryTypeComboBox.Text;
-                    newCPU.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == CPUChanelsComboBox.Text).ID;
-                    newCPU.RAM_chanel = CPUChanelsComboBox.Text;
-                    newCPU.RAM_frequency_ID = RAMFrequencyList.Single(i => 
-                          i.Frequency == Convert.ToInt32(CPURamFrequencyComboBox.Text)).ID;
-                    newCPU.RAM_frequency = Convert.ToInt32(CPURamFrequencyComboBox.Text);
-                    newCPU.Integrated_graphic = CPUIntegratedGraphicCheckBox.Checked;
-                    newCPU.Technical_process = Convert.ToInt32(CPUTechprocessTextBox);
+                    //добавление работает
+                    CPU newCPU = AddInfoAboutCPU();//new CPU();
+                    //newCPU.ID = CPUIDTextBox.Text;
+                    //newCPU.Name = CPUNameTextBox.Text;
+                    //newCPU.Series_ID = SeriesList.Single(i => i.Name == CPUSeriesComboBox.Text).ID;
+                    //newCPU.SeriesName = CPUSeriesComboBox.Text;
+                    //newCPU.Delivery_type = DeliveryTypeComboBox.Text;
+                    //newCPU.Codename_ID = CPUCodeNamesList.Single(i => i.Name == CPUCodeNameComboBox.Text).ID;
+                    //newCPU.CodeName = CPUCodeNameComboBox.Text;
+                    //newCPU.Socket_ID = SocketsList.Single(i => i.Name == CPUSocketComboBox.Text).ID;
+                    //newCPU.Socket = CPUSocketComboBox.Text;
+                    //newCPU.Сores_count = Convert.ToInt32(CPUCoresTextBox.Text);
+                    //newCPU.Multithreading = MultithreadingCheckBox.Checked;
+                    //newCPU.Base_state = Convert.ToInt32(CPUBaseStateTextBox.Text);
+                    //newCPU.Max_state = Convert.ToInt32(CPUMaxStateTextBox.Text);
+                    //newCPU.RAM_type_ID = (from b in MemoryTypesList
+                    //                      where b.Device_type == "RAM" && b.Name == CPUMemoryTypeComboBox.Text
+                    //                      select b.ID).SingleOrDefault();
+                    //newCPU.RAM_type = CPUMemoryTypeComboBox.Text;
+                    //newCPU.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == CPUChanelsComboBox.Text).ID;
+                    //newCPU.RAM_chanel = CPUChanelsComboBox.Text;
+                    //newCPU.RAM_frequency_ID = RAMFrequencyList.Single(i => 
+                    //      i.Frequency == Convert.ToInt32(CPURamFrequaencyComboBox.Text)).ID;
+                    //newCPU.RAM_frequency = Convert.ToInt32(CPURamFrequaencyComboBox.Text);
+                    //newCPU.Integrated_graphic = CPUIntegratedGraphicCheckBox.Checked;
+                    //newCPU.Technical_process = Convert.ToInt32(CPUTechprocessTextBox.Text);
                     //Добавление процессора
-                    SQLRequests.AddCPU(newCPU);
-                    //добавление в таблицу mediator
-                    //Добавить в warehouseInfo
-                    CPUList.Add(newCPU);
-                    ViewCPUInfoInDataGrid();
+                    if(SQLRequests.Warning(true, newCPU.Name))
+                    {
+                        SQLRequests.AddCPU(newCPU);
+                        SQLRequests.EditCPUInMediator(newCPU, "Add");
+                        //добавление в таблицу mediator
+                        //Добавить в warehouseInfo
+                        CPUList.Add(newCPU);
+                        ViewCPUInfoInDataGrid();
+                        ClearCPUInfoInTextBoxes();
+                    }
                 }
                 else
                 {
                     //изменение
+                    CPU changedCPU = AddInfoAboutCPU();
+                    if (SQLRequests.Warning(false, changedCPU.Name))
+                    {
+                        SQLRequests.ChangeCPU(changedCPU);
+                        SQLRequests.EditCPUInMediator(changedCPU, "Edit");
+                        ViewCPUInfoInDataGrid();
+                    }
                 }
             }
         }
@@ -919,7 +1012,7 @@ namespace Computer_house
             LoadSocketInfoInComboBox(CPUSocketComboBox);
             LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
             LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
-            LoadRamFrequencyInComboBox(CPURamFrequencyComboBox);
+            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
         }
 
         private void ViewCPUInfoToChange()
@@ -934,19 +1027,135 @@ namespace Computer_house
                 CPUIDTextBox.Text = currentCPU.ID;
                 CPUNameTextBox.Text = currentCPU.Name;
                 CPUSeriesComboBox.SelectedItem = currentCPU.SeriesName;
-                DeliveryTypeTextBox.Text = currentCPU.Delivery_type;
+                DeliveryTypeComboBox.SelectedItem = currentCPU.Delivery_type;
                 CPUCodeNameComboBox.SelectedItem = currentCPU.CodeName;
                 CPUSocketComboBox.SelectedItem = currentCPU.Socket;
                 CPUCoresTextBox.Text = Convert.ToString(currentCPU.Сores_count);
                 MultithreadingCheckBox.Checked = currentCPU.Multithreading;
-                //...
-
+                CPUBaseStateTextBox.Text = Convert.ToString(currentCPU.Base_state);
+                CPUMaxStateTextBox.Text = Convert.ToString(currentCPU.Max_state);
+                CPUMemoryTypeComboBox.SelectedItem = currentCPU.RAM_type;
+                CPUChanelsComboBox.SelectedItem = currentCPU.RAM_chanel;
+                CPURamFrequaencyComboBox.SelectedItem = currentCPU.RAM_frequency;
+                CPUIntegratedGraphicCheckBox.Checked = currentCPU.Integrated_graphic;
+                CPUTDPTextBox.Text = Convert.ToString(currentCPU.Consumption);
+                CPUTechprocessTextBox.Text = Convert.ToString(currentCPU.Technical_process);
             }
         }
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (ChangeCPURadio.Checked)
+            {
                 ViewCPUInfoToChange();
+                ActWithCPU.Enabled = true;
+            } 
+        }
+        private void ClearCPUInfoInTextBoxes()
+        {
+            CPUIDTextBox.Clear();
+            CPUNameTextBox.Clear();
+            CPUSeriesComboBox.SelectedItem = null;
+            DeliveryTypeComboBox.SelectedItem = null;
+            CPUCodeNameComboBox.SelectedItem = null;
+            CPUSocketComboBox.SelectedItem = null;
+            CPUCoresTextBox.Clear();
+            MultithreadingCheckBox.Checked = false;
+            CPUBaseStateTextBox.Clear();
+            CPUMaxStateTextBox.Clear();
+            CPUMemoryTypeComboBox.SelectedItem = null;
+            CPUChanelsComboBox.SelectedItem = null;
+            CPURamFrequaencyComboBox.SelectedItem = null;
+            CPUIntegratedGraphicCheckBox.Checked = false;
+            CPUTDPTextBox.Clear();
+            CPUTechprocessTextBox.Clear();
+        }
+        private CPU AddInfoAboutCPU()
+        {
+            CPU changedCPU = new CPU();
+            changedCPU.ID = CPUIDTextBox.Text;
+            changedCPU.Name = CPUNameTextBox.Text;
+            changedCPU.Series_ID = SeriesList.Single(i => i.Name == CPUSeriesComboBox.Text).ID;
+            changedCPU.SeriesName = CPUSeriesComboBox.Text;
+            changedCPU.Delivery_type = DeliveryTypeComboBox.Text;
+            changedCPU.Codename_ID = CPUCodeNamesList.Single(i => i.Name == CPUCodeNameComboBox.Text).ID;
+            changedCPU.CodeName = CPUCodeNameComboBox.Text;
+            changedCPU.Socket_ID = SocketsList.Single(i => i.Name == CPUSocketComboBox.Text).ID;
+            changedCPU.Socket = CPUSocketComboBox.Text;
+            changedCPU.Сores_count = Convert.ToInt32(CPUCoresTextBox.Text);
+            changedCPU.Multithreading = MultithreadingCheckBox.Checked;
+            changedCPU.Base_state = Convert.ToInt32(CPUBaseStateTextBox.Text);
+            changedCPU.Max_state = Convert.ToInt32(CPUMaxStateTextBox.Text);
+            changedCPU.RAM_type_ID = (from b in MemoryTypesList
+                                      where b.Device_type == "RAM" && b.Name == CPUMemoryTypeComboBox.Text
+                                      select b.ID).SingleOrDefault();
+            changedCPU.RAM_type = CPUMemoryTypeComboBox.Text;
+            changedCPU.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == CPUChanelsComboBox.Text).ID;
+            changedCPU.RAM_chanel = CPUChanelsComboBox.Text;
+            changedCPU.RAM_frequency_ID = RAMFrequencyList.Single(i =>
+                  i.Frequency == Convert.ToInt32(CPURamFrequaencyComboBox.Text)).ID;
+            changedCPU.RAM_frequency = Convert.ToInt32(CPURamFrequaencyComboBox.Text);
+            changedCPU.Integrated_graphic = CPUIntegratedGraphicCheckBox.Checked;
+            changedCPU.Technical_process = Convert.ToInt32(CPUTechprocessTextBox.Text);
+            return changedCPU;
+        }
+
+        private void SetEnableStatusOfCPUTextBoxes(bool _status)
+        {
+            CPUIDTextBox.Enabled = _status;
+            CPUNameTextBox.Enabled = _status;
+            CPUSeriesComboBox.Enabled = _status;
+            DeliveryTypeComboBox.Enabled = _status;
+            CPUCodeNameComboBox.Enabled = _status;
+            CPUSocketComboBox.Enabled = _status;
+            CPUCoresTextBox.Enabled = _status;
+            MultithreadingCheckBox.Enabled = _status;
+            CPUBaseStateTextBox.Enabled = _status;
+            CPUMaxStateTextBox.Enabled = _status;
+            CPUMemoryTypeComboBox.Enabled = _status;
+            CPUChanelsComboBox.Enabled = _status;
+            CPURamFrequaencyComboBox.Enabled = _status;
+            CPUIntegratedGraphicCheckBox.Enabled = _status;
+            CPUTDPTextBox.Enabled = _status;
+            CPUTechprocessTextBox.Enabled = _status;
+        }
+
+        private void tabPage12_Enter(object sender, EventArgs e)
+        {
+            //загрузка данных из holding doc
+            this.AutoScroll = false;
+        }
+        private void LoadHoldingDocs() 
+        {
+            HoldingDocuments.Clear();
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach (var i in db.Holding_document)
+                    {
+                        HoldingDocuments.Add(i);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            threads[10].Interrupt();
+        }
+
+        private void dataGridView2_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+        private void ViewDocsInDataGrid()
+        {
+            dataGridView2.Rows.Clear();
+            foreach (var i in HoldingDocuments)
+            {
+                i.GetDataFromDB();
+                dataGridView2.Rows.Add(i.ID, i.Product_name,i.Time, i.State, i.Items_count_in_move, i.User_ID, i.Location_name);
+            }
         }
     }
 }

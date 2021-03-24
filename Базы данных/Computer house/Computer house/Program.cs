@@ -31,16 +31,16 @@ namespace Computer_house
                             if(u.Authorization_status == true)
                             {
                                 login = true;
-                                user = new Users(u.Login, u.Password);
+                                user = new Users(u.ID, u.Login, u.Password);
                             }
                         }
                     }
 
                 }
             }
-            catch (Exception ex)
+            catch(Exception)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                Application.Run(new AuthentificationForm());
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

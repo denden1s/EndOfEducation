@@ -39,7 +39,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -54,6 +54,7 @@ namespace Computer_house
 
         private void Authorization()
         {
+            bool findUser = false;
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
@@ -63,6 +64,7 @@ namespace Computer_house
                     {
                         if (user.Password == PasswordInfo.Text)
                         {
+                            findUser = true;
                             user.Authorization_status = true;
                             db.SaveChanges();
                             authorizedForm = new AuthorizedForm(user);
@@ -70,11 +72,14 @@ namespace Computer_house
                             this.Hide();
                         }
                     }
+
                 }
+                if (!findUser)
+                    MessageBox.Show("Пользователь не найден либо пароль не верный.");
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -83,12 +88,9 @@ namespace Computer_house
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void настроитьIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string newIP = Microsoft.VisualBasic.Interaction.InputBox("Введите IP-адрес сервера БД:",
-                "Установка IP");
-            SetupIP setIP = new SetupIP(newIP);
-            setIP.ChangeXmlFile();
+            SystemFunctions.SetNewDataBaseAdress();
         }
     }
 }

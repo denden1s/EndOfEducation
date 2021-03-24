@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,14 +27,14 @@ namespace Computer_house
         private List<Cooling_system> CoolingSystems;
         private List<CPU> Cpus = new List<CPU>();
         private List<GPU> Gpus;
-        private List<HDD> Hdds;
+        //private List<HDD> Hdds;
         private List<Motherboard> Motherboards;
         private List<PSU> Psus;
         private List<RAM> Rams;
-        private List<SSD> Ssds;
+       // private List<SSD> Ssds;
         private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
         private List<Products_location> ProductLocationsList = new List<Products_location>();
-        private Thread[] threads = new Thread[9];
+       // private Thread[] threads = new Thread[2];
 
         private Users user;
         public AuthorizedForm()
@@ -52,9 +53,8 @@ namespace Computer_house
             dataGridView1.Rows.Clear();
             movePoroductCount = 0;
             LoadAllInfoFromDB();
-            threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
-            threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
-            //Сделать потоки
+            //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
+            //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             LoadInfoAboutCPUFromDB();
             LoadLocationInWarehouseFromDB();
             LoadProductLocationFromDB();
@@ -85,7 +85,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void LoadInfoAboutCooling()
@@ -105,7 +105,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void LoadInfoAboutCPUFromDB()
@@ -114,7 +114,7 @@ namespace Computer_house
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-
+                    Cpus.Clear();
                     foreach (CPU c in db.CPU)
                     {
                         Cpus.Add(new CPU(c.ID));
@@ -123,12 +123,11 @@ namespace Computer_house
                     {
                         Cpus[i].GetDataFromDB();
                     }
-
                 }
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void LoadInfoAboutGPU()
@@ -148,7 +147,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -195,7 +194,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -216,7 +215,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -237,7 +236,7 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -266,6 +265,7 @@ namespace Computer_house
         {
             try
             {
+                ProductLocationsList.Clear();
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     foreach (Products_location i in db.Products_location)
@@ -276,13 +276,14 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void LoadLocationInWarehouseFromDB()
         {
             try
             {
+                LocationInWarehouseList.Clear();
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     foreach (Locations_in_warehouse i in db.Locations_in_warehouse)
@@ -294,34 +295,49 @@ namespace Computer_house
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void LoadAllInfoFromDB()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            try
             {
-                if (db.Warehouse_info.Count() > 0)
+                WarehouseInformationList.Clear();
+                using (ApplicationContext db = new ApplicationContext())
                 {
-
-                
-                    foreach (Warehouse_info c in db.Warehouse_info)
+                    if (db.Warehouse_info.Count() > 0)
                     {
-                        if (c.Current_items_count > 0)
-                            WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                        foreach (Warehouse_info c in db.Warehouse_info)
+                        {
+                           WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                        }
                     }
                 }
+                ViewInfoInDataGrid();
             }
-            ViewInfo();
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            } 
         }
 
-        public void ViewInfo()
+        public void ViewInfoInDataGrid()
         {
-            foreach (Warehouse_info wi in WarehouseInformationList)
+            dataGridView1.Rows.Clear();
+            try
             {
-                dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                foreach (Warehouse_info wi in WarehouseInformationList)
+                {
+                    dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }          
         }
 
 
@@ -329,6 +345,8 @@ namespace Computer_house
         {
             if (dataGridView1.SelectedCells.Count > 0)
             {
+                AddProduct.Text = "0";
+                movePoroductCount = 0;
                 int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
                 DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
 
@@ -360,15 +378,22 @@ namespace Computer_house
                             $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
                             $"Количество на складе: \n";
                             //Вывод данных на складе
+                            bool countMoreThanZero = false;
                            foreach(var i in LocationInWarehouseList)
                            {
-
+                            //countMoreThanZero = false;
+                            
                             var productLocation = (from b in ProductLocationsList
-                                                   where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
-                                                   select b).SingleOrDefault();
-                            if(productLocation !=null)
+                                                    where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
+                                                    select b).SingleOrDefault();
+                            if (productLocation != null)
+                            {
                                 AllProductInfo.Text += i.Location_label + ": " + productLocation.Items_count + "\n";
+                                countMoreThanZero = true;
+                            }
                            }
+                        if (!countMoreThanZero)
+                            AllProductInfo.Text += "0";
                         break;
                     case "Case":
 
@@ -413,22 +438,157 @@ namespace Computer_house
             AddProduct.Text = Convert.ToString(movePoroductCount);
         }
 
-        private void SetIP_Click(object sender, EventArgs e)
+        //Нужен для того, чтобы после добавления данных обновить список в таблице
+        private void AuthorizedForm_Enter(object sender, EventArgs e)
+        {
+            AuthorizedForm_Load(sender, e);
+        }
+
+        private void настроитьIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemFunctions.SetNewDataBaseAdress();
         }
 
-        private void EnterEditForm_Click(object sender, EventArgs e)
+        private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformationList, Cpus);
             this.Hide();
             addComponentsOptionsForm.Show();
         }
 
-        //Нужен для того, чтобы после добавления данных обновить список в таблице
-        private void AuthorizedForm_Enter(object sender, EventArgs e)
+        private void выйтиИзУчётнойЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AuthorizedForm_Load(sender, e);
+            AuthentificationForm authentificationForm = new AuthentificationForm();
+            authentificationForm.Show();
+            this.Hide();
+        }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Открыть PDF
+            string fbPath = Application.StartupPath;
+            string fname = "Настройка SQL Management Studio 18.pdf";
+            string filename = fbPath + @"\" + fname;
+            Help.ShowHelp(this, filename, HelpNavigator.Find, "");
+        }
+
+        //Нужен для поиска данных в таблице WarehouseInfo
+        private void SearchInfo_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            AllProductInfo.Clear();
+            if (SearchInfo.TextLength > 0)
+            {
+                try
+                {
+                    List<Warehouse_info> SearchResultList = new List<Warehouse_info>();
+                    //Поиск по имени
+                    SearchResultList = (from b in WarehouseInformationList
+                                        where b.ProductName.Contains(SearchInfo.Text)
+                                        select b).ToList();
+                    //Если результат есть то вывести данные
+                    if (SearchResultList.Count != 0)
+                    {
+                        foreach (Warehouse_info wi in SearchResultList)
+                        {
+                            dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                        }
+                    }
+                    //Если результат пустой то делает поиск по ID
+                    else
+                    {
+                        List<Mediator> MediatorRequest;
+                        //Вытягивает числовой ID из посредника
+                        MediatorRequest = FindIDInMediator("CPU");
+                        //Проверка на наличие товара в целом
+                        if(MediatorRequest.Count != 0)
+                        {
+                            var tempRequest = (from b in MediatorRequest
+                                               where b.CPU_ID.Contains(SearchInfo.Text)
+                                               select b).ToList();
+                            //Проверка наличия такого ID как в строке поиска
+                            if (tempRequest != null)
+                            {                        
+                                foreach (Mediator i in tempRequest)
+                                {
+                                    SearchResultList.Add( WarehouseInformationList.Single(a => a.Product_ID == i.ID));
+                                }
+                                //Добавление и вывод при успешном поиске
+                                if (SearchResultList.Count != 0)
+                                {
+                                    foreach (Warehouse_info wi in SearchResultList)
+                                    {
+                                        dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                                    }
+                                }
+                                //В противном случае очистить таблицу
+                                else
+                                {
+                                    dataGridView1.Rows.Clear();
+                                   // ViewInfoInDataGrid();
+                                }                                    
+                            }
+                            else
+                            {
+                                dataGridView1.Rows.Clear();
+                                //ViewInfoInDataGrid();
+                            }                                
+                        }
+                        // Если строка пустая вывести всю таблицу
+                        else
+                        {
+                            dataGridView1.Rows.Clear();
+                            ViewInfoInDataGrid();
+                        }
+                    }
+                        
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                ViewInfoInDataGrid();
+        }
+        private List<Mediator> FindIDInMediator(string _componentType)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                 var mediatorRequest = (from b in db.Mediator
+                                         where b.Components_type == _componentType
+                                        select b).ToList();
+                return mediatorRequest;
+            }
+            
+        }
+
+        private void Move_Click(object sender, EventArgs e)
+        {
+            string question = "Сейчас будет ";
+            if (Convert.ToInt32(AddProduct.Text) > 0)
+                question += "добавлено на склад ";
+            else
+                question += "снято со склада ";
+            question += AddProduct.Text + " элементов товара.";
+            DialogResult questionResult = MessageBox.Show(question,
+                                        "Проведение товара",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Information,
+                                         MessageBoxDefaultButton.Button2,
+                                         MessageBoxOptions.DefaultDesktopOnly);
+            if (questionResult == DialogResult.Yes)
+            {
+                SQLRequests.CreateHoldingDocument(WarehouseInformationList[dataGridView1.SelectedCells[0].RowIndex],
+                Convert.ToInt32(AddProduct.Text), user);
+                AllProductInfo.Clear();
+                LoadAllInfoFromDB();
+                LoadLocationInWarehouseFromDB();
+                LoadProductLocationFromDB();
+            }
+            else
+                MessageBox.Show("Действие отменено");
+            
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
@@ -89,7 +90,7 @@ namespace Computer_house.DataBase.Entities.PC_Options
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
 
 

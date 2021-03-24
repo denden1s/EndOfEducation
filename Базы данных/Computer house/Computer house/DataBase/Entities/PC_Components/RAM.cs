@@ -2,6 +2,8 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
+
 namespace Computer_house.DataBase.Entities.PC_Components
 {
     public class RAM //: IBase_and_max_options, IMemory_capacity
@@ -58,7 +60,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 

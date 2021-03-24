@@ -2,6 +2,7 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
@@ -79,7 +80,7 @@ namespace Computer_house.DataBase.Entities
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void GetFormFactorInfo(ApplicationContext db)

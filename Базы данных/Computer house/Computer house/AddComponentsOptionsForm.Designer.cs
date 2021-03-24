@@ -29,15 +29,22 @@ namespace Computer_house
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComponentsOptionsForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.DeliveryTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.ActWithCPU = new System.Windows.Forms.Button();
             this.CPUTechprocessTextBox = new System.Windows.Forms.TextBox();
             this.CPUTDPTextBox = new System.Windows.Forms.TextBox();
             this.CPUIntegratedGraphicCheckBox = new System.Windows.Forms.CheckBox();
-            this.CPURamFrequencyComboBox = new System.Windows.Forms.ComboBox();
+            this.CPURamFrequaencyComboBox = new System.Windows.Forms.ComboBox();
             this.CPUChanelsComboBox = new System.Windows.Forms.ComboBox();
             this.CPUMemoryTypeComboBox = new System.Windows.Forms.ComboBox();
             this.CPUMaxStateTextBox = new System.Windows.Forms.TextBox();
@@ -46,7 +53,6 @@ namespace Computer_house
             this.CPUCoresTextBox = new System.Windows.Forms.TextBox();
             this.CPUSocketComboBox = new System.Windows.Forms.ComboBox();
             this.CPUCodeNameComboBox = new System.Windows.Forms.ComboBox();
-            this.DeliveryTypeTextBox = new System.Windows.Forms.TextBox();
             this.CPUSeriesComboBox = new System.Windows.Forms.ComboBox();
             this.FindCPUIDButton = new System.Windows.Forms.Button();
             this.CPUNameTextBox = new System.Windows.Forms.TextBox();
@@ -92,12 +98,22 @@ namespace Computer_house
             this.label1 = new System.Windows.Forms.Label();
             this.TypesOfComponentComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.HoldingDocumentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MovingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -144,11 +160,18 @@ namespace Computer_house
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage3.Controls.Add(this.DeliveryTypeComboBox);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.ActWithCPU);
             this.tabPage3.Controls.Add(this.CPUTechprocessTextBox);
             this.tabPage3.Controls.Add(this.CPUTDPTextBox);
             this.tabPage3.Controls.Add(this.CPUIntegratedGraphicCheckBox);
-            this.tabPage3.Controls.Add(this.CPURamFrequencyComboBox);
+            this.tabPage3.Controls.Add(this.CPURamFrequaencyComboBox);
             this.tabPage3.Controls.Add(this.CPUChanelsComboBox);
             this.tabPage3.Controls.Add(this.CPUMemoryTypeComboBox);
             this.tabPage3.Controls.Add(this.CPUMaxStateTextBox);
@@ -157,7 +180,6 @@ namespace Computer_house
             this.tabPage3.Controls.Add(this.CPUCoresTextBox);
             this.tabPage3.Controls.Add(this.CPUSocketComboBox);
             this.tabPage3.Controls.Add(this.CPUCodeNameComboBox);
-            this.tabPage3.Controls.Add(this.DeliveryTypeTextBox);
             this.tabPage3.Controls.Add(this.CPUSeriesComboBox);
             this.tabPage3.Controls.Add(this.FindCPUIDButton);
             this.tabPage3.Controls.Add(this.CPUNameTextBox);
@@ -186,8 +208,71 @@ namespace Computer_house
             this.tabPage3.Size = new System.Drawing.Size(804, 970);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Процессор";
-            this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
+            // 
+            // DeliveryTypeComboBox
+            // 
+            this.DeliveryTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DeliveryTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeliveryTypeComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.DeliveryTypeComboBox.FormattingEnabled = true;
+            this.DeliveryTypeComboBox.Items.AddRange(new object[] {
+            "OEM",
+            "Box"});
+            this.DeliveryTypeComboBox.Location = new System.Drawing.Point(343, 337);
+            this.DeliveryTypeComboBox.Name = "DeliveryTypeComboBox";
+            this.DeliveryTypeComboBox.Size = new System.Drawing.Size(436, 31);
+            this.DeliveryTypeComboBox.TabIndex = 42;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(727, 536);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(52, 28);
+            this.label24.TabIndex = 41;
+            this.label24.Text = "МГц";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(727, 578);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(52, 28);
+            this.label23.TabIndex = 40;
+            this.label23.Text = "МГц";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(727, 728);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(52, 28);
+            this.label22.TabIndex = 39;
+            this.label22.Text = "МГц";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(747, 814);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 28);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "Вт";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(735, 863);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 28);
+            this.label13.TabIndex = 37;
+            this.label13.Text = "НМ";
             // 
             // ActWithCPU
             // 
@@ -205,7 +290,7 @@ namespace Computer_house
             this.CPUTechprocessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
             this.CPUTechprocessTextBox.Location = new System.Drawing.Point(343, 861);
             this.CPUTechprocessTextBox.Name = "CPUTechprocessTextBox";
-            this.CPUTechprocessTextBox.Size = new System.Drawing.Size(436, 30);
+            this.CPUTechprocessTextBox.Size = new System.Drawing.Size(374, 30);
             this.CPUTechprocessTextBox.TabIndex = 35;
             // 
             // CPUTDPTextBox
@@ -213,7 +298,7 @@ namespace Computer_house
             this.CPUTDPTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
             this.CPUTDPTextBox.Location = new System.Drawing.Point(443, 813);
             this.CPUTDPTextBox.Name = "CPUTDPTextBox";
-            this.CPUTDPTextBox.Size = new System.Drawing.Size(336, 30);
+            this.CPUTDPTextBox.Size = new System.Drawing.Size(274, 30);
             this.CPUTDPTextBox.TabIndex = 34;
             // 
             // CPUIntegratedGraphicCheckBox
@@ -227,13 +312,13 @@ namespace Computer_house
             this.CPUIntegratedGraphicCheckBox.Text = "Поддерживается";
             this.CPUIntegratedGraphicCheckBox.UseVisualStyleBackColor = true;
             // 
-            // CPURamFrequencyComboBox
+            // CPURamFrequaencyComboBox
             // 
-            this.CPURamFrequencyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CPURamFrequencyComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CPURamFrequencyComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPURamFrequencyComboBox.FormattingEnabled = true;
-            this.CPURamFrequencyComboBox.Items.AddRange(new object[] {
+            this.CPURamFrequaencyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CPURamFrequaencyComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CPURamFrequaencyComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CPURamFrequaencyComboBox.FormattingEnabled = true;
+            this.CPURamFrequaencyComboBox.Items.AddRange(new object[] {
             "Модельный ряд процессора",
             "Кодовое название процессора",
             "Сокет",
@@ -244,10 +329,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPURamFrequencyComboBox.Location = new System.Drawing.Point(427, 725);
-            this.CPURamFrequencyComboBox.Name = "CPURamFrequencyComboBox";
-            this.CPURamFrequencyComboBox.Size = new System.Drawing.Size(352, 31);
-            this.CPURamFrequencyComboBox.TabIndex = 32;
+            this.CPURamFrequaencyComboBox.Location = new System.Drawing.Point(427, 725);
+            this.CPURamFrequaencyComboBox.Name = "CPURamFrequaencyComboBox";
+            this.CPURamFrequaencyComboBox.Size = new System.Drawing.Size(290, 31);
+            this.CPURamFrequaencyComboBox.TabIndex = 32;
             // 
             // CPUChanelsComboBox
             // 
@@ -298,7 +383,7 @@ namespace Computer_house
             this.CPUMaxStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
             this.CPUMaxStateTextBox.Location = new System.Drawing.Point(443, 576);
             this.CPUMaxStateTextBox.Name = "CPUMaxStateTextBox";
-            this.CPUMaxStateTextBox.Size = new System.Drawing.Size(336, 30);
+            this.CPUMaxStateTextBox.Size = new System.Drawing.Size(274, 30);
             this.CPUMaxStateTextBox.TabIndex = 29;
             // 
             // CPUBaseStateTextBox
@@ -306,7 +391,7 @@ namespace Computer_house
             this.CPUBaseStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
             this.CPUBaseStateTextBox.Location = new System.Drawing.Point(360, 534);
             this.CPUBaseStateTextBox.Name = "CPUBaseStateTextBox";
-            this.CPUBaseStateTextBox.Size = new System.Drawing.Size(419, 30);
+            this.CPUBaseStateTextBox.Size = new System.Drawing.Size(357, 30);
             this.CPUBaseStateTextBox.TabIndex = 28;
             // 
             // MultithreadingCheckBox
@@ -371,14 +456,6 @@ namespace Computer_house
             this.CPUCodeNameComboBox.Name = "CPUCodeNameComboBox";
             this.CPUCodeNameComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUCodeNameComboBox.TabIndex = 24;
-            // 
-            // DeliveryTypeTextBox
-            // 
-            this.DeliveryTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.DeliveryTypeTextBox.Location = new System.Drawing.Point(343, 339);
-            this.DeliveryTypeTextBox.Name = "DeliveryTypeTextBox";
-            this.DeliveryTypeTextBox.Size = new System.Drawing.Size(436, 30);
-            this.DeliveryTypeTextBox.TabIndex = 23;
             // 
             // CPUSeriesComboBox
             // 
@@ -461,6 +538,7 @@ namespace Computer_house
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CPU_ID,
@@ -642,86 +720,87 @@ namespace Computer_house
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage4.Location = new System.Drawing.Point(4, 32);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(804, 970);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Видеокарта";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage5.Location = new System.Drawing.Point(4, 32);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(804, 970);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Материнская плата";
-            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage6.Location = new System.Drawing.Point(4, 32);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(804, 970);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Корпус";
-            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tabPage7
             // 
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage7.Location = new System.Drawing.Point(4, 32);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage7.Size = new System.Drawing.Size(804, 970);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.Text = "Оперативная память";
-            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // tabPage8
             // 
+            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage8.Location = new System.Drawing.Point(4, 32);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.Size = new System.Drawing.Size(804, 970);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.Text = "Охлаждение";
-            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // tabPage9
             // 
+            this.tabPage9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage9.Location = new System.Drawing.Point(4, 32);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage9.Size = new System.Drawing.Size(804, 970);
             this.tabPage9.TabIndex = 6;
             this.tabPage9.Text = "Блок питания";
-            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // tabPage10
             // 
+            this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage10.Location = new System.Drawing.Point(4, 32);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage10.Size = new System.Drawing.Size(804, 970);
             this.tabPage10.TabIndex = 7;
             this.tabPage10.Text = "HDD";
-            this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // tabPage11
             // 
+            this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage11.Location = new System.Drawing.Point(4, 32);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage11.Size = new System.Drawing.Size(804, 970);
             this.tabPage11.TabIndex = 8;
             this.tabPage11.Text = "SSD";
-            this.tabPage11.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage2.Controls.Add(this.ComponentTypeComboBox);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.ActToComponent);
@@ -739,7 +818,6 @@ namespace Computer_house
             this.tabPage2.Size = new System.Drawing.Size(821, 1016);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Доп. сведения о комплектующих";
-            this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
             // ComponentTypeComboBox
@@ -883,13 +961,96 @@ namespace Computer_house
             // 
             // tabPage12
             // 
+            this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage12.Controls.Add(this.dataGridView2);
             this.tabPage12.Location = new System.Drawing.Point(4, 37);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage12.Size = new System.Drawing.Size(821, 1016);
             this.tabPage12.TabIndex = 2;
             this.tabPage12.Text = "Складские материалы";
-            this.tabPage12.UseVisualStyleBackColor = true;
+            this.tabPage12.Enter += new System.EventHandler(this.tabPage12_Enter);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.HoldingDocumentID,
+            this.ProductName,
+            this.MovingTime,
+            this.Status,
+            this.ProductsCount,
+            this.WorkerID,
+            this.Location});
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(818, 723);
+            this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowEnter);
+            // 
+            // HoldingDocumentID
+            // 
+            this.HoldingDocumentID.HeaderText = "ID";
+            this.HoldingDocumentID.MinimumWidth = 6;
+            this.HoldingDocumentID.Name = "HoldingDocumentID";
+            this.HoldingDocumentID.ReadOnly = true;
+            this.HoldingDocumentID.Visible = false;
+            this.HoldingDocumentID.Width = 125;
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Наименование товара";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 200;
+            // 
+            // MovingTime
+            // 
+            this.MovingTime.HeaderText = "Время проведения";
+            this.MovingTime.MinimumWidth = 6;
+            this.MovingTime.Name = "MovingTime";
+            this.MovingTime.ReadOnly = true;
+            this.MovingTime.Width = 170;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Статус";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 125;
+            // 
+            // ProductsCount
+            // 
+            this.ProductsCount.HeaderText = "Кол-во";
+            this.ProductsCount.MinimumWidth = 6;
+            this.ProductsCount.Name = "ProductsCount";
+            this.ProductsCount.ReadOnly = true;
+            this.ProductsCount.Width = 125;
+            // 
+            // WorkerID
+            // 
+            this.WorkerID.HeaderText = "ID работника";
+            this.WorkerID.MinimumWidth = 6;
+            this.WorkerID.Name = "WorkerID";
+            this.WorkerID.ReadOnly = true;
+            this.WorkerID.Width = 125;
+            // 
+            // Location
+            // 
+            this.Location.HeaderText = "Расположение";
+            this.Location.MinimumWidth = 6;
+            this.Location.Name = "Location";
+            this.Location.ReadOnly = true;
+            this.Location.Width = 180;
             // 
             // ComponentsOptionsForm
             // 
@@ -897,9 +1058,10 @@ namespace Computer_house
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(905, 773);
+            this.ClientSize = new System.Drawing.Size(862, 773);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ComponentsOptionsForm";
@@ -915,6 +1077,8 @@ namespace Computer_house
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -970,7 +1134,6 @@ namespace Computer_house
         private System.Windows.Forms.TextBox CPUCoresTextBox;
         private System.Windows.Forms.ComboBox CPUSocketComboBox;
         private System.Windows.Forms.ComboBox CPUCodeNameComboBox;
-        private System.Windows.Forms.TextBox DeliveryTypeTextBox;
         private System.Windows.Forms.ComboBox CPUSeriesComboBox;
         private System.Windows.Forms.Button FindCPUIDButton;
         private System.Windows.Forms.TextBox CPUNameTextBox;
@@ -980,9 +1143,23 @@ namespace Computer_house
         private System.Windows.Forms.TextBox CPUTechprocessTextBox;
         private System.Windows.Forms.TextBox CPUTDPTextBox;
         private System.Windows.Forms.CheckBox CPUIntegratedGraphicCheckBox;
-        private System.Windows.Forms.ComboBox CPURamFrequencyComboBox;
+        private System.Windows.Forms.ComboBox CPURamFrequaencyComboBox;
         private System.Windows.Forms.ComboBox CPUChanelsComboBox;
         private System.Windows.Forms.ComboBox CPUMemoryTypeComboBox;
         private System.Windows.Forms.Button ActWithCPU;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox DeliveryTypeComboBox;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoldingDocumentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MovingTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductsCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
     }
 }

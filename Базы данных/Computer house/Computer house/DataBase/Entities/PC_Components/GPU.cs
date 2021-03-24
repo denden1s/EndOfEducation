@@ -2,6 +2,8 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
+
 namespace Computer_house.DataBase.Entities
 {
     public class GPU //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
@@ -74,7 +76,7 @@ namespace Computer_house.DataBase.Entities
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         private void GetMemTypeInfo(ApplicationContext db)

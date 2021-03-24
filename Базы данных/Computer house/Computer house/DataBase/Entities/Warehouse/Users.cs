@@ -12,8 +12,9 @@ namespace Computer_house.DataBase.Entities.Warehouse
         public bool Authorization_status { get; set; } = false;
 
         public Users() { }
-        public Users(string _login, string _password)
+        public Users(int _id,string _login, string _password)
         {
+            ID = _id;
             Login = _login;
             Password = _password;
         }

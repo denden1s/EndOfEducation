@@ -1,7 +1,10 @@
 ﻿
+using Computer_house.DataBase.Entities.Warehouse;
 using Computer_house.OtherClasses;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
@@ -16,20 +19,21 @@ namespace Computer_house.DataBase.Entities
         public int Location_ID { get; set; }
 
         //Доп данные из БД
-        internal string User_name { get; set; }
+        internal string Product_ID_InString { get; set; }
         internal string Product_name { get; set; }
         internal string Location_name { get; set; }
 
         public Holding_document() { }
         public Holding_document(int _productID, string _state, int _itemsCountInMove,
-            DateTime _time, int _userID, int _locationID) 
+         int _userID, int _locationID) 
         {
             Product_ID = _productID;
             State = _state;
             Items_count_in_move = _itemsCountInMove;
-            Time = _time;
+            Time = DateTime.Now;
             User_ID = _userID;
             Location_ID = _locationID;
+            GetDataFromDB();
         }
         //Выборка данных из БД
         public void GetDataFromDB()
@@ -38,26 +42,23 @@ namespace Computer_house.DataBase.Entities
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    //User_name = db.Users.Single(i => i.ID == User_ID).Login;
-                    //var findProductName = db.Mediator.Single(i => i.ID == Product_ID).;
-                    //string productID = "";
-                    //if (findProductName.Case_ID != null) productID = findProductName.Case_ID;
-                    //if (findProductName.Cooling_system_ID != null) productID = findProductName.Cooling_system_ID;
-                    //if (findProductName.CPU_ID != null) productID = findProductName.CPU_ID;
-                    //if (findProductName.GPU_ID != null) productID = findProductName.GPU_ID;
-                    //if (findProductName.HDD_ID != null) productID = findProductName.HDD_ID;
-                    //if (findProductName.Motherboard_ID != null) productID = findProductName.Motherboard_ID;
-                    //if (findProductName.PSU_ID != null) productID = findProductName.PSU_ID;
-                    //if (findProductName.RAM_ID != null) productID = findProductName.RAM_ID;
-                    //if (findProductName.SSD_ID != null) productID = findProductName.SSD_ID;
+                    var findProduct = db.Mediator.Single(i => i.ID == Product_ID);
+                    switch (findProduct.Components_type)
+                    {
+                        case "CPU":
+                            Product_ID_InString = findProduct.CPU_ID;
+                            Product_name = db.CPU.Single(i => i.ID == Product_ID_InString).Name;   
+                            break;
+                        default:
+                            break;
+                    }
 
-                    //Product_ID = 
-                    //Location_name = db.LocationsInWarehouse.Single(i => i.ID == Location_ID).Location_label;
+                    Location_name = db.Locations_in_warehouse.Single(i => i.ID == Location_ID).Location_label;
                 }
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
             
         }

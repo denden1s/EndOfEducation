@@ -2,6 +2,7 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
@@ -75,7 +76,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
         

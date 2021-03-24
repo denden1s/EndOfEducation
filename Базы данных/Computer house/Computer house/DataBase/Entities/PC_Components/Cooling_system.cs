@@ -2,6 +2,8 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
+
 namespace Computer_house.DataBase.Entities
 {
     public class Cooling_system //: IBase_and_max_options, IEnergy_consumption, ISizes_of_components
@@ -59,7 +61,7 @@ namespace Computer_house.DataBase.Entities
             }
             catch (Exception ex)
             {
-                SystemFunctions.SetNewDataBaseAdress(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
