@@ -588,7 +588,12 @@ namespace Computer_house
             }
             else
                 MessageBox.Show("Действие отменено");
-            
+
+
+            AddProduct.Text = "0";
+            movePoroductCount = 0;
+
+
         }
     }
 }

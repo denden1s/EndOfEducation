@@ -573,7 +573,7 @@ namespace Computer_house.OtherClasses
                     //Сделать switch case
                     List<Products_location> locations = (from b in db.Products_location
                                                          where b.Product_ID == _infoAboutProduct.Product_ID
-                                                         && b.Items_count + _itemsCount > 0
+                                                         && b.Items_count + _itemsCount >= 0
                                                          select b).ToList();
                     if (locations.Count != 0)
                     {
@@ -630,7 +630,6 @@ namespace Computer_house.OtherClasses
                         {
                             location_ID = locations[0].ID;
                             Products_location productsLocation1 = new Products_location(_infoAboutProduct.Product_ID, location_ID, _itemsCount);
-                            productsLocation1.Items_count += _itemsCount;
                             db.Products_location.Add(productsLocation1);
                         }
                         else
