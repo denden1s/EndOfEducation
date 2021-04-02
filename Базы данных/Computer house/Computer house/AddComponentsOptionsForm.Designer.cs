@@ -144,17 +144,56 @@ namespace Computer_house
             this.label38 = new System.Windows.Forms.Label();
             this.GPUEnergyConsumptTextBox = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ActWithGPU = new System.Windows.Forms.Button();
+            this.ChangeMotherboardRadio = new System.Windows.Forms.RadioButton();
+            this.AddMotherboardRadio = new System.Windows.Forms.RadioButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MotherboardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MotherboardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MotherboardNameTextBox = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.SearcchMotherboardButton = new System.Windows.Forms.Button();
+            this.MotherboardIDTextBox = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.MotherboardSupportedCPUTextBox = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.MotherboardSocketComboBox = new System.Windows.Forms.ComboBox();
+            this.MotherboardChipsetComboBox = new System.Windows.Forms.ComboBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.MotherboardFormFactorComboBox = new System.Windows.Forms.ComboBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.MotherboardSupportedRAMComboBox = new System.Windows.Forms.ComboBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.MotherboardCountOfRAMSlotsTextBox = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.MotherBoardRAMChanels = new System.Windows.Forms.ComboBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.MotherboardExpansionsSlotsTextBox = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.MotherboardStorageInterfacesTextBox = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.MotherboardSLISupportCheckBox = new System.Windows.Forms.CheckBox();
+            this.MotherboardIntegratedGraphicCheckBox = new System.Windows.Forms.CheckBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.MotherboardRAMCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.ActWithMotherboard = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CPU_DatagridView)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GPU_DatagridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -762,7 +801,7 @@ namespace Computer_house
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.ActWithGPU);
             this.tabPage4.Controls.Add(this.GPUEnergyConsumptTextBox);
             this.tabPage4.Controls.Add(this.label39);
             this.tabPage4.Controls.Add(this.GPUCapacityTextBox);
@@ -809,6 +848,41 @@ namespace Computer_house
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage5.Controls.Add(this.ActWithMotherboard);
+            this.tabPage5.Controls.Add(this.MotherboardRAMCapacityTextBox);
+            this.tabPage5.Controls.Add(this.label54);
+            this.tabPage5.Controls.Add(this.textBox1);
+            this.tabPage5.Controls.Add(this.label53);
+            this.tabPage5.Controls.Add(this.label52);
+            this.tabPage5.Controls.Add(this.MotherboardIntegratedGraphicCheckBox);
+            this.tabPage5.Controls.Add(this.MotherboardSLISupportCheckBox);
+            this.tabPage5.Controls.Add(this.label51);
+            this.tabPage5.Controls.Add(this.MotherboardStorageInterfacesTextBox);
+            this.tabPage5.Controls.Add(this.label50);
+            this.tabPage5.Controls.Add(this.MotherboardExpansionsSlotsTextBox);
+            this.tabPage5.Controls.Add(this.label49);
+            this.tabPage5.Controls.Add(this.MotherBoardRAMChanels);
+            this.tabPage5.Controls.Add(this.label48);
+            this.tabPage5.Controls.Add(this.MotherboardCountOfRAMSlotsTextBox);
+            this.tabPage5.Controls.Add(this.label47);
+            this.tabPage5.Controls.Add(this.MotherboardSupportedRAMComboBox);
+            this.tabPage5.Controls.Add(this.label46);
+            this.tabPage5.Controls.Add(this.MotherboardFormFactorComboBox);
+            this.tabPage5.Controls.Add(this.label45);
+            this.tabPage5.Controls.Add(this.MotherboardChipsetComboBox);
+            this.tabPage5.Controls.Add(this.label44);
+            this.tabPage5.Controls.Add(this.MotherboardSocketComboBox);
+            this.tabPage5.Controls.Add(this.label43);
+            this.tabPage5.Controls.Add(this.MotherboardSupportedCPUTextBox);
+            this.tabPage5.Controls.Add(this.label42);
+            this.tabPage5.Controls.Add(this.MotherboardNameTextBox);
+            this.tabPage5.Controls.Add(this.label40);
+            this.tabPage5.Controls.Add(this.SearcchMotherboardButton);
+            this.tabPage5.Controls.Add(this.MotherboardIDTextBox);
+            this.tabPage5.Controls.Add(this.label41);
+            this.tabPage5.Controls.Add(this.ChangeMotherboardRadio);
+            this.tabPage5.Controls.Add(this.AddMotherboardRadio);
+            this.tabPage5.Controls.Add(this.dataGridView1);
             this.tabPage5.Location = new System.Drawing.Point(4, 32);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -1532,15 +1606,439 @@ namespace Computer_house
             this.label39.TabIndex = 52;
             this.label39.Text = "Энергопотребление";
             // 
-            // button1
+            // ActWithGPU
             // 
-            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(26, 917);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(754, 47);
-            this.button1.TabIndex = 54;
-            this.button1.Text = "button3";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ActWithGPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActWithGPU.Location = new System.Drawing.Point(26, 917);
+            this.ActWithGPU.Name = "ActWithGPU";
+            this.ActWithGPU.Size = new System.Drawing.Size(749, 47);
+            this.ActWithGPU.TabIndex = 54;
+            this.ActWithGPU.Text = "button3";
+            this.ActWithGPU.UseVisualStyleBackColor = true;
+            // 
+            // ChangeMotherboardRadio
+            // 
+            this.ChangeMotherboardRadio.AutoSize = true;
+            this.ChangeMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeMotherboardRadio.Location = new System.Drawing.Point(645, 138);
+            this.ChangeMotherboardRadio.Name = "ChangeMotherboardRadio";
+            this.ChangeMotherboardRadio.Size = new System.Drawing.Size(124, 32);
+            this.ChangeMotherboardRadio.TabIndex = 22;
+            this.ChangeMotherboardRadio.TabStop = true;
+            this.ChangeMotherboardRadio.Text = "Изменить";
+            this.ChangeMotherboardRadio.UseVisualStyleBackColor = true;
+            // 
+            // AddMotherboardRadio
+            // 
+            this.AddMotherboardRadio.AutoSize = true;
+            this.AddMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddMotherboardRadio.Location = new System.Drawing.Point(647, 23);
+            this.AddMotherboardRadio.Name = "AddMotherboardRadio";
+            this.AddMotherboardRadio.Size = new System.Drawing.Size(122, 32);
+            this.AddMotherboardRadio.TabIndex = 21;
+            this.AddMotherboardRadio.TabStop = true;
+            this.AddMotherboardRadio.Text = "Добавить";
+            this.AddMotherboardRadio.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MotherboardID,
+            this.MotherboardName});
+            this.dataGridView1.Location = new System.Drawing.Point(20, 23);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(564, 147);
+            this.dataGridView1.TabIndex = 20;
+            // 
+            // MotherboardID
+            // 
+            this.MotherboardID.HeaderText = "ID материнской платы";
+            this.MotherboardID.MinimumWidth = 6;
+            this.MotherboardID.Name = "MotherboardID";
+            this.MotherboardID.ReadOnly = true;
+            this.MotherboardID.Width = 150;
+            // 
+            // MotherboardName
+            // 
+            this.MotherboardName.HeaderText = "Наименование";
+            this.MotherboardName.MinimumWidth = 6;
+            this.MotherboardName.Name = "MotherboardName";
+            this.MotherboardName.ReadOnly = true;
+            this.MotherboardName.Width = 150;
+            // 
+            // MotherboardNameTextBox
+            // 
+            this.MotherboardNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardNameTextBox.Location = new System.Drawing.Point(347, 255);
+            this.MotherboardNameTextBox.Name = "MotherboardNameTextBox";
+            this.MotherboardNameTextBox.Size = new System.Drawing.Size(436, 30);
+            this.MotherboardNameTextBox.TabIndex = 30;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(14, 251);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(193, 32);
+            this.label40.TabIndex = 29;
+            this.label40.Text = "Наименование";
+            // 
+            // SearcchMotherboardButton
+            // 
+            this.SearcchMotherboardButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearcchMotherboardButton.Location = new System.Drawing.Point(659, 201);
+            this.SearcchMotherboardButton.Name = "SearcchMotherboardButton";
+            this.SearcchMotherboardButton.Size = new System.Drawing.Size(124, 34);
+            this.SearcchMotherboardButton.TabIndex = 28;
+            this.SearcchMotherboardButton.Text = "Поиск";
+            this.SearcchMotherboardButton.UseVisualStyleBackColor = true;
+            // 
+            // MotherboardIDTextBox
+            // 
+            this.MotherboardIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardIDTextBox.Location = new System.Drawing.Point(347, 204);
+            this.MotherboardIDTextBox.Name = "MotherboardIDTextBox";
+            this.MotherboardIDTextBox.Size = new System.Drawing.Size(306, 30);
+            this.MotherboardIDTextBox.TabIndex = 27;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(14, 202);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(284, 32);
+            this.label41.TabIndex = 26;
+            this.label41.Text = "ID материнской платы";
+            // 
+            // MotherboardSupportedCPUTextBox
+            // 
+            this.MotherboardSupportedCPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(407, 305);
+            this.MotherboardSupportedCPUTextBox.Name = "MotherboardSupportedCPUTextBox";
+            this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(376, 30);
+            this.MotherboardSupportedCPUTextBox.TabIndex = 32;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(14, 301);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(387, 32);
+            this.label42.TabIndex = 31;
+            this.label42.Text = "Поддерживаемые процессоры";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(14, 359);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(192, 32);
+            this.label43.TabIndex = 33;
+            this.label43.Text = "Сокет / Чипсет";
+            // 
+            // MotherboardSocketComboBox
+            // 
+            this.MotherboardSocketComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherboardSocketComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherboardSocketComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardSocketComboBox.FormattingEnabled = true;
+            this.MotherboardSocketComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.MotherboardSocketComboBox.Location = new System.Drawing.Point(347, 365);
+            this.MotherboardSocketComboBox.Name = "MotherboardSocketComboBox";
+            this.MotherboardSocketComboBox.Size = new System.Drawing.Size(208, 31);
+            this.MotherboardSocketComboBox.TabIndex = 34;
+            // 
+            // MotherboardChipsetComboBox
+            // 
+            this.MotherboardChipsetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherboardChipsetComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherboardChipsetComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardChipsetComboBox.FormattingEnabled = true;
+            this.MotherboardChipsetComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.MotherboardChipsetComboBox.Location = new System.Drawing.Point(597, 367);
+            this.MotherboardChipsetComboBox.Name = "MotherboardChipsetComboBox";
+            this.MotherboardChipsetComboBox.Size = new System.Drawing.Size(186, 31);
+            this.MotherboardChipsetComboBox.TabIndex = 36;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(561, 365);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(26, 32);
+            this.label44.TabIndex = 35;
+            this.label44.Text = "/";
+            // 
+            // MotherboardFormFactorComboBox
+            // 
+            this.MotherboardFormFactorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherboardFormFactorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherboardFormFactorComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardFormFactorComboBox.FormattingEnabled = true;
+            this.MotherboardFormFactorComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.MotherboardFormFactorComboBox.Location = new System.Drawing.Point(347, 421);
+            this.MotherboardFormFactorComboBox.Name = "MotherboardFormFactorComboBox";
+            this.MotherboardFormFactorComboBox.Size = new System.Drawing.Size(436, 31);
+            this.MotherboardFormFactorComboBox.TabIndex = 38;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(14, 417);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(180, 32);
+            this.label45.TabIndex = 37;
+            this.label45.Text = "Форм-фактор";
+            // 
+            // MotherboardSupportedRAMComboBox
+            // 
+            this.MotherboardSupportedRAMComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherboardSupportedRAMComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherboardSupportedRAMComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardSupportedRAMComboBox.FormattingEnabled = true;
+            this.MotherboardSupportedRAMComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.MotherboardSupportedRAMComboBox.Location = new System.Drawing.Point(407, 477);
+            this.MotherboardSupportedRAMComboBox.Name = "MotherboardSupportedRAMComboBox";
+            this.MotherboardSupportedRAMComboBox.Size = new System.Drawing.Size(376, 31);
+            this.MotherboardSupportedRAMComboBox.TabIndex = 40;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(14, 473);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(339, 32);
+            this.label46.TabIndex = 39;
+            this.label46.Text = "Поддерживаемый тип ОЗУ";
+            // 
+            // MotherboardCountOfRAMSlotsTextBox
+            // 
+            this.MotherboardCountOfRAMSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardCountOfRAMSlotsTextBox.Location = new System.Drawing.Point(407, 582);
+            this.MotherboardCountOfRAMSlotsTextBox.Name = "MotherboardCountOfRAMSlotsTextBox";
+            this.MotherboardCountOfRAMSlotsTextBox.Size = new System.Drawing.Size(376, 30);
+            this.MotherboardCountOfRAMSlotsTextBox.TabIndex = 42;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(14, 578);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(338, 32);
+            this.label47.TabIndex = 41;
+            this.label47.Text = "Количество слотов памяти";
+            // 
+            // MotherBoardRAMChanels
+            // 
+            this.MotherBoardRAMChanels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherBoardRAMChanels.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherBoardRAMChanels.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherBoardRAMChanels.FormattingEnabled = true;
+            this.MotherBoardRAMChanels.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.MotherBoardRAMChanels.Location = new System.Drawing.Point(347, 637);
+            this.MotherBoardRAMChanels.Name = "MotherBoardRAMChanels";
+            this.MotherBoardRAMChanels.Size = new System.Drawing.Size(436, 31);
+            this.MotherBoardRAMChanels.TabIndex = 44;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(14, 633);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(298, 32);
+            this.label48.TabIndex = 43;
+            this.label48.Text = "Кол-во каналов памяти";
+            // 
+            // MotherboardExpansionsSlotsTextBox
+            // 
+            this.MotherboardExpansionsSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardExpansionsSlotsTextBox.Location = new System.Drawing.Point(347, 700);
+            this.MotherboardExpansionsSlotsTextBox.Name = "MotherboardExpansionsSlotsTextBox";
+            this.MotherboardExpansionsSlotsTextBox.Size = new System.Drawing.Size(436, 30);
+            this.MotherboardExpansionsSlotsTextBox.TabIndex = 46;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(14, 696);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(245, 32);
+            this.label49.TabIndex = 45;
+            this.label49.Text = "Слоты расширения";
+            // 
+            // MotherboardStorageInterfacesTextBox
+            // 
+            this.MotherboardStorageInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardStorageInterfacesTextBox.Location = new System.Drawing.Point(347, 758);
+            this.MotherboardStorageInterfacesTextBox.Name = "MotherboardStorageInterfacesTextBox";
+            this.MotherboardStorageInterfacesTextBox.Size = new System.Drawing.Size(436, 30);
+            this.MotherboardStorageInterfacesTextBox.TabIndex = 48;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(14, 754);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(326, 32);
+            this.label50.TabIndex = 47;
+            this.label50.Text = "Интерфейсы накопителей";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(14, 817);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(468, 32);
+            this.label51.TabIndex = 49;
+            this.label51.Text = "Поддержка SLI / встроенной графики";
+            // 
+            // MotherboardSLISupportCheckBox
+            // 
+            this.MotherboardSLISupportCheckBox.AutoSize = true;
+            this.MotherboardSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(479, 820);
+            this.MotherboardSLISupportCheckBox.Name = "MotherboardSLISupportCheckBox";
+            this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(60, 32);
+            this.MotherboardSLISupportCheckBox.TabIndex = 50;
+            this.MotherboardSLISupportCheckBox.Text = "SLI";
+            this.MotherboardSLISupportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // MotherboardIntegratedGraphicCheckBox
+            // 
+            this.MotherboardIntegratedGraphicCheckBox.AutoSize = true;
+            this.MotherboardIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MotherboardIntegratedGraphicCheckBox.Location = new System.Drawing.Point(558, 819);
+            this.MotherboardIntegratedGraphicCheckBox.Name = "MotherboardIntegratedGraphicCheckBox";
+            this.MotherboardIntegratedGraphicCheckBox.Size = new System.Drawing.Size(225, 32);
+            this.MotherboardIntegratedGraphicCheckBox.TabIndex = 51;
+            this.MotherboardIntegratedGraphicCheckBox.Text = "Встроенная графика";
+            this.MotherboardIntegratedGraphicCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(532, 817);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(26, 32);
+            this.label52.TabIndex = 52;
+            this.label52.Text = "/";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.textBox1.Location = new System.Drawing.Point(347, 873);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(436, 30);
+            this.textBox1.TabIndex = 54;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(14, 869);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(122, 32);
+            this.label53.TabIndex = 53;
+            this.label53.Text = "Разъёмы";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(14, 528);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(376, 32);
+            this.label54.TabIndex = 55;
+            this.label54.Text = "Поддерживаемый объём ОЗУ";
+            // 
+            // MotherboardRAMCapacityTextBox
+            // 
+            this.MotherboardRAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardRAMCapacityTextBox.Location = new System.Drawing.Point(407, 530);
+            this.MotherboardRAMCapacityTextBox.Name = "MotherboardRAMCapacityTextBox";
+            this.MotherboardRAMCapacityTextBox.Size = new System.Drawing.Size(376, 30);
+            this.MotherboardRAMCapacityTextBox.TabIndex = 56;
+            // 
+            // ActWithMotherboard
+            // 
+            this.ActWithMotherboard.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActWithMotherboard.Location = new System.Drawing.Point(20, 917);
+            this.ActWithMotherboard.Name = "ActWithMotherboard";
+            this.ActWithMotherboard.Size = new System.Drawing.Size(763, 47);
+            this.ActWithMotherboard.TabIndex = 57;
+            this.ActWithMotherboard.Text = "button3";
+            this.ActWithMotherboard.UseVisualStyleBackColor = true;
             // 
             // ComponentsOptionsForm
             // 
@@ -1567,11 +2065,14 @@ namespace Computer_house
             ((System.ComponentModel.ISupportInitialize)(this.CPU_DatagridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GPU_DatagridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1692,6 +2193,43 @@ namespace Computer_house
         private System.Windows.Forms.CheckBox GPUOverclockingCheckBox;
         private System.Windows.Forms.TextBox GPUManufactureTextBox;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ActWithGPU;
+        private System.Windows.Forms.RadioButton ChangeMotherboardRadio;
+        private System.Windows.Forms.RadioButton AddMotherboardRadio;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MotherboardID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MotherboardName;
+        private System.Windows.Forms.Button ActWithMotherboard;
+        private System.Windows.Forms.TextBox MotherboardRAMCapacityTextBox;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.CheckBox MotherboardIntegratedGraphicCheckBox;
+        private System.Windows.Forms.CheckBox MotherboardSLISupportCheckBox;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.TextBox MotherboardStorageInterfacesTextBox;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.TextBox MotherboardExpansionsSlotsTextBox;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.ComboBox MotherBoardRAMChanels;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox MotherboardCountOfRAMSlotsTextBox;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.ComboBox MotherboardSupportedRAMComboBox;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.ComboBox MotherboardFormFactorComboBox;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.ComboBox MotherboardChipsetComboBox;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.ComboBox MotherboardSocketComboBox;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox MotherboardSupportedCPUTextBox;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox MotherboardNameTextBox;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Button SearcchMotherboardButton;
+        private System.Windows.Forms.TextBox MotherboardIDTextBox;
+        private System.Windows.Forms.Label label41;
     }
 }
