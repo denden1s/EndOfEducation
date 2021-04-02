@@ -742,12 +742,12 @@ namespace Computer_house
         //Нужен для загрузки сведений о процесорах в таблицу
         private void ViewCPUInfoInDataGrid()
         {
-            dataGridView1.Rows.Clear();
+            CPU_DatagridView.Rows.Clear();
             using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (CPU i in CPUList)
                 {
-                    dataGridView1.Rows.Add(i.ID, i.Name);
+                    CPU_DatagridView.Rows.Add(i.ID, i.Name);
                 }
             }
         }
@@ -1013,10 +1013,10 @@ namespace Computer_house
 
         private void ViewCPUInfoToChange()
         {
-            if (dataGridView1.SelectedCells.Count > 0)
+            if (CPU_DatagridView.SelectedCells.Count > 0)
             {
-                int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
-                DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
+                int selectedrowindex = CPU_DatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = CPU_DatagridView.Rows[selectedrowindex];
                 //Отображение данных из списка CPU
                 CPU currentCPU = new CPU();
                 currentCPU = CPUList.Single(i => i.ID == (string)currentRow.Cells[0].Value);
@@ -1138,6 +1138,7 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Метод отработал");
             threads[10].Interrupt();
         }
 
@@ -1146,11 +1147,16 @@ namespace Computer_house
         }
         private void ViewDocsInDataGrid()
         {
-            dataGridView2.Rows.Clear();
+            HoldingDocsDatagridView.Rows.Clear();
             foreach (var i in HoldingDocuments)
             {
                 i.GetDataFromDB();
-                dataGridView2.Rows.Add(i.ID, i.Product_name,i.Time, i.State, i.Items_count_in_move, i.User_ID, i.Location_name);
+                string name;
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    name = db.Users.Single(b => b.ID == i.User_ID).Name;
+                }
+                    HoldingDocsDatagridView.Rows.Add(i.ID, i.Product_name, i.Time, i.State, i.Items_count_in_move, name, i.Location_name);
             }
         }
     }

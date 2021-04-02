@@ -10,6 +10,8 @@
 
         public bool Authorization_status { get; set; } = false;
 
+        public string Name { get; set; }
+
         public Users() { }
         public Users(int _id,string _login, string _password)
         {

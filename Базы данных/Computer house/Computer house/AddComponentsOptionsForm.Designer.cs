@@ -59,7 +59,7 @@ namespace Computer_house
             this.CPUIDTextBox = new System.Windows.Forms.TextBox();
             this.ChangeCPURadio = new System.Windows.Forms.RadioButton();
             this.AddCPURadio = new System.Windows.Forms.RadioButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CPU_DatagridView = new System.Windows.Forms.DataGridView();
             this.CPU_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPU_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label20 = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@ namespace Computer_house
             this.label1 = new System.Windows.Forms.Label();
             this.TypesOfComponentComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.HoldingDocsDatagridView = new System.Windows.Forms.DataGridView();
             this.HoldingDocumentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,14 +106,55 @@ namespace Computer_house
             this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GPU_DatagridView = new System.Windows.Forms.DataGridView();
+            this.AddGPURadio = new System.Windows.Forms.RadioButton();
+            this.ChangeGPURadio = new System.Windows.Forms.RadioButton();
+            this.label25 = new System.Windows.Forms.Label();
+            this.SearchGPUIDButton = new System.Windows.Forms.Button();
+            this.GPUIDTextBox = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.GPUNameTextBox = new System.Windows.Forms.TextBox();
+            this.GPU_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GPU_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GPUInterfacesComboBox = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.GPUManufactureTextBox = new System.Windows.Forms.TextBox();
+            this.GPUOverclockingCheckBox = new System.Windows.Forms.CheckBox();
+            this.GPUSLISupportCheckBox = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.GPUMemoryTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.GPUBusWidthTextBox = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.GPUDirectXVersionTextBox = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.GPUOutputInterfacesTextBox = new System.Windows.Forms.TextBox();
+            this.GPUPowerTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.GPUCoolersCountTextBox = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.GPUCoolingSysThicknessTextBox = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.GPUWidthTextBox = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.GPUHeightTextBox = new System.Windows.Forms.TextBox();
+            this.GPUCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.GPUEnergyConsumptTextBox = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CPU_DatagridView)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GPU_DatagridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -186,7 +227,7 @@ namespace Computer_house
             this.tabPage3.Controls.Add(this.CPUIDTextBox);
             this.tabPage3.Controls.Add(this.ChangeCPURadio);
             this.tabPage3.Controls.Add(this.AddCPURadio);
-            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.CPU_DatagridView);
             this.tabPage3.Controls.Add(this.label20);
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.label18);
@@ -533,24 +574,24 @@ namespace Computer_house
             this.AddCPURadio.UseVisualStyleBackColor = true;
             this.AddCPURadio.CheckedChanged += new System.EventHandler(this.AddCPURadio_CheckedChanged);
             // 
-            // dataGridView1
+            // CPU_DatagridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CPU_DatagridView.AllowUserToAddRows = false;
+            this.CPU_DatagridView.AllowUserToDeleteRows = false;
+            this.CPU_DatagridView.AllowUserToOrderColumns = true;
+            this.CPU_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.CPU_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CPU_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CPU_ID,
             this.CPU_Name});
-            this.dataGridView1.Location = new System.Drawing.Point(25, 23);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(607, 150);
-            this.dataGridView1.TabIndex = 16;
-            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
+            this.CPU_DatagridView.Location = new System.Drawing.Point(25, 23);
+            this.CPU_DatagridView.Name = "CPU_DatagridView";
+            this.CPU_DatagridView.ReadOnly = true;
+            this.CPU_DatagridView.RowHeadersWidth = 51;
+            this.CPU_DatagridView.RowTemplate.Height = 24;
+            this.CPU_DatagridView.Size = new System.Drawing.Size(607, 150);
+            this.CPU_DatagridView.TabIndex = 16;
+            this.CPU_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // CPU_ID
             // 
@@ -721,6 +762,43 @@ namespace Computer_house
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.GPUEnergyConsumptTextBox);
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Controls.Add(this.GPUCapacityTextBox);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.GPUHeightTextBox);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.GPUWidthTextBox);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.GPUCoolingSysThicknessTextBox);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Controls.Add(this.GPUCoolersCountTextBox);
+            this.tabPage4.Controls.Add(this.label33);
+            this.tabPage4.Controls.Add(this.GPUPowerTypeComboBox);
+            this.tabPage4.Controls.Add(this.GPUOutputInterfacesTextBox);
+            this.tabPage4.Controls.Add(this.label32);
+            this.tabPage4.Controls.Add(this.GPUDirectXVersionTextBox);
+            this.tabPage4.Controls.Add(this.label31);
+            this.tabPage4.Controls.Add(this.GPUBusWidthTextBox);
+            this.tabPage4.Controls.Add(this.label30);
+            this.tabPage4.Controls.Add(this.GPUMemoryTypeComboBox);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Controls.Add(this.GPUSLISupportCheckBox);
+            this.tabPage4.Controls.Add(this.GPUOverclockingCheckBox);
+            this.tabPage4.Controls.Add(this.GPUManufactureTextBox);
+            this.tabPage4.Controls.Add(this.label28);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.GPUInterfacesComboBox);
+            this.tabPage4.Controls.Add(this.GPUNameTextBox);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.SearchGPUIDButton);
+            this.tabPage4.Controls.Add(this.GPUIDTextBox);
+            this.tabPage4.Controls.Add(this.label25);
+            this.tabPage4.Controls.Add(this.ChangeGPURadio);
+            this.tabPage4.Controls.Add(this.AddGPURadio);
+            this.tabPage4.Controls.Add(this.GPU_DatagridView);
             this.tabPage4.Location = new System.Drawing.Point(4, 32);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -962,7 +1040,7 @@ namespace Computer_house
             // tabPage12
             // 
             this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage12.Controls.Add(this.dataGridView2);
+            this.tabPage12.Controls.Add(this.HoldingDocsDatagridView);
             this.tabPage12.Location = new System.Drawing.Point(4, 37);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
@@ -971,14 +1049,14 @@ namespace Computer_house
             this.tabPage12.Text = "Складские материалы";
             this.tabPage12.Enter += new System.EventHandler(this.tabPage12_Enter);
             // 
-            // dataGridView2
+            // HoldingDocsDatagridView
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.HoldingDocsDatagridView.AllowUserToAddRows = false;
+            this.HoldingDocsDatagridView.AllowUserToDeleteRows = false;
+            this.HoldingDocsDatagridView.AllowUserToOrderColumns = true;
+            this.HoldingDocsDatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.HoldingDocsDatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.HoldingDocsDatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.HoldingDocumentID,
             this.ProductName,
             this.MovingTime,
@@ -986,14 +1064,14 @@ namespace Computer_house
             this.ProductsCount,
             this.WorkerID,
             this.Location});
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(818, 723);
-            this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowEnter);
+            this.HoldingDocsDatagridView.Location = new System.Drawing.Point(0, 0);
+            this.HoldingDocsDatagridView.Name = "HoldingDocsDatagridView";
+            this.HoldingDocsDatagridView.ReadOnly = true;
+            this.HoldingDocsDatagridView.RowHeadersWidth = 51;
+            this.HoldingDocsDatagridView.RowTemplate.Height = 24;
+            this.HoldingDocsDatagridView.Size = new System.Drawing.Size(818, 723);
+            this.HoldingDocsDatagridView.TabIndex = 0;
+            this.HoldingDocsDatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowEnter);
             // 
             // HoldingDocumentID
             // 
@@ -1038,7 +1116,7 @@ namespace Computer_house
             // 
             // WorkerID
             // 
-            this.WorkerID.HeaderText = "ID работника";
+            this.WorkerID.HeaderText = "ФИО работника";
             this.WorkerID.MinimumWidth = 6;
             this.WorkerID.Name = "WorkerID";
             this.WorkerID.ReadOnly = true;
@@ -1051,6 +1129,418 @@ namespace Computer_house
             this.Location.Name = "Location";
             this.Location.ReadOnly = true;
             this.Location.Width = 180;
+            // 
+            // GPU_DatagridView
+            // 
+            this.GPU_DatagridView.AllowUserToAddRows = false;
+            this.GPU_DatagridView.AllowUserToDeleteRows = false;
+            this.GPU_DatagridView.AllowUserToOrderColumns = true;
+            this.GPU_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.GPU_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GPU_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GPU_ID,
+            this.GPU_Name});
+            this.GPU_DatagridView.Location = new System.Drawing.Point(26, 25);
+            this.GPU_DatagridView.Name = "GPU_DatagridView";
+            this.GPU_DatagridView.ReadOnly = true;
+            this.GPU_DatagridView.RowHeadersWidth = 51;
+            this.GPU_DatagridView.RowTemplate.Height = 24;
+            this.GPU_DatagridView.Size = new System.Drawing.Size(564, 147);
+            this.GPU_DatagridView.TabIndex = 0;
+            // 
+            // AddGPURadio
+            // 
+            this.AddGPURadio.AutoSize = true;
+            this.AddGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddGPURadio.Location = new System.Drawing.Point(653, 25);
+            this.AddGPURadio.Name = "AddGPURadio";
+            this.AddGPURadio.Size = new System.Drawing.Size(122, 32);
+            this.AddGPURadio.TabIndex = 18;
+            this.AddGPURadio.TabStop = true;
+            this.AddGPURadio.Text = "Добавить";
+            this.AddGPURadio.UseVisualStyleBackColor = true;
+            // 
+            // ChangeGPURadio
+            // 
+            this.ChangeGPURadio.AutoSize = true;
+            this.ChangeGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeGPURadio.Location = new System.Drawing.Point(651, 140);
+            this.ChangeGPURadio.Name = "ChangeGPURadio";
+            this.ChangeGPURadio.Size = new System.Drawing.Size(124, 32);
+            this.ChangeGPURadio.TabIndex = 19;
+            this.ChangeGPURadio.TabStop = true;
+            this.ChangeGPURadio.Text = "Изменить";
+            this.ChangeGPURadio.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(20, 189);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(191, 32);
+            this.label25.TabIndex = 20;
+            this.label25.Text = "ID видеокарты";
+            // 
+            // SearchGPUIDButton
+            // 
+            this.SearchGPUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchGPUIDButton.Location = new System.Drawing.Point(651, 186);
+            this.SearchGPUIDButton.Name = "SearchGPUIDButton";
+            this.SearchGPUIDButton.Size = new System.Drawing.Size(124, 34);
+            this.SearchGPUIDButton.TabIndex = 23;
+            this.SearchGPUIDButton.Text = "Поиск";
+            this.SearchGPUIDButton.UseVisualStyleBackColor = true;
+            // 
+            // GPUIDTextBox
+            // 
+            this.GPUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUIDTextBox.Location = new System.Drawing.Point(339, 189);
+            this.GPUIDTextBox.Name = "GPUIDTextBox";
+            this.GPUIDTextBox.Size = new System.Drawing.Size(306, 30);
+            this.GPUIDTextBox.TabIndex = 22;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(20, 236);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(193, 32);
+            this.label26.TabIndex = 24;
+            this.label26.Text = "Наименование";
+            // 
+            // GPUNameTextBox
+            // 
+            this.GPUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUNameTextBox.Location = new System.Drawing.Point(339, 240);
+            this.GPUNameTextBox.Name = "GPUNameTextBox";
+            this.GPUNameTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUNameTextBox.TabIndex = 25;
+            // 
+            // GPU_ID
+            // 
+            this.GPU_ID.HeaderText = "ID видеокарты";
+            this.GPU_ID.MinimumWidth = 6;
+            this.GPU_ID.Name = "GPU_ID";
+            this.GPU_ID.ReadOnly = true;
+            this.GPU_ID.Width = 125;
+            // 
+            // GPU_Name
+            // 
+            this.GPU_Name.HeaderText = "Наименование";
+            this.GPU_Name.MinimumWidth = 6;
+            this.GPU_Name.Name = "GPU_Name";
+            this.GPU_Name.ReadOnly = true;
+            this.GPU_Name.Width = 150;
+            // 
+            // GPUInterfacesComboBox
+            // 
+            this.GPUInterfacesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GPUInterfacesComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.GPUInterfacesComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUInterfacesComboBox.FormattingEnabled = true;
+            this.GPUInterfacesComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.GPUInterfacesComboBox.Location = new System.Drawing.Point(339, 288);
+            this.GPUInterfacesComboBox.Name = "GPUInterfacesComboBox";
+            this.GPUInterfacesComboBox.Size = new System.Drawing.Size(436, 31);
+            this.GPUInterfacesComboBox.TabIndex = 26;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(20, 288);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(320, 32);
+            this.label27.TabIndex = 27;
+            this.label27.Text = "Интерфейс подключения";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(20, 336);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(200, 32);
+            this.label28.TabIndex = 28;
+            this.label28.Text = "Производитель";
+            // 
+            // GPUManufactureTextBox
+            // 
+            this.GPUManufactureTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUManufactureTextBox.Location = new System.Drawing.Point(339, 340);
+            this.GPUManufactureTextBox.Name = "GPUManufactureTextBox";
+            this.GPUManufactureTextBox.Size = new System.Drawing.Size(251, 30);
+            this.GPUManufactureTextBox.TabIndex = 29;
+            // 
+            // GPUOverclockingCheckBox
+            // 
+            this.GPUOverclockingCheckBox.AutoSize = true;
+            this.GPUOverclockingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GPUOverclockingCheckBox.Location = new System.Drawing.Point(553, 484);
+            this.GPUOverclockingCheckBox.Name = "GPUOverclockingCheckBox";
+            this.GPUOverclockingCheckBox.Size = new System.Drawing.Size(222, 32);
+            this.GPUOverclockingCheckBox.TabIndex = 30;
+            this.GPUOverclockingCheckBox.Text = "Разогнанная версия";
+            this.GPUOverclockingCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // GPUSLISupportCheckBox
+            // 
+            this.GPUSLISupportCheckBox.AutoSize = true;
+            this.GPUSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GPUSLISupportCheckBox.Location = new System.Drawing.Point(601, 340);
+            this.GPUSLISupportCheckBox.Name = "GPUSLISupportCheckBox";
+            this.GPUSLISupportCheckBox.Size = new System.Drawing.Size(174, 32);
+            this.GPUSLISupportCheckBox.TabIndex = 31;
+            this.GPUSLISupportCheckBox.Text = "Поддержка SLI";
+            this.GPUSLISupportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(20, 429);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(226, 32);
+            this.label29.TabIndex = 32;
+            this.label29.Text = "Тип видеопамяти";
+            // 
+            // GPUMemoryTypeComboBox
+            // 
+            this.GPUMemoryTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GPUMemoryTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.GPUMemoryTypeComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUMemoryTypeComboBox.FormattingEnabled = true;
+            this.GPUMemoryTypeComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.GPUMemoryTypeComboBox.Location = new System.Drawing.Point(339, 433);
+            this.GPUMemoryTypeComboBox.Name = "GPUMemoryTypeComboBox";
+            this.GPUMemoryTypeComboBox.Size = new System.Drawing.Size(436, 31);
+            this.GPUMemoryTypeComboBox.TabIndex = 33;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(20, 482);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(190, 32);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Ширина шины";
+            // 
+            // GPUBusWidthTextBox
+            // 
+            this.GPUBusWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUBusWidthTextBox.Location = new System.Drawing.Point(339, 486);
+            this.GPUBusWidthTextBox.Name = "GPUBusWidthTextBox";
+            this.GPUBusWidthTextBox.Size = new System.Drawing.Size(196, 30);
+            this.GPUBusWidthTextBox.TabIndex = 35;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(20, 589);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(190, 32);
+            this.label31.TabIndex = 36;
+            this.label31.Text = "DirectX версия";
+            // 
+            // GPUDirectXVersionTextBox
+            // 
+            this.GPUDirectXVersionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUDirectXVersionTextBox.Location = new System.Drawing.Point(339, 593);
+            this.GPUDirectXVersionTextBox.Name = "GPUDirectXVersionTextBox";
+            this.GPUDirectXVersionTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUDirectXVersionTextBox.TabIndex = 37;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(20, 645);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(277, 32);
+            this.label32.TabIndex = 38;
+            this.label32.Text = "Внешние интерфейсы";
+            // 
+            // GPUOutputInterfacesTextBox
+            // 
+            this.GPUOutputInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUOutputInterfacesTextBox.Location = new System.Drawing.Point(339, 645);
+            this.GPUOutputInterfacesTextBox.Name = "GPUOutputInterfacesTextBox";
+            this.GPUOutputInterfacesTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUOutputInterfacesTextBox.TabIndex = 39;
+            // 
+            // GPUPowerTypeComboBox
+            // 
+            this.GPUPowerTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GPUPowerTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.GPUPowerTypeComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUPowerTypeComboBox.FormattingEnabled = true;
+            this.GPUPowerTypeComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.GPUPowerTypeComboBox.Location = new System.Drawing.Point(339, 700);
+            this.GPUPowerTypeComboBox.Name = "GPUPowerTypeComboBox";
+            this.GPUPowerTypeComboBox.Size = new System.Drawing.Size(436, 31);
+            this.GPUPowerTypeComboBox.TabIndex = 40;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(20, 700);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(165, 32);
+            this.label33.TabIndex = 41;
+            this.label33.Text = "Тип питания";
+            // 
+            // GPUCoolersCountTextBox
+            // 
+            this.GPUCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(352, 752);
+            this.GPUCoolersCountTextBox.Name = "GPUCoolersCountTextBox";
+            this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(423, 30);
+            this.GPUCoolersCountTextBox.TabIndex = 42;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(20, 751);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(328, 32);
+            this.label34.TabIndex = 43;
+            this.label34.Text = "Количество вентиляторов";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(20, 799);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(387, 32);
+            this.label35.TabIndex = 44;
+            this.label35.Text = "Толщина системы охлаждения";
+            // 
+            // GPUCoolingSysThicknessTextBox
+            // 
+            this.GPUCoolingSysThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUCoolingSysThicknessTextBox.Location = new System.Drawing.Point(408, 803);
+            this.GPUCoolingSysThicknessTextBox.Name = "GPUCoolingSysThicknessTextBox";
+            this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(367, 30);
+            this.GPUCoolingSysThicknessTextBox.TabIndex = 45;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(20, 854);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(363, 32);
+            this.label36.TabIndex = 46;
+            this.label36.Text = "Длина / ширина видеокарты";
+            // 
+            // GPUWidthTextBox
+            // 
+            this.GPUWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUWidthTextBox.Location = new System.Drawing.Point(410, 858);
+            this.GPUWidthTextBox.Name = "GPUWidthTextBox";
+            this.GPUWidthTextBox.Size = new System.Drawing.Size(90, 30);
+            this.GPUWidthTextBox.TabIndex = 47;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(516, 855);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(34, 32);
+            this.label37.TabIndex = 48;
+            this.label37.Text = " /";
+            // 
+            // GPUHeightTextBox
+            // 
+            this.GPUHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUHeightTextBox.Location = new System.Drawing.Point(568, 858);
+            this.GPUHeightTextBox.Name = "GPUHeightTextBox";
+            this.GPUHeightTextBox.Size = new System.Drawing.Size(92, 30);
+            this.GPUHeightTextBox.TabIndex = 49;
+            // 
+            // GPUCapacityTextBox
+            // 
+            this.GPUCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUCapacityTextBox.Location = new System.Drawing.Point(339, 383);
+            this.GPUCapacityTextBox.Name = "GPUCapacityTextBox";
+            this.GPUCapacityTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUCapacityTextBox.TabIndex = 51;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(20, 381);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(192, 32);
+            this.label38.TabIndex = 50;
+            this.label38.Text = "Объём памяти";
+            // 
+            // GPUEnergyConsumptTextBox
+            // 
+            this.GPUEnergyConsumptTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPUEnergyConsumptTextBox.Location = new System.Drawing.Point(339, 539);
+            this.GPUEnergyConsumptTextBox.Name = "GPUEnergyConsumptTextBox";
+            this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUEnergyConsumptTextBox.TabIndex = 53;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(20, 535);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(252, 32);
+            this.label39.TabIndex = 52;
+            this.label39.Text = "Энергопотребление";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(26, 917);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(754, 47);
+            this.button1.TabIndex = 54;
+            this.button1.Text = "button3";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ComponentsOptionsForm
             // 
@@ -1074,11 +1564,14 @@ namespace Computer_house
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CPU_DatagridView)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GPU_DatagridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1120,7 +1613,7 @@ namespace Computer_house
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.RadioButton ChangeCPURadio;
         private System.Windows.Forms.RadioButton AddCPURadio;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView CPU_DatagridView;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
@@ -1153,7 +1646,7 @@ namespace Computer_house
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox DeliveryTypeComboBox;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView HoldingDocsDatagridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoldingDocumentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovingTime;
@@ -1161,5 +1654,44 @@ namespace Computer_house
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductsCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        private System.Windows.Forms.DataGridView GPU_DatagridView;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox GPUInterfacesComboBox;
+        private System.Windows.Forms.TextBox GPUNameTextBox;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button SearchGPUIDButton;
+        private System.Windows.Forms.TextBox GPUIDTextBox;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.RadioButton ChangeGPURadio;
+        private System.Windows.Forms.RadioButton AddGPURadio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GPU_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GPU_Name;
+        private System.Windows.Forms.TextBox GPUEnergyConsumptTextBox;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox GPUCapacityTextBox;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox GPUHeightTextBox;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox GPUWidthTextBox;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox GPUCoolingSysThicknessTextBox;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox GPUCoolersCountTextBox;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox GPUPowerTypeComboBox;
+        private System.Windows.Forms.TextBox GPUOutputInterfacesTextBox;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox GPUDirectXVersionTextBox;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox GPUBusWidthTextBox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox GPUMemoryTypeComboBox;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.CheckBox GPUSLISupportCheckBox;
+        private System.Windows.Forms.CheckBox GPUOverclockingCheckBox;
+        private System.Windows.Forms.TextBox GPUManufactureTextBox;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button1;
     }
 }

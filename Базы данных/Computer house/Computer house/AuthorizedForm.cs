@@ -310,7 +310,7 @@ namespace Computer_house
                     {
                         foreach (Warehouse_info c in db.Warehouse_info)
                         {
-                           WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                            WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
                         }
                     }
                 }
