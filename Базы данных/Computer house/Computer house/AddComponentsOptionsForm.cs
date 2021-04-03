@@ -33,6 +33,7 @@ namespace Computer_house
         //Компоненты ПК
         private List<Warehouse_info> WarehouseInfo = new List<Warehouse_info>();
         private List<CPU> CPUList = new List<CPU>();
+        private List<GPU> GPUList = new List<GPU>();
         private List<Holding_document> HoldingDocuments = new List<Holding_document>();
         //сведения о процессоре
 
@@ -60,13 +61,9 @@ namespace Computer_house
         {
             //Настройки перед загрузкой формы
             SetVisible(false);
-            ActToComponent.Enabled = false;
-            ActToComponent.Text = "";
-            ActToComponent.BackColor = Color.Transparent;
             FindCPUIDButton.Enabled = false;
-            ActWithCPU.Enabled = false;
-            ActWithCPU.Text = "";
-            ActWithCPU.BackColor = Color.Transparent;
+            FindGPUIDButton.Enabled = false;
+            SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU);
 
             //Запуск потоков на выгрузку данных из БД
             threads[0] = new Thread(new ThreadStart(LoadCPUSeriesFromDB));
@@ -79,11 +76,13 @@ namespace Computer_house
             threads[7] = new Thread(new ThreadStart(LoadMemoryTypesFromDB));
             threads[8] = new Thread(new ThreadStart(LoadConnectionInterfacesFromDB));
             threads[9] = new Thread(new ThreadStart(LoadPowerConnectorsFromDB));
-            threads[10] = new Thread(new ThreadStart(LoadHoldingDocs));
+            threads[10] = new Thread(new ThreadStart(LoadHoldingDocsFromDB));
             foreach (var thread in threads)
             {
                 thread.Start();
             }
+            //отображение данных о видеокартах
+            // + сделать потоки на эти методы
             ViewCPUInfoInDataGrid();
             LoadSeriesInfoInComboBox();
             LoadCodeNameInfoInComboBox();
@@ -92,9 +91,11 @@ namespace Computer_house
             LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
             SetEnableStatusOfCPUTextBoxes(false);
+            ChangeGPUTextBoxesEnable(false);
             ViewDocsInDataGrid();
         }
 
+        //Методы для загрузки данных из БД
         private void LoadCPUSeriesFromDB()
         {
             try
@@ -281,6 +282,26 @@ namespace Computer_house
             }
             threads[9].Interrupt();
         }
+        private void LoadHoldingDocsFromDB()
+        {
+            HoldingDocuments.Clear();
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach (var i in db.Holding_document)
+                    {
+                        HoldingDocuments.Add(i);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            threads[10].Interrupt();
+        }
 
         //Нужны для того чтобы не увеличивая форму вместить как можно больше элементов управления
         private void tabPage2_Enter(object sender, EventArgs e)
@@ -299,10 +320,7 @@ namespace Computer_house
             ComponentNameTextBox.Clear();
             AddNewComponent.Checked = false;
             EditComponent.Checked = false;
-            //textBox1.Enabled = true;
-            ActToComponent.Enabled = false;
-            ActToComponent.Text = "";
-            ActToComponent.BackColor = Color.Transparent;
+            SetButtonsDefaultOptions(ActToComponent);
             switch (TypesOfComponentComboBox.SelectedIndex)
             {
                 case 0:
@@ -363,9 +381,7 @@ namespace Computer_house
             }
             else
             {
-                ActToComponent.Enabled = true;
-                ActToComponent.Text = "Изменить";
-                ActToComponent.BackColor = Color.BlueViolet;
+                SetEditOrAddButtonMode(ActToComponent, false);
             }
             LockButtonInSecondTab();
         }
@@ -378,9 +394,8 @@ namespace Computer_house
             }
             else
             {
-                ActToComponent.Text = "Добавить";
-                ActToComponent.Enabled = true;
-                ActToComponent.BackColor = Color.Green;
+                SetEditOrAddButtonMode(ActToComponent, true);
+
             }
             LockButtonInSecondTab();
         }
@@ -610,6 +625,8 @@ namespace Computer_house
             LockButtonInSecondTab();
         }
 
+        //нужен для того, чтобы выбрать данные из выпадающего списка
+        //для раздела с доп сведениями о комплектующих
         private void ComponentsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(EditComponent.Checked)
@@ -658,6 +675,8 @@ namespace Computer_house
                 ActToComponent.Enabled = true;
         }
 
+        //Нужны для того, чтобы отобразить данные в списке
+        //для раздела с доп сведениями о комплектующих
         private void ViewCPUSeriesToListBox()
         {
             ComponentsListBox.Items.Clear();
@@ -755,21 +774,17 @@ namespace Computer_house
         private void AddCPURadio_CheckedChanged(object sender, EventArgs e)
         {
             SetEnableStatusOfCPUTextBoxes(true);
-            ActWithCPU.Text = "Добавить";
-            ActWithCPU.BackColor = Color.Green;
+            SetEditOrAddButtonMode(ActWithCPU, true);
             FindCPUIDButton.Enabled = true;
-            ActWithCPU.Enabled = true;
             ClearCPUInfoInTextBoxes();
         }
 
         private void ChangeCPURadio_CheckedChanged(object sender, EventArgs e)
         {
             SetEnableStatusOfCPUTextBoxes(true);
-            ActWithCPU.Text = "Изменить";
+            SetEditOrAddButtonMode(ActWithCPU, false);
             CPUIDTextBox.Enabled = false;
-            ActWithCPU.BackColor = Color.BlueViolet;
             FindCPUIDButton.Enabled = false;
-            ActWithCPU.Enabled = true;
             ViewCPUInfoToChange();
         }
 
@@ -783,7 +798,6 @@ namespace Computer_house
             }
             if (findCPU)
             {
-                //ActWithCPU.Enabled = false;
                 MessageBox.Show("Такой серийный номер присутствует в базе");
             }
             else
@@ -823,7 +837,7 @@ namespace Computer_house
         }
 
         //Необходим для проверки на заполненность всех полей для работы с процессором
-        private bool CheckNull()
+        private bool CheckNullForCPUTextBoxes()
         {
             if(CPUIDTextBox.TextLength == 0)
                 return true;
@@ -856,7 +870,7 @@ namespace Computer_house
             return false;
         }
         //Нужен для проверки на наличие числовых значений в необходимых полях
-        private bool CheckIntParse()
+        private bool CheckIntParseForCPUTextBoxes()
         {
             int res;
             bool isInt = Int32.TryParse(CPUCoresTextBox.Text, out res);
@@ -881,47 +895,25 @@ namespace Computer_house
         private void ActWithCPU_Click(object sender, EventArgs e)
         {
             bool exception = false;
-            if (CheckNull())
+            if (CheckNullForCPUTextBoxes())
             {
                 exception = true;
                 MessageBox.Show("Не все поля заполнены");
             }
-            if(!CheckIntParse())
+            else
             {
-                exception = true;
-                MessageBox.Show("Не все значения можно привести к числовому виду");
+                if (!CheckIntParseForCPUTextBoxes())
+                {
+                    exception = true;
+                    MessageBox.Show("Не все значения можно привести к числовому виду");
+                }
             }
-
             if(!exception)
             {
                 if (AddCPURadio.Checked)
                 {
                     //добавление работает
-                    CPU newCPU = AddInfoAboutCPU();//new CPU();
-                    //newCPU.ID = CPUIDTextBox.Text;
-                    //newCPU.Name = CPUNameTextBox.Text;
-                    //newCPU.Series_ID = SeriesList.Single(i => i.Name == CPUSeriesComboBox.Text).ID;
-                    //newCPU.SeriesName = CPUSeriesComboBox.Text;
-                    //newCPU.Delivery_type = DeliveryTypeComboBox.Text;
-                    //newCPU.Codename_ID = CPUCodeNamesList.Single(i => i.Name == CPUCodeNameComboBox.Text).ID;
-                    //newCPU.CodeName = CPUCodeNameComboBox.Text;
-                    //newCPU.Socket_ID = SocketsList.Single(i => i.Name == CPUSocketComboBox.Text).ID;
-                    //newCPU.Socket = CPUSocketComboBox.Text;
-                    //newCPU.Сores_count = Convert.ToInt32(CPUCoresTextBox.Text);
-                    //newCPU.Multithreading = MultithreadingCheckBox.Checked;
-                    //newCPU.Base_state = Convert.ToInt32(CPUBaseStateTextBox.Text);
-                    //newCPU.Max_state = Convert.ToInt32(CPUMaxStateTextBox.Text);
-                    //newCPU.RAM_type_ID = (from b in MemoryTypesList
-                    //                      where b.Device_type == "RAM" && b.Name == CPUMemoryTypeComboBox.Text
-                    //                      select b.ID).SingleOrDefault();
-                    //newCPU.RAM_type = CPUMemoryTypeComboBox.Text;
-                    //newCPU.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == CPUChanelsComboBox.Text).ID;
-                    //newCPU.RAM_chanel = CPUChanelsComboBox.Text;
-                    //newCPU.RAM_frequency_ID = RAMFrequencyList.Single(i => 
-                    //      i.Frequency == Convert.ToInt32(CPURamFrequaencyComboBox.Text)).ID;
-                    //newCPU.RAM_frequency = Convert.ToInt32(CPURamFrequaencyComboBox.Text);
-                    //newCPU.Integrated_graphic = CPUIntegratedGraphicCheckBox.Checked;
-                    //newCPU.Technical_process = Convert.ToInt32(CPUTechprocessTextBox.Text);
+                    CPU newCPU = AddInfoAboutCPU();
                     //Добавление процессора
                     if(SQLRequests.Warning(true, newCPU.Name))
                     {
@@ -934,7 +926,7 @@ namespace Computer_house
                         ClearCPUInfoInTextBoxes();
                     }
                 }
-                else
+                else if(ChangeCPURadio.Checked)
                 {
                     //изменение
                     CPU changedCPU = AddInfoAboutCPU();
@@ -1011,6 +1003,7 @@ namespace Computer_house
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
         }
 
+        //Нужен для загрузки данных из бд в поля для ввода
         private void ViewCPUInfoToChange()
         {
             if (CPU_DatagridView.SelectedCells.Count > 0)
@@ -1038,6 +1031,7 @@ namespace Computer_house
                 CPUTechprocessTextBox.Text = Convert.ToString(currentCPU.Technical_process);
             }
         }
+
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (ChangeCPURadio.Checked)
@@ -1065,6 +1059,8 @@ namespace Computer_house
             CPUTDPTextBox.Clear();
             CPUTechprocessTextBox.Clear();
         }
+
+        //Нужен для добавления или изменения сведений о процессоре
         private CPU AddInfoAboutCPU()
         {
             CPU changedCPU = new CPU();
@@ -1120,27 +1116,7 @@ namespace Computer_house
             //загрузка данных из holding doc
             this.AutoScroll = false;
         }
-        private void LoadHoldingDocs() 
-        {
-            HoldingDocuments.Clear();
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    foreach (var i in db.Holding_document)
-                    {
-                        HoldingDocuments.Add(i);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            MessageBox.Show("Метод отработал");
-            threads[10].Interrupt();
-        }
+        
 
         private void dataGridView2_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -1158,6 +1134,178 @@ namespace Computer_house
                 }
                     HoldingDocsDatagridView.Rows.Add(i.ID, i.Product_name, i.Time, i.State, i.Items_count_in_move, name, i.Location_name);
             }
+        }
+
+        private void SearchGPUIDButton_Click(object sender, EventArgs e)
+        {
+            bool findGPU = false;
+            foreach (GPU cp in GPUList)
+            {
+                if (CPUIDTextBox.Text == cp.ID)
+                    findGPU = true;
+            }
+            if (findGPU)
+            {
+                MessageBox.Show("Такой серийный номер присутствует в базе");
+            }
+            else
+            {
+                MessageBox.Show("Такой серийный номер отсутствует в базе");
+                ActWithGPU.Enabled = true;
+            }
+        }
+
+        //Нужен для установки стартового значения для кнопок
+        private void SetButtonsDefaultOptions(params Button[] _buttons)
+        {
+            foreach (var i in _buttons)
+            {
+                i.Enabled = false;
+                i.Text = "";
+                i.BackColor = Color.Transparent;
+            }
+        }
+
+        //Нужен для изменения кнопки в зависимости от режима добавления или изменения
+        private void SetEditOrAddButtonMode(Button _button, bool _workMode)
+        {
+            //true - добавление
+            //false - изменение
+            if(_workMode)
+            {
+                _button.Text = "Добавить";
+                _button.Enabled = true;
+                _button.BackColor = Color.Green;
+            }
+            else
+            {
+                _button.Enabled = true;
+                _button.Text = "Изменить";
+                _button.BackColor = Color.BlueViolet;
+            }
+        }
+
+        private void AddGPURadio_CheckedChanged(object sender, EventArgs e)
+        {
+            SetEditOrAddButtonMode(ActWithGPU, true);
+
+            ChangeGPUTextBoxesEnable(true);
+            FindGPUIDButton.Enabled = true;
+            ClearGPUInfoTextBoxex();
+
+        }
+
+        private void ClearGPUInfoTextBoxex()
+        {
+            GPUIDTextBox.Clear();
+            GPUNameTextBox.Clear();
+            GPUInterfacesComboBox.SelectedItem = null;
+            GPUManufactureTextBox.Clear();
+            GPUSLISupportCheckBox.Checked = false;
+            GPUCapacityTextBox.Clear();
+            GPUMemoryTypeComboBox.SelectedItem = null;
+            GPUBusWidthTextBox.Clear();
+            GPUOverclockingCheckBox.Checked = false;
+            GPUEnergyConsumptTextBox.Clear();
+            GPUDirectXVersionTextBox.Clear();
+            GPUOutputInterfacesTextBox.Clear();
+            GPUPowerTypeComboBox.SelectedItem = null;
+            GPUCoolersCountTextBox.Clear();
+            GPUCoolingSysThicknessTextBox.Clear();
+            GPUWidthTextBox.Clear();
+            GPUHeightTextBox.Clear();
+        }
+
+        private void ChangeGPUTextBoxesEnable(bool _status)
+        {
+            GPUIDTextBox.Enabled = _status;
+            GPUNameTextBox.Enabled = _status;
+            GPUInterfacesComboBox.Enabled = _status;
+            GPUManufactureTextBox.Enabled = _status;
+            GPUSLISupportCheckBox.Enabled = _status;
+            GPUCapacityTextBox.Enabled = _status;
+            GPUMemoryTypeComboBox.Enabled = _status;
+            GPUBusWidthTextBox.Enabled = _status;
+            GPUOverclockingCheckBox.Enabled = _status;
+            GPUEnergyConsumptTextBox.Enabled = _status;
+            GPUDirectXVersionTextBox.Enabled = _status;
+            GPUOutputInterfacesTextBox.Enabled = _status;
+            GPUPowerTypeComboBox.Enabled = _status;
+            GPUCoolersCountTextBox.Enabled = _status;
+            GPUCoolingSysThicknessTextBox.Enabled = _status;
+            GPUWidthTextBox.Enabled = _status;
+            GPUHeightTextBox.Enabled = _status;
+        }
+
+        private void ChangeGPURadio_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeGPUTextBoxesEnable(true);
+            FindGPUIDButton.Enabled = false;
+            GPUIDTextBox.Enabled = false;
+            SetEditOrAddButtonMode(ActWithGPU, false);
+        }
+
+        private bool CheckForNullGPUTextBoxes()
+        {
+            bool isNull = false;
+            if (GPUIDTextBox.TextLength == 0)
+                return true;
+            if(GPUNameTextBox.TextLength == 0)
+                return true;
+            if (GPUInterfacesComboBox.Text == "")
+                return true;
+            if (GPUManufactureTextBox.TextLength == 0)
+                return true;
+            if (GPUCapacityTextBox.TextLength == 0)
+                return true;
+            if (GPUMemoryTypeComboBox.Text == "")
+                return true;
+            if (GPUBusWidthTextBox.TextLength == 0)
+                return true;
+            if (GPUEnergyConsumptTextBox.TextLength == 0)
+                return true;
+            if (GPUDirectXVersionTextBox.TextLength == 0)
+                return true;
+            if (GPUOutputInterfacesTextBox.TextLength == 0)
+                return true;
+            if (GPUPowerTypeComboBox.Text == "")
+                return true;
+            if (GPUCoolersCountTextBox.TextLength == 0)
+                return true;
+            if (GPUCoolingSysThicknessTextBox.TextLength == 0)
+                return true;
+            if (GPUWidthTextBox.TextLength == 0)
+                return true;
+            if (GPUHeightTextBox.TextLength == 0)
+                return true;
+
+            return isNull;
+        }
+
+        private void ActWithGPU_Click(object sender, EventArgs e)
+        {
+            bool exception = false;
+            if (CheckForNullGPUTextBoxes())
+            {
+                MessageBox.Show("Не все поля заполнены");
+                exception = true;
+            }
+            else
+            {
+                //проверка на перевод к числовому типу
+            }
+            if(!exception)
+            {
+                if (AddGPURadio.Checked)
+                {
+                    //добавление
+                }
+                else if (ChangeGPURadio.Checked)
+                {
+                    //изменение
+                }
+            }
+            
         }
     }
 }
