@@ -562,6 +562,72 @@ namespace Computer_house.OtherClasses
             }
         }
 
+        public static void AddGPU(GPU _gpu)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.GPU.Add(_gpu);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void EditGPUMediator(GPU _gpu, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "GPU";
+                    mediator.GPU_ID = _gpu.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "GPU" && b.GPU_ID == _gpu.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if (_method == "Edit")
+                        db.Warehouse_info.Update(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+
+                    Energy_consumption energy_Consumption = new Energy_consumption(info.Product_ID, _gpu.Consumption);
+                    db.Energy_consumption.Add(energy_Consumption);
+
+                    Memory_capacity capacity = new Memory_capacity(info.Product_ID, _gpu.Capacity);
+                    db.Memory_capacity.Add(capacity);
+
+                    Sizes_of_components sizes = new Sizes_of_components();
+                    sizes.Product_ID = info.Product_ID;
+                    sizes.Length = _gpu.Length;
+                    sizes.Height = _gpu.Height;
+                    db.Sizes_of_components.Add(sizes);
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user)
         {
             if (_itemsCount < 0)

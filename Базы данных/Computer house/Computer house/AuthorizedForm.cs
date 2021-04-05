@@ -26,7 +26,7 @@ namespace Computer_house
         private List<Case> Cases;
         private List<Cooling_system> CoolingSystems;
         private List<CPU> Cpus = new List<CPU>();
-        private List<GPU> Gpus;
+        private List<GPU> Gpus = new List<GPU>();
         //private List<HDD> Hdds;
         private List<Motherboard> Motherboards;
         private List<PSU> Psus;
@@ -56,6 +56,7 @@ namespace Computer_house
             //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
             //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             LoadInfoAboutCPUFromDB();
+            LoadInfoAboutGPUFromDB();
             LoadLocationInWarehouseFromDB();
             LoadProductLocationFromDB();
 
@@ -130,7 +131,7 @@ namespace Computer_house
                 MessageBox.Show(ex.Message);
             }
         }
-        private void LoadInfoAboutGPU()
+        private void LoadInfoAboutGPUFromDB()
         {
             try
             {
@@ -451,7 +452,7 @@ namespace Computer_house
 
         private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformationList, Cpus);
+            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformationList, Cpus, Gpus);
             this.Hide();
             addComponentsOptionsForm.Show();
         }

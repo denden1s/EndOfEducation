@@ -1,10 +1,10 @@
 ﻿
 namespace Computer_house.DataBase.Entities
 {
-    public class CPU_codename
+    public class CPU_codename : ProductWithOnlyName
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        //public string Name { get; set; }
         public CPU_codename() { }
         public CPU_codename(string _name)
         {

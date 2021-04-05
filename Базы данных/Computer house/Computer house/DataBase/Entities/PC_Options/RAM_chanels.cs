@@ -1,9 +1,9 @@
 ﻿namespace Computer_house.DataBase.Entities.PC_Options
 {
-    public class RAM_chanels
+    public class RAM_chanels : ProductWithOnlyName
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        //public string Name { get; set; }
 
         public RAM_chanels() { }
         public RAM_chanels(string _name)

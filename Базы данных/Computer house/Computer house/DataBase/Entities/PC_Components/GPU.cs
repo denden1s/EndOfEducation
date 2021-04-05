@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
-    public class GPU //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
+    public class GPU: Product //: IMemory_capacity, IEnergy_consumption, ISizes_of_components 
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public int Interface_ID { get; set; }
         public string Manufacturer { get; set; }
         public bool Overclocking { get; set; }

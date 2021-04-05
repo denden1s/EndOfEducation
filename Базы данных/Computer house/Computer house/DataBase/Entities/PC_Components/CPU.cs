@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
-    public class CPU //: IBase_and_max_options, IEnergy_consumption
+    public class CPU : Product//: IBase_and_max_options, IEnergy_consumption
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public int Series_ID { get; set; }
         public string Delivery_type { get; set; }
         public int Codename_ID { get; set; }

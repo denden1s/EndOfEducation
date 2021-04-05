@@ -218,6 +218,8 @@
     <Compile Include="DataBase\Interfaces\IMemory_capacity.cs" />
     <Compile Include="DataBase\Interfaces\ISizes_of_components.cs" />
     <Compile Include="DataBase\Interfaces\IStorage_devices_options.cs" />
+    <Compile Include="DataBase\Limited\Product.cs" />
+    <Compile Include="DataBase\Limited\ProductWithOnlyName.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
     <Compile Include="OtherClasses\SQLRequests.cs" />
     <Compile Include="OtherClasses\SystemFunctions.cs" />
