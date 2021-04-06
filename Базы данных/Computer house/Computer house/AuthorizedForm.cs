@@ -28,7 +28,7 @@ namespace Computer_house
         private List<CPU> Cpus = new List<CPU>();
         private List<GPU> Gpus = new List<GPU>();
         //private List<HDD> Hdds;
-        private List<Motherboard> Motherboards;
+        private List<Motherboard> Motherboards = new List<Motherboard>();
         private List<PSU> Psus;
         private List<RAM> Rams;
        // private List<SSD> Ssds;
@@ -58,6 +58,7 @@ namespace Computer_house
             //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             LoadInfoAboutCPUFromDB();
             LoadInfoAboutGPUFromDB();
+            LoadInfoAboutMotherboardsFromDB();
             LoadLocationInWarehouseFromDB();
             LoadProductLocationFromDB();
             LoadInfoAboutMediatorFromDB();
@@ -196,7 +197,7 @@ namespace Computer_house
         //    }
         //}
 
-        private void LoadInfoAboutMotherboard()
+        private void LoadInfoAboutMotherboardsFromDB()
         {
             try
             {
@@ -405,7 +406,7 @@ namespace Computer_house
                         break;
                     case "GPU":
                         GPU currentGPU = Gpus.Single(i => i.Product_ID == obj.Product_ID);
-                        AllProductInfo.Text = $"Имя: {currentGPU.Name};\n" +
+                        AllProductInfo.Text = $"Наименование: {currentGPU.Name};\n" +
                             $"Интерфейс подключения: {currentGPU.ConnectionInterface};\n" +
                             $"Производитель: {currentGPU.Manufacturer};\n" +
                             $"Объём памяти: {Convert.ToString(currentGPU.Capacity)} Гб;\n" +
@@ -489,7 +490,8 @@ namespace Computer_house
 
         private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, WarehouseInformationList, Cpus, Gpus);
+            ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, 
+                WarehouseInformationList, Cpus, Gpus, Motherboards);
             this.Hide();
             addComponentsOptionsForm.Show();
         }

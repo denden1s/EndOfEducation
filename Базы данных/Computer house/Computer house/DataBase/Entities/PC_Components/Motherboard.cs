@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    public class Motherboard //: IMemory_capacity, ISizes_of_components
+    public class Motherboard : Product //: IMemory_capacity, ISizes_of_components
     {
         public string ID { get; set; }
         public string Name { get; set; }

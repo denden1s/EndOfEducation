@@ -6,7 +6,7 @@ namespace Computer_house
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        internal System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -27,7 +27,7 @@ namespace Computer_house
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        internal void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComponentsOptionsForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -126,7 +126,7 @@ namespace Computer_house
             this.ActWithMotherboard = new System.Windows.Forms.Button();
             this.MotherboardRAMCapacityTextBox = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MotherboardConnectorsTextBox = new System.Windows.Forms.TextBox();
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.MotherboardIntegratedGraphicCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,7 +136,7 @@ namespace Computer_house
             this.label50 = new System.Windows.Forms.Label();
             this.MotherboardExpansionsSlotsTextBox = new System.Windows.Forms.TextBox();
             this.label49 = new System.Windows.Forms.Label();
-            this.MotherBoardRAMChanels = new System.Windows.Forms.ComboBox();
+            this.MotherBoardRAMChanelsComboBox = new System.Windows.Forms.ComboBox();
             this.label48 = new System.Windows.Forms.Label();
             this.MotherboardCountOfRAMSlotsTextBox = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
@@ -152,7 +152,7 @@ namespace Computer_house
             this.label42 = new System.Windows.Forms.Label();
             this.MotherboardNameTextBox = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
-            this.SearcchMotherboardButton = new System.Windows.Forms.Button();
+            this.FindMotherboardIDButton = new System.Windows.Forms.Button();
             this.MotherboardIDTextBox = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.ChangeMotherboardRadio = new System.Windows.Forms.RadioButton();
@@ -664,7 +664,7 @@ namespace Computer_house
             // 
             // CPU_ID
             // 
-            this.CPU_ID.HeaderText = "ID процессора";
+            this.CPU_ID.HeaderText = "ID";
             this.CPU_ID.MinimumWidth = 6;
             this.CPU_ID.Name = "CPU_ID";
             this.CPU_ID.ReadOnly = true;
@@ -1358,7 +1358,7 @@ namespace Computer_house
             // 
             // GPU_ID
             // 
-            this.GPU_ID.HeaderText = "ID видеокарты";
+            this.GPU_ID.HeaderText = "ID";
             this.GPU_ID.MinimumWidth = 6;
             this.GPU_ID.Name = "GPU_ID";
             this.GPU_ID.ReadOnly = true;
@@ -1370,7 +1370,7 @@ namespace Computer_house
             this.GPU_Name.MinimumWidth = 6;
             this.GPU_Name.Name = "GPU_Name";
             this.GPU_Name.ReadOnly = true;
-            this.GPU_Name.Width = 150;
+            this.GPU_Name.Width = 350;
             // 
             // tabPage5
             // 
@@ -1378,7 +1378,7 @@ namespace Computer_house
             this.tabPage5.Controls.Add(this.ActWithMotherboard);
             this.tabPage5.Controls.Add(this.MotherboardRAMCapacityTextBox);
             this.tabPage5.Controls.Add(this.label54);
-            this.tabPage5.Controls.Add(this.textBox1);
+            this.tabPage5.Controls.Add(this.MotherboardConnectorsTextBox);
             this.tabPage5.Controls.Add(this.label53);
             this.tabPage5.Controls.Add(this.label52);
             this.tabPage5.Controls.Add(this.MotherboardIntegratedGraphicCheckBox);
@@ -1388,7 +1388,7 @@ namespace Computer_house
             this.tabPage5.Controls.Add(this.label50);
             this.tabPage5.Controls.Add(this.MotherboardExpansionsSlotsTextBox);
             this.tabPage5.Controls.Add(this.label49);
-            this.tabPage5.Controls.Add(this.MotherBoardRAMChanels);
+            this.tabPage5.Controls.Add(this.MotherBoardRAMChanelsComboBox);
             this.tabPage5.Controls.Add(this.label48);
             this.tabPage5.Controls.Add(this.MotherboardCountOfRAMSlotsTextBox);
             this.tabPage5.Controls.Add(this.label47);
@@ -1404,7 +1404,7 @@ namespace Computer_house
             this.tabPage5.Controls.Add(this.label42);
             this.tabPage5.Controls.Add(this.MotherboardNameTextBox);
             this.tabPage5.Controls.Add(this.label40);
-            this.tabPage5.Controls.Add(this.SearcchMotherboardButton);
+            this.tabPage5.Controls.Add(this.FindMotherboardIDButton);
             this.tabPage5.Controls.Add(this.MotherboardIDTextBox);
             this.tabPage5.Controls.Add(this.label41);
             this.tabPage5.Controls.Add(this.ChangeMotherboardRadio);
@@ -1428,6 +1428,7 @@ namespace Computer_house
             this.ActWithMotherboard.TabIndex = 57;
             this.ActWithMotherboard.Text = "button3";
             this.ActWithMotherboard.UseVisualStyleBackColor = true;
+            this.ActWithMotherboard.Click += new System.EventHandler(this.ActWithMotherboard_Click);
             // 
             // MotherboardRAMCapacityTextBox
             // 
@@ -1448,14 +1449,14 @@ namespace Computer_house
             this.label54.TabIndex = 55;
             this.label54.Text = "Поддерживаемый объём ОЗУ";
             // 
-            // textBox1
+            // MotherboardConnectorsTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.textBox1.Location = new System.Drawing.Point(347, 873);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(436, 30);
-            this.textBox1.TabIndex = 54;
+            this.MotherboardConnectorsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherboardConnectorsTextBox.Location = new System.Drawing.Point(347, 873);
+            this.MotherboardConnectorsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MotherboardConnectorsTextBox.Name = "MotherboardConnectorsTextBox";
+            this.MotherboardConnectorsTextBox.Size = new System.Drawing.Size(436, 30);
+            this.MotherboardConnectorsTextBox.TabIndex = 54;
             // 
             // label53
             // 
@@ -1471,7 +1472,7 @@ namespace Computer_house
             // 
             this.label52.AutoSize = true;
             this.label52.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(532, 817);
+            this.label52.Location = new System.Drawing.Point(528, 817);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(26, 32);
             this.label52.TabIndex = 52;
@@ -1493,7 +1494,7 @@ namespace Computer_house
             // 
             this.MotherboardSLISupportCheckBox.AutoSize = true;
             this.MotherboardSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(469, 820);
+            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(465, 820);
             this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSLISupportCheckBox.Name = "MotherboardSLISupportCheckBox";
             this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(60, 32);
@@ -1549,13 +1550,13 @@ namespace Computer_house
             this.label49.TabIndex = 45;
             this.label49.Text = "Слоты расширения";
             // 
-            // MotherBoardRAMChanels
+            // MotherBoardRAMChanelsComboBox
             // 
-            this.MotherBoardRAMChanels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MotherBoardRAMChanels.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.MotherBoardRAMChanels.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherBoardRAMChanels.FormattingEnabled = true;
-            this.MotherBoardRAMChanels.Items.AddRange(new object[] {
+            this.MotherBoardRAMChanelsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MotherBoardRAMChanelsComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MotherBoardRAMChanelsComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.MotherBoardRAMChanelsComboBox.FormattingEnabled = true;
+            this.MotherBoardRAMChanelsComboBox.Items.AddRange(new object[] {
             "Модельный ряд процессора",
             "Кодовое название процессора",
             "Сокет",
@@ -1566,11 +1567,11 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherBoardRAMChanels.Location = new System.Drawing.Point(347, 638);
-            this.MotherBoardRAMChanels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MotherBoardRAMChanels.Name = "MotherBoardRAMChanels";
-            this.MotherBoardRAMChanels.Size = new System.Drawing.Size(436, 31);
-            this.MotherBoardRAMChanels.TabIndex = 44;
+            this.MotherBoardRAMChanelsComboBox.Location = new System.Drawing.Point(347, 638);
+            this.MotherBoardRAMChanelsComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MotherBoardRAMChanelsComboBox.Name = "MotherBoardRAMChanelsComboBox";
+            this.MotherBoardRAMChanelsComboBox.Size = new System.Drawing.Size(436, 31);
+            this.MotherBoardRAMChanelsComboBox.TabIndex = 44;
             // 
             // label48
             // 
@@ -1771,16 +1772,17 @@ namespace Computer_house
             this.label40.TabIndex = 29;
             this.label40.Text = "Наименование";
             // 
-            // SearcchMotherboardButton
+            // FindMotherboardIDButton
             // 
-            this.SearcchMotherboardButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearcchMotherboardButton.Location = new System.Drawing.Point(659, 201);
-            this.SearcchMotherboardButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearcchMotherboardButton.Name = "SearcchMotherboardButton";
-            this.SearcchMotherboardButton.Size = new System.Drawing.Size(124, 34);
-            this.SearcchMotherboardButton.TabIndex = 28;
-            this.SearcchMotherboardButton.Text = "Поиск";
-            this.SearcchMotherboardButton.UseVisualStyleBackColor = true;
+            this.FindMotherboardIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindMotherboardIDButton.Location = new System.Drawing.Point(659, 201);
+            this.FindMotherboardIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FindMotherboardIDButton.Name = "FindMotherboardIDButton";
+            this.FindMotherboardIDButton.Size = new System.Drawing.Size(124, 34);
+            this.FindMotherboardIDButton.TabIndex = 28;
+            this.FindMotherboardIDButton.Text = "Поиск";
+            this.FindMotherboardIDButton.UseVisualStyleBackColor = true;
+            this.FindMotherboardIDButton.Click += new System.EventHandler(this.SearcchMotherboardButton_Click);
             // 
             // MotherboardIDTextBox
             // 
@@ -1813,6 +1815,7 @@ namespace Computer_house
             this.ChangeMotherboardRadio.TabStop = true;
             this.ChangeMotherboardRadio.Text = "Изменить";
             this.ChangeMotherboardRadio.UseVisualStyleBackColor = true;
+            this.ChangeMotherboardRadio.CheckedChanged += new System.EventHandler(this.ChangeMotherboardRadio_CheckedChanged);
             // 
             // AddMotherboardRadio
             // 
@@ -1826,6 +1829,7 @@ namespace Computer_house
             this.AddMotherboardRadio.TabStop = true;
             this.AddMotherboardRadio.Text = "Добавить";
             this.AddMotherboardRadio.UseVisualStyleBackColor = true;
+            this.AddMotherboardRadio.CheckedChanged += new System.EventHandler(this.AddMotherboardRadio_CheckedChanged);
             // 
             // dataGridView1
             // 
@@ -1848,7 +1852,7 @@ namespace Computer_house
             // 
             // MotherboardID
             // 
-            this.MotherboardID.HeaderText = "ID материнской платы";
+            this.MotherboardID.HeaderText = "ID";
             this.MotherboardID.MinimumWidth = 6;
             this.MotherboardID.Name = "MotherboardID";
             this.MotherboardID.ReadOnly = true;
@@ -1860,7 +1864,7 @@ namespace Computer_house
             this.MotherboardName.MinimumWidth = 6;
             this.MotherboardName.Name = "MotherboardName";
             this.MotherboardName.ReadOnly = true;
-            this.MotherboardName.Width = 150;
+            this.MotherboardName.Width = 300;
             // 
             // tabPage6
             // 
@@ -2232,162 +2236,162 @@ namespace Computer_house
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ComboBox TypesOfComponentComboBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox ComponentsListBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button ActToComponent;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox ComponentNameTextBox;
-        private System.Windows.Forms.RadioButton EditComponent;
-        private System.Windows.Forms.RadioButton AddNewComponent;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.ComboBox ComponentTypeComboBox;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton ChangeCPURadio;
-        private System.Windows.Forms.RadioButton AddCPURadio;
-        private System.Windows.Forms.DataGridView CPU_DatagridView;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPU_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPU_Name;
-        private System.Windows.Forms.CheckBox MultithreadingCheckBox;
-        private System.Windows.Forms.TextBox CPUCoresTextBox;
-        private System.Windows.Forms.ComboBox CPUSocketComboBox;
-        private System.Windows.Forms.ComboBox CPUCodeNameComboBox;
-        private System.Windows.Forms.ComboBox CPUSeriesComboBox;
-        private System.Windows.Forms.Button FindCPUIDButton;
-        private System.Windows.Forms.TextBox CPUNameTextBox;
-        private System.Windows.Forms.TextBox CPUIDTextBox;
-        private System.Windows.Forms.TextBox CPUMaxStateTextBox;
-        private System.Windows.Forms.TextBox CPUBaseStateTextBox;
-        private System.Windows.Forms.TextBox CPUTechprocessTextBox;
-        private System.Windows.Forms.TextBox CPUTDPTextBox;
-        private System.Windows.Forms.CheckBox CPUIntegratedGraphicCheckBox;
-        private System.Windows.Forms.ComboBox CPURamFrequaencyComboBox;
-        private System.Windows.Forms.ComboBox CPUChanelsComboBox;
-        private System.Windows.Forms.ComboBox CPUMemoryTypeComboBox;
-        private System.Windows.Forms.Button ActWithCPU;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox DeliveryTypeComboBox;
-        private System.Windows.Forms.DataGridView HoldingDocsDatagridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoldingDocumentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MovingTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductsCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WorkerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
-        private System.Windows.Forms.DataGridView GPU_DatagridView;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox GPUInterfacesComboBox;
-        private System.Windows.Forms.TextBox GPUNameTextBox;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button FindGPUIDButton;
-        private System.Windows.Forms.TextBox GPUIDTextBox;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RadioButton ChangeGPURadio;
-        private System.Windows.Forms.RadioButton AddGPURadio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GPU_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GPU_Name;
-        private System.Windows.Forms.TextBox GPUEnergyConsumptTextBox;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox GPUCapacityTextBox;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox GPUHeightTextBox;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox GPULengthTextBox;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox GPUCoolingSysThicknessTextBox;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox GPUCoolersCountTextBox;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.ComboBox GPUPowerTypeComboBox;
-        private System.Windows.Forms.TextBox GPUOutputInterfacesTextBox;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox GPUDirectXVersionTextBox;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox GPUBusWidthTextBox;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox GPUMemoryTypeComboBox;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.CheckBox GPUSLISupportCheckBox;
-        private System.Windows.Forms.CheckBox GPUOverclockingCheckBox;
-        private System.Windows.Forms.TextBox GPUManufactureTextBox;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button ActWithGPU;
-        private System.Windows.Forms.RadioButton ChangeMotherboardRadio;
-        private System.Windows.Forms.RadioButton AddMotherboardRadio;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MotherboardID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MotherboardName;
-        private System.Windows.Forms.Button ActWithMotherboard;
-        private System.Windows.Forms.TextBox MotherboardRAMCapacityTextBox;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.CheckBox MotherboardIntegratedGraphicCheckBox;
-        private System.Windows.Forms.CheckBox MotherboardSLISupportCheckBox;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.TextBox MotherboardStorageInterfacesTextBox;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox MotherboardExpansionsSlotsTextBox;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.ComboBox MotherBoardRAMChanels;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox MotherboardCountOfRAMSlotsTextBox;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.ComboBox MotherboardSupportedRAMComboBox;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ComboBox MotherboardFormFactorComboBox;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.ComboBox MotherboardChipsetComboBox;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.ComboBox MotherboardSocketComboBox;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox MotherboardSupportedCPUTextBox;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox MotherboardNameTextBox;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Button SearcchMotherboardButton;
-        private System.Windows.Forms.TextBox MotherboardIDTextBox;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label label55;
+        internal System.Windows.Forms.TabControl tabControl1;
+        internal System.Windows.Forms.TabPage tabPage1;
+        internal System.Windows.Forms.TabControl tabControl2;
+        internal System.Windows.Forms.TabPage tabPage3;
+        internal System.Windows.Forms.TabPage tabPage4;
+        internal System.Windows.Forms.TabPage tabPage5;
+        internal System.Windows.Forms.TabPage tabPage6;
+        internal System.Windows.Forms.TabPage tabPage7;
+        internal System.Windows.Forms.TabPage tabPage8;
+        internal System.Windows.Forms.TabPage tabPage9;
+        internal System.Windows.Forms.TabPage tabPage10;
+        internal System.Windows.Forms.TabPage tabPage11;
+        internal System.Windows.Forms.TabPage tabPage2;
+        internal System.Windows.Forms.ComboBox TypesOfComponentComboBox;
+        internal System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.ListBox ComponentsListBox;
+        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.Button ActToComponent;
+        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.TextBox ComponentNameTextBox;
+        internal System.Windows.Forms.RadioButton EditComponent;
+        internal System.Windows.Forms.RadioButton AddNewComponent;
+        internal System.Windows.Forms.TabPage tabPage12;
+        internal System.Windows.Forms.ComboBox ComponentTypeComboBox;
+        internal System.Windows.Forms.Label label11;
+        internal System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.Label label9;
+        internal System.Windows.Forms.Label label8;
+        internal System.Windows.Forms.Label label7;
+        internal System.Windows.Forms.Label label6;
+        internal System.Windows.Forms.Label label5;
+        internal System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.RadioButton ChangeCPURadio;
+        internal System.Windows.Forms.RadioButton AddCPURadio;
+        internal System.Windows.Forms.DataGridView CPU_DatagridView;
+        internal System.Windows.Forms.Label label20;
+        internal System.Windows.Forms.Label label19;
+        internal System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.Label label15;
+        internal System.Windows.Forms.Label label14;
+        internal System.Windows.Forms.CheckBox MultithreadingCheckBox;
+        internal System.Windows.Forms.TextBox CPUCoresTextBox;
+        internal System.Windows.Forms.ComboBox CPUSocketComboBox;
+        internal System.Windows.Forms.ComboBox CPUCodeNameComboBox;
+        internal System.Windows.Forms.ComboBox CPUSeriesComboBox;
+        internal System.Windows.Forms.Button FindCPUIDButton;
+        internal System.Windows.Forms.TextBox CPUNameTextBox;
+        internal System.Windows.Forms.TextBox CPUIDTextBox;
+        internal System.Windows.Forms.TextBox CPUMaxStateTextBox;
+        internal System.Windows.Forms.TextBox CPUBaseStateTextBox;
+        internal System.Windows.Forms.TextBox CPUTechprocessTextBox;
+        internal System.Windows.Forms.TextBox CPUTDPTextBox;
+        internal System.Windows.Forms.CheckBox CPUIntegratedGraphicCheckBox;
+        internal System.Windows.Forms.ComboBox CPURamFrequaencyComboBox;
+        internal System.Windows.Forms.ComboBox CPUChanelsComboBox;
+        internal System.Windows.Forms.ComboBox CPUMemoryTypeComboBox;
+        internal System.Windows.Forms.Button ActWithCPU;
+        internal System.Windows.Forms.Label label24;
+        internal System.Windows.Forms.Label label23;
+        internal System.Windows.Forms.Label label22;
+        internal System.Windows.Forms.Label label21;
+        internal System.Windows.Forms.Label label13;
+        internal System.Windows.Forms.ComboBox DeliveryTypeComboBox;
+        internal System.Windows.Forms.DataGridView HoldingDocsDatagridView;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn HoldingDocumentID;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn MovingTime;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn ProductsCount;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn WorkerID;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        internal System.Windows.Forms.DataGridView GPU_DatagridView;
+        internal System.Windows.Forms.Label label27;
+        internal System.Windows.Forms.ComboBox GPUInterfacesComboBox;
+        internal System.Windows.Forms.TextBox GPUNameTextBox;
+        internal System.Windows.Forms.Label label26;
+        internal System.Windows.Forms.Button FindGPUIDButton;
+        internal System.Windows.Forms.TextBox GPUIDTextBox;
+        internal System.Windows.Forms.Label label25;
+        internal System.Windows.Forms.RadioButton ChangeGPURadio;
+        internal System.Windows.Forms.RadioButton AddGPURadio;
+        internal System.Windows.Forms.TextBox GPUEnergyConsumptTextBox;
+        internal System.Windows.Forms.Label label39;
+        internal System.Windows.Forms.TextBox GPUCapacityTextBox;
+        internal System.Windows.Forms.Label label38;
+        internal System.Windows.Forms.TextBox GPUHeightTextBox;
+        internal System.Windows.Forms.Label label37;
+        internal System.Windows.Forms.TextBox GPULengthTextBox;
+        internal System.Windows.Forms.Label label36;
+        internal System.Windows.Forms.TextBox GPUCoolingSysThicknessTextBox;
+        internal System.Windows.Forms.Label label35;
+        internal System.Windows.Forms.Label label34;
+        internal System.Windows.Forms.TextBox GPUCoolersCountTextBox;
+        internal System.Windows.Forms.Label label33;
+        internal System.Windows.Forms.ComboBox GPUPowerTypeComboBox;
+        internal System.Windows.Forms.TextBox GPUOutputInterfacesTextBox;
+        internal System.Windows.Forms.Label label32;
+        internal System.Windows.Forms.TextBox GPUDirectXVersionTextBox;
+        internal System.Windows.Forms.Label label31;
+        internal System.Windows.Forms.TextBox GPUBusWidthTextBox;
+        internal System.Windows.Forms.Label label30;
+        internal System.Windows.Forms.ComboBox GPUMemoryTypeComboBox;
+        internal System.Windows.Forms.Label label29;
+        internal System.Windows.Forms.CheckBox GPUSLISupportCheckBox;
+        internal System.Windows.Forms.CheckBox GPUOverclockingCheckBox;
+        internal System.Windows.Forms.TextBox GPUManufactureTextBox;
+        internal System.Windows.Forms.Label label28;
+        internal System.Windows.Forms.Button ActWithGPU;
+        internal System.Windows.Forms.RadioButton ChangeMotherboardRadio;
+        internal System.Windows.Forms.RadioButton AddMotherboardRadio;
+        internal System.Windows.Forms.DataGridView dataGridView1;
+        internal System.Windows.Forms.Button ActWithMotherboard;
+        internal System.Windows.Forms.TextBox MotherboardRAMCapacityTextBox;
+        internal System.Windows.Forms.Label label54;
+        internal System.Windows.Forms.TextBox MotherboardConnectorsTextBox;
+        internal System.Windows.Forms.Label label53;
+        internal System.Windows.Forms.Label label52;
+        internal System.Windows.Forms.CheckBox MotherboardIntegratedGraphicCheckBox;
+        internal System.Windows.Forms.CheckBox MotherboardSLISupportCheckBox;
+        internal System.Windows.Forms.Label label51;
+        internal System.Windows.Forms.TextBox MotherboardStorageInterfacesTextBox;
+        internal System.Windows.Forms.Label label50;
+        internal System.Windows.Forms.TextBox MotherboardExpansionsSlotsTextBox;
+        internal System.Windows.Forms.Label label49;
+        internal System.Windows.Forms.ComboBox MotherBoardRAMChanelsComboBox;
+        internal System.Windows.Forms.Label label48;
+        internal System.Windows.Forms.TextBox MotherboardCountOfRAMSlotsTextBox;
+        internal System.Windows.Forms.Label label47;
+        internal System.Windows.Forms.ComboBox MotherboardSupportedRAMComboBox;
+        internal System.Windows.Forms.Label label46;
+        internal System.Windows.Forms.ComboBox MotherboardFormFactorComboBox;
+        internal System.Windows.Forms.Label label45;
+        internal System.Windows.Forms.ComboBox MotherboardChipsetComboBox;
+        internal System.Windows.Forms.Label label44;
+        internal System.Windows.Forms.ComboBox MotherboardSocketComboBox;
+        internal System.Windows.Forms.Label label43;
+        internal System.Windows.Forms.TextBox MotherboardSupportedCPUTextBox;
+        internal System.Windows.Forms.Label label42;
+        internal System.Windows.Forms.TextBox MotherboardNameTextBox;
+        internal System.Windows.Forms.Label label40;
+        internal System.Windows.Forms.Button FindMotherboardIDButton;
+        internal System.Windows.Forms.TextBox MotherboardIDTextBox;
+        internal System.Windows.Forms.Label label41;
+        internal System.Windows.Forms.Label label59;
+        internal System.Windows.Forms.Label label58;
+        internal System.Windows.Forms.Label label57;
+        internal System.Windows.Forms.Label label56;
+        internal System.Windows.Forms.Label label55;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn CPU_ID;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn CPU_Name;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn GPU_ID;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn GPU_Name;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn MotherboardID;
+        internal System.Windows.Forms.DataGridViewTextBoxColumn MotherboardName;
     }
 }
