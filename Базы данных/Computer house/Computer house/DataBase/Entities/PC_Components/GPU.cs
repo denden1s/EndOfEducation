@@ -43,7 +43,6 @@ namespace Computer_house.DataBase.Entities
         public GPU(string _id)
         {
             ID = _id;
-
         }
         //Выборка данных из БД
 

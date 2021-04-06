@@ -36,8 +36,17 @@ namespace Computer_house
         private List<CPU> CPUList = new List<CPU>();
         private List<GPU> GPUList = new List<GPU>();
         private List<Holding_document> HoldingDocuments = new List<Holding_document>();
-        //сведения о процессоре
 
+        private string GPUpowerTypeComboBoxText = "";
+        private string GPUTypeComboBoxText = "";
+        private string GPUconnectionInterfaceComboBoxText = "";
+
+        private string CPUSeriesComboBoxText = "";
+        private string CPUDeliveryTypeComboBoxText = "";
+        private string CPUCodeNameComboBoxText = ""; 
+        private string CPUSocketComboBoxText = "";
+        private string CPUMemoryTypeComboBoxText = "";
+        private string CPUChanelsComboBoxText = "";
 
         public ComponentsOptionsForm()
         {
@@ -88,11 +97,11 @@ namespace Computer_house
             ViewInfoInDataGrid<CPU>(CPU_DatagridView,CPUList);
             ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
 
-            LoadSeriesInfoInComboBox();
-            LoadCodeNameInfoInComboBox();
-            LoadSocketInfoInComboBox(CPUSocketComboBox);
+            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
+            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
+            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
             LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
-            LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
+            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
             SetEnableStatusOfCPUTextBoxes(false);
             ChangeGPUTextBoxesEnable(false);
@@ -311,6 +320,16 @@ namespace Computer_house
         private void tabPage2_Enter(object sender, EventArgs e)
         {
             this.AutoScroll = false;
+            //загрузка данных из комбобоксов
+            GPUpowerTypeComboBoxText = GPUPowerTypeComboBox.Text;
+            GPUTypeComboBoxText = GPUMemoryTypeComboBox.Text;
+            GPUconnectionInterfaceComboBoxText = GPUInterfacesComboBox.Text;
+
+            CPUSeriesComboBoxText = CPUSeriesComboBox.Text;
+            CPUCodeNameComboBoxText = CPUCodeNameComboBox.Text;
+            CPUSocketComboBoxText = CPUSocketComboBox.Text;
+            CPUMemoryTypeComboBoxText = CPUMemoryTypeComboBox.Text;
+            CPUChanelsComboBoxText = CPUChanelsComboBox.Text;
         }
         private void tabPage1_MouseEnter(object sender, EventArgs e)
         {
@@ -738,39 +757,26 @@ namespace Computer_house
 
         private void FindCPUIDButton_Click(object sender, EventArgs e)
         {
-            bool findCPU = false;
-            foreach (CPU cp in CPUList)
-            {
-                if (CPUIDTextBox.Text == cp.ID)
-                    findCPU = true;
-            }
-            if (findCPU)
-            {
-                MessageBox.Show("Такой серийный номер присутствует в базе");
-            }
-            else
-            {
-                MessageBox.Show("Такой серийный номер отсутствует в базе");
-                ActWithCPU.Enabled = true;
-            }    
+            SearchInfoInList<CPU>(CPUList, CPUIDTextBox, ActWithCPU);  
         }
-
-        private void SearchInfoInList<T>()where T:Product
+        
+        //Нужен для поиска id перед добавлением данных о товаре
+        private void SearchInfoInList<T>(List<T> _list, TextBox _textbox, Button _button)where T:Product
         {
-            bool findCPU = false;
-            foreach (CPU cp in CPUList)
+            bool findItem = false;
+            foreach (T i in _list)
             {
-                if (CPUIDTextBox.Text == cp.ID)
-                    findCPU = true;
+                if (_textbox.Text == i.ID)
+                    findItem = true;
             }
-            if (findCPU)
+            if (findItem)
             {
                 MessageBox.Show("Такой серийный номер присутствует в базе");
             }
             else
             {
                 MessageBox.Show("Такой серийный номер отсутствует в базе");
-                ActWithCPU.Enabled = true;
+                _button.Enabled = true;
             }
         }
 
@@ -784,7 +790,6 @@ namespace Computer_house
                 {
                     FindCPUIDButton.Enabled = true;
                     FindInfoFromTextBox<CPU>(CPUIDTextBox, CPUList, ActWithCPU);
-                    //FindCPU();
                 }
             }    
         }
@@ -793,32 +798,11 @@ namespace Computer_house
         private void FindInfoFromTextBox<T>(TextBox _searchTextBox, List<T> _list, Button _actionButton)where T: Product
         {
             var findInfo = _list.SingleOrDefault(i => i.ID == _searchTextBox.Text);//false;
-
-
-            //foreach (var i in _list)
-            //{
-            //    if (_searchTextBox.Text == i.ID)
-            //        findInfo = true;
-            //}
             if (findInfo != null)
                 _actionButton.Enabled = false;
             else
                 _actionButton.Enabled = true;
         }
-
-        //private void FindCPU()
-        //{
-        //    bool findCPU = false;
-        //    foreach (CPU cp in CPUList)
-        //    {
-        //        if (CPUIDTextBox.Text == cp.ID)
-        //            findCPU = true;
-        //    }
-        //    if (findCPU)
-        //        ActWithCPU.Enabled = false;
-        //    else
-        //        ActWithCPU.Enabled = true;
-        //}
 
         //Необходим для проверки на заполненность всех полей для работы с процессором
         private bool CheckNullForCPUTextBoxes()
@@ -912,7 +896,6 @@ namespace Computer_house
                 }
                 else if(ChangeCPURadio.Checked)
                 {
-
                     //изменение
                     CPU changedCPU = AddInfoAboutCPU();
                     if (SQLRequests.Warning(false, changedCPU.Name))
@@ -928,30 +911,15 @@ namespace Computer_house
         }
 
         //Необходимы для загрузки данных из списков в выпадающие списки (для CPU)
-        private void LoadSeriesInfoInComboBox()
+        private void LoadInfoFromListToCombobox<T>(List<T> _list, ComboBox _combobox)where T: ProductWithOnlyName
         {
-            CPUSeriesComboBox.Items.Clear();
-            foreach (var i in SeriesList)
+            _combobox.Items.Clear();
+            foreach (var i in _list)
             {
-                CPUSeriesComboBox.Items.Add(i.Name);
+                _combobox.Items.Add(i.Name);
             }
         }
-        private void LoadCodeNameInfoInComboBox()
-        {
-            CPUCodeNameComboBox.Items.Clear();
-            foreach (var i in CPUCodeNamesList)
-            {
-                CPUCodeNameComboBox.Items.Add(i.Name);
-            }
-        }
-        private void LoadSocketInfoInComboBox(ComboBox _comboBox)
-        {
-            _comboBox.Items.Clear();
-            foreach (var i in SocketsList)
-            {
-                _comboBox.Items.Add(i.Name);
-            }
-        }
+        
         private void LoadMemoryTypeInComboBox(ComboBox _comboBox, string _deviceType)
         {
             _comboBox.Items.Clear();
@@ -959,14 +927,6 @@ namespace Computer_house
                                                   where b.Device_type == _deviceType
                                                   select b).ToList();
             foreach (var i in tempMemoryTypes)
-            {
-                _comboBox.Items.Add(i.Name);
-            }
-        }
-        private void LoadMemoryChanelsInComboBox(ComboBox _comboBox)
-        {
-            _comboBox.Items.Clear();
-            foreach (var i in RAMChanelsList)
             {
                 _comboBox.Items.Add(i.Name);
             }
@@ -981,14 +941,6 @@ namespace Computer_house
         }
 
         //Аналогично вышеописанным методам только для списка видеокарт
-        private void LoadConnectionInterfacesInComboBox(ComboBox _combobox)
-        {
-            _combobox.Items.Clear();
-            foreach (var i in ConnectionInterfacesList)
-            {
-                _combobox.Items.Add(i.Name);
-            }
-        }
         private void LoadPowerTypeInComboBox(ComboBox _combobox)
         {
             _combobox.Items.Clear();
@@ -1005,12 +957,27 @@ namespace Computer_house
         private void tabPage3_Enter(object sender, EventArgs e)
         {
             //можно через потоки
-            LoadSeriesInfoInComboBox();
-            LoadCodeNameInfoInComboBox();
-            LoadSocketInfoInComboBox(CPUSocketComboBox);
+            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
+            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
+            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
             LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
-            LoadMemoryChanelsInComboBox(CPUChanelsComboBox);
+            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
+
+            try
+            {
+                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
+                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
+                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
+                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
+                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
 
         //Нужен для загрузки данных из бд в поля для ввода
@@ -1039,6 +1006,35 @@ namespace Computer_house
                 CPUIntegratedGraphicCheckBox.Checked = currentCPU.Integrated_graphic;
                 CPUTDPTextBox.Text = Convert.ToString(currentCPU.Consumption);
                 CPUTechprocessTextBox.Text = Convert.ToString(currentCPU.Technical_process);
+            }
+        }
+
+        private void ViewGPUInfoToChange()
+        {
+            if (GPU_DatagridView.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = GPU_DatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = GPU_DatagridView.Rows[selectedrowindex];
+                //Отображение данных из списка CPU
+                GPU currentGPU = new GPU();
+                currentGPU = GPUList.Single(i => i.ID == (string)currentRow.Cells[0].Value);
+                GPUIDTextBox.Text = currentGPU.ID;
+                GPUNameTextBox.Text = currentGPU.Name;
+                GPUInterfacesComboBox.SelectedItem = currentGPU.ConnectionInterface;
+                GPUManufactureTextBox.Text = currentGPU.Manufacturer;
+                GPUSLISupportCheckBox.Checked = currentGPU.SLI_support;
+                GPUCapacityTextBox.Text = Convert.ToString(currentGPU.Capacity);
+                GPUMemoryTypeComboBox.SelectedItem = currentGPU.GPU_type;
+                GPUBusWidthTextBox.Text = Convert.ToString(currentGPU.Bus_width);
+                GPUOverclockingCheckBox.Checked = currentGPU.Overclocking;
+                GPUEnergyConsumptTextBox.Text = Convert.ToString(currentGPU.Consumption);
+                GPUDirectXVersionTextBox.Text = currentGPU.DirectX;
+                GPUOutputInterfacesTextBox.Text = currentGPU.External_interfaces;
+                GPUPowerTypeComboBox.SelectedItem = currentGPU.PowerType;
+                GPUCoolersCountTextBox.Text = Convert.ToString(currentGPU.Coolers_count);
+                GPUCoolingSysThicknessTextBox.Text = Convert.ToString(currentGPU.Cooling_system_thikness);
+                GPULengthTextBox.Text = Convert.ToString(currentGPU.Length);
+                GPUHeightTextBox.Text = Convert.ToString(currentGPU.Height);
             }
         }
 
@@ -1123,7 +1119,7 @@ namespace Computer_house
             newGPU.Power_type_ID = PowerConnectorsList.Single(i => i.Connectors == GPUPowerTypeComboBox.Text).ID;
             newGPU.Coolers_count = Convert.ToInt32(GPUCoolersCountTextBox.Text);
             newGPU.Cooling_system_thikness = Convert.ToInt32(GPUCoolingSysThicknessTextBox.Text);
-            newGPU.Length = Convert.ToInt32(GPUWidthTextBox.Text);
+            newGPU.Length = Convert.ToInt32(GPULengthTextBox.Text);
             newGPU.Height = Convert.ToInt32(GPUHeightTextBox.Text);
             return newGPU;
         }
@@ -1175,21 +1171,7 @@ namespace Computer_house
 
         private void SearchGPUIDButton_Click(object sender, EventArgs e)
         {
-            bool findGPU = false;
-            foreach (GPU cp in GPUList)
-            {
-                if (CPUIDTextBox.Text == cp.ID)
-                    findGPU = true;
-            }
-            if (findGPU)
-            {
-                MessageBox.Show("Такой серийный номер присутствует в базе");
-            }
-            else
-            {
-                MessageBox.Show("Такой серийный номер отсутствует в базе");
-                ActWithGPU.Enabled = true;
-            }
+            SearchInfoInList<GPU>(GPUList, GPUIDTextBox, ActWithGPU);
         }
 
         //Нужен для установки стартового значения для кнопок
@@ -1249,7 +1231,7 @@ namespace Computer_house
             GPUPowerTypeComboBox.SelectedItem = null;
             GPUCoolersCountTextBox.Clear();
             GPUCoolingSysThicknessTextBox.Clear();
-            GPUWidthTextBox.Clear();
+            GPULengthTextBox.Clear();
             GPUHeightTextBox.Clear();
         }
 
@@ -1270,7 +1252,7 @@ namespace Computer_house
             GPUPowerTypeComboBox.Enabled = _status;
             GPUCoolersCountTextBox.Enabled = _status;
             GPUCoolingSysThicknessTextBox.Enabled = _status;
-            GPUWidthTextBox.Enabled = _status;
+            GPULengthTextBox.Enabled = _status;
             GPUHeightTextBox.Enabled = _status;
         }
 
@@ -1311,7 +1293,7 @@ namespace Computer_house
                 return true;
             if (GPUCoolingSysThicknessTextBox.TextLength == 0)
                 return true;
-            if (GPUWidthTextBox.TextLength == 0)
+            if (GPULengthTextBox.TextLength == 0)
                 return true;
             if (GPUHeightTextBox.TextLength == 0)
                 return true;
@@ -1338,7 +1320,7 @@ namespace Computer_house
             isInt = Int32.TryParse(GPUEnergyConsumptTextBox.Text, out res);
             if (!isInt)
                 return false;
-            isInt = Int32.TryParse(GPUWidthTextBox.Text, out res);
+            isInt = Int32.TryParse(GPULengthTextBox.Text, out res);
             if (!isInt)
                 return false;
             isInt = Int32.TryParse(GPUHeightTextBox.Text, out res);
@@ -1372,7 +1354,7 @@ namespace Computer_house
                     if(SQLRequests.Warning(true, newGPU.Name))
                     {
                         SQLRequests.AddGPU(newGPU);
-                        SQLRequests.EditGPUMediator(newGPU, "Add");
+                        SQLRequests.EditGPUInMediator(newGPU, "Add");
                         //SQLRequests.EditCPUInMediator(newCPU, "Add");
                         //добавление в таблицу mediator
                         //Добавить в warehouseInfo
@@ -1385,7 +1367,27 @@ namespace Computer_house
                 else if (ChangeGPURadio.Checked)
                 {
                     //изменение
+                    GPU changedGPU = AddInfoAboutGPU();
+                    if (SQLRequests.Warning(false, changedGPU.Name))
+                    {
+                        SQLRequests.ChangeGPU(changedGPU);
+                        SQLRequests.EditGPUInMediator(changedGPU, "Edit");
+                        int temp = GPUList.IndexOf(GPUList.Single(i => i.ID == changedGPU.ID));
+                        GPUList[temp] = changedGPU;
+                        ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
+                    }
                     MessageBox.Show("Edit");
+                }
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    GPUList.Clear();
+                    int counter = 0;
+                    foreach (GPU c in db.GPU)
+                    {
+                        GPUList.Add(new GPU(c.ID));
+                        GPUList[counter].GetDataFromDB();
+                        counter++;
+                    }
                 }
             }
             
@@ -1393,9 +1395,22 @@ namespace Computer_house
 
         private void tabPage4_Enter(object sender, EventArgs e)
         {
-            LoadConnectionInterfacesInComboBox(GPUInterfacesComboBox);
+            //добавить переменные в которых будут храниться значения полей из комбобоксов
+            LoadInfoFromListToCombobox<Connection_interfaces>(ConnectionInterfacesList, GPUInterfacesComboBox);
             LoadMemoryTypeInComboBox(GPUMemoryTypeComboBox, "GPU");
             LoadPowerTypeInComboBox(GPUPowerTypeComboBox);
+
+            try
+            {
+                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
+                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
+                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
 
         private void GPUIDTextBox_TextChanged(object sender, EventArgs e)
@@ -1409,6 +1424,15 @@ namespace Computer_house
                     FindGPUIDButton.Enabled = true;
                     FindInfoFromTextBox<GPU>(GPUIDTextBox, GPUList, ActWithGPU);
                 }
+            }
+        }
+
+        private void GPU_DatagridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ChangeGPURadio.Checked)
+            {
+                ViewGPUInfoToChange();
+                ActWithGPU.Enabled = true;
             }
         }
     }

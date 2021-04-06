@@ -78,6 +78,11 @@ namespace Computer_house
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.ActWithGPU = new System.Windows.Forms.Button();
             this.GPUEnergyConsumptTextBox = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -85,7 +90,7 @@ namespace Computer_house
             this.label38 = new System.Windows.Forms.Label();
             this.GPUHeightTextBox = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.GPUWidthTextBox = new System.Windows.Forms.TextBox();
+            this.GPULengthTextBox = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.GPUCoolingSysThicknessTextBox = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
@@ -826,6 +831,11 @@ namespace Computer_house
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage4.Controls.Add(this.label59);
+            this.tabPage4.Controls.Add(this.label58);
+            this.tabPage4.Controls.Add(this.label57);
+            this.tabPage4.Controls.Add(this.label56);
+            this.tabPage4.Controls.Add(this.label55);
             this.tabPage4.Controls.Add(this.ActWithGPU);
             this.tabPage4.Controls.Add(this.GPUEnergyConsumptTextBox);
             this.tabPage4.Controls.Add(this.label39);
@@ -833,7 +843,7 @@ namespace Computer_house
             this.tabPage4.Controls.Add(this.label38);
             this.tabPage4.Controls.Add(this.GPUHeightTextBox);
             this.tabPage4.Controls.Add(this.label37);
-            this.tabPage4.Controls.Add(this.GPUWidthTextBox);
+            this.tabPage4.Controls.Add(this.GPULengthTextBox);
             this.tabPage4.Controls.Add(this.label36);
             this.tabPage4.Controls.Add(this.GPUCoolingSysThicknessTextBox);
             this.tabPage4.Controls.Add(this.label35);
@@ -872,6 +882,56 @@ namespace Computer_house
             this.tabPage4.Text = "Видеокарта";
             this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
             // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(667, 858);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(48, 28);
+            this.label59.TabIndex = 59;
+            this.label59.Text = "ММ";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(695, 803);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(79, 28);
+            this.label58.TabIndex = 58;
+            this.label58.Text = "Слотов";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(745, 538);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(32, 28);
+            this.label57.TabIndex = 57;
+            this.label57.Text = "Вт";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(490, 486);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(44, 28);
+            this.label56.TabIndex = 56;
+            this.label56.Text = "Бит";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(743, 385);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(34, 28);
+            this.label55.TabIndex = 55;
+            this.label55.Text = "Гб";
+            // 
             // ActWithGPU
             // 
             this.ActWithGPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -890,7 +950,7 @@ namespace Computer_house
             this.GPUEnergyConsumptTextBox.Location = new System.Drawing.Point(339, 539);
             this.GPUEnergyConsumptTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUEnergyConsumptTextBox.Name = "GPUEnergyConsumptTextBox";
-            this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(394, 30);
             this.GPUEnergyConsumptTextBox.TabIndex = 53;
             // 
             // label39
@@ -909,7 +969,7 @@ namespace Computer_house
             this.GPUCapacityTextBox.Location = new System.Drawing.Point(339, 383);
             this.GPUCapacityTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCapacityTextBox.Name = "GPUCapacityTextBox";
-            this.GPUCapacityTextBox.Size = new System.Drawing.Size(436, 30);
+            this.GPUCapacityTextBox.Size = new System.Drawing.Size(394, 30);
             this.GPUCapacityTextBox.TabIndex = 51;
             // 
             // label38
@@ -941,14 +1001,14 @@ namespace Computer_house
             this.label37.TabIndex = 48;
             this.label37.Text = " /";
             // 
-            // GPUWidthTextBox
+            // GPULengthTextBox
             // 
-            this.GPUWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUWidthTextBox.Location = new System.Drawing.Point(411, 858);
-            this.GPUWidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GPUWidthTextBox.Name = "GPUWidthTextBox";
-            this.GPUWidthTextBox.Size = new System.Drawing.Size(89, 30);
-            this.GPUWidthTextBox.TabIndex = 47;
+            this.GPULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.GPULengthTextBox.Location = new System.Drawing.Point(411, 858);
+            this.GPULengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GPULengthTextBox.Name = "GPULengthTextBox";
+            this.GPULengthTextBox.Size = new System.Drawing.Size(89, 30);
+            this.GPULengthTextBox.TabIndex = 47;
             // 
             // label36
             // 
@@ -956,9 +1016,9 @@ namespace Computer_house
             this.label36.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.Location = new System.Drawing.Point(20, 854);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(363, 32);
+            this.label36.Size = new System.Drawing.Size(353, 32);
             this.label36.TabIndex = 46;
-            this.label36.Text = "Длина / ширина видеокарты";
+            this.label36.Text = "Длина / высота видеокарты";
             // 
             // GPUCoolingSysThicknessTextBox
             // 
@@ -966,7 +1026,7 @@ namespace Computer_house
             this.GPUCoolingSysThicknessTextBox.Location = new System.Drawing.Point(431, 802);
             this.GPUCoolingSysThicknessTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCoolingSysThicknessTextBox.Name = "GPUCoolingSysThicknessTextBox";
-            this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(344, 30);
+            this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(237, 30);
             this.GPUCoolingSysThicknessTextBox.TabIndex = 45;
             // 
             // label35
@@ -992,10 +1052,10 @@ namespace Computer_house
             // GPUCoolersCountTextBox
             // 
             this.GPUCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(365, 752);
+            this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(430, 752);
             this.GPUCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCoolersCountTextBox.Name = "GPUCoolersCountTextBox";
-            this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(409, 30);
+            this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(344, 30);
             this.GPUCoolersCountTextBox.TabIndex = 42;
             // 
             // label33
@@ -1075,7 +1135,7 @@ namespace Computer_house
             this.GPUBusWidthTextBox.Location = new System.Drawing.Point(339, 486);
             this.GPUBusWidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUBusWidthTextBox.Name = "GPUBusWidthTextBox";
-            this.GPUBusWidthTextBox.Size = new System.Drawing.Size(196, 30);
+            this.GPUBusWidthTextBox.Size = new System.Drawing.Size(136, 30);
             this.GPUBusWidthTextBox.TabIndex = 35;
             // 
             // label30
@@ -1294,6 +1354,7 @@ namespace Computer_house
             this.GPU_DatagridView.RowTemplate.Height = 24;
             this.GPU_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.GPU_DatagridView.TabIndex = 0;
+            this.GPU_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GPU_DatagridView_RowEnter);
             // 
             // GPU_ID
             // 
@@ -1432,7 +1493,7 @@ namespace Computer_house
             // 
             this.MotherboardSLISupportCheckBox.AutoSize = true;
             this.MotherboardSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(479, 820);
+            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(469, 820);
             this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSLISupportCheckBox.Name = "MotherboardSLISupportCheckBox";
             this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(60, 32);
@@ -1446,9 +1507,9 @@ namespace Computer_house
             this.label51.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label51.Location = new System.Drawing.Point(13, 817);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(468, 32);
+            this.label51.Size = new System.Drawing.Size(318, 32);
             this.label51.TabIndex = 49;
-            this.label51.Text = "Поддержка SLI / встроенной графики";
+            this.label51.Text = "SLI / встроенная графика";
             // 
             // MotherboardStorageInterfacesTextBox
             // 
@@ -1675,10 +1736,10 @@ namespace Computer_house
             // MotherboardSupportedCPUTextBox
             // 
             this.MotherboardSupportedCPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(407, 305);
+            this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(423, 305);
             this.MotherboardSupportedCPUTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSupportedCPUTextBox.Name = "MotherboardSupportedCPUTextBox";
-            this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(376, 30);
+            this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(360, 30);
             this.MotherboardSupportedCPUTextBox.TabIndex = 32;
             // 
             // label42
@@ -2265,7 +2326,7 @@ namespace Computer_house
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox GPUHeightTextBox;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox GPUWidthTextBox;
+        private System.Windows.Forms.TextBox GPULengthTextBox;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox GPUCoolingSysThicknessTextBox;
         private System.Windows.Forms.Label label35;
@@ -2323,5 +2384,10 @@ namespace Computer_house
         private System.Windows.Forms.Button SearcchMotherboardButton;
         private System.Windows.Forms.TextBox MotherboardIDTextBox;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label55;
     }
 }

@@ -580,7 +580,24 @@ namespace Computer_house.OtherClasses
             }
         }
 
-        public static void EditGPUMediator(GPU _gpu, string _method)
+        public static void ChangeGPU(GPU _gpu)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.GPU.Update(_gpu);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void EditGPUInMediator(GPU _gpu, string _method)
         {
             try
             {
@@ -606,16 +623,26 @@ namespace Computer_house.OtherClasses
                     //настроить возможные варианты если происходит добавление или изменение
 
                     Energy_consumption energy_Consumption = new Energy_consumption(info.Product_ID, _gpu.Consumption);
-                    db.Energy_consumption.Add(energy_Consumption);
+                    if(_method == "Add")
+                        db.Energy_consumption.Add(energy_Consumption);
+                    else if(_method == "Edit")
+                        db.Energy_consumption.Update(energy_Consumption);
 
                     Memory_capacity capacity = new Memory_capacity(info.Product_ID, _gpu.Capacity);
-                    db.Memory_capacity.Add(capacity);
+                    if (_method == "Add")
+                        db.Memory_capacity.Add(capacity);
+                    else if (_method == "Edit")
+                        db.Memory_capacity.Update(capacity);
 
                     Sizes_of_components sizes = new Sizes_of_components();
                     sizes.Product_ID = info.Product_ID;
                     sizes.Length = _gpu.Length;
                     sizes.Height = _gpu.Height;
-                    db.Sizes_of_components.Add(sizes);
+                    if (_method == "Add")
+                        db.Sizes_of_components.Add(sizes);
+                    else if (_method == "Edit")
+                        db.Sizes_of_components.Update(sizes);
+
                     db.SaveChanges();
                 }
                 //После добавления в медиатор вытянуть этот же объект 
@@ -628,7 +655,7 @@ namespace Computer_house.OtherClasses
             }
         }
 
-        public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user)
+        public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _item)
         {
             if (_itemsCount < 0)
             {
@@ -673,19 +700,20 @@ namespace Computer_house.OtherClasses
                 {
                     //Выбор мест куда можно определить компонент
                     //Сделать switch case
+
                     List<Locations_in_warehouse> locations = (from b in db.Locations_in_warehouse
-                                                              where b.Location_label.Contains("CPU") &&
+                                                              where b.Location_label.Contains(_item) &&
                                                               b.Max_item_count > b.Current_item_count + _itemsCount
                                                               select b).ToList();
 
                     if (locations.Count != 0)
                     {
                         int numerator = 0;
-                        List<Products_location> LocationsWithThisCPU = new List<Products_location>();
-                        LocationsWithThisCPU = db.Products_location.Where(i => i.Product_ID == _infoAboutProduct.Product_ID).ToList();
+                        List<Products_location> LocationsWithThisItem = new List<Products_location>();
+                        LocationsWithThisItem = db.Products_location.Where(i => i.Product_ID == _infoAboutProduct.Product_ID).ToList();
                         foreach (var i in locations)
                         {
-                            foreach (var a in LocationsWithThisCPU)
+                            foreach (var a in LocationsWithThisItem)
                             {
                                 if ((i.ID == a.Location_ID) && (a.Product_ID == _infoAboutProduct.Product_ID))
                                     location_ID = a.Location_ID;

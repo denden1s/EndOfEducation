@@ -34,6 +34,7 @@ namespace Computer_house
        // private List<SSD> Ssds;
         private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
         private List<Products_location> ProductLocationsList = new List<Products_location>();
+        private List<Mediator> Mediators = new List<Mediator>();
        // private Thread[] threads = new Thread[2];
 
         private Users user;
@@ -59,12 +60,29 @@ namespace Computer_house
             LoadInfoAboutGPUFromDB();
             LoadLocationInWarehouseFromDB();
             LoadProductLocationFromDB();
-
+            LoadInfoAboutMediatorFromDB();
         }
 
         private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+        private void LoadInfoAboutMediatorFromDB()
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    foreach (Mediator c in db.Mediator)
+                    {
+                        Mediators.Add(c);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void LoadInfoAboutCases()
@@ -378,23 +396,6 @@ namespace Computer_house
                             $"Встроенная графика: {integratedGPU};\n" +
                             $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
                             $"Количество на складе: \n";
-                            //Вывод данных на складе
-                            bool countMoreThanZero = false;
-                           foreach(var i in LocationInWarehouseList)
-                           {
-                            //countMoreThanZero = false;
-                            
-                            var productLocation = (from b in ProductLocationsList
-                                                    where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
-                                                    select b).SingleOrDefault();
-                            if (productLocation != null)
-                            {
-                                AllProductInfo.Text += i.Location_label + ": " + productLocation.Items_count + "\n";
-                                countMoreThanZero = true;
-                            }
-                           }
-                        if (!countMoreThanZero)
-                            AllProductInfo.Text += "0";
                         break;
                     case "Case":
 
@@ -403,7 +404,27 @@ namespace Computer_house
 
                         break;
                     case "GPU":
+                        GPU currentGPU = Gpus.Single(i => i.Product_ID == obj.Product_ID);
+                        AllProductInfo.Text = $"Имя: {currentGPU.Name};\n" +
+                            $"Интерфейс подключения: {currentGPU.ConnectionInterface};\n" +
+                            $"Производитель: {currentGPU.Manufacturer};\n" +
+                            $"Объём памяти: {Convert.ToString(currentGPU.Capacity)} Гб;\n" +
+                            $"Тип видеопамяти: {currentGPU.GPU_type};\n" +
+                            $"Ширина шины: {Convert.ToString(currentGPU.Bus_width)} бит; \n" +
+                            $"Разогнанная версия: ";
 
+                        if (currentGPU.Overclocking)
+                            AllProductInfo.Text += "да; \n";
+                        else
+                            AllProductInfo.Text += "нет; \n";
+                        AllProductInfo.Text += $"Энергопотребление: {Convert.ToString(currentGPU.Consumption)} Вт;\n" +
+                            $"Версия DirectX: {currentGPU.DirectX};\n" +
+                            $"Внешние интерфейсы: {currentGPU.External_interfaces};\n" +
+                            $"Тип питания: {currentGPU.PowerType};\n" +
+                            $"Кол-во вентиляторов: {Convert.ToString(currentGPU.Coolers_count)};\n" +
+                            $"Толщина системы охлаждения: {Convert.ToString(currentGPU.Cooling_system_thikness)} слотов;\n" +
+                            $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / {Convert.ToString(currentGPU.Height)} мм;\n" +
+                            $"Количество на складе: \n";
                         break;
                     case "HDD":
 
@@ -423,6 +444,22 @@ namespace Computer_house
                     default:
                         break;
                 }
+                bool countMoreThanZero = false;
+                foreach (var i in LocationInWarehouseList)
+                {
+                    //countMoreThanZero = false;
+
+                    var productLocation = (from b in ProductLocationsList
+                                           where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
+                                           select b).SingleOrDefault();
+                    if (productLocation != null)
+                    {
+                        AllProductInfo.Text += i.Location_label + ": " + productLocation.Items_count + "\n";
+                        countMoreThanZero = true;
+                    }
+                }
+                if (!countMoreThanZero)
+                    AllProductInfo.Text += "0";
             }
             
         }
@@ -498,17 +535,23 @@ namespace Computer_house
                     //Если результат пустой то делает поиск по ID
                     else
                     {
-                        List<Mediator> MediatorRequest;
                         //Вытягивает числовой ID из посредника
-                        MediatorRequest = FindIDInMediator("CPU");
+
+                        //MediatorRequest = FindIDInMediator("CPU");
                         //Проверка на наличие товара в целом
-                        if(MediatorRequest.Count != 0)
-                        {
-                            var tempRequest = (from b in MediatorRequest
-                                               where b.CPU_ID.Contains(SearchInfo.Text)
-                                               select b).ToList();
-                            //Проверка наличия такого ID как в строке поиска
-                            if (tempRequest != null)
+                        List<Mediator> tempRequest = new List<Mediator>();
+                        List<Mediator> tempRequestCPU = new List<Mediator>();
+                        List<Mediator> tempRequestGPU = new List<Mediator>();
+                        tempRequestCPU.AddRange(GetSearchInfo("CPU"));
+                        tempRequestGPU.AddRange(GetSearchInfo("GPU"));
+                        tempRequest.AddRange((from b in tempRequestCPU
+                                              where b.CPU_ID == SearchInfo.Text
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestGPU
+                                              where b.GPU_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        //Проверка наличия такого ID как в строке поиска
+                        if (tempRequest != null)
                             {                        
                                 foreach (Mediator i in tempRequest)
                                 {
@@ -534,13 +577,6 @@ namespace Computer_house
                                 dataGridView1.Rows.Clear();
                                 //ViewInfoInDataGrid();
                             }                                
-                        }
-                        // Если строка пустая вывести всю таблицу
-                        else
-                        {
-                            dataGridView1.Rows.Clear();
-                            ViewInfoInDataGrid();
-                        }
                     }
                         
                 }
@@ -551,6 +587,12 @@ namespace Computer_house
             }
             else
                 ViewInfoInDataGrid();
+        }
+
+        private List<Mediator> GetSearchInfo(string _deviceType)
+        {
+            return Mediators.Where(i => i.Components_type == _deviceType).ToList();
+
         }
         private List<Mediator> FindIDInMediator(string _componentType)
         {
@@ -580,8 +622,16 @@ namespace Computer_house
                                          MessageBoxOptions.DefaultDesktopOnly);
             if (questionResult == DialogResult.Yes)
             {
+                string deviceType = "";
+                   int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    deviceType = db.Mediator.Single(i => i.ID == (int)currentRow.Cells[0].Value).Components_type;
+                }    
+                
                 SQLRequests.CreateHoldingDocument(WarehouseInformationList[dataGridView1.SelectedCells[0].RowIndex],
-                Convert.ToInt32(AddProduct.Text), user);
+                Convert.ToInt32(AddProduct.Text), user,deviceType);
                 AllProductInfo.Clear();
                 LoadAllInfoFromDB();
                 LoadLocationInWarehouseFromDB();
