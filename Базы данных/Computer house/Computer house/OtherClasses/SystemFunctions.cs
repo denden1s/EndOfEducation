@@ -23,8 +23,9 @@ namespace Computer_house.OtherClasses
         {
             TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox,
                 componentsOptions.MotherboardConnectorsTextBox, componentsOptions.MotherboardSupportedCPUTextBox,
-                componentsOptions.MotherboardSupportedCPUTextBox, componentsOptions.MotherboardRAMCapacityTextBox,
-            componentsOptions.MotherboardCountOfRAMSlotsTextBox, componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox
+                componentsOptions.MotherboardRAMCapacityTextBox,componentsOptions.MotherboardCountOfRAMSlotsTextBox,
+                componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox,
+                componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
             ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
@@ -102,10 +103,11 @@ namespace Computer_house.OtherClasses
         }
         public static bool CheckNullForMotherboardTextBoxes(ComponentsOptionsForm componentsOptions)
         {
-            TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox, 
+            TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox,
                 componentsOptions.MotherboardConnectorsTextBox, componentsOptions.MotherboardSupportedCPUTextBox,
-                componentsOptions.MotherboardSupportedCPUTextBox, componentsOptions.MotherboardRAMCapacityTextBox,
-            componentsOptions.MotherboardCountOfRAMSlotsTextBox, componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox
+                componentsOptions.MotherboardRAMCapacityTextBox,componentsOptions.MotherboardCountOfRAMSlotsTextBox,
+                componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox,
+                componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
             ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
@@ -199,9 +201,10 @@ namespace Computer_house.OtherClasses
         public static void ChangeMotherboardTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
         {
             TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox,
-                componentsOptions.MotherboardConnectorsTextBox, componentsOptions.MotherboardSupportedCPUTextBox,
-                componentsOptions.MotherboardSupportedCPUTextBox, componentsOptions.MotherboardRAMCapacityTextBox,
-            componentsOptions.MotherboardCountOfRAMSlotsTextBox, componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox
+                componentsOptions.MotherboardConnectorsTextBox, componentsOptions.MotherboardSupportedCPUTextBox, 
+                componentsOptions.MotherboardRAMCapacityTextBox,componentsOptions.MotherboardCountOfRAMSlotsTextBox, 
+                componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox, 
+                componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
             ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
@@ -246,6 +249,15 @@ namespace Computer_house.OtherClasses
                 componentsOptions.GPUCoolingSysThicknessTextBox, componentsOptions.GPUCapacityTextBox,
                 componentsOptions.GPUEnergyConsumptTextBox, componentsOptions.GPULengthTextBox,
                 componentsOptions.GPUHeightTextBox
+            };
+            return (CheckIntConvert(textBoxes));
+        }
+
+        public static bool CheckNumConvertMotherboardTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = { 
+                componentsOptions.MotherboardRAMCapacityTextBox, componentsOptions.MotherboardCountOfRAMSlotsTextBox, 
+                componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
             return (CheckIntConvert(textBoxes));
         }

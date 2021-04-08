@@ -1,5 +1,6 @@
 ﻿using Computer_house.DataBase;
 using Computer_house.DataBase.Entities;
+using Computer_house.DataBase.Entities.PC_Components;
 using Computer_house.DataBase.Entities.PC_Options;
 using Computer_house.DataBase.Entities.Warehouse;
 using System;
@@ -88,6 +89,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.CPU_series.Add(_series);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -106,6 +108,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.CPU_codename.Add(_codeName);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -125,6 +128,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Sockets.Add(_socket);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -144,6 +148,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Chipset.Add(_chipset);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -163,6 +168,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.RAM_chanels.Add(_chanel);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -182,6 +188,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.RAM_frequency.Add(_frequency);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -200,6 +207,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Form_factors.Add(_formFactor);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -218,6 +226,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Memory_types.Add(_type);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -236,6 +245,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Connection_interfaces.Add(_interface);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -254,6 +264,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Power_connectors.Add(_connector);
                         db.SaveChanges();
+                        MessageBox.Show("Добавление прошло успешно!");
                     }
                 }
             }
@@ -275,6 +286,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.CPU_series.Update(_series);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -294,6 +306,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.CPU_codename.Update(_codeName);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -313,6 +326,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Sockets.Update(_socket);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -332,6 +346,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Chipset.Update(_chipset);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -350,6 +365,7 @@ namespace Computer_house.OtherClasses
                     using (ApplicationContext db = new ApplicationContext())
                     {
                         db.RAM_chanels.Update(_chanel);
+                        MessageBox.Show("Изменение прошло успешно!");
                         db.SaveChanges();
                     }
                 }
@@ -370,6 +386,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.RAM_frequency.Update(_frequency);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -388,6 +405,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Form_factors.Update(_formFactor);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -406,6 +424,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Memory_types.Update(_type);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -424,6 +443,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Connection_interfaces.Update(_interface);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -442,6 +462,7 @@ namespace Computer_house.OtherClasses
                     {
                         db.Power_connectors.Update(_connector);
                         db.SaveChanges();
+                        MessageBox.Show("Изменение прошло успешно!");
                     }
                 }
             }
@@ -468,7 +489,7 @@ namespace Computer_house.OtherClasses
                                         MessageBoxOptions.DefaultDesktopOnly);
             if (questionResult == DialogResult.Yes)
             {
-                MessageBox.Show(words[1] + " прошло успешно!");
+                
                 return true;
             }
             else
@@ -652,6 +673,94 @@ namespace Computer_house.OtherClasses
             {
 
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void AddMotherboard(Motherboard _motherboard)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Motherboard.Add(_motherboard);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void ChangeMotherboard(Motherboard _motherboard)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Motherboard.Update(_motherboard);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void EditMotherboardMediator(Motherboard _motherboard, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "Motherboard";
+                    mediator.Motherboard_ID = _motherboard.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "Motherboard" && b.Motherboard_ID == _motherboard.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if (_method == "Edit")
+                        db.Warehouse_info.Update(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+
+                    Sizes_of_components sizes = new Sizes_of_components();
+                    sizes.Product_ID = info.Product_ID;
+                    sizes.Width = _motherboard.Width;
+                    sizes.Length = _motherboard.Length;
+                    if (_method == "Add")
+                        db.Sizes_of_components.Add(sizes);
+                    else if (_method == "Edit")
+                        db.Sizes_of_components.Update(sizes);
+
+
+                    Memory_capacity capacity = new Memory_capacity(info.Product_ID, _motherboard.Capacity);
+                    if (_method == "Add")
+                        db.Memory_capacity.Add(capacity);
+                    else if (_method == "Edit")
+                        db.Memory_capacity.Update(capacity);
+
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.InnerException.Message);
             }
         }
 

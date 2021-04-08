@@ -57,6 +57,8 @@ namespace Computer_house
             //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
             //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             LoadInfoAboutCPUFromDB();
+            
+
             LoadInfoAboutGPUFromDB();
             LoadInfoAboutMotherboardsFromDB();
             LoadLocationInWarehouseFromDB();
@@ -395,6 +397,7 @@ namespace Computer_house
                             $"Тип памяти / кол-во каналов: {currentCPU.RAM_type} / {currentCPU.RAM_chanel}\n" +
                             $"Макс частота ОЗУ: {currentCPU.RAM_frequency} Mhz;\n" +
                             $"Встроенная графика: {integratedGPU};\n" +
+                             $"Энергопотребление: {currentCPU.Consumption} нм\n" +
                             $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
                             $"Количество на складе: \n";
                         break;

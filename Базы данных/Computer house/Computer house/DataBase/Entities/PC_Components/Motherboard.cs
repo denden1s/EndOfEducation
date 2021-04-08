@@ -8,8 +8,8 @@ namespace Computer_house.DataBase.Entities.PC_Components
 {
     public class Motherboard : Product //: IMemory_capacity, ISizes_of_components
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public string Supported_CPU { get; set; }
         public int Socket_ID { get; set; }
         public int Chipset_ID { get; set; }
@@ -106,7 +106,8 @@ namespace Computer_house.DataBase.Entities.PC_Components
 
         private void SetSizesOptions(ApplicationContext db)
         {
-            Product_ID = db.Mediator.Single(i => i.Motherboard_ID == ID).ID;
+            var motherboardList = db.Mediator.Where(i => i.Components_type == "Motherboard");
+            Product_ID = motherboardList.Single(i => i.Motherboard_ID == ID).ID;
             var sizesInfo = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
             Length = sizesInfo.Length;
             Width = sizesInfo.Width;
