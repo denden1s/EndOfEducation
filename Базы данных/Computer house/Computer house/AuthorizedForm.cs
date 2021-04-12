@@ -20,8 +20,6 @@ namespace Computer_house
 {
     public partial class AuthorizedForm : Form
     {
-        //string[][] info;
-        private int movePoroductCount;
         private List<Warehouse_info> WarehouseInformationList = new List<Warehouse_info>();
         private List<Case> Cases;
         private List<Cooling_system> CoolingSystems;
@@ -52,12 +50,11 @@ namespace Computer_house
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            movePoroductCount = 0;
             LoadAllInfoFromDB();
             //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
             //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             LoadInfoAboutCPUFromDB();
-            
+            LoadInfoAboutCasesFromDB();
 
             LoadInfoAboutGPUFromDB();
             LoadInfoAboutMotherboardsFromDB();
@@ -88,7 +85,7 @@ namespace Computer_house
             }
         }
 
-        private void LoadInfoAboutCases()
+        private void LoadInfoAboutCasesFromDB()
         {
             try
             {
@@ -367,8 +364,7 @@ namespace Computer_house
         {
             if (dataGridView1.SelectedCells.Count > 0)
             {
-                AddProduct.Text = "0";
-                movePoroductCount = 0;
+                AddProduct.Value = 0;
                 int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
                 DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
 
@@ -386,7 +382,8 @@ namespace Computer_house
 
                         if (currentCPU.Integrated_graphic)
                             integratedGPU = "поддерживается";
-                        AllProductInfo.Text = $"Имя: {currentCPU.Name};\n" +
+                        AllProductInfo.Text = $"ID товара: {currentCPU.ID};\n" +
+                            $"Наименование: {currentCPU.Name};\n" +
                             $"Модельный ряд: {currentCPU.SeriesName};\n" +
                             $"Тип поставки: {currentCPU.Delivery_type};\n" +
                             $"Кодовое название кристалла: {currentCPU.CodeName};\n" +
@@ -409,7 +406,8 @@ namespace Computer_house
                         break;
                     case "GPU":
                         GPU currentGPU = Gpus.Single(i => i.Product_ID == obj.Product_ID);
-                        AllProductInfo.Text = $"Наименование: {currentGPU.Name};\n" +
+                        AllProductInfo.Text = $"ID товара: {currentGPU.ID};\n" +
+                            $"Наименование: {currentGPU.Name};\n" +
                             $"Интерфейс подключения: {currentGPU.ConnectionInterface};\n" +
                             $"Производитель: {currentGPU.Manufacturer};\n" +
                             $"Объём памяти: {Convert.ToString(currentGPU.Capacity)} Гб;\n" +
@@ -434,7 +432,29 @@ namespace Computer_house
 
                         break;
                     case "Motherboard":
-
+                        Motherboard currentMotherboard = Motherboards.Single(i => i.Product_ID == obj.Product_ID);
+                        AllProductInfo.Text = $"ID товара: {currentMotherboard.ID};\n" +
+                            $"Наименование: {currentMotherboard.Name};\n" +
+                            $"Поддерживаемые процессоры: {currentMotherboard.Supported_CPU};\n" +
+                            $"Сокет / чипсет: {currentMotherboard.Socket} / {currentMotherboard.Chipset};\n" +
+                            $"Форм-фактор: {currentMotherboard.FormFactor};\n" +
+                            $"Тип / объём ОЗУ: {currentMotherboard.RAM_type} /" +
+                            $" {Convert.ToString(currentMotherboard.Capacity)} Гб;\n" +
+                            $"Кол-во слотов / каналов памяти: {Convert.ToString(currentMotherboard.Count_of_memory_slots)} /" +
+                            $" {Convert.ToString(currentMotherboard.RAM_chanel)}; \n" +
+                            $"Максимальная частота памяти: {Convert.ToString(currentMotherboard.RAM_frequency)} МГц; \n" +
+                            $"Слоты расширения: {currentMotherboard.Expansion_slots} \n" +
+                            $"Интерфейсы накопителей: {currentMotherboard.Storage_interfaces} \n" +
+                            $"Поддержка SLI / IGPU: ";
+                        if (currentMotherboard.SLI_support) AllProductInfo.Text += "Да";
+                        else AllProductInfo.Text += "Нет";
+                        AllProductInfo.Text += " / ";
+                        if (currentMotherboard.Integrated_graphic) AllProductInfo.Text += "Да";
+                        else AllProductInfo.Text += "Нет";
+                        AllProductInfo.Text += "\n";
+                        AllProductInfo.Text += $"Разъёмы: {currentMotherboard.Connectors}\n" +
+                            $"Длина / ширина платы: {Convert.ToString(currentMotherboard.Length)} / " +
+                            $"{Convert.ToString(currentMotherboard.Width)} ММ \n";
                         break;
                     case "PSU":
 
@@ -468,18 +488,6 @@ namespace Computer_house
             
         }
 
-        private void plus_Click(object sender, EventArgs e)
-        {
-            movePoroductCount++;
-            AddProduct.Text = Convert.ToString(movePoroductCount);
-        }
-
-        private void minus_Click(object sender, EventArgs e)
-        {
-            movePoroductCount--;
-            AddProduct.Text = Convert.ToString(movePoroductCount);
-        }
-
         //Нужен для того, чтобы после добавления данных обновить список в таблице
         private void AuthorizedForm_Enter(object sender, EventArgs e)
         {
@@ -494,7 +502,7 @@ namespace Computer_house
         private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, 
-                WarehouseInformationList, Cpus, Gpus, Motherboards);
+                WarehouseInformationList, Cpus, Gpus, Motherboards, Cases);
             this.Hide();
             addComponentsOptionsForm.Show();
         }
@@ -614,11 +622,11 @@ namespace Computer_house
         private void Move_Click(object sender, EventArgs e)
         {
             string question = "Сейчас будет ";
-            if (Convert.ToInt32(AddProduct.Text) > 0)
+            if (Convert.ToInt32(AddProduct.Value) > 0)
                 question += "добавлено на склад ";
             else
                 question += "снято со склада ";
-            question += AddProduct.Text + " элементов товара.";
+            question += Convert.ToInt32(AddProduct.Value) + " элементов товара.";
             DialogResult questionResult = MessageBox.Show(question,
                                         "Проведение товара",
                                          MessageBoxButtons.YesNo,
@@ -636,7 +644,7 @@ namespace Computer_house
                 }    
                 
                 SQLRequests.CreateHoldingDocument(WarehouseInformationList[dataGridView1.SelectedCells[0].RowIndex],
-                Convert.ToInt32(AddProduct.Text), user,deviceType);
+                Convert.ToInt32(AddProduct.Value), user,deviceType);
                 AllProductInfo.Clear();
                 LoadAllInfoFromDB();
                 LoadLocationInWarehouseFromDB();
@@ -644,12 +652,7 @@ namespace Computer_house
             }
             else
                 MessageBox.Show("Действие отменено");
-
-
-            AddProduct.Text = "0";
-            movePoroductCount = 0;
-
-
+            AddProduct.Value = 0;
         }
     }
 }

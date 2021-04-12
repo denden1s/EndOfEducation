@@ -17,14 +17,12 @@ namespace Computer_house.DataBase.Entities.PC_Components
         public bool XMP_profile { get; set; }
         public bool Cooling { get; set; }
         public bool Low_profile_module { get; set; }
+        public string Timings { get; set; }
 
         //Доп данные из БД
         internal string RAM_type { get; set; }
         internal int RAM_frequency { get; set; }
-        //Реализация интерфейса IBase_and_max_options
         internal int Product_ID { get; set; }
-        internal int Base_state { get; set; } //Базовая частота
-        internal int Max_state { get; set; } //Не используется
 
         //Реализация интерфейса IMemory_capacity
         internal int Capacity { get; set; }
@@ -52,9 +50,9 @@ namespace Computer_house.DataBase.Entities.PC_Components
                     XMP_profile = RAM_info.XMP_profile;
                     Cooling = RAM_info.Cooling;
                     Low_profile_module = RAM_info.Low_profile_module;
+                    Timings = RAM_info.Timings;
                     RAM_frequency = db.RAM_frequency.Single(i => i.ID == RAM_frequency_ID).Frequency;
                     GetRAMTypeInfo(db);
-                    SetBaseAndMaxOptions(db);
                     SetMemoryCapacity(db);
                 }
             }
@@ -71,13 +69,6 @@ namespace Computer_house.DataBase.Entities.PC_Components
                                     select b).ToList();
 
             RAM_type = listOfRamTypes.Single(i => i.ID == RAM_type_ID).Name;
-        }
-
-        private void SetBaseAndMaxOptions(ApplicationContext db)
-        {
-            Product_ID = db.Mediator.Single(i => i.RAM_ID == ID).ID;
-            var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
-            Base_state = baseAndMaxOptions.Base_state;
         }
 
         private void SetMemoryCapacity(ApplicationContext db)

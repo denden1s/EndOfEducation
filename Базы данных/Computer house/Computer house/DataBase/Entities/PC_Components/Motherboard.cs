@@ -29,6 +29,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
         internal string FormFactor { get; set; }
         internal string RAM_type { get; set; }
         internal string RAM_chanel { get; set; }
+        internal int RAM_frequency { get; set; }
 
         //Реализация интерфейса IMemory_capacity
         internal int Product_ID { get; set; }
@@ -72,6 +73,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
                     GetRAMTypeInfo(db);
                     SetMemoryCapacity(db);
                     SetSizesOptions(db);
+                    SetFrequency(db);
                 }
             }
             catch (Exception ex)
@@ -112,5 +114,15 @@ namespace Computer_house.DataBase.Entities.PC_Components
             Length = sizesInfo.Length;
             Width = sizesInfo.Width;
         }
+        private void SetFrequency(ApplicationContext db)
+        {     
+            var motherboardList = db.Mediator.Where(i => i.Components_type == "Motherboard");
+            Product_ID = motherboardList.Single(i => i.Motherboard_ID == ID).ID;
+            var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
+
+            RAM_frequency = baseAndMaxOptions.Max_state;
+                
+        }
+
     }
 }

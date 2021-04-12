@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
-    public class Case //: IBase_and_max_options, ISizes_of_components
+    public class Case : Product//: IBase_and_max_options, ISizes_of_components
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public string Power_supply_unit { get; set; }
         public int Form_factor_ID { get; set; }
         public bool Gaming { get; set; }
@@ -32,13 +32,13 @@ namespace Computer_house.DataBase.Entities
         internal string FormFactor { get; set; }
         //Реализация интерфейса IBase_and_max_options
         internal int Product_ID { get; set; }
-        internal int Base_state { get; set; }//Количество установленных кулеров
-        internal int Max_state { get; set; }//Всего слотов для установки кулеров
+        internal int Coolers_count { get; set; }//Количество установленных кулеров
+        internal int Coolers_slots { get; set; }//Всего слотов для установки кулеров
 
         //Реализация интерфейса ISizes_of_components
         internal int Height { get; set; } //Высота корпуса
         internal int Width { get; set; } //Ширина корпуса
-        public int Depth { get; set; } //Глубина корпуса
+        internal int Depth { get; set; } //Глубина корпуса
 
         public Case() { }
 
@@ -96,8 +96,8 @@ namespace Computer_house.DataBase.Entities
         {
             Product_ID = db.Mediator.Single(i => i.Case_ID == ID).ID;
             var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
-            Base_state = baseAndMaxOptions.Base_state;
-            Max_state = baseAndMaxOptions.Max_state;
+            Coolers_count = baseAndMaxOptions.Base_state;
+            Coolers_slots = baseAndMaxOptions.Max_state;
         }
 
         private void SetSizesOptions(ApplicationContext db)

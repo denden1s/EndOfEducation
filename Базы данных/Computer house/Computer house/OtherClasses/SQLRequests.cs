@@ -685,7 +685,6 @@ namespace Computer_house.OtherClasses
                     db.Motherboard.Add(_motherboard);
                     db.SaveChanges();
                 }
-
             }
             catch (Exception ex)
             {
@@ -745,6 +744,14 @@ namespace Computer_house.OtherClasses
                         db.Sizes_of_components.Update(sizes);
 
 
+                    Base_and_max_options maxOptions = new Base_and_max_options();
+                    maxOptions.Product_ID = info.Product_ID;
+                    maxOptions.Base_state = 0;
+                    maxOptions.Max_state = _motherboard.RAM_frequency;
+                    if (_method == "Add")
+                        db.Base_and_max_options.Add(maxOptions);
+                    else if (_method == "Edit")
+                        db.Base_and_max_options.Update(maxOptions);
                     Memory_capacity capacity = new Memory_capacity(info.Product_ID, _motherboard.Capacity);
                     if (_method == "Add")
                         db.Memory_capacity.Add(capacity);
@@ -761,6 +768,83 @@ namespace Computer_house.OtherClasses
 
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.InnerException.Message);
+            }
+        }
+
+        public static void AddCase(Case _case)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Case.Add(_case);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public static void ChangeCase(Case _case)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Case.Update(_case);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public static void EditCaseMediator(Case _case, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "Case";
+                    mediator.Case_ID = _case.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "Case" && b.Case_ID == _case.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if (_method == "Edit")
+                        db.Warehouse_info.Update(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+
+                   //...
+
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
         }
 

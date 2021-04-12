@@ -28,6 +28,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
         //Реализация интерфейса IEnergy_consumption
         internal int Product_ID { get; set; }
         internal int Consumption { get; set; }
+        internal int Length { get; set; }
 
         public PSU() { }
         public PSU(string _id)
@@ -56,6 +57,7 @@ namespace Computer_house.DataBase.Entities.PC_Components
                     Power_USB = psuInfo.Power_USB;
                     PowerMotherboardType = db.Power_connectors.Single(i => i.ID == Power_motherboard_type_ID).Connectors;
                     SetEnergy_consumption(db);
+                    SetBaseAndMaxState(db);
                 }
             }
             catch (Exception ex)
@@ -68,6 +70,11 @@ namespace Computer_house.DataBase.Entities.PC_Components
         {
             Product_ID = db.Mediator.Single(i => i.PSU_ID == ID).ID;
             Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
+        }
+        private void SetBaseAndMaxState(ApplicationContext db)
+        {
+            Product_ID = db.Mediator.Single(i => i.PSU_ID == ID).ID;
+            Length = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID).Length;
         }
     }
 }

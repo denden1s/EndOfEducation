@@ -34,11 +34,9 @@ namespace Computer_house
             this.label2 = new System.Windows.Forms.Label();
             this.SearchInfo = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.AddProduct = new System.Windows.Forms.NumericUpDown();
             this.AllProductInfo = new System.Windows.Forms.RichTextBox();
             this.Move = new System.Windows.Forms.Button();
-            this.AddProduct = new System.Windows.Forms.Label();
-            this.minus = new System.Windows.Forms.Button();
-            this.plus = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настроитьIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +49,7 @@ namespace Computer_house
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +59,7 @@ namespace Computer_house
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 439);
+            this.panel1.Size = new System.Drawing.Size(200, 639);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -78,76 +77,54 @@ namespace Computer_house
             this.SearchInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchInfo.Location = new System.Drawing.Point(373, 38);
             this.SearchInfo.Name = "SearchInfo";
-            this.SearchInfo.Size = new System.Drawing.Size(361, 30);
+            this.SearchInfo.Size = new System.Drawing.Size(383, 30);
             this.SearchInfo.TabIndex = 1;
             this.SearchInfo.TextChanged += new System.EventHandler(this.SearchInfo_TextChanged);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.AddProduct);
             this.panel2.Controls.Add(this.AllProductInfo);
             this.panel2.Controls.Add(this.Move);
-            this.panel2.Controls.Add(this.AddProduct);
-            this.panel2.Controls.Add(this.minus);
-            this.panel2.Controls.Add(this.plus);
-            this.panel2.Location = new System.Drawing.Point(764, 31);
+            this.panel2.Location = new System.Drawing.Point(776, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(428, 439);
+            this.panel2.Size = new System.Drawing.Size(531, 639);
             this.panel2.TabIndex = 2;
+            // 
+            // AddProduct
+            // 
+            this.AddProduct.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddProduct.Location = new System.Drawing.Point(6, 598);
+            this.AddProduct.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.AddProduct.Name = "AddProduct";
+            this.AddProduct.Size = new System.Drawing.Size(340, 34);
+            this.AddProduct.TabIndex = 6;
+            this.AddProduct.ThousandsSeparator = true;
             // 
             // AllProductInfo
             // 
             this.AllProductInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AllProductInfo.Location = new System.Drawing.Point(0, 4);
+            this.AllProductInfo.Location = new System.Drawing.Point(2, 4);
             this.AllProductInfo.Name = "AllProductInfo";
             this.AllProductInfo.ReadOnly = true;
-            this.AllProductInfo.Size = new System.Drawing.Size(425, 379);
+            this.AllProductInfo.Size = new System.Drawing.Size(522, 584);
             this.AllProductInfo.TabIndex = 4;
             this.AllProductInfo.Text = "";
             // 
             // Move
             // 
             this.Move.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Move.Location = new System.Drawing.Point(259, 395);
+            this.Move.Location = new System.Drawing.Point(357, 592);
             this.Move.Name = "Move";
             this.Move.Size = new System.Drawing.Size(169, 44);
             this.Move.TabIndex = 3;
             this.Move.Text = "Провести";
             this.Move.UseVisualStyleBackColor = true;
             this.Move.Click += new System.EventHandler(this.Move_Click);
-            // 
-            // AddProduct
-            // 
-            this.AddProduct.AutoSize = true;
-            this.AddProduct.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProduct.Location = new System.Drawing.Point(88, 401);
-            this.AddProduct.Name = "AddProduct";
-            this.AddProduct.Size = new System.Drawing.Size(29, 32);
-            this.AddProduct.TabIndex = 2;
-            this.AddProduct.Text = "0";
-            // 
-            // minus
-            // 
-            this.minus.BackColor = System.Drawing.Color.Red;
-            this.minus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minus.Location = new System.Drawing.Point(164, 394);
-            this.minus.Name = "minus";
-            this.minus.Size = new System.Drawing.Size(45, 45);
-            this.minus.TabIndex = 1;
-            this.minus.Text = "-";
-            this.minus.UseVisualStyleBackColor = false;
-            this.minus.Click += new System.EventHandler(this.minus_Click);
-            // 
-            // plus
-            // 
-            this.plus.BackColor = System.Drawing.Color.Lime;
-            this.plus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plus.Location = new System.Drawing.Point(0, 394);
-            this.plus.Name = "plus";
-            this.plus.Size = new System.Drawing.Size(45, 45);
-            this.plus.TabIndex = 0;
-            this.plus.Text = "+";
-            this.plus.UseVisualStyleBackColor = false;
-            this.plus.Click += new System.EventHandler(this.plus_Click);
             // 
             // dataGridView1
             // 
@@ -166,7 +143,7 @@ namespace Computer_house
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(472, 382);
+            this.dataGridView1.Size = new System.Drawing.Size(494, 582);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
@@ -180,7 +157,7 @@ namespace Computer_house
             this.выйтиИзУчётнойЗаписиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1204, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1324, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -216,7 +193,7 @@ namespace Computer_house
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(257, 37);
+            this.label1.Location = new System.Drawing.Point(257, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 28);
             this.label1.TabIndex = 5;
@@ -237,7 +214,7 @@ namespace Computer_house
             this.Product_name.MinimumWidth = 6;
             this.Product_name.Name = "Product_name";
             this.Product_name.ReadOnly = true;
-            this.Product_name.Width = 200;
+            this.Product_name.Width = 250;
             // 
             // Count
             // 
@@ -245,13 +222,14 @@ namespace Computer_house
             this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
             this.Count.ReadOnly = true;
+            this.Count.Width = 70;
             // 
             // AuthorizedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1204, 476);
+            this.ClientSize = new System.Drawing.Size(1324, 682);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
@@ -271,7 +249,7 @@ namespace Computer_house
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -287,9 +265,6 @@ namespace Computer_house
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button Move;
-        private System.Windows.Forms.Label AddProduct;
-        private System.Windows.Forms.Button minus;
-        private System.Windows.Forms.Button plus;
         private System.Windows.Forms.RichTextBox AllProductInfo;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настроитьIPToolStripMenuItem;
@@ -298,6 +273,7 @@ namespace Computer_house
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown AddProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;

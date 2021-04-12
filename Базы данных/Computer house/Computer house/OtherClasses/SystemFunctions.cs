@@ -27,12 +27,36 @@ namespace Computer_house.OtherClasses
                 componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox,
                 componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
-            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
+            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,componentsOptions.MotherboardRamFrequencyComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
             componentsOptions.MotherboardFormFactorComboBox, componentsOptions.MotherboardSupportedRAMComboBox};
             componentsOptions.MotherboardIntegratedGraphicCheckBox.Checked = false;
             componentsOptions.MotherboardSLISupportCheckBox.Checked = false;
             Clear(textBoxes, comboBoxes);
+        }
+
+        public static void ClearCaseTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = 
+            {
+                componentsOptions.CaseIDTextBox,componentsOptions.CaseNameTextBox, componentsOptions.CasePSUTextBox,
+                componentsOptions.CasePSUPositionTextBox, componentsOptions.CaseMaterialTextBox, 
+                componentsOptions.CaseSupportedMotherboardsTextBox, componentsOptions.CaseCoolingTypeTextBox,
+                componentsOptions.CaseCoolersCountTextBox, componentsOptions.CaseCoolerSlotsCountTextBox,
+                componentsOptions.CaseHeightTextBox, componentsOptions.CaseWidthTextBox, componentsOptions.CaseDepthTextBox,
+                componentsOptions.CaseStorageLocationCountTextBox, componentsOptions.CaseExpansionSlotsCount,
+                componentsOptions.CaseMaxLengthOfGPUTextBox, componentsOptions.CaseMaxCPUCoolerHeightTextBox,
+                componentsOptions.CaseMaxPSULengthTextBox, componentsOptions.CaseWeightTextBox
+            };
+
+
+            componentsOptions.CaseFormFactorComboBox.SelectedItem = null;
+            Clear(textBoxes);
+            componentsOptions.CaseWaterCoolingCheckBox.Checked = false;
+            componentsOptions.CaseCoolerInSetCheckBox.Checked = false;
+            componentsOptions.CaseSoundIsolationCheckBox.Checked = false;
+            componentsOptions.CaseDustFiltersCheckBox.Checked = false;
+            componentsOptions.CasesGamingCheckBox.Checked = false;
         }
 
         public static void ClearGPUInfoTextBoxes(ComponentsOptionsForm componentsOptions)
@@ -81,6 +105,16 @@ namespace Computer_house.OtherClasses
             foreach (var i in _textBoxes) i.Clear();
             foreach (var i in _comboBoxes) i.SelectedItem = null;
         }
+        private static void Clear(TextBox[] _textBoxes)
+        {
+            foreach (var i in _textBoxes) i.Clear();
+        }
+        private static void Clear(ComboBox[] _comboBoxes)
+        {
+            foreach (var i in _comboBoxes) i.SelectedItem = null;
+        }
+
+
 
         //Раздел проверки текстовых полей на нулевые значения
         public static bool CheckNullForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
@@ -109,7 +143,7 @@ namespace Computer_house.OtherClasses
                 componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox,
                 componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
-            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
+            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,componentsOptions.MotherboardRamFrequencyComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
             componentsOptions.MotherboardFormFactorComboBox, componentsOptions.MotherboardSupportedRAMComboBox};
 
@@ -137,6 +171,30 @@ namespace Computer_house.OtherClasses
 
         }
 
+        public static bool CheckNullForCaseTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes =
+                        {
+                componentsOptions.CaseIDTextBox,componentsOptions.CaseNameTextBox, componentsOptions.CasePSUTextBox,
+                componentsOptions.CasePSUPositionTextBox, componentsOptions.CaseMaterialTextBox,
+                componentsOptions.CaseSupportedMotherboardsTextBox, componentsOptions.CaseCoolingTypeTextBox,
+                componentsOptions.CaseCoolersCountTextBox, componentsOptions.CaseCoolerSlotsCountTextBox,
+                componentsOptions.CaseHeightTextBox, componentsOptions.CaseWidthTextBox, componentsOptions.CaseDepthTextBox,
+                componentsOptions.CaseStorageLocationCountTextBox, componentsOptions.CaseExpansionSlotsCount,
+                componentsOptions.CaseMaxLengthOfGPUTextBox, componentsOptions.CaseMaxCPUCoolerHeightTextBox,
+                componentsOptions.CaseMaxPSULengthTextBox, componentsOptions.CaseWeightTextBox
+            };
+            if (!CheckNullTextBoxes(textBoxes))
+            {
+                if (componentsOptions.CaseFormFactorComboBox.Text == "")
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return true;
+        }
+
         private static bool CheckNullTextBoxes(TextBox[] _textBoxes, ComboBox[] _comboBoxes)
         {
             foreach (var i in _textBoxes)
@@ -151,11 +209,19 @@ namespace Computer_house.OtherClasses
             }
             return false;
         }
+        private static bool CheckNullTextBoxes(TextBox[] _textBoxes)
+        {
+            foreach (var i in _textBoxes)
+            {
+                if (i.TextLength == 0)
+                    return true;
+            }
+            return false;
+        }
 
 
 
         //Раздел блокировки элементов управления
-
         public static void ChangeCPUTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
         {
             TextBox[] textBoxes =
@@ -206,12 +272,34 @@ namespace Computer_house.OtherClasses
                 componentsOptions.MotherboardExpansionsSlotsTextBox, componentsOptions.MotherboardStorageInterfacesTextBox, 
                 componentsOptions.MotherboardLengthTextBox, componentsOptions.MotherboardWidthTextBox
             };
-            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,
+            ComboBox[] comboBoxes = { componentsOptions.MotherboardSocketComboBox,componentsOptions.MotherboardRamFrequencyComboBox,
             componentsOptions.MotherboardChipsetComboBox,componentsOptions.MotherBoardRAMChanelsComboBox,
             componentsOptions.MotherboardFormFactorComboBox, componentsOptions.MotherboardSupportedRAMComboBox};
             componentsOptions.MotherboardIntegratedGraphicCheckBox.Enabled = _status;
             componentsOptions.MotherboardSLISupportCheckBox.Enabled = _status;
             SetEnableBoxes(textBoxes, comboBoxes, _status);
+        }
+
+        public static void ChangeCaseTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
+        {
+            TextBox[] textBoxes =
+           {
+                componentsOptions.CaseIDTextBox,componentsOptions.CaseNameTextBox, componentsOptions.CasePSUTextBox,
+                componentsOptions.CasePSUPositionTextBox, componentsOptions.CaseMaterialTextBox,
+                componentsOptions.CaseSupportedMotherboardsTextBox, componentsOptions.CaseCoolingTypeTextBox,
+                componentsOptions.CaseCoolersCountTextBox, componentsOptions.CaseCoolerSlotsCountTextBox,
+                componentsOptions.CaseHeightTextBox, componentsOptions.CaseWidthTextBox, componentsOptions.CaseDepthTextBox,
+                componentsOptions.CaseStorageLocationCountTextBox, componentsOptions.CaseExpansionSlotsCount,
+                componentsOptions.CaseMaxLengthOfGPUTextBox, componentsOptions.CaseMaxCPUCoolerHeightTextBox,
+                componentsOptions.CaseMaxPSULengthTextBox, componentsOptions.CaseWeightTextBox
+            };
+            componentsOptions.CaseFormFactorComboBox.Enabled = _status;
+            SetEnableBoxes(textBoxes, _status);
+            componentsOptions.CaseWaterCoolingCheckBox.Enabled = _status;
+            componentsOptions.CaseCoolerInSetCheckBox.Enabled = _status;
+            componentsOptions.CaseSoundIsolationCheckBox.Enabled = _status;
+            componentsOptions.CaseDustFiltersCheckBox.Enabled = _status;
+            componentsOptions.CasesGamingCheckBox.Enabled = _status;
         }
 
         private static void SetEnableBoxes(TextBox[] _textBoxes, ComboBox[] _comboBoxes, bool _status)
@@ -225,12 +313,18 @@ namespace Computer_house.OtherClasses
                 i.Enabled = _status;
             }
         }
-
+        private static void SetEnableBoxes(TextBox[] _textBoxes, bool _status)
+        {
+            foreach (var i in _textBoxes)
+            {
+                i.Enabled = _status;
+            }
+        }
 
 
         //Раздел проверки на возможность преобразования к числовому типу
 
-        public static bool CheckIntParseForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
+        public static bool CheckNumConvertForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes =
             {
@@ -241,6 +335,24 @@ namespace Computer_house.OtherClasses
             return CheckIntConvert(textBoxes);
         }
 
+        public static bool CheckNumConvertForCaseTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.CaseCoolersCountTextBox, componentsOptions.CaseCoolerSlotsCountTextBox,
+                componentsOptions.CaseHeightTextBox, componentsOptions.CaseWidthTextBox, componentsOptions.CaseDepthTextBox,
+                componentsOptions.CaseStorageLocationCountTextBox, componentsOptions.CaseExpansionSlotsCount,
+                componentsOptions.CaseMaxLengthOfGPUTextBox, componentsOptions.CaseMaxCPUCoolerHeightTextBox,
+                componentsOptions.CaseMaxPSULengthTextBox, 
+
+            };
+            float res;
+            bool isFloat = float.TryParse(componentsOptions.CaseWeightTextBox.Text, out res);
+            //true - если распарсит
+            if (!isFloat)
+                return false;
+            else
+                return CheckIntConvert(textBoxes);
+        }
         public static bool CheckNumConvertGPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes =
@@ -309,7 +421,7 @@ namespace Computer_house.OtherClasses
             foreach (var i in _buttons)
             {
                 i.Enabled = false;
-                i.Text = "";
+                i.Text = "Действие не выбрано";
                 i.BackColor = Color.Transparent;
             }
         }

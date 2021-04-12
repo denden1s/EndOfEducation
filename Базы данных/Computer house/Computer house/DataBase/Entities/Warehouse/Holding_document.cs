@@ -45,6 +45,14 @@ namespace Computer_house.DataBase.Entities
                             Product_ID_InString = findProduct.CPU_ID;
                             Product_name = db.CPU.Single(i => i.ID == Product_ID_InString).Name;   
                             break;
+                        case "GPU":
+                            Product_ID_InString = findProduct.GPU_ID;
+                            Product_name = db.GPU.Single(i => i.ID == Product_ID_InString).Name;
+                            break;
+                        case "Motherboard":
+                            Product_ID_InString = findProduct.Motherboard_ID;
+                            Product_name = db.Motherboard.Single(i => i.ID == Product_ID_InString).Name;
+                            break;
                         default:
                             break;
                     }

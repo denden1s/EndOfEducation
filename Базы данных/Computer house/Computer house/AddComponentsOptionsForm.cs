@@ -37,6 +37,7 @@ namespace Computer_house
         private List<CPU> CPUList = new List<CPU>();
         private List<GPU> GPUList = new List<GPU>();
         private List<Motherboard> MotherBoardList = new List<Motherboard>();
+        private List<Case> CaseList = new List<Case>();
         private List<Holding_document> HoldingDocuments = new List<Holding_document>();
 
         private string GPUpowerTypeComboBoxText = "";
@@ -48,13 +49,23 @@ namespace Computer_house
         private string CPUSocketComboBoxText = "";
         private string CPUMemoryTypeComboBoxText = "";
         private string CPUChanelsComboBoxText = "";
+        private string CPUMemoryFrequencyComboBoxText = "";
+
+        private string MotherboardSocketComboBoxText = "";
+        private string MotherboardChipsetComboBoxText = "";
+        private string MotherboardFormFactorComboBoxText = "";
+        private string MotherboardSupportedMemoryComboBoxText = "";
+        private string MotherboardMemoryChanelsComboBoxText = "";
+        private string MotherboardRAMFrequencyComboBoxText = "";
+
+        private string CaseFormFactorComboBoxText = "";
 
         public ComponentsOptionsForm()
         {
             InitializeComponent();
         }
         public ComponentsOptionsForm(Users _user,List<Warehouse_info> _wareHouse, List<CPU> _cpus, List<GPU> _gpus,
-            List<Motherboard> _motherboards)
+            List<Motherboard> _motherboards, List<Case> _cases)
         {
             InitializeComponent();
             //WarehouseInfo = _wareHouse;
@@ -62,6 +73,7 @@ namespace Computer_house
             CPUList = _cpus;
             MotherBoardList = _motherboards;
             user = _user;
+            CaseList = _cases;
         }
 
         private void AddComponentsOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -78,7 +90,9 @@ namespace Computer_house
             FindCPUIDButton.Enabled = false;
             FindGPUIDButton.Enabled = false;
             FindMotherboardIDButton.Enabled = false;
-            SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU,ActWithMotherboard);
+            FindCaseIDButton.Enabled = false;
+            SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU,ActWithMotherboard,
+                ActWithCase);
 
             //Запуск потоков на выгрузку данных из БД
             threads[0] = new Thread(new ThreadStart(LoadCPUSeriesFromDB));
@@ -101,6 +115,7 @@ namespace Computer_house
             ViewInfoInDataGrid<CPU>(CPU_DatagridView,CPUList);
             ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
             ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
+            //ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
 
             LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
             LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
@@ -111,11 +126,13 @@ namespace Computer_house
             LoadInfoFromListToCombobox<Sockets>(SocketsList, MotherboardSocketComboBox);
             LoadInfoFromListToCombobox<Chipset>(ChipsetsList, MotherboardChipsetComboBox);
             LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, MotherBoardRAMChanelsComboBox);
-
+            LoadRamFrequencyInComboBox(MotherboardRamFrequencyComboBox);
             LoadFormFactorsInComboBox(MotherboardFormFactorComboBox, "Motherboard");
+            LoadFormFactorsInComboBox(CaseFormFactorComboBox, "Case");
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
             SystemFunctions.ChangeCPUTextBoxesEnable(this, false);
             SystemFunctions.ChangeMotherboardTextBoxesEnable(this, false);
+            SystemFunctions.ChangeCaseTextBoxesEnable(this, false);
             SystemFunctions.ChangeGPUTextBoxesEnable(this,false);
             ViewDocsInDataGrid();
         }
@@ -328,7 +345,7 @@ namespace Computer_house
             threads[10].Interrupt();
         }
 
-        //Нужны для того чтобы не увеличивая форму вместить как можно больше элементов управления
+        //Нужен для отключения автоскрола и загрузки данных из комбобоксов
         private void tabPage2_Enter(object sender, EventArgs e)
         {
             this.AutoScroll = false;
@@ -343,12 +360,18 @@ namespace Computer_house
             CPUSocketComboBoxText = CPUSocketComboBox.Text;
             CPUMemoryTypeComboBoxText = CPUMemoryTypeComboBox.Text;
             CPUChanelsComboBoxText = CPUChanelsComboBox.Text;
+            CPUMemoryFrequencyComboBoxText = CPURamFrequaencyComboBox.Text;
 
-            //добавить данные из мат плат
-        }
-        private void tabPage1_MouseEnter(object sender, EventArgs e)
-        {
-            this.AutoScroll = true;
+            MotherboardSocketComboBoxText = MotherboardSocketComboBox.Text;
+            MotherboardChipsetComboBoxText = MotherboardChipsetComboBox.Text;
+            MotherboardFormFactorComboBoxText = MotherboardFormFactorComboBox.Text;
+            MotherboardSupportedMemoryComboBoxText = MotherboardSupportedRAMComboBox.Text;
+            MotherboardMemoryChanelsComboBoxText = MotherBoardRAMChanelsComboBox.Text;
+            MotherboardRAMFrequencyComboBoxText = MotherboardRamFrequencyComboBox.Text;
+
+            CaseFormFactorComboBoxText = CaseFormFactorComboBox.Text;
+            //Вопрос в том очищать ли данные при переходе между страницами
+
         }
 
         //Нужен для динамического изменения списка элементов
@@ -406,32 +429,42 @@ namespace Computer_house
 
         private void EditComponent_CheckedChanged(object sender, EventArgs e)
         {
-           
-            if (TypesOfComponentComboBox.Text == "")
+            if(EditComponent.Checked)
             {
-                EditComponent.Checked = false;
+                if (TypesOfComponentComboBox.Text == "")
+                {
+                    EditComponent.Checked = false;
+                }
+                else
+                {
+                    SystemFunctions.SetEditOrAddButtonMode(ActToComponent, false);
+                    if (ComponentsListBox.SelectedItem != null)
+                        ComponentsList_SelectedIndexChanged(sender, e);
+                    else
+                        ComponentsListBox.SelectedIndex = 0;
+
+                }
+                SystemFunctions.LockButtonInSecondTab(this);
             }
-            else
-            {
-                SystemFunctions.SetEditOrAddButtonMode(ActToComponent, false);
-            }
-            SystemFunctions.LockButtonInSecondTab(this);
         }
 
         private void AddNewComponent_CheckedChanged(object sender, EventArgs e)
         {
-            if (TypesOfComponentComboBox.Text == "")
+            if(AddNewComponent.Checked)
             {
-                AddNewComponent.Checked = false;
-            }
-            else
-            {
-                SystemFunctions.SetEditOrAddButtonMode(ActToComponent, true);
-                ComponentTypeComboBox.SelectedItem = null;
-                ComponentNameTextBox.Clear();
+                if (TypesOfComponentComboBox.Text == "")
+                {
+                    AddNewComponent.Checked = false;
+                }
+                else
+                {
+                    SystemFunctions.SetEditOrAddButtonMode(ActToComponent, true);
+                    ComponentTypeComboBox.SelectedItem = null;
+                    ComponentNameTextBox.Clear();
 
+                }
+                SystemFunctions.LockButtonInSecondTab(this);
             }
-            SystemFunctions.LockButtonInSecondTab(this);
         }
 
         private void ActToComponent_Click(object sender, EventArgs e)
@@ -505,8 +538,8 @@ namespace Computer_house
                             if (isInt)
                             {
                                 //Везде где наименование атрибута отлично от Name возникают проблемы
-                                var find1 = RAMFrequencyList.Single(i => i.Frequency == res);
-                                if (find1!=null)
+                                var find1 = RAMFrequencyList.Where(i => i.Frequency == res);
+                                if (find1.Count() != 0)
                                     exception = true;
                                 else
                                 {
@@ -734,29 +767,41 @@ namespace Computer_house
         //Нужен для загрузки сведений  в таблицы
         private void ViewInfoInDataGrid<T>(DataGridView _datagrid, List<T> _list) where T : Product
         {
-            _datagrid.Rows.Clear();
-            foreach (T i in _list)
+            try
             {
-                _datagrid.Rows.Add(i.ID, i.Name);
+                _datagrid.Rows.Clear();
+                foreach (T i in _list)
+                {
+                    _datagrid.Rows.Add(i.ID, i.Name);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }         
         }
-
 
         private void AddCPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.ChangeCPUTextBoxesEnable(this,true);
-            SystemFunctions.SetEditOrAddButtonMode(ActWithCPU, true);
-            FindCPUIDButton.Enabled = true;
-            SystemFunctions.ClearCPUInfoInTextBoxes(this);
+            if(AddCPURadio.Checked)
+            {
+                SystemFunctions.ChangeCPUTextBoxesEnable(this, true);
+                SystemFunctions.SetEditOrAddButtonMode(ActWithCPU, true);
+                FindCPUIDButton.Enabled = true;
+                SystemFunctions.ClearCPUInfoInTextBoxes(this);
+            }
         }
 
         private void ChangeCPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.ChangeCPUTextBoxesEnable(this, true);
-            SystemFunctions.SetEditOrAddButtonMode(ActWithCPU, false);
-            CPUIDTextBox.Enabled = false;
-            FindCPUIDButton.Enabled = false;
-            ViewCPUInfoToChange();
+            if(ChangeCPURadio.Checked)
+            {
+                SystemFunctions.ChangeCPUTextBoxesEnable(this, true);
+                SystemFunctions.SetEditOrAddButtonMode(ActWithCPU, false);
+                CPUIDTextBox.Enabled = false;
+                FindCPUIDButton.Enabled = false;
+                ViewCPUInfoToChange();
+            }
         }
 
         private void FindCPUIDButton_Click(object sender, EventArgs e)
@@ -767,21 +812,28 @@ namespace Computer_house
         //Нужен для поиска id перед добавлением данных о товаре
         private void SearchInfoInList<T>(List<T> _list, TextBox _textbox, Button _button)where T:Product
         {
-            bool findItem = false;
-            foreach (T i in _list)
+            try
             {
-                if (_textbox.Text == i.ID)
-                    findItem = true;
+                bool findItem = false;
+                foreach (T i in _list)
+                {
+                    if (_textbox.Text == i.ID)
+                        findItem = true;
+                }
+                if (findItem)
+                {
+                    MessageBox.Show("Такой серийный номер присутствует в базе");
+                }
+                else
+                {
+                    MessageBox.Show("Такой серийный номер отсутствует в базе");
+                    _button.Enabled = true;
+                }
             }
-            if (findItem)
+            catch (Exception ex)
             {
-                MessageBox.Show("Такой серийный номер присутствует в базе");
-            }
-            else
-            {
-                MessageBox.Show("Такой серийный номер отсутствует в базе");
-                _button.Enabled = true;
-            }
+                MessageBox.Show(ex.Message);
+            }        
         }
 
         private void CPUIDTextBox_TextChanged(object sender, EventArgs e)
@@ -818,7 +870,7 @@ namespace Computer_house
             }
             else
             {
-                if (!SystemFunctions.CheckIntParseForCPUTextBoxes(this))
+                if (!SystemFunctions.CheckNumConvertForCPUTextBoxes(this))
                 {
                     exception = true;
                     MessageBox.Show("Не все значения можно привести к числовому виду");
@@ -916,28 +968,7 @@ namespace Computer_house
 
         private void tabPage3_Enter(object sender, EventArgs e)
         {
-            //можно через потоки
-            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
-            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
-            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
-            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
-            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
-            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
-
-            try
-            {
-                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
-                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
-                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
-                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
-                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
+            this.AutoScroll = true;
         }
 
         //Нужен для загрузки данных из бд в поля для ввода
@@ -1023,6 +1054,7 @@ namespace Computer_house
                 MotherBoardRAMChanelsComboBox.SelectedItem = motherboard.RAM_chanel;
                 MotherboardFormFactorComboBox.SelectedItem = motherboard.FormFactor;
                 MotherboardSupportedRAMComboBox.SelectedItem = motherboard.RAM_type;
+                MotherboardRamFrequencyComboBox.SelectedItem = motherboard.RAM_frequency;
             }
         }
 
@@ -1114,6 +1146,7 @@ namespace Computer_house
             newMotherboard.Socket_ID = SocketsList.Single(i => i.Name == MotherboardSocketComboBox.Text).ID;
             newMotherboard.Chipset_ID = ChipsetsList.Single(i => i.Name == MotherboardChipsetComboBox.Text).ID;
             newMotherboard.RAM_chanels_ID = RAMChanelsList.Single(i => i.Name == MotherBoardRAMChanelsComboBox.Text).ID;
+            newMotherboard.RAM_frequency = Convert.ToInt32(MotherboardRamFrequencyComboBox.Text);
             newMotherboard.Form_factor_ID = (from b in FormFactorsList
                                              where b.Device_type == "Motherboard" && 
                                              b.Name == MotherboardFormFactorComboBox.Text
@@ -1159,21 +1192,25 @@ namespace Computer_house
 
         private void AddGPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.SetEditOrAddButtonMode(ActWithGPU, true);
-
-            SystemFunctions.ChangeGPUTextBoxesEnable(this, true);
-            FindGPUIDButton.Enabled = true;
-            SystemFunctions.ClearGPUInfoTextBoxes(this);
-
+            if(AddGPURadio.Checked)
+            {
+                SystemFunctions.SetEditOrAddButtonMode(ActWithGPU, true);
+                SystemFunctions.ChangeGPUTextBoxesEnable(this, true);
+                FindGPUIDButton.Enabled = true;
+                SystemFunctions.ClearGPUInfoTextBoxes(this);
+            }
         }
 
         private void ChangeGPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.ChangeGPUTextBoxesEnable(this, true);
-            FindGPUIDButton.Enabled = false;
-            GPUIDTextBox.Enabled = false;
-            SystemFunctions.SetEditOrAddButtonMode(ActWithGPU, false);
-            ViewGPUInfoToChange();
+            if(ChangeCPURadio.Checked)
+            {
+                SystemFunctions.ChangeGPUTextBoxesEnable(this, true);
+                FindGPUIDButton.Enabled = false;
+                GPUIDTextBox.Enabled = false;
+                SystemFunctions.SetEditOrAddButtonMode(ActWithGPU, false);
+                ViewGPUInfoToChange();
+            }
         }
 
         private void ActWithGPU_Click(object sender, EventArgs e)
@@ -1243,22 +1280,7 @@ namespace Computer_house
 
         private void tabPage4_Enter(object sender, EventArgs e)
         {
-            //добавить переменные в которых будут храниться значения полей из комбобоксов
-            LoadInfoFromListToCombobox<Connection_interfaces>(ConnectionInterfacesList, GPUInterfacesComboBox);
-            LoadMemoryTypeInComboBox(GPUMemoryTypeComboBox, "GPU");
-            LoadPowerTypeInComboBox(GPUPowerTypeComboBox);
-
-            try
-            {
-                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
-                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
-                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
+            this.AutoScroll = true;
         }
 
         private void GPUIDTextBox_TextChanged(object sender, EventArgs e)
@@ -1291,33 +1313,31 @@ namespace Computer_house
 
         private void AddMotherboardRadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.SetEditOrAddButtonMode(ActWithMotherboard, true);
-            SystemFunctions.ChangeMotherboardTextBoxesEnable(this, true);
-            FindMotherboardIDButton.Enabled = true;
-            SystemFunctions.ClearMotherboardTextBoxes(this);
+            if(AddMotherboardRadio.Checked)
+            {
+                SystemFunctions.SetEditOrAddButtonMode(ActWithMotherboard, true);
+                SystemFunctions.ChangeMotherboardTextBoxesEnable(this, true);
+                FindMotherboardIDButton.Enabled = true;
+                SystemFunctions.ClearMotherboardTextBoxes(this);
+            } 
         }
 
         private void ChangeMotherboardRadio_CheckedChanged(object sender, EventArgs e)
         {
-            SystemFunctions.ChangeMotherboardTextBoxesEnable(this, true);
-            FindMotherboardIDButton.Enabled= false;
-            MotherboardIDTextBox.Enabled = false;
-            SystemFunctions.SetEditOrAddButtonMode(ActWithMotherboard, false);
-            ViewMotherboardInfoToChange();
-        }
-
-
-        private bool CheckNumConvertMotherboardTextBoxes()
-        {
-            TextBox[] textboxes = { };
-            return false;
-            //доделать
+            if(ChangeMotherboardRadio.Checked)
+            {
+                SystemFunctions.ChangeMotherboardTextBoxesEnable(this, true);
+                FindMotherboardIDButton.Enabled = false;
+                MotherboardIDTextBox.Enabled = false;
+                SystemFunctions.SetEditOrAddButtonMode(ActWithMotherboard, false);
+                ViewMotherboardInfoToChange();
+            }
         }
 
         private void ActWithMotherboard_Click(object sender, EventArgs e)
         {
             bool exception = false;
-            if (SystemFunctions.CheckNullForMotherboardTextBoxes(this))
+            if (SystemFunctions.CheckNullForCaseTextBoxes(this))
             {
                 MessageBox.Show("Не все поля заполнены");
                 exception = true;
@@ -1383,6 +1403,337 @@ namespace Computer_house
         {
             if(ChangeMotherboardRadio.Checked)
                 ViewMotherboardInfoToChange();
+        }
+
+
+        private void tabPage1_Enter(object sender, EventArgs e)
+        {
+            if(tabControl2.SelectedTab.Text != "Оперативная память")
+                AutoScroll = true;
+            //можно через потоки
+            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
+            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
+            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
+            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
+            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
+            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
+
+            try
+            {
+                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
+                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
+                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
+                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
+                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
+                CPURamFrequaencyComboBox.Text = CPUMemoryFrequencyComboBoxText;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            //добавить переменные в которых будут храниться значения полей из комбобоксов
+            LoadInfoFromListToCombobox<Connection_interfaces>(ConnectionInterfacesList, GPUInterfacesComboBox);
+            LoadMemoryTypeInComboBox(GPUMemoryTypeComboBox, "GPU");
+            LoadPowerTypeInComboBox(GPUPowerTypeComboBox);
+
+            try
+            {
+                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
+                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
+                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+
+            LoadInfoFromListToCombobox<Sockets>(SocketsList, MotherboardSocketComboBox);
+            LoadInfoFromListToCombobox<Chipset>(ChipsetsList, MotherboardChipsetComboBox);
+            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, MotherBoardRAMChanelsComboBox);
+            LoadFormFactorsInComboBox(MotherboardFormFactorComboBox, "Motherboard");
+            LoadRamFrequencyInComboBox(MotherboardRamFrequencyComboBox);
+
+            MotherboardSocketComboBox.SelectedItem = MotherboardSocketComboBoxText;
+            MotherboardChipsetComboBox.SelectedItem = MotherboardChipsetComboBoxText;
+            MotherboardFormFactorComboBox.SelectedItem = MotherboardFormFactorComboBoxText;
+            MotherboardSupportedRAMComboBox.SelectedItem = MotherboardSupportedMemoryComboBoxText;
+            MotherBoardRAMChanelsComboBox.SelectedItem = MotherboardMemoryChanelsComboBoxText;
+            MotherboardRamFrequencyComboBox.Text = MotherboardRAMFrequencyComboBoxText;
+
+            LoadFormFactorsInComboBox(CaseFormFactorComboBox, "Case");
+
+            CaseFormFactorComboBox.Text = CaseFormFactorComboBoxText;
+
+        }
+
+        private void tabPage7_Enter(object sender, EventArgs e)
+        {
+            AutoScroll = false;
+        }
+
+        private void tabPage6_Enter(object sender, EventArgs e)
+        {
+            this.AutoScroll = true;
+        }
+
+        private void tabPage5_Enter(object sender, EventArgs e)
+        {
+            this.AutoScroll = true;
+        }
+
+        private void Case_DatagridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ChangeCaseRadio.Checked)
+                ViewCaseInfoToChange();
+        }
+
+        private void ViewCaseInfoToChange()
+        {
+            if (Case_DatagridView.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = Case_DatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = Case_DatagridView.Rows[selectedrowindex];
+                Case pcCase = new Case();
+                pcCase = CaseList.Single(i => i.ID == (string)currentRow.Cells[0].Value);
+                CaseIDTextBox.Text = pcCase.ID;
+                CaseNameTextBox.Text = pcCase.Name;
+                CasePSUTextBox.Text = pcCase.Power_supply_unit;
+                CasesGamingCheckBox.Checked = pcCase.Gaming;
+                CasePSUPositionTextBox.Text = pcCase.PSU_position;
+                CaseFormFactorComboBox.SelectedItem = (from b in FormFactorsList
+                                                       where b.Device_type == "Case" && b.ID == pcCase.Form_factor_ID
+                                                       select b.Name).Single();
+                CaseMaterialTextBox.Text = pcCase.Material;
+                CaseSupportedMotherboardsTextBox.Text = pcCase.Compatible_motherboard;
+                CaseCoolingTypeTextBox.Text = pcCase.Cooling_type;
+                CaseCoolersCountTextBox.Text = Convert.ToString(pcCase.Coolers_count);
+                CaseCoolerSlotsCountTextBox.Text = Convert.ToString(pcCase.Coolers_slots);
+                CaseHeightTextBox.Text = Convert.ToString(pcCase.Height);
+                CaseWidthTextBox.Text = Convert.ToString(pcCase.Width);
+                CaseDepthTextBox.Text = Convert.ToString(pcCase.Depth);
+                CaseStorageLocationCountTextBox.Text = Convert.ToString(pcCase.Storage_sections_count);
+                CaseWaterCoolingCheckBox.Checked = pcCase.Water_cooling_support;
+                CaseExpansionSlotsCount.Text = Convert.ToString(pcCase.Expansion_slots_count);
+                CaseCoolerInSetCheckBox.Checked = pcCase.Cooler_in_set;
+                CaseMaxLengthOfGPUTextBox.Text = Convert.ToString(pcCase.Max_GPU_length);
+                CaseSoundIsolationCheckBox.Checked = pcCase.Sound_isolation;
+                CaseMaxCPUCoolerHeightTextBox.Text = Convert.ToString(pcCase.Max_CPU_cooler_height);
+                CaseDustFiltersCheckBox.Checked = pcCase.Dust_filter;
+                CaseMaxPSULengthTextBox.Text = Convert.ToString(pcCase.Max_PSU_length);
+                CaseWeightTextBox.Text = Convert.ToString(pcCase.Weight);
+            }
+        }
+
+        private void AddCaseRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if(AddCaseRadio.Checked)
+            {
+                SystemFunctions.ClearCaseTextBoxes(this);
+                SystemFunctions.SetEditOrAddButtonMode(ActWithCase, true);
+                SystemFunctions.ChangeCaseTextBoxesEnable(this, true);
+                FindCaseIDButton.Enabled = true;
+            }
+        }
+
+        private void ChangeCaseRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ChangeCaseRadio.Checked)
+            {
+                SystemFunctions.ChangeCaseTextBoxesEnable(this, true);
+
+                FindCaseIDButton.Enabled = false;
+                CaseIDTextBox.Enabled = false;
+                SystemFunctions.SetEditOrAddButtonMode(ActWithCase, false);
+                //ViewMotherboardInfoToChange();
+            }
+        }
+
+        private void FindCaseIDButton_Click(object sender, EventArgs e)
+        {
+            SearchInfoInList<Case>(CaseList, CaseIDTextBox, ActWithCase);
+        }
+
+        private void ActWithCase_Click(object sender, EventArgs e)
+        {
+            bool exception = false;
+            if (SystemFunctions.CheckNullForCaseTextBoxes(this))
+            {
+                MessageBox.Show("Не все поля заполнены");
+                exception = true;
+            }
+            else
+            {
+                // проверка на перевод к числовому типу
+                if (!SystemFunctions.CheckNumConvertForCaseTextBoxes(this))
+                {
+                    exception = true;
+                    MessageBox.Show("Не все поля можно привести к числовому типу");
+                }
+            }
+            if (!exception)
+            {
+                if (AddCaseRadio.Checked)
+                {
+                    //добавление
+                    Case newCase = AddInfoAboutCase();
+                    if (SQLRequests.Warning(true, newCase.Name))
+                    {
+                        SQLRequests.AddCase(newCase);
+                        SQLRequests.EditCaseMediator(newCase, "Add");
+                        //добавление в таблицу mediator
+                        //Добавить в warehouseInfo
+                        CaseList.Add(newCase);
+                    MessageBox.Show("Добавление прошло успешно!");
+                        ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
+
+                    }
+                }
+                else if (ChangeCaseRadio.Checked)
+                {
+                    //изменение
+                    Motherboard changedMotherboard = AddInfoAboutMotherboard();
+                    //if (SQLRequests.Warning(false, changedMotherboard.Name))
+                    //{
+                    //    SQLRequests.ChangeMotherboard(changedMotherboard);
+                    //    SQLRequests.EditMotherboardMediator(changedMotherboard, "Edit");
+                    //    int temp = MotherBoardList.IndexOf(MotherBoardList.Single(i => i.ID == changedMotherboard.ID));
+                    //    MotherBoardList[temp] = changedMotherboard;
+                        MessageBox.Show("Изменение прошло успешно!");
+                    //    ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
+                    //}
+                }
+                //using (ApplicationContext db = new ApplicationContext())
+                //{
+                //    MotherBoardList.Clear();
+                //    int counter = 0;
+                //    foreach (Motherboard c in db.Motherboard)
+                //    {
+                //        MotherBoardList.Add(new Motherboard(c.ID));
+                //        MotherBoardList[counter].GetDataFromDB();
+                //        counter++;
+                //    }
+                //}
+                //SystemFunctions.ClearMotherboardTextBoxes(this);
+            }
+            this.ActiveControl = null;
+        }
+        private Case AddInfoAboutCase()
+        {
+            Case newCase = new Case();
+
+            newCase.ID = CaseIDTextBox.Text;
+            newCase.Name = CaseNameTextBox.Text;
+            newCase.Power_supply_unit = CasePSUTextBox.Text;
+            newCase.Gaming = CasesGamingCheckBox.Checked;
+            newCase.PSU_position = CasePSUPositionTextBox.Text;
+            newCase.Form_factor_ID = (from b in FormFactorsList
+                                      where b.Device_type == "Case" && b.Name == CaseFormFactorComboBox.Text
+                                      select b.ID).Single();
+
+            newCase.Material = CaseMaterialTextBox.Text;
+            newCase.Compatible_motherboard = CaseSupportedMotherboardsTextBox.Text;
+            newCase.Cooling_type = CaseCoolingTypeTextBox.Text;
+            newCase.Coolers_count = Convert.ToInt32(CaseCoolersCountTextBox.Text);
+            newCase.Coolers_slots = Convert.ToInt32(CaseCoolerSlotsCountTextBox.Text);
+            newCase.Height = Convert.ToInt32(CaseHeightTextBox.Text);
+            newCase.Width = Convert.ToInt32(CaseWidthTextBox.Text);
+            newCase.Depth = Convert.ToInt32(CaseDepthTextBox.Text);
+            newCase.Storage_sections_count = Convert.ToInt32(CaseStorageLocationCountTextBox.Text);
+            newCase.Water_cooling_support = CaseWaterCoolingCheckBox.Checked;
+            newCase.Expansion_slots_count = Convert.ToInt32(CaseExpansionSlotsCount.Text);
+            newCase.Cooler_in_set = CaseCoolerInSetCheckBox.Checked;
+            newCase.Max_GPU_length = Convert.ToInt32(CaseMaxLengthOfGPUTextBox.Text);
+            newCase.Sound_isolation = CaseSoundIsolationCheckBox.Checked;
+            newCase.Max_CPU_cooler_height = Convert.ToInt32(CaseMaxCPUCoolerHeightTextBox.Text);
+            newCase.Dust_filter = CaseDustFiltersCheckBox.Checked;
+            newCase.Max_PSU_length = Convert.ToInt32(CaseMaxPSULengthTextBox.Text);
+            newCase.Weight = float.Parse(CaseWeightTextBox.Text);
+            return newCase;
+        }
+
+
+        private void CPUSeriesComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUSeriesComboBoxText = CPUSeriesComboBox.Text;
+        }
+
+        private void CPUCodeNameComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUCodeNameComboBoxText = CPUCodeNameComboBox.Text;
+        }
+
+        private void CPUSocketComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUSocketComboBoxText = CPUSocketComboBox.Text;
+        }
+
+        private void CPUMemoryTypeComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUMemoryTypeComboBoxText = CPUMemoryTypeComboBox.Text;
+        }
+
+        private void CPUChanelsComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUChanelsComboBoxText = CPUChanelsComboBox.Text;
+        }
+
+        private void CPURamFrequaencyComboBox_Leave(object sender, EventArgs e)
+        {
+            CPUMemoryFrequencyComboBoxText = CPURamFrequaencyComboBox.Text;
+        }
+
+        private void GPUInterfacesComboBox_Leave(object sender, EventArgs e)
+        {
+            GPUconnectionInterfaceComboBoxText = GPUInterfacesComboBox.Text;
+        }
+
+        private void GPUMemoryTypeComboBox_Leave(object sender, EventArgs e)
+        {
+            GPUTypeComboBoxText = GPUMemoryTypeComboBox.Text;
+        }
+
+        private void GPUPowerTypeComboBox_Leave(object sender, EventArgs e)
+        {
+            GPUpowerTypeComboBoxText = GPUPowerTypeComboBox.Text;
+        }
+
+        private void MotherboardSocketComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardSocketComboBoxText = MotherboardSocketComboBox.Text;
+        }
+
+        private void MotherboardChipsetComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardChipsetComboBoxText = MotherboardChipsetComboBox.Text;
+        }
+
+        private void MotherboardFormFactorComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardFormFactorComboBoxText = MotherboardFormFactorComboBox.Text;
+        }
+
+        private void MotherboardSupportedRAMComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardSupportedMemoryComboBoxText = MotherboardSupportedRAMComboBox.Text;       
+        }
+
+        private void MotherBoardRAMChanelsComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardMemoryChanelsComboBoxText = MotherBoardRAMChanelsComboBox.Text;
+        }
+
+        private void MotherboardRamFrequencyComboBox_Leave(object sender, EventArgs e)
+        {
+            MotherboardRAMFrequencyComboBoxText = MotherboardRamFrequencyComboBox.Text;
+        }
+
+        private void CaseFormFactorComboBox_Leave(object sender, EventArgs e)
+        {
+            CaseFormFactorComboBoxText = CaseFormFactorComboBox.Text;
         }
     }
 }
