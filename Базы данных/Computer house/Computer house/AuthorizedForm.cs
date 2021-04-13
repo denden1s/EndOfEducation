@@ -21,7 +21,7 @@ namespace Computer_house
     public partial class AuthorizedForm : Form
     {
         private List<Warehouse_info> WarehouseInformationList = new List<Warehouse_info>();
-        private List<Case> Cases;
+        private List<Case> Cases = new List<Case>();
         private List<Cooling_system> CoolingSystems;
         private List<CPU> Cpus = new List<CPU>();
         private List<GPU> Gpus = new List<GPU>();

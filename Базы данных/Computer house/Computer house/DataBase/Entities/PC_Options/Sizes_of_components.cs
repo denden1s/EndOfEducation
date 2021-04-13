@@ -10,12 +10,12 @@ namespace Computer_house.DataBase.Entities.PC_Options
     public class Sizes_of_components //: ISizes_of_components
     {
         public int Product_ID { get; set; }
-        public int Length { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public int Diameter { get; set; }
-        public float Thickness { get; set; }
-        public int Depth { get; set; }
+        public int Length { get; set; } = 0;
+        public int Height { get; set; } = 0;
+        public int Width { get; set; } = 0;
+        public int Diameter { get; set; } = 0;
+        public float Thickness { get; set; } = 0;
+        public int Depth { get; set; } = 0;
 
         //public void SetSezesOptions(ApplicationContext db)
         //{

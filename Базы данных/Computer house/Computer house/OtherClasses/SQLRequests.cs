@@ -833,9 +833,21 @@ namespace Computer_house.OtherClasses
                     else if (_method == "Edit")
                         db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
-
-                   //...
-
+                    Sizes_of_components sizesOfCase = new Sizes_of_components();
+                    sizesOfCase.Product_ID = info.Product_ID;
+                    sizesOfCase.Height = _case.Height;
+                    sizesOfCase.Width = _case.Width;
+                    sizesOfCase.Depth = _case.Depth;
+                    if (_method == "Add")
+                        db.Sizes_of_components.Add(sizesOfCase);
+                    else if (_method == "Edit")
+                        db.Sizes_of_components.Update(sizesOfCase);
+                    Base_and_max_options options = new Base_and_max_options(info.Product_ID, 
+                                                  _case.Coolers_count, _case.Coolers_slots);
+                    if (_method == "Add")
+                        db.Base_and_max_options.Add(options);
+                    else if (_method == "Edit")
+                        db.Base_and_max_options.Update(options);
                     db.SaveChanges();
                 }
                 //После добавления в медиатор вытянуть этот же объект 

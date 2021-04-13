@@ -71,7 +71,7 @@ namespace Computer_house.DataBase.Entities
                     Dust_filter = caseInfo.Dust_filter;
                     Max_GPU_length = caseInfo.Max_GPU_length;
                     Max_CPU_cooler_height = caseInfo.Max_CPU_cooler_height;
-                    Max_PSU_length = Max_PSU_length;
+                    Max_PSU_length = caseInfo.Max_PSU_length;
                     Weight = caseInfo.Weight;
                     GetFormFactorInfo(db);
                     SetBaseAndMaxOptions(db);

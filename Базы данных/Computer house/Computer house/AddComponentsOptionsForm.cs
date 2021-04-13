@@ -60,6 +60,8 @@ namespace Computer_house
 
         private string CaseFormFactorComboBoxText = "";
 
+        private bool firstLoad = true;
+
         public ComponentsOptionsForm()
         {
             InitializeComponent();
@@ -115,7 +117,7 @@ namespace Computer_house
             ViewInfoInDataGrid<CPU>(CPU_DatagridView,CPUList);
             ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
             ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
-            //ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
+            ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
 
             LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
             LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
@@ -862,55 +864,50 @@ namespace Computer_house
 
         private void ActWithCPU_Click(object sender, EventArgs e)
         {
-            bool exception = false;
             if (SystemFunctions.CheckNullForCPUTextBoxes(this))
             {
-                exception = true;
                 MessageBox.Show("Не все поля заполнены");
+                return;
             }
-            else
-            {
-                if (!SystemFunctions.CheckNumConvertForCPUTextBoxes(this))
-                {
-                    exception = true;
-                    MessageBox.Show("Не все значения можно привести к числовому виду");
-                }
+            if (!SystemFunctions.CheckNumConvertForCPUTextBoxes(this))
+            {                   
+                MessageBox.Show("Не все значения можно привести к числовому виду");
+                return;
             }
-            if (!exception)
+
+            if (AddCPURadio.Checked)
             {
-                if (AddCPURadio.Checked)
+                CPU newCPU = AddInfoAboutCPU();
+                if (SQLRequests.Warning(true, newCPU.Name))
                 {
-                    //добавление работает
-                    CPU newCPU = AddInfoAboutCPU();
-                    //Добавление процессора
-                    if (SQLRequests.Warning(true, newCPU.Name))
-                    {
-                        SQLRequests.AddCPU(newCPU);
-                        SQLRequests.EditCPUInMediator(newCPU, "Add");
-                        //добавление в таблицу mediator
-                        //Добавить в warehouseInfo
-                        CPUList.Add(newCPU);
-                        MessageBox.Show("Добавление прошло успешно!");
-                        ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
+                    SQLRequests.AddCPU(newCPU);
+                    SQLRequests.EditCPUInMediator(newCPU, "Add");
+                    CPUList.Add(newCPU);
+                    MessageBox.Show("Добавление прошло успешно!");
+                    ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
                         
-                    }
                 }
-                else if (ChangeCPURadio.Checked)
-                {
-                    //изменение
-                    CPU changedCPU = AddInfoAboutCPU();
-                    if (SQLRequests.Warning(false, changedCPU.Name))
-                    {
-                        SQLRequests.ChangeCPU(changedCPU);
-                        SQLRequests.EditCPUInMediator(changedCPU, "Edit");
-                        int temp = CPUList.IndexOf(CPUList.Single(i => i.ID == changedCPU.ID));
-                        CPUList[temp] = changedCPU;
-                        MessageBox.Show("Изменение прошло успешно!");
-                        ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
-                    }
-                }
-                SystemFunctions.ClearCPUInfoInTextBoxes(this);
             }
+            else if (ChangeCPURadio.Checked)
+            {
+                CPU changedCPU = AddInfoAboutCPU();
+                if (SQLRequests.Warning(false, changedCPU.Name))
+                {
+                    SQLRequests.ChangeCPU(changedCPU);
+                    SQLRequests.EditCPUInMediator(changedCPU, "Edit");
+                    int temp = CPUList.IndexOf(CPUList.Single(i => i.ID == changedCPU.ID));
+                    CPUList[temp] = changedCPU;
+                    MessageBox.Show("Изменение прошло успешно!");
+                    ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
+                }
+            }
+            SystemFunctions.ClearCPUInfoInTextBoxes(this);
+            CPUSeriesComboBoxText = "";
+            CPUCodeNameComboBoxText = "";
+            CPUSocketComboBoxText = "";
+            CPUMemoryTypeComboBoxText = "";
+            CPUChanelsComboBoxText = "";
+            CPUMemoryFrequencyComboBoxText = "";
             this.ActiveControl = null;
         }
 
@@ -1203,7 +1200,7 @@ namespace Computer_house
 
         private void ChangeGPURadio_CheckedChanged(object sender, EventArgs e)
         {
-            if(ChangeCPURadio.Checked)
+            if(ChangeGPURadio.Checked)
             {
                 SystemFunctions.ChangeGPUTextBoxesEnable(this, true);
                 FindGPUIDButton.Enabled = false;
@@ -1215,66 +1212,58 @@ namespace Computer_house
 
         private void ActWithGPU_Click(object sender, EventArgs e)
         {
-            bool exception = false;
             if (SystemFunctions.CheckNullForGPUTextBoxes(this))
             {
                 MessageBox.Show("Не все поля заполнены");
-                exception = true;
+                return;
             }
-            else
+            if (!SystemFunctions.CheckNumConvertGPUTextBoxes(this))
+            {               
+                MessageBox.Show("Не все поля можно привести к числовому типу");
+                return;
+            }               
+            
+            if (AddGPURadio.Checked)
             {
-                //проверка на перевод к числовому типу
-                if (!SystemFunctions.CheckNumConvertGPUTextBoxes(this))
+                GPU newGPU = AddInfoAboutGPU();
+                if (SQLRequests.Warning(true, newGPU.Name))
                 {
-                    exception = true;
-                    MessageBox.Show("Не все поля можно привести к числовому типу");
-                }               
-            }
-            if (!exception)
-            {
-                if (AddGPURadio.Checked)
-                {
-                    //добавление
-                    GPU newGPU = AddInfoAboutGPU();
-                    if (SQLRequests.Warning(true, newGPU.Name))
-                    {
-                        SQLRequests.AddGPU(newGPU);
-                        SQLRequests.EditGPUInMediator(newGPU, "Add");
-                        //добавление в таблицу mediator
-                        //Добавить в warehouseInfo
-                        GPUList.Add(newGPU);
-                        MessageBox.Show("Добавление прошло успешно!");
-                        ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
+                    SQLRequests.AddGPU(newGPU);
+                    SQLRequests.EditGPUInMediator(newGPU, "Add");
+                    GPUList.Add(newGPU);
+                    MessageBox.Show("Добавление прошло успешно!");
+                    ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
                         
-                    }
                 }
-                else if (ChangeGPURadio.Checked)
-                {
-                    //изменение
-                    GPU changedGPU = AddInfoAboutGPU();
-                    if (SQLRequests.Warning(false, changedGPU.Name))
-                    {
-                        SQLRequests.ChangeGPU(changedGPU);
-                        SQLRequests.EditGPUInMediator(changedGPU, "Edit");
-                        int temp = GPUList.IndexOf(GPUList.Single(i => i.ID == changedGPU.ID));
-                        GPUList[temp] = changedGPU;
-                        MessageBox.Show("Изменение прошло успешно!");
-                        ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
-                    }
-                }
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    GPUList.Clear();
-                    int counter = 0;
-                    foreach (GPU c in db.GPU)
-                    {
-                        GPUList.Add(new GPU(c.ID));
-                        GPUList[counter].GetDataFromDB();
-                        counter++;
-                    }
-                }
-                SystemFunctions.ClearGPUInfoTextBoxes(this);
             }
+            else if (ChangeGPURadio.Checked)
+            {
+                GPU changedGPU = AddInfoAboutGPU();
+                if (SQLRequests.Warning(false, changedGPU.Name))
+                {
+                    SQLRequests.ChangeGPU(changedGPU);
+                    SQLRequests.EditGPUInMediator(changedGPU, "Edit");
+                    int temp = GPUList.IndexOf(GPUList.Single(i => i.ID == changedGPU.ID));
+                    GPUList[temp] = changedGPU;
+                    MessageBox.Show("Изменение прошло успешно!");
+                    ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
+                }
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                GPUList.Clear();
+                int counter = 0;
+                foreach (GPU c in db.GPU)
+                {
+                    GPUList.Add(new GPU(c.ID));
+                    GPUList[counter].GetDataFromDB();
+                    counter++;
+                }
+            }
+            SystemFunctions.ClearGPUInfoTextBoxes(this);
+            GPUpowerTypeComboBoxText = "";
+            GPUTypeComboBoxText = "";
+            GPUconnectionInterfaceComboBoxText = "";
             this.ActiveControl = null;
         }
 
@@ -1336,66 +1325,62 @@ namespace Computer_house
 
         private void ActWithMotherboard_Click(object sender, EventArgs e)
         {
-            bool exception = false;
             if (SystemFunctions.CheckNullForCaseTextBoxes(this))
             {
                 MessageBox.Show("Не все поля заполнены");
-                exception = true;
+                return;
             }
-            else
+            if (!SystemFunctions.CheckNumConvertMotherboardTextBoxes(this))
             {
-               // проверка на перевод к числовому типу
-                if (!SystemFunctions.CheckNumConvertMotherboardTextBoxes(this))
-                {
-                    exception = true;
-                    MessageBox.Show("Не все поля можно привести к числовому типу");
-                }
+                MessageBox.Show("Не все поля можно привести к числовому типу");
+                return;
             }
-            if (!exception)
+
+            if (AddMotherboardRadio.Checked)
             {
-                if (AddMotherboardRadio.Checked)
+                Motherboard newMotherboard = AddInfoAboutMotherboard();
+                if (SQLRequests.Warning(true, newMotherboard.Name))
                 {
-                    //добавление
-                    Motherboard newMotherboard = AddInfoAboutMotherboard();
-                    if (SQLRequests.Warning(true, newMotherboard.Name))
-                    {
-                        SQLRequests.AddMotherboard(newMotherboard);
-                        SQLRequests.EditMotherboardMediator(newMotherboard, "Add");
-                        //добавление в таблицу mediator
-                        //Добавить в warehouseInfo
-                        MotherBoardList.Add(newMotherboard);
-                        MessageBox.Show("Добавление прошло успешно!");
-                        ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
+                    SQLRequests.AddMotherboard(newMotherboard);
+                    SQLRequests.EditMotherboardMediator(newMotherboard, "Add");
+                    MotherBoardList.Add(newMotherboard);
+                    MessageBox.Show("Добавление прошло успешно!");
+                    ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
                         
-                    }
                 }
-                else if (ChangeMotherboardRadio.Checked)
-                {
-                    //изменение
-                    Motherboard changedMotherboard = AddInfoAboutMotherboard();
-                    if (SQLRequests.Warning(false, changedMotherboard.Name))
-                    {
-                        SQLRequests.ChangeMotherboard(changedMotherboard);
-                        SQLRequests.EditMotherboardMediator(changedMotherboard, "Edit");
-                        int temp = MotherBoardList.IndexOf(MotherBoardList.Single(i => i.ID == changedMotherboard.ID));
-                        MotherBoardList[temp] = changedMotherboard;
-                        MessageBox.Show("Изменение прошло успешно!");
-                        ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
-                    }
-                }
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    MotherBoardList.Clear();
-                    int counter = 0;
-                    foreach (Motherboard c in db.Motherboard)
-                    {
-                        MotherBoardList.Add(new Motherboard(c.ID));
-                        MotherBoardList[counter].GetDataFromDB();
-                        counter++;
-                    }
-                }
-                SystemFunctions.ClearMotherboardTextBoxes(this);
             }
+            else if (ChangeMotherboardRadio.Checked)
+            {
+                Motherboard changedMotherboard = AddInfoAboutMotherboard();
+                if (SQLRequests.Warning(false, changedMotherboard.Name))
+                {
+                    SQLRequests.ChangeMotherboard(changedMotherboard);
+                    SQLRequests.EditMotherboardMediator(changedMotherboard, "Edit");
+                    int temp = MotherBoardList.IndexOf(MotherBoardList.Single(i => i.ID == changedMotherboard.ID));
+                    MotherBoardList[temp] = changedMotherboard;
+                    MessageBox.Show("Изменение прошло успешно!");
+                    ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
+                }
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                MotherBoardList.Clear();
+                int counter = 0;
+                foreach (Motherboard c in db.Motherboard)
+                {
+                    MotherBoardList.Add(new Motherboard(c.ID));
+                    MotherBoardList[counter].GetDataFromDB();
+                    counter++;
+                }
+            }
+            SystemFunctions.ClearMotherboardTextBoxes(this);
+            MotherboardSocketComboBoxText = "";
+            MotherboardChipsetComboBoxText = "";
+            MotherboardFormFactorComboBoxText = "";
+            MotherboardSupportedMemoryComboBoxText = "";
+            MotherboardMemoryChanelsComboBoxText = "";
+            MotherboardRAMFrequencyComboBoxText = "";
+
             this.ActiveControl = null;
         }
 
@@ -1418,38 +1403,9 @@ namespace Computer_house
             LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
             LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
 
-            try
-            {
-                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
-                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
-                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
-                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
-                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
-                CPURamFrequaencyComboBox.Text = CPUMemoryFrequencyComboBoxText;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-
-            //добавить переменные в которых будут храниться значения полей из комбобоксов
             LoadInfoFromListToCombobox<Connection_interfaces>(ConnectionInterfacesList, GPUInterfacesComboBox);
             LoadMemoryTypeInComboBox(GPUMemoryTypeComboBox, "GPU");
             LoadPowerTypeInComboBox(GPUPowerTypeComboBox);
-
-            try
-            {
-                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
-                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
-                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-
 
             LoadInfoFromListToCombobox<Sockets>(SocketsList, MotherboardSocketComboBox);
             LoadInfoFromListToCombobox<Chipset>(ChipsetsList, MotherboardChipsetComboBox);
@@ -1457,17 +1413,36 @@ namespace Computer_house
             LoadFormFactorsInComboBox(MotherboardFormFactorComboBox, "Motherboard");
             LoadRamFrequencyInComboBox(MotherboardRamFrequencyComboBox);
 
-            MotherboardSocketComboBox.SelectedItem = MotherboardSocketComboBoxText;
-            MotherboardChipsetComboBox.SelectedItem = MotherboardChipsetComboBoxText;
-            MotherboardFormFactorComboBox.SelectedItem = MotherboardFormFactorComboBoxText;
-            MotherboardSupportedRAMComboBox.SelectedItem = MotherboardSupportedMemoryComboBoxText;
-            MotherBoardRAMChanelsComboBox.SelectedItem = MotherboardMemoryChanelsComboBoxText;
-            MotherboardRamFrequencyComboBox.Text = MotherboardRAMFrequencyComboBoxText;
-
             LoadFormFactorsInComboBox(CaseFormFactorComboBox, "Case");
 
-            CaseFormFactorComboBox.Text = CaseFormFactorComboBoxText;
+            try
+            {
+                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
+                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
+                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
+                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
+                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
+                if(CPUMemoryFrequencyComboBoxText != "")
+                    CPURamFrequaencyComboBox.SelectedItem = Convert.ToInt32(CPUMemoryFrequencyComboBoxText);
 
+                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
+                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
+                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
+
+                MotherboardSocketComboBox.SelectedItem = MotherboardSocketComboBoxText;
+                MotherboardChipsetComboBox.SelectedItem = MotherboardChipsetComboBoxText;
+                MotherboardFormFactorComboBox.SelectedItem = MotherboardFormFactorComboBoxText;
+                MotherboardSupportedRAMComboBox.SelectedItem = MotherboardSupportedMemoryComboBoxText;
+                MotherBoardRAMChanelsComboBox.SelectedItem = MotherboardMemoryChanelsComboBoxText;
+                if(MotherboardRAMFrequencyComboBoxText != "")
+                    MotherboardRamFrequencyComboBox.SelectedItem = Convert.ToInt32(MotherboardRAMFrequencyComboBoxText);
+
+                CaseFormFactorComboBox.SelectedItem = CaseFormFactorComboBoxText;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void tabPage7_Enter(object sender, EventArgs e)
@@ -1548,7 +1523,7 @@ namespace Computer_house
                 FindCaseIDButton.Enabled = false;
                 CaseIDTextBox.Enabled = false;
                 SystemFunctions.SetEditOrAddButtonMode(ActWithCase, false);
-                //ViewMotherboardInfoToChange();
+                ViewCaseInfoToChange();
             }
         }
 
@@ -1559,68 +1534,60 @@ namespace Computer_house
 
         private void ActWithCase_Click(object sender, EventArgs e)
         {
-            bool exception = false;
             if (SystemFunctions.CheckNullForCaseTextBoxes(this))
             {
                 MessageBox.Show("Не все поля заполнены");
-                exception = true;
+                return;
             }
             else
             {
-                // проверка на перевод к числовому типу
                 if (!SystemFunctions.CheckNumConvertForCaseTextBoxes(this))
                 {
-                    exception = true;
                     MessageBox.Show("Не все поля можно привести к числовому типу");
+                    return;
                 }
             }
-            if (!exception)
+            if (AddCaseRadio.Checked)
             {
-                if (AddCaseRadio.Checked)
+                Case newCase = AddInfoAboutCase();
+                if (SQLRequests.Warning(true, newCase.Name))
                 {
-                    //добавление
-                    Case newCase = AddInfoAboutCase();
-                    if (SQLRequests.Warning(true, newCase.Name))
-                    {
-                        SQLRequests.AddCase(newCase);
-                        SQLRequests.EditCaseMediator(newCase, "Add");
-                        //добавление в таблицу mediator
-                        //Добавить в warehouseInfo
-                        CaseList.Add(newCase);
+                    SQLRequests.AddCase(newCase);
+                    SQLRequests.EditCaseMediator(newCase, "Add");
+                    CaseList.Add(newCase);
                     MessageBox.Show("Добавление прошло успешно!");
-                        ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
-
-                    }
+                    ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
                 }
-                else if (ChangeCaseRadio.Checked)
-                {
-                    //изменение
-                    Motherboard changedMotherboard = AddInfoAboutMotherboard();
-                    //if (SQLRequests.Warning(false, changedMotherboard.Name))
-                    //{
-                    //    SQLRequests.ChangeMotherboard(changedMotherboard);
-                    //    SQLRequests.EditMotherboardMediator(changedMotherboard, "Edit");
-                    //    int temp = MotherBoardList.IndexOf(MotherBoardList.Single(i => i.ID == changedMotherboard.ID));
-                    //    MotherBoardList[temp] = changedMotherboard;
-                        MessageBox.Show("Изменение прошло успешно!");
-                    //    ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
-                    //}
-                }
-                //using (ApplicationContext db = new ApplicationContext())
-                //{
-                //    MotherBoardList.Clear();
-                //    int counter = 0;
-                //    foreach (Motherboard c in db.Motherboard)
-                //    {
-                //        MotherBoardList.Add(new Motherboard(c.ID));
-                //        MotherBoardList[counter].GetDataFromDB();
-                //        counter++;
-                //    }
-                //}
-                //SystemFunctions.ClearMotherboardTextBoxes(this);
             }
+            else if (ChangeCaseRadio.Checked)
+            {
+                Case changedCase = AddInfoAboutCase();
+                if (SQLRequests.Warning(false, changedCase.Name))
+                {
+                    SQLRequests.ChangeCase(changedCase);
+                    SQLRequests.EditCaseMediator(changedCase, "Edit");
+                    int temp = CaseList.IndexOf(CaseList.Single(i => i.ID == changedCase.ID));
+                    CaseList[temp] = changedCase;
+                    MessageBox.Show("Изменение прошло успешно!");
+                    ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
+                }
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                CaseList.Clear();
+                int counter = 0;
+                foreach (Case c in db.Case)
+                {
+                    CaseList.Add(new Case(c.ID));
+                    CaseList[counter].GetDataFromDB();
+                    counter++;
+                }
+            }
+            CaseFormFactorComboBoxText = "";
+            SystemFunctions.ClearCaseTextBoxes(this);
             this.ActiveControl = null;
         }
+
         private Case AddInfoAboutCase()
         {
             Case newCase = new Case();
