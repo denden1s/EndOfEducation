@@ -49,7 +49,7 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            AllInfoDatagridView.Rows.Clear();
             LoadAllInfoFromDB();
             //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
             //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
@@ -344,12 +344,12 @@ namespace Computer_house
 
         public void ViewInfoInDataGrid()
         {
-            dataGridView1.Rows.Clear();
+            AllInfoDatagridView.Rows.Clear();
             try
             {
                 foreach (Warehouse_info wi in WarehouseInformationList)
                 {
-                    dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                    AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
                 }
             }
             catch (Exception ex)
@@ -362,19 +362,20 @@ namespace Computer_house
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.SelectedCells.Count > 0)
+            if (AllInfoDatagridView.SelectedCells.Count > 0)
             {
                 AddProduct.Value = 0;
-                int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
-                DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
+                int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
 
-                Warehouse_info obj = WarehouseInformationList.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
+                Warehouse_info warehouseInfo = WarehouseInformationList.Single(i => 
+                                               i.Product_ID == (int)currentRow.Cells[0].Value);
 
 
-                switch (obj.ProductType)
+                switch (warehouseInfo.ProductType)
                 {
                     case "CPU":
-                        CPU currentCPU = Cpus.Single(i => i.Product_ID == obj.Product_ID);
+                        CPU currentCPU = Cpus.Single(i => i.Product_ID == warehouseInfo.Product_ID);
                         string integratedGPU = "не поддерживается";
                         int multi = 1;
                         if (currentCPU.Multithreading)
@@ -398,14 +399,11 @@ namespace Computer_house
                             $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
                             $"Количество на складе: \n";
                         break;
-                    case "Case":
-
-                        break;
                     case "Cooling":
 
                         break;
                     case "GPU":
-                        GPU currentGPU = Gpus.Single(i => i.Product_ID == obj.Product_ID);
+                        GPU currentGPU = Gpus.Single(i => i.Product_ID == warehouseInfo.Product_ID);
                         AllProductInfo.Text = $"ID товара: {currentGPU.ID};\n" +
                             $"Наименование: {currentGPU.Name};\n" +
                             $"Интерфейс подключения: {currentGPU.ConnectionInterface};\n" +
@@ -425,14 +423,15 @@ namespace Computer_house
                             $"Тип питания: {currentGPU.PowerType};\n" +
                             $"Кол-во вентиляторов: {Convert.ToString(currentGPU.Coolers_count)};\n" +
                             $"Толщина системы охлаждения: {Convert.ToString(currentGPU.Cooling_system_thikness)} слотов;\n" +
-                            $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / {Convert.ToString(currentGPU.Height)} мм;\n" +
+                            $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / " +
+                            $"{Convert.ToString(currentGPU.Height)} мм;\n" +
                             $"Количество на складе: \n";
                         break;
                     case "HDD":
 
                         break;
                     case "Motherboard":
-                        Motherboard currentMotherboard = Motherboards.Single(i => i.Product_ID == obj.Product_ID);
+                        Motherboard currentMotherboard = Motherboards.Single(i => i.Product_ID == warehouseInfo.Product_ID);
                         AllProductInfo.Text = $"ID товара: {currentMotherboard.ID};\n" +
                             $"Наименование: {currentMotherboard.Name};\n" +
                             $"Поддерживаемые процессоры: {currentMotherboard.Supported_CPU};\n" +
@@ -465,6 +464,41 @@ namespace Computer_house
                     case "SSD":
 
                         break;
+                    case "Case":
+                        Case currentCase = Cases.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+                        AllProductInfo.Text = $"ID товара: {currentCase.ID};\n" +
+                            $"Наименование: {currentCase.Name};\n" +
+                            $"Блок питания/расположение: {currentCase.Power_supply_unit} / {currentCase.PSU_position};\n" +
+                            $"Тип/материал корпуса: {currentCase.Form_factor_ID} / {currentCase.Material};\n" +
+                            $"Совместимые мат. платы: {currentCase.Compatible_motherboard};\n" +
+                            $"Вид охлаждения: {currentCase.Cooling_type};\n" +
+                            $"Доп функции: ";
+                        var tuple = new List<(bool state, string elem)>
+                        {
+                            (currentCase.Gaming, "игровой"),
+                            (currentCase.Water_cooling_support, "жидкостное охлаждение"),
+                            (currentCase.Cooler_in_set, "вентилятор в комплекте"),
+                            (currentCase.Sound_isolation, "шумоизоляция"),
+                            (currentCase.Dust_filter, "пылевые фильтры")
+                        };
+                        foreach (var i in tuple)
+                        {
+                            if (i.state)
+                                AllProductInfo.Text += i.elem + "; ";
+                        }
+                        AllProductInfo.Text += "\n" +
+                            $"Установлено кулеров/кол-во слотов для их установки: {currentCase.Coolers_count} /" +
+                            $" {currentCase.Coolers_slots};\n" +
+                            $"Высота/ширина/глубина: {Convert.ToString(currentCase.Height)} / " +
+                            $"{Convert.ToString(currentCase.Width)} / {Convert.ToString(currentCase.Depth)} ММ;\n" +
+                            $"Отсеки под накопители/слоты расширения: " +
+                            $"{Convert.ToString(currentCase.Storage_sections_count)} / " +
+                            $"{Convert.ToString(currentCase.Expansion_slots_count)} шт.;\n" +
+                            $"Макс. длина GPU/высота кулера CPU/длина БП: {Convert.ToString(currentCase.Max_GPU_length)} / " +
+                            $"{Convert.ToString(currentCase.Max_CPU_cooler_height)} / " +
+                            $"{Convert.ToString(currentCase.Max_PSU_length)} ММ;\n" +
+                            $"Вес: {Convert.ToString(currentCase.Weight)}.";
+                        break;
                     default:
                         break;
                 }
@@ -474,7 +508,7 @@ namespace Computer_house
                     //countMoreThanZero = false;
 
                     var productLocation = (from b in ProductLocationsList
-                                           where b.Location_ID == i.ID && b.Product_ID == obj.Product_ID
+                                           where b.Location_ID == i.ID && b.Product_ID == warehouseInfo.Product_ID
                                            select b).SingleOrDefault();
                     if (productLocation != null)
                     {
@@ -526,7 +560,7 @@ namespace Computer_house
         //Нужен для поиска данных в таблице WarehouseInfo
         private void SearchInfo_TextChanged(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            AllInfoDatagridView.Rows.Clear();
             AllProductInfo.Clear();
             if (SearchInfo.TextLength > 0)
             {
@@ -542,7 +576,7 @@ namespace Computer_house
                     {
                         foreach (Warehouse_info wi in SearchResultList)
                         {
-                            dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                            AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
                         }
                     }
                     //Если результат пустой то делает поиск по ID
@@ -575,19 +609,19 @@ namespace Computer_house
                                 {
                                     foreach (Warehouse_info wi in SearchResultList)
                                     {
-                                        dataGridView1.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+                                        AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
                                     }
                                 }
                                 //В противном случае очистить таблицу
                                 else
                                 {
-                                    dataGridView1.Rows.Clear();
+                                    AllInfoDatagridView.Rows.Clear();
                                    // ViewInfoInDataGrid();
                                 }                                    
                             }
                             else
                             {
-                                dataGridView1.Rows.Clear();
+                                AllInfoDatagridView.Rows.Clear();
                                 //ViewInfoInDataGrid();
                             }                                
                     }
@@ -636,14 +670,14 @@ namespace Computer_house
             if (questionResult == DialogResult.Yes)
             {
                 string deviceType = "";
-                   int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
-                DataGridViewRow currentRow = dataGridView1.Rows[selectedrowindex];
+                   int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     deviceType = db.Mediator.Single(i => i.ID == (int)currentRow.Cells[0].Value).Components_type;
                 }    
                 
-                SQLRequests.CreateHoldingDocument(WarehouseInformationList[dataGridView1.SelectedCells[0].RowIndex],
+                SQLRequests.CreateHoldingDocument(WarehouseInformationList[AllInfoDatagridView.SelectedCells[0].RowIndex],
                 Convert.ToInt32(AddProduct.Value), user,deviceType);
                 AllProductInfo.Clear();
                 LoadAllInfoFromDB();

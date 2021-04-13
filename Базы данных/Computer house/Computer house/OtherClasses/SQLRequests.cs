@@ -860,7 +860,7 @@ namespace Computer_house.OtherClasses
             }
         }
 
-        public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _item)
+        public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _deviceType)
         {
             if (_itemsCount < 0)
             {
@@ -907,7 +907,7 @@ namespace Computer_house.OtherClasses
                     //Сделать switch case
 
                     List<Locations_in_warehouse> locations = (from b in db.Locations_in_warehouse
-                                                              where b.Location_label.Contains(_item) &&
+                                                              where b.Location_label.Contains(_deviceType) &&
                                                               b.Max_item_count > b.Current_item_count + _itemsCount
                                                               select b).ToList();
 
