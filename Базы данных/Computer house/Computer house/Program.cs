@@ -14,24 +14,28 @@ namespace Computer_house
         [STAThread]
         static void Main()
         {
+            object locker = new object();
             bool login = false;
             Users user = new Users();
             try
             {
-                using (ApplicationContext db = new ApplicationContext())
+                lock(locker)
                 {
-                    if (db.Users.Count() != 0)
+                    using (ApplicationContext db = new ApplicationContext())
                     {
-                        foreach (Users u in db.Users)
+                        if (db.Users.Count() != 0)
                         {
-                            if(u.Authorization_status == true)
+                            foreach (Users u in db.Users)
                             {
-                                login = true;
-                                user = new Users(u.ID, u.Login, u.Password);
+                                if (u.Authorization_status == true)
+                                {
+                                    login = true;
+                                    user = new Users(u.ID, u.Login, u.Password);
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
             }
             catch(Exception)

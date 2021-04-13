@@ -28,14 +28,16 @@ namespace Computer_house
         //private List<HDD> Hdds;
         private List<Motherboard> Motherboards = new List<Motherboard>();
         private List<PSU> Psus;
-        private List<RAM> Rams;
+        private List<RAM> Rams = new List<RAM>();
        // private List<SSD> Ssds;
         private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
         private List<Products_location> ProductLocationsList = new List<Products_location>();
         private List<Mediator> Mediators = new List<Mediator>();
-       // private Thread[] threads = new Thread[2];
 
         private Users user;
+
+        static object locker = new object();
+        private Thread [] threads = new Thread[7];
         public AuthorizedForm()
         {
             InitializeComponent();
@@ -49,19 +51,21 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
+            threads[0] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
+            threads[1] = new Thread(new ThreadStart(LoadInfoAboutCasesFromDB));
+            threads[2] = new Thread(new ThreadStart(LoadInfoAboutGPUFromDB));
+            threads[3] = new Thread(new ThreadStart(LoadInfoAboutMotherboardsFromDB));
+            threads[4] = new Thread(new ThreadStart(LoadLocationInWarehouseFromDB));
+            threads[5] = new Thread(new ThreadStart(LoadProductLocationFromDB));
+            threads[6] = new Thread(new ThreadStart(LoadInfoAboutMediatorFromDB));
+            foreach (var th in threads)
+            {
+                th.Start();
+            }
+            LoadInfoFromDBAndView();
             AllInfoDatagridView.Rows.Clear();
-            LoadAllInfoFromDB();
-            //threads[0] = new Thread(new ThreadStart(LoadAllInfoFromDB));
-            //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
-            LoadInfoAboutCPUFromDB();
-            LoadInfoAboutCasesFromDB();
-
-            LoadInfoAboutGPUFromDB();
-            LoadInfoAboutMotherboardsFromDB();
-            LoadLocationInWarehouseFromDB();
-            LoadProductLocationFromDB();
-            LoadInfoAboutMediatorFromDB();
         }
+
 
         private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -78,6 +82,7 @@ namespace Computer_house
                         Mediators.Add(c);
                     }
                 }
+                threads[6].Interrupt();
             }
             catch (Exception ex)
             {
@@ -101,6 +106,7 @@ namespace Computer_house
                         counter++;
                     }
                 }
+                threads[1].Interrupt();
             }
             catch (Exception ex)
             {
@@ -163,6 +169,7 @@ namespace Computer_house
                         counter++;
                     }
                 }
+                threads[2].Interrupt();
             }
             catch (Exception ex)
             {
@@ -210,6 +217,7 @@ namespace Computer_house
                         counter++;
                     }
                 }
+                threads[3].Interrupt();
             }
             catch (Exception ex)
             {
@@ -292,6 +300,7 @@ namespace Computer_house
                         ProductLocationsList.Add(new Products_location(i.Product_ID, i.Location_ID, i.Items_count));
                     }
                 }
+                threads[5].Interrupt();
             }
             catch (Exception ex)
             {
@@ -311,29 +320,38 @@ namespace Computer_house
                             i.Max_item_count));
                     }
                 }
+                threads[4].Interrupt();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        
+        private async void LoadInfoFromDBAndView()
+        {
+            await Task.Run(() => LoadAllInfoFromDB());
+            ViewInfoInDataGrid();
+        }
 
         private void LoadAllInfoFromDB()
         {
             try
             {
-                WarehouseInformationList.Clear();
-                using (ApplicationContext db = new ApplicationContext())
+                lock(locker)
                 {
-                    if (db.Warehouse_info.Count() > 0)
+                    WarehouseInformationList.Clear();
+                    using (ApplicationContext db = new ApplicationContext())
                     {
-                        foreach (Warehouse_info c in db.Warehouse_info)
+                        if (db.Warehouse_info.Count() > 0)
                         {
-                            WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                            foreach (Warehouse_info c in db.Warehouse_info)
+                            {
+                                WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count));
+                            }
                         }
                     }
                 }
-                ViewInfoInDataGrid();
             }
             catch (Exception ex)
             {
@@ -356,7 +374,7 @@ namespace Computer_house
             {
 
                 MessageBox.Show(ex.Message);
-            }          
+            }
         }
 
 
@@ -497,7 +515,7 @@ namespace Computer_house
                             $"Макс. длина GPU/высота кулера CPU/длина БП: {Convert.ToString(currentCase.Max_GPU_length)} / " +
                             $"{Convert.ToString(currentCase.Max_CPU_cooler_height)} / " +
                             $"{Convert.ToString(currentCase.Max_PSU_length)} ММ;\n" +
-                            $"Вес: {Convert.ToString(currentCase.Weight)}.";
+                            $"Вес: {Convert.ToString(currentCase.Weight)}.\n";
                         break;
                     default:
                         break;
@@ -589,13 +607,23 @@ namespace Computer_house
                         List<Mediator> tempRequest = new List<Mediator>();
                         List<Mediator> tempRequestCPU = new List<Mediator>();
                         List<Mediator> tempRequestGPU = new List<Mediator>();
+                        List<Mediator> tempRequestMotherboard = new List<Mediator>();
+                        List<Mediator> tempRequestCase = new List<Mediator>();
                         tempRequestCPU.AddRange(GetSearchInfo("CPU"));
                         tempRequestGPU.AddRange(GetSearchInfo("GPU"));
+                        tempRequestMotherboard.AddRange(GetSearchInfo("Motherboard"));
+                        tempRequestCase.AddRange(GetSearchInfo("Case"));
                         tempRequest.AddRange((from b in tempRequestCPU
                                               where b.CPU_ID == SearchInfo.Text
                                               select b).ToList());
                         tempRequest.AddRange((from b in tempRequestGPU
                                               where b.GPU_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestMotherboard
+                                              where b.Motherboard_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestCase
+                                              where b.Case_ID.Contains(SearchInfo.Text)
                                               select b).ToList());
                         //Проверка наличия такого ID как в строке поиска
                         if (tempRequest != null)
@@ -680,7 +708,9 @@ namespace Computer_house
                 SQLRequests.CreateHoldingDocument(WarehouseInformationList[AllInfoDatagridView.SelectedCells[0].RowIndex],
                 Convert.ToInt32(AddProduct.Value), user,deviceType);
                 AllProductInfo.Clear();
-                LoadAllInfoFromDB();
+                LoadInfoFromDBAndView();
+                //LoadAllInfoFromDB();
+                //ViewInfoInDataGrid();
                 LoadLocationInWarehouseFromDB();
                 LoadProductLocationFromDB();
             }

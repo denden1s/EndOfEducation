@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
@@ -17,7 +18,6 @@ namespace Computer_house
 {
     public partial class ComponentsOptionsForm : Form
     {
-        Thread[] threads = new Thread[11];
         private AuthorizedForm authorizedForm;
         private Users user;  
         //Списки для получения данных из БД
@@ -60,7 +60,7 @@ namespace Computer_house
 
         private string CaseFormFactorComboBoxText = "";
 
-        private bool firstLoad = true;
+        private bool othersTabsLostFocus = false;
 
         public ComponentsOptionsForm()
         {
@@ -70,7 +70,7 @@ namespace Computer_house
             List<Motherboard> _motherboards, List<Case> _cases)
         {
             InitializeComponent();
-            //WarehouseInfo = _wareHouse;
+            //WarehouseInfo = _wareHouse; не используется
             GPUList = _gpus;
             CPUList = _cpus;
             MotherBoardList = _motherboards;
@@ -85,7 +85,7 @@ namespace Computer_house
             authorizedForm.Show();
         }
 
-        private void AddComponentsOptionsForm_Load(object sender, EventArgs e)
+        private async void AddComponentsOptionsForm_Load(object sender, EventArgs e)
         {
             //Настройки перед загрузкой формы
             SystemFunctions.SetVisibleLables(this, false);
@@ -96,47 +96,34 @@ namespace Computer_house
             SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU,ActWithMotherboard,
                 ActWithCase);
 
-            //Запуск потоков на выгрузку данных из БД
-            threads[0] = new Thread(new ThreadStart(LoadCPUSeriesFromDB));
-            threads[1] = new Thread(new ThreadStart(LoadCPUCodeNameFromDB));
-            threads[2] = new Thread(new ThreadStart(LoadSocketInfoFromDB));
-            threads[3] = new Thread(new ThreadStart(LoadChipsetInfoFromDB));
-            threads[4] = new Thread(new ThreadStart(LoadChanelInfoFromDB));
-            threads[5] = new Thread(new ThreadStart(LoadFrequensyInfoFromDB));
-            threads[6] = new Thread(new ThreadStart(LoadFormFactorsFromDB));
-            threads[7] = new Thread(new ThreadStart(LoadMemoryTypesFromDB));
-            threads[8] = new Thread(new ThreadStart(LoadConnectionInterfacesFromDB));
-            threads[9] = new Thread(new ThreadStart(LoadPowerConnectorsFromDB));
-            threads[10] = new Thread(new ThreadStart(LoadHoldingDocsFromDB));
-            foreach (var thread in threads)
+
+            Task[] tasks =
             {
-                thread.Start();
-            }
-            //отображение данных о видеокартах
-            // + сделать потоки на эти методы
-            ViewInfoInDataGrid<CPU>(CPU_DatagridView,CPUList);
+                Task.Run(() => LoadHoldingDocsFromDB()),Task.Run(() => LoadCPUCodeNameFromDB()),
+                Task.Run(() => LoadSocketInfoFromDB()),Task.Run(() => LoadChipsetInfoFromDB()),
+                Task.Run(() => LoadChanelInfoFromDB()),Task.Run(() => LoadFrequensyInfoFromDB()),
+                Task.Run(() => LoadFormFactorsFromDB()), Task.Run(() => LoadMemoryTypesFromDB()),
+                Task.Run(() => LoadConnectionInterfacesFromDB()), Task.Run(() => LoadPowerConnectorsFromDB()),
+                Task.Run(() => LoadCPUSeriesFromDB())
+
+            };
+            await Task.WhenAll(tasks);
+
+            ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
+
             ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
             ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
             ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
 
-            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
-            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
-            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
-            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
-            LoadMemoryTypeInComboBox(MotherboardSupportedRAMComboBox, "RAM");
-            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
-            LoadInfoFromListToCombobox<Sockets>(SocketsList, MotherboardSocketComboBox);
-            LoadInfoFromListToCombobox<Chipset>(ChipsetsList, MotherboardChipsetComboBox);
-            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, MotherBoardRAMChanelsComboBox);
-            LoadRamFrequencyInComboBox(MotherboardRamFrequencyComboBox);
-            LoadFormFactorsInComboBox(MotherboardFormFactorComboBox, "Motherboard");
-            LoadFormFactorsInComboBox(CaseFormFactorComboBox, "Case");
-            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
             SystemFunctions.ChangeCPUTextBoxesEnable(this, false);
             SystemFunctions.ChangeMotherboardTextBoxesEnable(this, false);
             SystemFunctions.ChangeCaseTextBoxesEnable(this, false);
-            SystemFunctions.ChangeGPUTextBoxesEnable(this,false);
-            ViewDocsInDataGrid();
+            SystemFunctions.ChangeGPUTextBoxesEnable(this, false);
+            await Task.Run(() => ViewDocsInDataGrid());
+
+
+            await Task.Run(() => ViewInfoFromListsToFormElements(this));
+            ViewSecondPartDataFromListsToFormEl(this);
         }
 
         //Методы для загрузки данных из БД
@@ -157,7 +144,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
-            threads[0].Interrupt();
         }
         private void LoadCPUCodeNameFromDB()
         {
@@ -176,7 +162,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             } 
-            threads[1].Interrupt();
         }
         private void LoadSocketInfoFromDB()
         {
@@ -195,7 +180,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
-            threads[2].Interrupt();
         }
         private void LoadChipsetInfoFromDB()
         {
@@ -214,7 +198,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }          
-            threads[2].Interrupt();
         }
         private void LoadChanelInfoFromDB()
         {
@@ -232,7 +215,6 @@ namespace Computer_house
             {
                 MessageBox.Show(ex.Message);
             }
-            threads[4].Interrupt();
         }
         private void LoadFrequensyInfoFromDB()
         {
@@ -250,7 +232,6 @@ namespace Computer_house
             {
                 MessageBox.Show(ex.Message);
             }
-            threads[5].Interrupt();
         }
         private void LoadFormFactorsFromDB()
         {
@@ -269,7 +250,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
-            threads[6].Interrupt();
         }
         private void LoadMemoryTypesFromDB()
         {
@@ -287,7 +267,6 @@ namespace Computer_house
             {
                 MessageBox.Show(ex.Message);
             }
-            threads[7].Interrupt();
         }
         private void LoadConnectionInterfacesFromDB()
         {
@@ -306,7 +285,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
-            threads[8].Interrupt();
         }
         private void LoadPowerConnectorsFromDB()
         {
@@ -324,7 +302,6 @@ namespace Computer_house
             {
                 MessageBox.Show(ex.Message);
             }
-            threads[9].Interrupt();
         }
         private void LoadHoldingDocsFromDB()
         {
@@ -344,7 +321,6 @@ namespace Computer_house
 
                 MessageBox.Show(ex.Message);
             }
-            threads[10].Interrupt();
         }
 
         //Нужен для отключения автоскрола и загрузки данных из комбобоксов
@@ -1167,6 +1143,7 @@ namespace Computer_house
         private void dataGridView2_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
         }
+
         private void ViewDocsInDataGrid()
         {
             HoldingDocsDatagridView.Rows.Clear();
@@ -1390,59 +1367,68 @@ namespace Computer_house
                 ViewMotherboardInfoToChange();
         }
 
-
-        private void tabPage1_Enter(object sender, EventArgs e)
+        private void ViewInfoFromListsToFormElements(ComponentsOptionsForm _form)
         {
-            if(tabControl2.SelectedTab.Text != "Оперативная память")
-                AutoScroll = true;
-            //можно через потоки
-            LoadInfoFromListToCombobox<CPU_series>(SeriesList, CPUSeriesComboBox);
-            LoadInfoFromListToCombobox<CPU_codename>(CPUCodeNamesList, CPUCodeNameComboBox);
-            LoadInfoFromListToCombobox<Sockets>(SocketsList, CPUSocketComboBox);
-            LoadMemoryTypeInComboBox(CPUMemoryTypeComboBox, "RAM");
-            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, CPUChanelsComboBox);
-            LoadRamFrequencyInComboBox(CPURamFrequaencyComboBox);
+            LoadInfoFromListToCombobox<Connection_interfaces>(_form.ConnectionInterfacesList, _form.GPUInterfacesComboBox);
+            LoadMemoryTypeInComboBox(_form.GPUMemoryTypeComboBox, "GPU");
+            LoadPowerTypeInComboBox(_form.GPUPowerTypeComboBox);
 
-            LoadInfoFromListToCombobox<Connection_interfaces>(ConnectionInterfacesList, GPUInterfacesComboBox);
-            LoadMemoryTypeInComboBox(GPUMemoryTypeComboBox, "GPU");
-            LoadPowerTypeInComboBox(GPUPowerTypeComboBox);
+            LoadInfoFromListToCombobox<Sockets>(_form.SocketsList, _form.MotherboardSocketComboBox);
+            LoadInfoFromListToCombobox<Chipset>(_form.ChipsetsList, _form.MotherboardChipsetComboBox);
+            LoadInfoFromListToCombobox<RAM_chanels>(_form.RAMChanelsList, _form.MotherBoardRAMChanelsComboBox);
+            LoadFormFactorsInComboBox(_form.MotherboardFormFactorComboBox, "Motherboard");
+            LoadRamFrequencyInComboBox(_form.MotherboardRamFrequencyComboBox);
+            LoadMemoryTypeInComboBox(_form.MotherboardSupportedRAMComboBox, "RAM");
 
-            LoadInfoFromListToCombobox<Sockets>(SocketsList, MotherboardSocketComboBox);
-            LoadInfoFromListToCombobox<Chipset>(ChipsetsList, MotherboardChipsetComboBox);
-            LoadInfoFromListToCombobox<RAM_chanels>(RAMChanelsList, MotherBoardRAMChanelsComboBox);
-            LoadFormFactorsInComboBox(MotherboardFormFactorComboBox, "Motherboard");
-            LoadRamFrequencyInComboBox(MotherboardRamFrequencyComboBox);
+            LoadFormFactorsInComboBox(_form.CaseFormFactorComboBox, "Case");
+        }
+        private void ViewSecondPartDataFromListsToFormEl(ComponentsOptionsForm _form)
+        {
+            LoadInfoFromListToCombobox<CPU_series>(_form.SeriesList, _form.CPUSeriesComboBox);
+            LoadInfoFromListToCombobox<CPU_codename>(_form.CPUCodeNamesList, _form.CPUCodeNameComboBox);
+            LoadInfoFromListToCombobox<Sockets>(_form.SocketsList, _form.CPUSocketComboBox);
+            LoadMemoryTypeInComboBox(_form.CPUMemoryTypeComboBox, "RAM");
+            LoadInfoFromListToCombobox<RAM_chanels>(_form.RAMChanelsList, _form.CPUChanelsComboBox);
+            LoadRamFrequencyInComboBox(_form.CPURamFrequaencyComboBox);
+        }
 
-            LoadFormFactorsInComboBox(CaseFormFactorComboBox, "Case");
-
-            try
+            private async void tabPage1_Enter(object sender, EventArgs e)
             {
-                CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
-                CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
-                CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
-                CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
-                CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
-                if(CPUMemoryFrequencyComboBoxText != "")
-                    CPURamFrequaencyComboBox.SelectedItem = Convert.ToInt32(CPUMemoryFrequencyComboBoxText);
-
-                GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
-                GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
-                GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
-
-                MotherboardSocketComboBox.SelectedItem = MotherboardSocketComboBoxText;
-                MotherboardChipsetComboBox.SelectedItem = MotherboardChipsetComboBoxText;
-                MotherboardFormFactorComboBox.SelectedItem = MotherboardFormFactorComboBoxText;
-                MotherboardSupportedRAMComboBox.SelectedItem = MotherboardSupportedMemoryComboBoxText;
-                MotherBoardRAMChanelsComboBox.SelectedItem = MotherboardMemoryChanelsComboBoxText;
-                if(MotherboardRAMFrequencyComboBoxText != "")
-                    MotherboardRamFrequencyComboBox.SelectedItem = Convert.ToInt32(MotherboardRAMFrequencyComboBoxText);
-
-                CaseFormFactorComboBox.SelectedItem = CaseFormFactorComboBoxText;
+                if (othersTabsLostFocus)
+                {
+                    if (tabControl2.SelectedTab.Text != "Оперативная память")
+                        AutoScroll = true;
+                    //можно через потоки
+                    ViewInfoFromListsToFormElements(this);
+                    ViewSecondPartDataFromListsToFormEl(this);
+                    ReturnComboBoxInfo();
+                }
+            
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        private void ReturnComboBoxInfo()
+        {
+            //можно изменять id в data grid view
+            CPUSeriesComboBox.SelectedItem = CPUSeriesComboBoxText;
+            CPUCodeNameComboBox.SelectedItem = CPUCodeNameComboBoxText;
+            CPUSocketComboBox.SelectedItem = CPUSocketComboBoxText;
+            CPUMemoryTypeComboBox.SelectedItem = CPUMemoryTypeComboBoxText;
+            CPUChanelsComboBox.SelectedItem = CPUChanelsComboBoxText;
+            if (CPUMemoryFrequencyComboBoxText != "")
+                CPURamFrequaencyComboBox.SelectedItem = Convert.ToInt32(CPUMemoryFrequencyComboBoxText);
+
+            GPUPowerTypeComboBox.SelectedItem = GPUpowerTypeComboBoxText;
+            GPUMemoryTypeComboBox.SelectedItem = GPUTypeComboBoxText;
+            GPUInterfacesComboBox.SelectedItem = GPUconnectionInterfaceComboBoxText;
+
+            MotherboardSocketComboBox.SelectedItem = MotherboardSocketComboBoxText;
+            MotherboardChipsetComboBox.SelectedItem = MotherboardChipsetComboBoxText;
+            MotherboardFormFactorComboBox.SelectedItem = MotherboardFormFactorComboBoxText;
+            MotherboardSupportedRAMComboBox.SelectedItem = MotherboardSupportedMemoryComboBoxText;
+            MotherBoardRAMChanelsComboBox.SelectedItem = MotherboardMemoryChanelsComboBoxText;
+            if (MotherboardRAMFrequencyComboBoxText != "")
+                MotherboardRamFrequencyComboBox.SelectedItem = Convert.ToInt32(MotherboardRAMFrequencyComboBoxText);
+
+            CaseFormFactorComboBox.SelectedItem = CaseFormFactorComboBoxText;
         }
 
         private void tabPage7_Enter(object sender, EventArgs e)
@@ -1701,6 +1687,16 @@ namespace Computer_house
         private void CaseFormFactorComboBox_Leave(object sender, EventArgs e)
         {
             CaseFormFactorComboBoxText = CaseFormFactorComboBox.Text;
+        }
+
+        private void tabPage2_Leave(object sender, EventArgs e)
+        {
+            othersTabsLostFocus = true;
+        }
+
+        private void tabPage12_Leave(object sender, EventArgs e)
+        {
+            othersTabsLostFocus = true;
         }
     }
 }
