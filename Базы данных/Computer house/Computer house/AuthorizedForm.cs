@@ -51,6 +51,7 @@ namespace Computer_house
 
         private void AuthorizedForm_Load(object sender, EventArgs e)
         {
+            
             threads[0] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
             threads[1] = new Thread(new ThreadStart(LoadInfoAboutCasesFromDB));
             threads[2] = new Thread(new ThreadStart(LoadInfoAboutGPUFromDB));
@@ -58,6 +59,7 @@ namespace Computer_house
             threads[4] = new Thread(new ThreadStart(LoadLocationInWarehouseFromDB));
             threads[5] = new Thread(new ThreadStart(LoadProductLocationFromDB));
             threads[6] = new Thread(new ThreadStart(LoadInfoAboutMediatorFromDB));
+            Task.Run(() => LoadInfoAboutRAM());
             foreach (var th in threads)
             {
                 th.Start();
@@ -477,10 +479,33 @@ namespace Computer_house
 
                         break;
                     case "RAM":
+                        RAM currentRAM = Rams.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+                        AllProductInfo.Text = $"ID товара: {currentRAM.ID};\n" +
+                            $"Наименование: {currentRAM.Name}; \n" +
+                            $"Количество в наборе: {Convert.ToString(currentRAM.Kit)} шт.;\n" +
+                            $"Тип / частота памяти: {currentRAM.RAM_type} / " +
+                            $"{Convert.ToString(currentRAM.RAM_frequency)} МГц;\n" +
+                            $"Напряжение питания: {Convert.ToString(currentRAM.Voltage)} В;\n" +
+                            $"Объём памяти: {Convert.ToString(currentRAM.Capacity * currentRAM.Kit)} Гб;\n" +
+                            $"Тайминги: {currentRAM.Timings};\n" +
+                            $"Доп функции: ";
+                        var ramTuple = new List<(bool state, string elem)>
+                        {
+                            (currentRAM.XMP_profile, "поддержка XMP"),
+                            (currentRAM.Cooling, "охлаждение"),
+                            (currentRAM.Low_profile_module, "низкопрофильный модуль")
+
+                        };
+                        foreach (var i in ramTuple)
+                        {
+                            if (i.state)
+                                AllProductInfo.Text += i.elem + "; ";
+                        }
+                        AllProductInfo.Text += "\n";
 
                         break;
                     case "SSD":
-
+                        
                         break;
                     case "Case":
                         Case currentCase = Cases.Single(i => i.Product_ID == warehouseInfo.Product_ID);
@@ -491,7 +516,7 @@ namespace Computer_house
                             $"Совместимые мат. платы: {currentCase.Compatible_motherboard};\n" +
                             $"Вид охлаждения: {currentCase.Cooling_type};\n" +
                             $"Доп функции: ";
-                        var tuple = new List<(bool state, string elem)>
+                        var caseTuple = new List<(bool state, string elem)>
                         {
                             (currentCase.Gaming, "игровой"),
                             (currentCase.Water_cooling_support, "жидкостное охлаждение"),
@@ -499,7 +524,7 @@ namespace Computer_house
                             (currentCase.Sound_isolation, "шумоизоляция"),
                             (currentCase.Dust_filter, "пылевые фильтры")
                         };
-                        foreach (var i in tuple)
+                        foreach (var i in caseTuple)
                         {
                             if (i.state)
                                 AllProductInfo.Text += i.elem + "; ";
@@ -554,7 +579,7 @@ namespace Computer_house
         private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, 
-                WarehouseInformationList, Cpus, Gpus, Motherboards, Cases);
+                WarehouseInformationList, Cpus, Gpus, Motherboards, Cases, Rams, CoolingSystems);
             this.Hide();
             addComponentsOptionsForm.Show();
         }
@@ -609,10 +634,12 @@ namespace Computer_house
                         List<Mediator> tempRequestGPU = new List<Mediator>();
                         List<Mediator> tempRequestMotherboard = new List<Mediator>();
                         List<Mediator> tempRequestCase = new List<Mediator>();
+                        List<Mediator> tempRequestRAM = new List<Mediator>();
                         tempRequestCPU.AddRange(GetSearchInfo("CPU"));
                         tempRequestGPU.AddRange(GetSearchInfo("GPU"));
                         tempRequestMotherboard.AddRange(GetSearchInfo("Motherboard"));
                         tempRequestCase.AddRange(GetSearchInfo("Case"));
+                        tempRequestRAM.AddRange(GetSearchInfo("RAM"));
                         tempRequest.AddRange((from b in tempRequestCPU
                                               where b.CPU_ID == SearchInfo.Text
                                               select b).ToList());
@@ -624,6 +651,9 @@ namespace Computer_house
                                               select b).ToList());
                         tempRequest.AddRange((from b in tempRequestCase
                                               where b.Case_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestRAM
+                                              where b.RAM_ID.Contains(SearchInfo.Text)
                                               select b).ToList());
                         //Проверка наличия такого ID как в строке поиска
                         if (tempRequest != null)

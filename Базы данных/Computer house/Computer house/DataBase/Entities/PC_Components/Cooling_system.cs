@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities
 {
-    public class Cooling_system //: IBase_and_max_options, IEnergy_consumption, ISizes_of_components
+    public class Cooling_system :Product //: IBase_and_max_options, IEnergy_consumption, ISizes_of_components
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public string Supported_sockets { get; set; }
         public int Count_of_heat_pipes { get; set; }
         public bool Evaporation_chamber { get; set; }

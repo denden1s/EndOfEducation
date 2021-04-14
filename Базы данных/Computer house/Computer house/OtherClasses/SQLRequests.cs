@@ -860,6 +860,85 @@ namespace Computer_house.OtherClasses
             }
         }
 
+        public static void AddRAM(RAM _ram)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.RAM.Add(_ram);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void ChangeRAM(RAM _ram)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.RAM.Update(_ram);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void EditRAMMediator(RAM _ram, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "RAM";
+                    mediator.RAM_ID = _ram.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "RAM" && b.RAM_ID == _ram.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if (_method == "Edit")
+                        db.Warehouse_info.Update(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+                    Memory_capacity capacity = new Memory_capacity();
+                    capacity.Product_ID = info.Product_ID;
+                    capacity.Capacity = _ram.Capacity;
+                    if (_method == "Add")
+                        db.Memory_capacity.Add(capacity);
+                    else if (_method == "Edit")
+                        db.Memory_capacity.Update(capacity);
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _deviceType)
         {
             if (_itemsCount < 0)

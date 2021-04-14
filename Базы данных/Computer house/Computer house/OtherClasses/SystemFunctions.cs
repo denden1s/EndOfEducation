@@ -1,6 +1,7 @@
 ﻿using Computer_house.DataBase.Entities;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Computer_house.OtherClasses
@@ -18,7 +19,36 @@ namespace Computer_house.OtherClasses
         }
 
 
+        //Можно использовать общий метод выделив массивы в главной форме
+
         //Раздел очистки полей
+        public static void ClearCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = { 
+                componentsOptions.CoolingSystemIDTextBox, componentsOptions.CoolingSystemNameTextBox,
+                componentsOptions.CoolingSystemSocketsTextBox, componentsOptions.CoolingSystemCountOfHeatPipesTextBox,
+                componentsOptions.CoolingSystemTypeOfBearing, componentsOptions.CoolingSystemNoiseLevelTextBox,
+                componentsOptions.CoolingSystemMaxSpeedTextBox, componentsOptions.CoolingSystemConsumptionTextBox,
+                componentsOptions.CoolingSystemDiametrTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.CoolingSystemPowerTypeComboBox };
+            CheckBox[] checkBoxes = { 
+                componentsOptions.CoolingSystemEvaporationChamberCheckBox, componentsOptions.CoolingSystemRSCCheckBox};
+            Clear(textBoxes, comboBoxes, checkBoxes);
+        }
+
+        public static void ClearRAMTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
+                componentsOptions.RAMKitTextBox, componentsOptions.RAMVoltageTextBox,
+                componentsOptions.RAMCapacityTextBox, componentsOptions.RAMTimingsTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.RAMTypeComboBox,componentsOptions.RAMFrequencyComboBox};
+            CheckBox[] checkBoxes = { componentsOptions.RAMLowProfileModuleCheckBox, componentsOptions.RAMCoolingCheckBox,
+                componentsOptions.RAMxmpSupportCheckBox
+            };
+            Clear(textBoxes, comboBoxes, checkBoxes);
+        }
         public static void ClearMotherboardTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox,
@@ -59,7 +89,7 @@ namespace Computer_house.OtherClasses
             componentsOptions.CasesGamingCheckBox.Checked = false;
         }
 
-        public static void ClearGPUInfoTextBoxes(ComponentsOptionsForm componentsOptions)
+        public static void ClearGPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes =
             {
@@ -80,7 +110,7 @@ namespace Computer_house.OtherClasses
             Clear(textBoxes, comboboxes);
         }
 
-        public static void ClearCPUInfoInTextBoxes(ComponentsOptionsForm componentsOptions)
+        public static void ClearCPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes =
             {
@@ -99,24 +129,49 @@ namespace Computer_house.OtherClasses
             componentsOptions.CPUIntegratedGraphicCheckBox.Checked = false;
             Clear(textBoxes, comboBoxes);
         }
-
+        private static void Clear(TextBox[] _textBoxes, ComboBox[] _comboBoxes, CheckBox[] _checkBoxes)
+        {
+            foreach (var i in _textBoxes) i.Clear();
+            foreach (var i in _comboBoxes) i.SelectedItem = null;
+            foreach (var i in _checkBoxes) i.Checked = false;
+        }
         private static void Clear(TextBox[] _textBoxes, ComboBox[] _comboBoxes)
         {
             foreach (var i in _textBoxes) i.Clear();
             foreach (var i in _comboBoxes) i.SelectedItem = null;
         }
+        
         private static void Clear(TextBox[] _textBoxes)
         {
             foreach (var i in _textBoxes) i.Clear();
-        }
-        private static void Clear(ComboBox[] _comboBoxes)
-        {
-            foreach (var i in _comboBoxes) i.SelectedItem = null;
         }
 
 
 
         //Раздел проверки текстовых полей на нулевые значения
+        public static bool CheckNullForCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.CoolingSystemIDTextBox, componentsOptions.CoolingSystemNameTextBox,
+                componentsOptions.CoolingSystemSocketsTextBox, componentsOptions.CoolingSystemCountOfHeatPipesTextBox,
+                componentsOptions.CoolingSystemTypeOfBearing, componentsOptions.CoolingSystemNoiseLevelTextBox,
+                componentsOptions.CoolingSystemMaxSpeedTextBox, componentsOptions.CoolingSystemConsumptionTextBox,
+                componentsOptions.CoolingSystemDiametrTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.CoolingSystemPowerTypeComboBox };
+            return CheckNullTextBoxes(textBoxes, comboBoxes);
+        }
+
+        public static bool CheckNullForRAMTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
+                componentsOptions.RAMKitTextBox, componentsOptions.RAMVoltageTextBox,
+                componentsOptions.RAMCapacityTextBox, componentsOptions.RAMTimingsTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.RAMTypeComboBox, componentsOptions.RAMFrequencyComboBox };
+            return CheckNullTextBoxes(textBoxes, comboBoxes);
+        }
+
         public static bool CheckNullForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes =
@@ -222,6 +277,34 @@ namespace Computer_house.OtherClasses
 
 
         //Раздел блокировки элементов управления
+        public static void ChangeCoolingSystemTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.CoolingSystemIDTextBox, componentsOptions.CoolingSystemNameTextBox,
+                componentsOptions.CoolingSystemSocketsTextBox, componentsOptions.CoolingSystemCountOfHeatPipesTextBox,
+                componentsOptions.CoolingSystemTypeOfBearing, componentsOptions.CoolingSystemNoiseLevelTextBox,
+                componentsOptions.CoolingSystemMaxSpeedTextBox, componentsOptions.CoolingSystemConsumptionTextBox,
+                componentsOptions.CoolingSystemDiametrTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.CoolingSystemPowerTypeComboBox };
+            CheckBox[] checkBoxes = {
+                componentsOptions.CoolingSystemEvaporationChamberCheckBox, componentsOptions.CoolingSystemRSCCheckBox};
+            SetEnableBoxes(textBoxes, comboBoxes, checkBoxes, _status);
+        }
+
+        public static void ChangeRAMTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
+        {
+            TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
+                componentsOptions.RAMKitTextBox, componentsOptions.RAMVoltageTextBox,
+                componentsOptions.RAMCapacityTextBox, componentsOptions.RAMTimingsTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.RAMTypeComboBox, componentsOptions.RAMFrequencyComboBox };
+            CheckBox[] checkBoxes = { componentsOptions.RAMLowProfileModuleCheckBox, componentsOptions.RAMCoolingCheckBox,
+                componentsOptions.RAMxmpSupportCheckBox
+            };
+            SetEnableBoxes(textBoxes, comboBoxes, checkBoxes, _status);
+        }
+
         public static void ChangeCPUTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
         {
             TextBox[] textBoxes =
@@ -302,6 +385,22 @@ namespace Computer_house.OtherClasses
             componentsOptions.CasesGamingCheckBox.Enabled = _status;
         }
 
+        private static void SetEnableBoxes(TextBox[] _textBoxes, ComboBox[] _comboBoxes, CheckBox[] _checkBoxes, bool _status)
+        {
+            
+            foreach (var i in _textBoxes)
+            {
+                i.Enabled = _status;
+            }
+            foreach (var i in _comboBoxes)
+            {
+                i.Enabled = _status;
+            }
+            foreach (var i in _checkBoxes)
+            {
+                i.Enabled = _status;
+            }
+        }
         private static void SetEnableBoxes(TextBox[] _textBoxes, ComboBox[] _comboBoxes, bool _status)
         {
             foreach (var i in _textBoxes)
@@ -322,7 +421,36 @@ namespace Computer_house.OtherClasses
         }
 
 
+
         //Раздел проверки на возможность преобразования к числовому типу
+        public static bool CheckNumConvertForCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.CoolingSystemCountOfHeatPipesTextBox, componentsOptions.CoolingSystemMaxSpeedTextBox, 
+                componentsOptions.CoolingSystemConsumptionTextBox, componentsOptions.CoolingSystemDiametrTextBox
+            };
+            float res;
+            bool isFloat = float.TryParse(componentsOptions.CoolingSystemNoiseLevelTextBox.Text, out res);
+            //true - если распарсит
+            if (!isFloat)
+                return false;
+            else
+                return CheckIntConvert(textBoxes);
+        }
+
+
+        public static bool CheckNumConvertForRAMTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {componentsOptions.RAMKitTextBox, componentsOptions.RAMCapacityTextBox};
+            //componentsOptions.RAMVoltageTextBox - float
+            float res;
+            bool isFloat = float.TryParse(componentsOptions.RAMVoltageTextBox.Text, out res);
+            //true - если распарсит
+            if (!isFloat)
+                return false;
+            else
+                return CheckIntConvert(textBoxes);
+        }
 
         public static bool CheckNumConvertForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
         {

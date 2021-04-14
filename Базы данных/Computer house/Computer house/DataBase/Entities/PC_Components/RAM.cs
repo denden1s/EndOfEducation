@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities.PC_Components
 {
-    public class RAM //: IBase_and_max_options, IMemory_capacity
+    public class RAM : Product//: IBase_and_max_options, IMemory_capacity
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        //public string ID { get; set; }
+        //public string Name { get; set; }
         public int Kit { get; set; }
         public int RAM_type_ID { get; set; }
         public int RAM_frequency_ID { get; set; }

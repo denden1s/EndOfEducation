@@ -227,12 +227,12 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.RAMCoolingCheckBox = new System.Windows.Forms.CheckBox();
+            this.RAMLowProfileModuleCheckBox = new System.Windows.Forms.CheckBox();
             this.RAMTimingsTextBox = new System.Windows.Forms.TextBox();
             this.label101 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.RAMCapacityTextBox = new System.Windows.Forms.TextBox();
             this.label100 = new System.Windows.Forms.Label();
             this.RAMxmpSupportCheckBox = new System.Windows.Forms.CheckBox();
             this.label97 = new System.Windows.Forms.Label();
@@ -254,10 +254,43 @@ namespace Computer_house
             this.label91 = new System.Windows.Forms.Label();
             this.ChangeRAMRadio = new System.Windows.Forms.RadioButton();
             this.AddRAMRadio = new System.Windows.Forms.RadioButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.RAM_DatagridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.ActWithCoolingSystem = new System.Windows.Forms.Button();
+            this.label115 = new System.Windows.Forms.Label();
+            this.CoolingSystemDiametrTextBox = new System.Windows.Forms.TextBox();
+            this.label114 = new System.Windows.Forms.Label();
+            this.CoolingSystemConsumptionTextBox = new System.Windows.Forms.TextBox();
+            this.label113 = new System.Windows.Forms.Label();
+            this.label112 = new System.Windows.Forms.Label();
+            this.CoolingSystemMaxSpeedTextBox = new System.Windows.Forms.TextBox();
+            this.label111 = new System.Windows.Forms.Label();
+            this.label110 = new System.Windows.Forms.Label();
+            this.CoolingSystemPowerTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.CoolingSystemRSCCheckBox = new System.Windows.Forms.CheckBox();
+            this.label109 = new System.Windows.Forms.Label();
+            this.CoolingSystemNoiseLevelTextBox = new System.Windows.Forms.TextBox();
+            this.label108 = new System.Windows.Forms.Label();
+            this.CoolingSystemTypeOfBearing = new System.Windows.Forms.TextBox();
+            this.label107 = new System.Windows.Forms.Label();
+            this.CoolingSystemEvaporationChamberCheckBox = new System.Windows.Forms.CheckBox();
+            this.label106 = new System.Windows.Forms.Label();
+            this.CoolingSystemCountOfHeatPipesTextBox = new System.Windows.Forms.TextBox();
+            this.label105 = new System.Windows.Forms.Label();
+            this.CoolingSystemSocketsTextBox = new System.Windows.Forms.TextBox();
+            this.label104 = new System.Windows.Forms.Label();
+            this.CoolingSystemNameTextBox = new System.Windows.Forms.TextBox();
+            this.label102 = new System.Windows.Forms.Label();
+            this.FindCoolingSystemIDButton = new System.Windows.Forms.Button();
+            this.CoolingSystemIDTextBox = new System.Windows.Forms.TextBox();
+            this.label103 = new System.Windows.Forms.Label();
+            this.ChangeCoolingSystemRadio = new System.Windows.Forms.RadioButton();
+            this.AddCoolingSystemRadio = new System.Windows.Forms.RadioButton();
+            this.CoolingSystem_DatagridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
@@ -294,7 +327,9 @@ namespace Computer_house
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Case_DatagridView)).BeginInit();
             this.tabPage7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RAM_DatagridView)).BeginInit();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CoolingSystem_DatagridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
@@ -2068,6 +2103,7 @@ namespace Computer_house
             this.MotherboardIDTextBox.Name = "MotherboardIDTextBox";
             this.MotherboardIDTextBox.Size = new System.Drawing.Size(230, 25);
             this.MotherboardIDTextBox.TabIndex = 27;
+            this.MotherboardIDTextBox.TextChanged += new System.EventHandler(this.MotherboardIDTextBox_TextChanged);
             // 
             // label41
             // 
@@ -2756,6 +2792,7 @@ namespace Computer_house
             this.CaseIDTextBox.Name = "CaseIDTextBox";
             this.CaseIDTextBox.Size = new System.Drawing.Size(230, 25);
             this.CaseIDTextBox.TabIndex = 33;
+            this.CaseIDTextBox.TextChanged += new System.EventHandler(this.CaseIDTextBox_TextChanged);
             // 
             // label65
             // 
@@ -2836,12 +2873,12 @@ namespace Computer_house
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage7.Controls.Add(this.checkBox2);
-            this.tabPage7.Controls.Add(this.checkBox1);
+            this.tabPage7.Controls.Add(this.RAMCoolingCheckBox);
+            this.tabPage7.Controls.Add(this.RAMLowProfileModuleCheckBox);
             this.tabPage7.Controls.Add(this.RAMTimingsTextBox);
             this.tabPage7.Controls.Add(this.label101);
             this.tabPage7.Controls.Add(this.label99);
-            this.tabPage7.Controls.Add(this.textBox1);
+            this.tabPage7.Controls.Add(this.RAMCapacityTextBox);
             this.tabPage7.Controls.Add(this.label100);
             this.tabPage7.Controls.Add(this.RAMxmpSupportCheckBox);
             this.tabPage7.Controls.Add(this.label97);
@@ -2863,7 +2900,7 @@ namespace Computer_house
             this.tabPage7.Controls.Add(this.label91);
             this.tabPage7.Controls.Add(this.ChangeRAMRadio);
             this.tabPage7.Controls.Add(this.AddRAMRadio);
-            this.tabPage7.Controls.Add(this.dataGridView1);
+            this.tabPage7.Controls.Add(this.RAM_DatagridView);
             this.tabPage7.Location = new System.Drawing.Point(4, 28);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage7.Name = "tabPage7";
@@ -2873,29 +2910,29 @@ namespace Computer_house
             this.tabPage7.Text = "Оперативная память";
             this.tabPage7.Enter += new System.EventHandler(this.tabPage7_Enter);
             // 
-            // checkBox2
+            // RAMCoolingCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(464, 468);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(122, 25);
-            this.checkBox2.TabIndex = 84;
-            this.checkBox2.Text = "Охлаждение";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.RAMCoolingCheckBox.AutoSize = true;
+            this.RAMCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RAMCoolingCheckBox.Location = new System.Drawing.Point(464, 468);
+            this.RAMCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RAMCoolingCheckBox.Name = "RAMCoolingCheckBox";
+            this.RAMCoolingCheckBox.Size = new System.Drawing.Size(122, 25);
+            this.RAMCoolingCheckBox.TabIndex = 84;
+            this.RAMCoolingCheckBox.Text = "Охлаждение";
+            this.RAMCoolingCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // RAMLowProfileModuleCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(354, 385);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(232, 25);
-            this.checkBox1.TabIndex = 82;
-            this.checkBox1.Text = "Низкопрофильный модуль";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.RAMLowProfileModuleCheckBox.AutoSize = true;
+            this.RAMLowProfileModuleCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RAMLowProfileModuleCheckBox.Location = new System.Drawing.Point(362, 385);
+            this.RAMLowProfileModuleCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RAMLowProfileModuleCheckBox.Name = "RAMLowProfileModuleCheckBox";
+            this.RAMLowProfileModuleCheckBox.Size = new System.Drawing.Size(232, 25);
+            this.RAMLowProfileModuleCheckBox.TabIndex = 82;
+            this.RAMLowProfileModuleCheckBox.Text = "Низкопрофильный модуль";
+            this.RAMLowProfileModuleCheckBox.UseVisualStyleBackColor = true;
             // 
             // RAMTimingsTextBox
             // 
@@ -2928,14 +2965,14 @@ namespace Computer_house
             this.label99.TabIndex = 79;
             this.label99.Text = "Гб";
             // 
-            // textBox1
+            // RAMCapacityTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.textBox1.Location = new System.Drawing.Point(258, 427);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 25);
-            this.textBox1.TabIndex = 78;
+            this.RAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.RAMCapacityTextBox.Location = new System.Drawing.Point(258, 427);
+            this.RAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RAMCapacityTextBox.Name = "RAMCapacityTextBox";
+            this.RAMCapacityTextBox.Size = new System.Drawing.Size(104, 25);
+            this.RAMCapacityTextBox.TabIndex = 78;
             // 
             // label100
             // 
@@ -2944,15 +2981,15 @@ namespace Computer_house
             this.label100.Location = new System.Drawing.Point(12, 426);
             this.label100.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(152, 25);
+            this.label100.Size = new System.Drawing.Size(230, 25);
             this.label100.TabIndex = 77;
-            this.label100.Text = "Объём памяти";
+            this.label100.Text = "Объём модуля памяти";
             // 
             // RAMxmpSupportCheckBox
             // 
             this.RAMxmpSupportCheckBox.AutoSize = true;
             this.RAMxmpSupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RAMxmpSupportCheckBox.Location = new System.Drawing.Point(433, 429);
+            this.RAMxmpSupportCheckBox.Location = new System.Drawing.Point(436, 427);
             this.RAMxmpSupportCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RAMxmpSupportCheckBox.Name = "RAMxmpSupportCheckBox";
             this.RAMxmpSupportCheckBox.Size = new System.Drawing.Size(156, 25);
@@ -3001,6 +3038,7 @@ namespace Computer_house
             this.ActWithRAM.TabIndex = 72;
             this.ActWithRAM.Text = "button3";
             this.ActWithRAM.UseVisualStyleBackColor = true;
+            this.ActWithRAM.Click += new System.EventHandler(this.ActWithRAM_Click);
             // 
             // label94
             // 
@@ -3085,7 +3123,7 @@ namespace Computer_house
             // 
             this.label93.AutoSize = true;
             this.label93.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(553, 252);
+            this.label93.Location = new System.Drawing.Point(553, 249);
             this.label93.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(33, 21);
@@ -3142,6 +3180,7 @@ namespace Computer_house
             this.FindRAMIDButton.TabIndex = 42;
             this.FindRAMIDButton.Text = "Поиск";
             this.FindRAMIDButton.UseVisualStyleBackColor = true;
+            this.FindRAMIDButton.Click += new System.EventHandler(this.FindRAMIDButton_Click);
             // 
             // RAMIDTextBox
             // 
@@ -3151,6 +3190,7 @@ namespace Computer_house
             this.RAMIDTextBox.Name = "RAMIDTextBox";
             this.RAMIDTextBox.Size = new System.Drawing.Size(234, 25);
             this.RAMIDTextBox.TabIndex = 41;
+            this.RAMIDTextBox.TextChanged += new System.EventHandler(this.RAMIDTextBox_TextChanged);
             // 
             // label91
             // 
@@ -3175,6 +3215,7 @@ namespace Computer_house
             this.ChangeRAMRadio.TabStop = true;
             this.ChangeRAMRadio.Text = "Изменить";
             this.ChangeRAMRadio.UseVisualStyleBackColor = true;
+            this.ChangeRAMRadio.CheckedChanged += new System.EventHandler(this.ChangeRAMRadio_CheckedChanged);
             // 
             // AddRAMRadio
             // 
@@ -3188,26 +3229,28 @@ namespace Computer_house
             this.AddRAMRadio.TabStop = true;
             this.AddRAMRadio.Text = "Добавить";
             this.AddRAMRadio.UseVisualStyleBackColor = true;
+            this.AddRAMRadio.CheckedChanged += new System.EventHandler(this.AddRAMRadio_CheckedChanged);
             // 
-            // dataGridView1
+            // RAM_DatagridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RAM_DatagridView.AllowUserToAddRows = false;
+            this.RAM_DatagridView.AllowUserToDeleteRows = false;
+            this.RAM_DatagridView.AllowUserToOrderColumns = true;
+            this.RAM_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.RAM_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RAM_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridView1.Location = new System.Drawing.Point(17, 19);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(423, 119);
-            this.dataGridView1.TabIndex = 37;
+            this.RAM_DatagridView.Location = new System.Drawing.Point(17, 19);
+            this.RAM_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RAM_DatagridView.MultiSelect = false;
+            this.RAM_DatagridView.Name = "RAM_DatagridView";
+            this.RAM_DatagridView.ReadOnly = true;
+            this.RAM_DatagridView.RowHeadersWidth = 51;
+            this.RAM_DatagridView.RowTemplate.Height = 24;
+            this.RAM_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.RAM_DatagridView.TabIndex = 37;
+            this.RAM_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.RAM_DatagridView_RowEnter);
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -3223,11 +3266,42 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 300;
+            this.dataGridViewTextBoxColumn4.Width = 250;
             // 
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tabPage8.Controls.Add(this.ActWithCoolingSystem);
+            this.tabPage8.Controls.Add(this.label115);
+            this.tabPage8.Controls.Add(this.CoolingSystemDiametrTextBox);
+            this.tabPage8.Controls.Add(this.label114);
+            this.tabPage8.Controls.Add(this.CoolingSystemConsumptionTextBox);
+            this.tabPage8.Controls.Add(this.label113);
+            this.tabPage8.Controls.Add(this.label112);
+            this.tabPage8.Controls.Add(this.CoolingSystemMaxSpeedTextBox);
+            this.tabPage8.Controls.Add(this.label111);
+            this.tabPage8.Controls.Add(this.label110);
+            this.tabPage8.Controls.Add(this.CoolingSystemPowerTypeComboBox);
+            this.tabPage8.Controls.Add(this.CoolingSystemRSCCheckBox);
+            this.tabPage8.Controls.Add(this.label109);
+            this.tabPage8.Controls.Add(this.CoolingSystemNoiseLevelTextBox);
+            this.tabPage8.Controls.Add(this.label108);
+            this.tabPage8.Controls.Add(this.CoolingSystemTypeOfBearing);
+            this.tabPage8.Controls.Add(this.label107);
+            this.tabPage8.Controls.Add(this.CoolingSystemEvaporationChamberCheckBox);
+            this.tabPage8.Controls.Add(this.label106);
+            this.tabPage8.Controls.Add(this.CoolingSystemCountOfHeatPipesTextBox);
+            this.tabPage8.Controls.Add(this.label105);
+            this.tabPage8.Controls.Add(this.CoolingSystemSocketsTextBox);
+            this.tabPage8.Controls.Add(this.label104);
+            this.tabPage8.Controls.Add(this.CoolingSystemNameTextBox);
+            this.tabPage8.Controls.Add(this.label102);
+            this.tabPage8.Controls.Add(this.FindCoolingSystemIDButton);
+            this.tabPage8.Controls.Add(this.CoolingSystemIDTextBox);
+            this.tabPage8.Controls.Add(this.label103);
+            this.tabPage8.Controls.Add(this.ChangeCoolingSystemRadio);
+            this.tabPage8.Controls.Add(this.AddCoolingSystemRadio);
+            this.tabPage8.Controls.Add(this.CoolingSystem_DatagridView);
             this.tabPage8.Location = new System.Drawing.Point(4, 28);
             this.tabPage8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage8.Name = "tabPage8";
@@ -3235,6 +3309,378 @@ namespace Computer_house
             this.tabPage8.Size = new System.Drawing.Size(601, 786);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.Text = "Охлаждение";
+            // 
+            // ActWithCoolingSystem
+            // 
+            this.ActWithCoolingSystem.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActWithCoolingSystem.Location = new System.Drawing.Point(15, 512);
+            this.ActWithCoolingSystem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ActWithCoolingSystem.Name = "ActWithCoolingSystem";
+            this.ActWithCoolingSystem.Size = new System.Drawing.Size(572, 38);
+            this.ActWithCoolingSystem.TabIndex = 100;
+            this.ActWithCoolingSystem.Text = "button3";
+            this.ActWithCoolingSystem.UseVisualStyleBackColor = true;
+            this.ActWithCoolingSystem.Click += new System.EventHandler(this.ActWithCoolingSystem_Click);
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.Location = new System.Drawing.Point(518, 474);
+            this.label115.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(40, 21);
+            this.label115.TabIndex = 99;
+            this.label115.Text = "ММ";
+            // 
+            // CoolingSystemDiametrTextBox
+            // 
+            this.CoolingSystemDiametrTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemDiametrTextBox.Location = new System.Drawing.Point(459, 472);
+            this.CoolingSystemDiametrTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemDiametrTextBox.Name = "CoolingSystemDiametrTextBox";
+            this.CoolingSystemDiametrTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemDiametrTextBox.TabIndex = 98;
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label114.Location = new System.Drawing.Point(420, 474);
+            this.label114.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(38, 21);
+            this.label114.TabIndex = 97;
+            this.label114.Text = "Вт /";
+            // 
+            // CoolingSystemConsumptionTextBox
+            // 
+            this.CoolingSystemConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemConsumptionTextBox.Location = new System.Drawing.Point(362, 472);
+            this.CoolingSystemConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemConsumptionTextBox.Name = "CoolingSystemConsumptionTextBox";
+            this.CoolingSystemConsumptionTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemConsumptionTextBox.TabIndex = 96;
+            // 
+            // label113
+            // 
+            this.label113.AutoSize = true;
+            this.label113.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label113.Location = new System.Drawing.Point(11, 469);
+            this.label113.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label113.Name = "label113";
+            this.label113.Size = new System.Drawing.Size(347, 25);
+            this.label113.TabIndex = 95;
+            this.label113.Text = "Рассеиваемая мощность / диаметр";
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.Location = new System.Drawing.Point(517, 435);
+            this.label112.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(76, 21);
+            this.label112.TabIndex = 94;
+            this.label112.Text = "об / мин";
+            // 
+            // CoolingSystemMaxSpeedTextBox
+            // 
+            this.CoolingSystemMaxSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemMaxSpeedTextBox.Location = new System.Drawing.Point(362, 435);
+            this.CoolingSystemMaxSpeedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemMaxSpeedTextBox.Name = "CoolingSystemMaxSpeedTextBox";
+            this.CoolingSystemMaxSpeedTextBox.Size = new System.Drawing.Size(152, 25);
+            this.CoolingSystemMaxSpeedTextBox.TabIndex = 93;
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.Location = new System.Drawing.Point(10, 431);
+            this.label111.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(330, 25);
+            this.label111.TabIndex = 92;
+            this.label111.Text = "Макс. скорость вращения кулера";
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label110.Location = new System.Drawing.Point(11, 399);
+            this.label110.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(132, 25);
+            this.label110.TabIndex = 91;
+            this.label110.Text = "Тип питания";
+            // 
+            // CoolingSystemPowerTypeComboBox
+            // 
+            this.CoolingSystemPowerTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CoolingSystemPowerTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CoolingSystemPowerTypeComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemPowerTypeComboBox.FormattingEnabled = true;
+            this.CoolingSystemPowerTypeComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.CoolingSystemPowerTypeComboBox.Location = new System.Drawing.Point(258, 395);
+            this.CoolingSystemPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemPowerTypeComboBox.Name = "CoolingSystemPowerTypeComboBox";
+            this.CoolingSystemPowerTypeComboBox.Size = new System.Drawing.Size(332, 25);
+            this.CoolingSystemPowerTypeComboBox.TabIndex = 90;
+            // 
+            // CoolingSystemRSCCheckBox
+            // 
+            this.CoolingSystemRSCCheckBox.AutoSize = true;
+            this.CoolingSystemRSCCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoolingSystemRSCCheckBox.Location = new System.Drawing.Point(362, 355);
+            this.CoolingSystemRSCCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemRSCCheckBox.Name = "CoolingSystemRSCCheckBox";
+            this.CoolingSystemRSCCheckBox.Size = new System.Drawing.Size(235, 25);
+            this.CoolingSystemRSCCheckBox.TabIndex = 89;
+            this.CoolingSystemRSCCheckBox.Text = "Контр. скорости вращения";
+            this.CoolingSystemRSCCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(317, 355);
+            this.label109.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(28, 21);
+            this.label109.TabIndex = 88;
+            this.label109.Text = "дБ";
+            // 
+            // CoolingSystemNoiseLevelTextBox
+            // 
+            this.CoolingSystemNoiseLevelTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemNoiseLevelTextBox.Location = new System.Drawing.Point(258, 352);
+            this.CoolingSystemNoiseLevelTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemNoiseLevelTextBox.Name = "CoolingSystemNoiseLevelTextBox";
+            this.CoolingSystemNoiseLevelTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemNoiseLevelTextBox.TabIndex = 87;
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label108.Location = new System.Drawing.Point(11, 351);
+            this.label108.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(150, 25);
+            this.label108.TabIndex = 86;
+            this.label108.Text = "Уровень шума";
+            // 
+            // CoolingSystemTypeOfBearing
+            // 
+            this.CoolingSystemTypeOfBearing.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemTypeOfBearing.Location = new System.Drawing.Point(258, 316);
+            this.CoolingSystemTypeOfBearing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemTypeOfBearing.Name = "CoolingSystemTypeOfBearing";
+            this.CoolingSystemTypeOfBearing.Size = new System.Drawing.Size(332, 25);
+            this.CoolingSystemTypeOfBearing.TabIndex = 85;
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.Location = new System.Drawing.Point(11, 313);
+            this.label107.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(175, 25);
+            this.label107.TabIndex = 84;
+            this.label107.Text = "Тип подшипника";
+            // 
+            // CoolingSystemEvaporationChamberCheckBox
+            // 
+            this.CoolingSystemEvaporationChamberCheckBox.AutoSize = true;
+            this.CoolingSystemEvaporationChamberCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoolingSystemEvaporationChamberCheckBox.Location = new System.Drawing.Point(362, 279);
+            this.CoolingSystemEvaporationChamberCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemEvaporationChamberCheckBox.Name = "CoolingSystemEvaporationChamberCheckBox";
+            this.CoolingSystemEvaporationChamberCheckBox.Size = new System.Drawing.Size(203, 25);
+            this.CoolingSystemEvaporationChamberCheckBox.TabIndex = 83;
+            this.CoolingSystemEvaporationChamberCheckBox.Text = "Испарительная камера";
+            this.CoolingSystemEvaporationChamberCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label106.Location = new System.Drawing.Point(317, 281);
+            this.label106.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(33, 21);
+            this.label106.TabIndex = 66;
+            this.label106.Text = "Шт";
+            // 
+            // CoolingSystemCountOfHeatPipesTextBox
+            // 
+            this.CoolingSystemCountOfHeatPipesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemCountOfHeatPipesTextBox.Location = new System.Drawing.Point(258, 278);
+            this.CoolingSystemCountOfHeatPipesTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemCountOfHeatPipesTextBox.Name = "CoolingSystemCountOfHeatPipesTextBox";
+            this.CoolingSystemCountOfHeatPipesTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemCountOfHeatPipesTextBox.TabIndex = 56;
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label105.Location = new System.Drawing.Point(10, 278);
+            this.label105.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(248, 25);
+            this.label105.TabIndex = 55;
+            this.label105.Text = "Кол-во тепловых трубок";
+            // 
+            // CoolingSystemSocketsTextBox
+            // 
+            this.CoolingSystemSocketsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemSocketsTextBox.Location = new System.Drawing.Point(269, 238);
+            this.CoolingSystemSocketsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemSocketsTextBox.Name = "CoolingSystemSocketsTextBox";
+            this.CoolingSystemSocketsTextBox.Size = new System.Drawing.Size(320, 25);
+            this.CoolingSystemSocketsTextBox.TabIndex = 54;
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label104.Location = new System.Drawing.Point(10, 236);
+            this.label104.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(257, 25);
+            this.label104.TabIndex = 53;
+            this.label104.Text = "Поддерживаемые сокеты";
+            // 
+            // CoolingSystemNameTextBox
+            // 
+            this.CoolingSystemNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemNameTextBox.Location = new System.Drawing.Point(258, 197);
+            this.CoolingSystemNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemNameTextBox.Name = "CoolingSystemNameTextBox";
+            this.CoolingSystemNameTextBox.Size = new System.Drawing.Size(331, 25);
+            this.CoolingSystemNameTextBox.TabIndex = 52;
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Location = new System.Drawing.Point(11, 194);
+            this.label102.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(153, 25);
+            this.label102.TabIndex = 51;
+            this.label102.Text = "Наименование";
+            // 
+            // FindCoolingSystemIDButton
+            // 
+            this.FindCoolingSystemIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindCoolingSystemIDButton.Location = new System.Drawing.Point(496, 158);
+            this.FindCoolingSystemIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FindCoolingSystemIDButton.Name = "FindCoolingSystemIDButton";
+            this.FindCoolingSystemIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindCoolingSystemIDButton.TabIndex = 50;
+            this.FindCoolingSystemIDButton.Text = "Поиск";
+            this.FindCoolingSystemIDButton.UseVisualStyleBackColor = true;
+            this.FindCoolingSystemIDButton.Click += new System.EventHandler(this.FindCoolingSystemIDButton_Click);
+            // 
+            // CoolingSystemIDTextBox
+            // 
+            this.CoolingSystemIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.CoolingSystemIDTextBox.Location = new System.Drawing.Point(258, 160);
+            this.CoolingSystemIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystemIDTextBox.Name = "CoolingSystemIDTextBox";
+            this.CoolingSystemIDTextBox.Size = new System.Drawing.Size(234, 25);
+            this.CoolingSystemIDTextBox.TabIndex = 49;
+            this.CoolingSystemIDTextBox.TextChanged += new System.EventHandler(this.CoolingSystemIDTextBox_TextChanged);
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label103.Location = new System.Drawing.Point(12, 158);
+            this.label103.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(241, 25);
+            this.label103.TabIndex = 48;
+            this.label103.Text = "ID системы охлаждения";
+            // 
+            // ChangeCoolingSystemRadio
+            // 
+            this.ChangeCoolingSystemRadio.AutoSize = true;
+            this.ChangeCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeCoolingSystemRadio.Location = new System.Drawing.Point(486, 112);
+            this.ChangeCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ChangeCoolingSystemRadio.Name = "ChangeCoolingSystemRadio";
+            this.ChangeCoolingSystemRadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeCoolingSystemRadio.TabIndex = 47;
+            this.ChangeCoolingSystemRadio.TabStop = true;
+            this.ChangeCoolingSystemRadio.Text = "Изменить";
+            this.ChangeCoolingSystemRadio.UseVisualStyleBackColor = true;
+            this.ChangeCoolingSystemRadio.CheckedChanged += new System.EventHandler(this.ChangeCoolingSystemRadio_CheckedChanged);
+            // 
+            // AddCoolingSystemRadio
+            // 
+            this.AddCoolingSystemRadio.AutoSize = true;
+            this.AddCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddCoolingSystemRadio.Location = new System.Drawing.Point(487, 19);
+            this.AddCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddCoolingSystemRadio.Name = "AddCoolingSystemRadio";
+            this.AddCoolingSystemRadio.Size = new System.Drawing.Size(99, 25);
+            this.AddCoolingSystemRadio.TabIndex = 46;
+            this.AddCoolingSystemRadio.TabStop = true;
+            this.AddCoolingSystemRadio.Text = "Добавить";
+            this.AddCoolingSystemRadio.UseVisualStyleBackColor = true;
+            this.AddCoolingSystemRadio.CheckedChanged += new System.EventHandler(this.AddCoolingSystemRadio_CheckedChanged);
+            // 
+            // CoolingSystem_DatagridView
+            // 
+            this.CoolingSystem_DatagridView.AllowUserToAddRows = false;
+            this.CoolingSystem_DatagridView.AllowUserToDeleteRows = false;
+            this.CoolingSystem_DatagridView.AllowUserToOrderColumns = true;
+            this.CoolingSystem_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.CoolingSystem_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CoolingSystem_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.CoolingSystem_DatagridView.Location = new System.Drawing.Point(17, 19);
+            this.CoolingSystem_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoolingSystem_DatagridView.MultiSelect = false;
+            this.CoolingSystem_DatagridView.Name = "CoolingSystem_DatagridView";
+            this.CoolingSystem_DatagridView.ReadOnly = true;
+            this.CoolingSystem_DatagridView.RowHeadersWidth = 51;
+            this.CoolingSystem_DatagridView.RowTemplate.Height = 24;
+            this.CoolingSystem_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.CoolingSystem_DatagridView.TabIndex = 45;
+            this.CoolingSystem_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.CoolingSystem_DatagridView_RowEnter);
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Наименование";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 250;
             // 
             // tabPage9
             // 
@@ -3545,7 +3991,7 @@ namespace Computer_house
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(681, 628);
+            this.ClientSize = new System.Drawing.Size(648, 628);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3574,7 +4020,10 @@ namespace Computer_house
             ((System.ComponentModel.ISupportInitialize)(this.Case_DatagridView)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RAM_DatagridView)).EndInit();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CoolingSystem_DatagridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage12.ResumeLayout(false);
@@ -3814,9 +4263,7 @@ namespace Computer_house
         internal System.Windows.Forms.Label label91;
         internal System.Windows.Forms.RadioButton ChangeRAMRadio;
         internal System.Windows.Forms.RadioButton AddRAMRadio;
-        internal System.Windows.Forms.DataGridView dataGridView1;
-        internal System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        internal System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        internal System.Windows.Forms.DataGridView RAM_DatagridView;
         internal System.Windows.Forms.Label label93;
         internal System.Windows.Forms.TextBox RAMKitTextBox;
         internal System.Windows.Forms.Label label92;
@@ -3831,11 +4278,46 @@ namespace Computer_house
         internal System.Windows.Forms.Label label98;
         internal System.Windows.Forms.CheckBox RAMxmpSupportCheckBox;
         internal System.Windows.Forms.Label label99;
-        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox RAMCapacityTextBox;
         internal System.Windows.Forms.Label label100;
-        internal System.Windows.Forms.CheckBox checkBox1;
+        internal System.Windows.Forms.CheckBox RAMLowProfileModuleCheckBox;
         internal System.Windows.Forms.TextBox RAMTimingsTextBox;
         internal System.Windows.Forms.Label label101;
-        internal System.Windows.Forms.CheckBox checkBox2;
+        internal System.Windows.Forms.CheckBox RAMCoolingCheckBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        internal System.Windows.Forms.TextBox CoolingSystemNameTextBox;
+        internal System.Windows.Forms.Label label102;
+        internal System.Windows.Forms.Button FindCoolingSystemIDButton;
+        internal System.Windows.Forms.TextBox CoolingSystemIDTextBox;
+        internal System.Windows.Forms.Label label103;
+        internal System.Windows.Forms.RadioButton ChangeCoolingSystemRadio;
+        internal System.Windows.Forms.RadioButton AddCoolingSystemRadio;
+        internal System.Windows.Forms.DataGridView CoolingSystem_DatagridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        internal System.Windows.Forms.TextBox CoolingSystemSocketsTextBox;
+        internal System.Windows.Forms.Label label104;
+        internal System.Windows.Forms.Label label106;
+        internal System.Windows.Forms.TextBox CoolingSystemCountOfHeatPipesTextBox;
+        internal System.Windows.Forms.Label label105;
+        internal System.Windows.Forms.CheckBox CoolingSystemEvaporationChamberCheckBox;
+        internal System.Windows.Forms.TextBox CoolingSystemTypeOfBearing;
+        internal System.Windows.Forms.Label label107;
+        internal System.Windows.Forms.TextBox CoolingSystemNoiseLevelTextBox;
+        internal System.Windows.Forms.Label label108;
+        internal System.Windows.Forms.Label label109;
+        internal System.Windows.Forms.CheckBox CoolingSystemRSCCheckBox;
+        internal System.Windows.Forms.Label label110;
+        internal System.Windows.Forms.ComboBox CoolingSystemPowerTypeComboBox;
+        internal System.Windows.Forms.Label label112;
+        internal System.Windows.Forms.TextBox CoolingSystemMaxSpeedTextBox;
+        internal System.Windows.Forms.Label label111;
+        internal System.Windows.Forms.Label label115;
+        internal System.Windows.Forms.TextBox CoolingSystemDiametrTextBox;
+        internal System.Windows.Forms.Label label114;
+        internal System.Windows.Forms.TextBox CoolingSystemConsumptionTextBox;
+        internal System.Windows.Forms.Label label113;
+        internal System.Windows.Forms.Button ActWithCoolingSystem;
     }
 }
