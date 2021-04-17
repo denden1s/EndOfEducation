@@ -65,6 +65,8 @@ namespace Computer_house
         private string RAMTypeComboBoxText = "";
         private string RAMFrequencyComboBoxText = "";
 
+        private string CoolingSystemPowerTypeText = "";
+
         private bool othersTabsLostFocus = false;
 
         public ComponentsOptionsForm()
@@ -360,6 +362,7 @@ namespace Computer_house
             MotherboardSupportedMemoryComboBoxText = MotherboardSupportedRAMComboBox.Text;
             MotherboardMemoryChanelsComboBoxText = MotherBoardRAMChanelsComboBox.Text;
             MotherboardRAMFrequencyComboBoxText = MotherboardRamFrequencyComboBox.Text;
+            CoolingSystemPowerTypeText = CoolingSystemPowerTypeComboBox.Text;
 
             CaseFormFactorComboBoxText = CaseFormFactorComboBox.Text;
 
@@ -1374,6 +1377,7 @@ namespace Computer_house
             MotherboardSupportedMemoryComboBoxText = "";
             MotherboardMemoryChanelsComboBoxText = "";
             MotherboardRAMFrequencyComboBoxText = "";
+            CoolingSystemPowerTypeText = "";
 
             this.ActiveControl = null;
         }
@@ -1416,7 +1420,7 @@ namespace Computer_house
         {
             if (othersTabsLostFocus)
             {
-                if (tabControl2.SelectedTab.Text != "Оперативная память")
+                if (tabControl2.SelectedTab.Text != "Оперативная память" && tabControl2.SelectedTab.Text != "Охлаждение")
                     AutoScroll = true;
                 //можно через потоки
                 ViewInfoFromListsToFormElements(this);
@@ -1449,6 +1453,7 @@ namespace Computer_house
                 MotherboardRamFrequencyComboBox.SelectedItem = Convert.ToInt32(MotherboardRAMFrequencyComboBoxText);
 
             CaseFormFactorComboBox.SelectedItem = CaseFormFactorComboBoxText;
+            CoolingSystemPowerTypeComboBox.SelectedItem = CoolingSystemPowerTypeText;
 
             RAMTypeComboBox.SelectedItem = RAMTypeComboBoxText;
             if (RAMFrequencyComboBoxText != "")
@@ -1925,7 +1930,7 @@ namespace Computer_house
 
         private void ChangeCoolingSystemRadio_CheckedChanged(object sender, EventArgs e)
         {
-            if (ChangeRAMRadio.Checked)
+            if (ChangeCoolingSystemRadio.Checked)
             {
                 SystemFunctions.ChangeCoolingSystemTextBoxesEnable(this, true);
 
@@ -1992,8 +1997,8 @@ namespace Computer_house
                 Cooling_system newCoolingSystem = AddInfoAboutCoolingSystem();
                 if (SQLRequests.Warning(true, newCoolingSystem.Name))
                 {
-                    //SQLRequests.AddCoolingSystem(newCoolingSystem);
-                    //SQLRequests.EditCoolingSystemMediator(newCoolingSystem, "Add");
+                    SQLRequests.AddCoolingSystem(newCoolingSystem);
+                    SQLRequests.EditCoolingSystemMediator(newCoolingSystem, "Add");
                     CoolingSystemList.Add(newCoolingSystem);
                     MessageBox.Show("Добавление прошло успешно!");
                     ViewInfoInDataGrid<Cooling_system>(CoolingSystem_DatagridView, CoolingSystemList);
@@ -2004,8 +2009,8 @@ namespace Computer_house
                 Cooling_system changedCoolingSystem = AddInfoAboutCoolingSystem();
                 if (SQLRequests.Warning(false, changedCoolingSystem.Name))
                 {
-                    //SQLRequests.ChangeCoolingSystem(changedCoolingSystem);
-                    //SQLRequests.EditCoolingSystemMediator(changedCoolingSystem, "Edit");
+                    SQLRequests.ChangeCoolingSystem(changedCoolingSystem);
+                    SQLRequests.EditCoolingSystemMediator(changedCoolingSystem, "Edit");
                     int temp = CoolingSystemList.IndexOf(CoolingSystemList.Single(i => i.ID == changedCoolingSystem.ID));
                     CoolingSystemList[temp] = changedCoolingSystem;
                     MessageBox.Show("Изменение прошло успешно!");
@@ -2014,16 +2019,16 @@ namespace Computer_house
             }
             using (ApplicationContext db = new ApplicationContext())
             {
-                RAMList.Clear();
+                CoolingSystemList.Clear();
                 int counter = 0;
-                foreach (RAM c in db.RAM)
+                foreach (Cooling_system c in db.Cooling_system)
                 {
-                    RAMList.Add(new RAM(c.ID));
-                    RAMList[counter].GetDataFromDB();
+                    CoolingSystemList.Add(new Cooling_system(c.ID));
+                    CoolingSystemList[counter].GetDataFromDB();
                     counter++;
                 }
             }
-            SystemFunctions.ClearRAMTextBoxes(this);
+            SystemFunctions.ClearCoolingSystemTextBoxes(this);
             this.ActiveControl = null;
         }
 
@@ -2043,6 +2048,26 @@ namespace Computer_house
             coolingSys.Consumption = Convert.ToInt32(CoolingSystemConsumptionTextBox.Text);
             coolingSys.Diameter = Convert.ToInt32(CoolingSystemDiametrTextBox.Text);
             return coolingSys;
+        }
+
+        private void RAMTypeComboBox_Leave(object sender, EventArgs e)
+        {
+            RAMTypeComboBoxText = RAMTypeComboBox.Text;
+        }
+
+        private void RAMFrequencyComboBox_Leave(object sender, EventArgs e)
+        {
+            RAMFrequencyComboBoxText = RAMFrequencyComboBox.Text;
+        }
+
+        private void CoolingSystemPowerTypeComboBox_Leave(object sender, EventArgs e)
+        {
+            CoolingSystemPowerTypeText = CoolingSystemPowerTypeComboBox.Text;
+        }
+
+        private void tabPage8_Enter(object sender, EventArgs e)
+        {
+            this.AutoScroll = false;
         }
     }
 }

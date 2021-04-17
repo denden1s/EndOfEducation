@@ -22,7 +22,7 @@ namespace Computer_house
     {
         private List<Warehouse_info> WarehouseInformationList = new List<Warehouse_info>();
         private List<Case> Cases = new List<Case>();
-        private List<Cooling_system> CoolingSystems;
+        private List<Cooling_system> CoolingSystems = new List<Cooling_system>();
         private List<CPU> Cpus = new List<CPU>();
         private List<GPU> Gpus = new List<GPU>();
         //private List<HDD> Hdds;
@@ -60,6 +60,7 @@ namespace Computer_house
             threads[5] = new Thread(new ThreadStart(LoadProductLocationFromDB));
             threads[6] = new Thread(new ThreadStart(LoadInfoAboutMediatorFromDB));
             Task.Run(() => LoadInfoAboutRAM());
+            Task.Run(() => LoadInfoAboutCooling());
             foreach (var th in threads)
             {
                 th.Start();
@@ -419,7 +420,7 @@ namespace Computer_house
                             $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
                             $"Количество на складе: \n";
                         break;
-                    case "Cooling":
+                    case "Cooling system":
 
                         break;
                     case "GPU":

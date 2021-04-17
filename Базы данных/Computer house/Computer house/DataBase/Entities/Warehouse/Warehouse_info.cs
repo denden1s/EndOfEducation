@@ -33,7 +33,7 @@ namespace Computer_house.DataBase.Entities.Warehouse
                     case "Case":
                         ProductName = db.Case.Single(i => i.ID == temp[0]).Name;
                         break;
-                    case "Cooling":
+                    case "Cooling system":
                         ProductName = db.Cooling_system.Single(i => i.ID == temp[0]).Name;
                         break;
                     case "GPU":

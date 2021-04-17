@@ -30,7 +30,7 @@ namespace Computer_house.OtherClasses
                         case "Case":
                             productID = findProductName.Case_ID;
                             break;
-                        case "Cooling":
+                        case "Cooling system":
                             productID = findProductName.Cooling_system_ID;
                             break;
                         case "GPU":
@@ -938,6 +938,96 @@ namespace Computer_house.OtherClasses
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void AddCoolingSystem(Cooling_system _coolingSys)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Cooling_system.Add(_coolingSys);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void ChangeCoolingSystem(Cooling_system _coolingSys)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Cooling_system.Update(_coolingSys);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void EditCoolingSystemMediator(Cooling_system _coolingSys, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "Cooling system";
+                    mediator.Cooling_system_ID = _coolingSys.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "Cooling system" && b.Cooling_system_ID == _coolingSys.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    else if (_method == "Edit")
+                        db.Warehouse_info.Update(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+                    Base_and_max_options options = new Base_and_max_options(info.Product_ID, 0, _coolingSys.Max_state);
+                    if (_method == "Add")
+                        db.Base_and_max_options.Add(options);
+                    else if (_method == "Edit")
+                        db.Base_and_max_options.Update(options);
+                    Energy_consumption consumption = new Energy_consumption(info.Product_ID, _coolingSys.Consumption);
+                    if (_method == "Add")
+                        db.Energy_consumption.Add(consumption);
+                    else if (_method == "Edit")
+                        db.Energy_consumption.Update(consumption);
+
+                    Sizes_of_components sizes = new Sizes_of_components();
+                    sizes.Product_ID = info.Product_ID;
+                    sizes.Diameter = _coolingSys.Diameter;
+                    if (_method == "Add")
+                        db.Sizes_of_components.Add(sizes);
+                    else if (_method == "Edit")
+                        db.Sizes_of_components.Update(sizes);
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
 
         public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _deviceType)
         {
