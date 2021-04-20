@@ -523,8 +523,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if(_method == "Edit")
-                        db.Warehouse_info.Update(info);
 
                     Energy_consumption energy = new Energy_consumption(tempMediatorID, _cpu.Consumption);
                     if (_method == "Add")
@@ -639,8 +637,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if (_method == "Edit")
-                        db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
 
                     Energy_consumption energy_Consumption = new Energy_consumption(info.Product_ID, _gpu.Consumption);
@@ -730,8 +726,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if (_method == "Edit")
-                        db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
 
                     Sizes_of_components sizes = new Sizes_of_components();
@@ -830,8 +824,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if (_method == "Edit")
-                        db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
                     Sizes_of_components sizesOfCase = new Sizes_of_components();
                     sizesOfCase.Product_ID = info.Product_ID;
@@ -917,8 +909,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if (_method == "Edit")
-                        db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
                     Memory_capacity capacity = new Memory_capacity();
                     capacity.Product_ID = info.Product_ID;
@@ -994,8 +984,6 @@ namespace Computer_house.OtherClasses
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
                         db.Warehouse_info.Add(info);
-                    else if (_method == "Edit")
-                        db.Warehouse_info.Update(info);
                     //настроить возможные варианты если происходит добавление или изменение
                     Base_and_max_options options = new Base_and_max_options(info.Product_ID, 0, _coolingSys.Max_state);
                     if (_method == "Add")
@@ -1027,7 +1015,88 @@ namespace Computer_house.OtherClasses
             }
         }
 
+        public static void AddPSU(PSU _psu)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.PSU.Add(_psu);
+                    db.SaveChanges();
+                }
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void ChangePSU(PSU _psu)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.PSU.Update(_psu);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void EditPSUMediator(PSU _psu, string _method)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Mediator mediator = new Mediator();
+
+                    mediator.Components_type = "PSU";
+                    mediator.PSU_ID = _psu.ID;
+                    if (_method == "Add")
+                    {
+                        db.Mediator.Add(mediator);
+                        db.SaveChanges();
+                    }
+                    int tempMediatorID = (from b in db.Mediator
+                                          where b.Components_type == "PSU" && b.PSU_ID == _psu.ID
+                                          select b.ID).SingleOrDefault();
+                    Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+                    if (_method == "Add")
+                        db.Warehouse_info.Add(info);
+                    //настроить возможные варианты если происходит добавление или изменение
+                    Energy_consumption consumption = new Energy_consumption(info.Product_ID, _psu.Consumption);
+                    if (_method == "Add")
+                        db.Energy_consumption.Add(consumption);
+                    else if (_method == "Edit")
+                        db.Energy_consumption.Update(consumption);
+
+                    Sizes_of_components sizes = new Sizes_of_components();
+                    sizes.Product_ID = info.Product_ID;
+                    sizes.Length = _psu.Length;
+                    if (_method == "Add")
+                        db.Sizes_of_components.Add(sizes);
+                    else if (_method == "Edit")
+                        db.Sizes_of_components.Update(sizes);
+                    db.SaveChanges();
+                }
+                //После добавления в медиатор вытянуть этот же объект 
+                //и добавить по int-товому id в warehouseinfo с количеством 0
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _deviceType)
         {

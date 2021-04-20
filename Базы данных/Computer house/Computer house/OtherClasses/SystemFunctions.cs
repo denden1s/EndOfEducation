@@ -22,6 +22,22 @@ namespace Computer_house.OtherClasses
         //Можно использовать общий метод выделив массивы в главной форме
 
         //Раздел очистки полей
+        public static void ClearPSUTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.PSUIDTextBox, componentsOptions.PSUNameTextBox,
+                componentsOptions.PSUStandartTextBox, componentsOptions.PSUsataCountTextBox,
+                componentsOptions.PSUTwelveLineTextBox, componentsOptions.PSUTwelveLineMaxAmperageTextBox,
+                componentsOptions.PSUEfficiencyTextBox, componentsOptions.PSUConsumptionTextBox,
+                componentsOptions.PSUcpuPowerTypeTextBox, componentsOptions.PSUidePowerTypeTextBox,
+                componentsOptions.PSUpciePowerTypeTextBox, componentsOptions.PSULengthTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.PSUMotherboardPowerTypeComboBox };
+            CheckBox[] checkBoxes = {
+                componentsOptions.PSUPowerUSBCheckBox, componentsOptions.PSUModularityCheckBox};
+            Clear(textBoxes, comboBoxes, checkBoxes);
+        }
+
         public static void ClearCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes = { 
@@ -149,6 +165,21 @@ namespace Computer_house.OtherClasses
 
 
         //Раздел проверки текстовых полей на нулевые значения
+        public static bool CheckNullForPSUTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.PSUIDTextBox, componentsOptions.PSUNameTextBox,
+                componentsOptions.PSUStandartTextBox, componentsOptions.PSUsataCountTextBox,
+                componentsOptions.PSUTwelveLineTextBox, componentsOptions.PSUTwelveLineMaxAmperageTextBox,
+                componentsOptions.PSUEfficiencyTextBox, componentsOptions.PSUConsumptionTextBox,
+                componentsOptions.PSUcpuPowerTypeTextBox, componentsOptions.PSUidePowerTypeTextBox,
+                componentsOptions.PSUpciePowerTypeTextBox, componentsOptions.PSULengthTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.PSUMotherboardPowerTypeComboBox };
+
+            return CheckNullTextBoxes(textBoxes, comboBoxes);
+        }
+
         public static bool CheckNullForCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes = {
@@ -277,6 +308,22 @@ namespace Computer_house.OtherClasses
 
 
         //Раздел блокировки элементов управления
+        public static void ChangePSUTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
+        {
+            TextBox[] textBoxes = {
+                componentsOptions.PSUIDTextBox, componentsOptions.PSUNameTextBox,
+                componentsOptions.PSUStandartTextBox, componentsOptions.PSUsataCountTextBox,
+                componentsOptions.PSUTwelveLineTextBox, componentsOptions.PSUTwelveLineMaxAmperageTextBox,
+                componentsOptions.PSUEfficiencyTextBox, componentsOptions.PSUConsumptionTextBox,
+                componentsOptions.PSUcpuPowerTypeTextBox, componentsOptions.PSUidePowerTypeTextBox,
+                componentsOptions.PSUpciePowerTypeTextBox, componentsOptions.PSULengthTextBox
+            };
+            ComboBox[] comboBoxes = { componentsOptions.PSUMotherboardPowerTypeComboBox };
+            CheckBox[] checkBoxes = {
+                componentsOptions.PSUPowerUSBCheckBox, componentsOptions.PSUModularityCheckBox};
+            SetEnableBoxes(textBoxes, comboBoxes, checkBoxes, _status);
+        }
+
         public static void ChangeCoolingSystemTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
         {
             TextBox[] textBoxes = {
@@ -423,6 +470,15 @@ namespace Computer_house.OtherClasses
 
 
         //Раздел проверки на возможность преобразования к числовому типу
+        public static bool CheckNumConvertForPSUTextBoxes(ComponentsOptionsForm componentsOptions)
+        {
+            TextBox[] textBoxes = { 
+                componentsOptions.PSUsataCountTextBox,componentsOptions.PSULengthTextBox,
+                componentsOptions.PSUTwelveLineTextBox, componentsOptions.PSUTwelveLineMaxAmperageTextBox,
+                componentsOptions.PSUEfficiencyTextBox, componentsOptions.PSUConsumptionTextBox
+            };
+            return CheckIntConvert(textBoxes);
+        }
         public static bool CheckNumConvertForCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
         {
             TextBox[] textBoxes = {

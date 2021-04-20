@@ -40,6 +40,7 @@ namespace Computer_house
         private List<Case> CaseList = new List<Case>();
         private List<RAM> RAMList = new List<RAM>();
         private List<Cooling_system> CoolingSystemList = new List<Cooling_system>();
+        private List<PSU> PSUList = new List<PSU>();
         private List<Holding_document> HoldingDocuments = new List<Holding_document>();
 
         private string GPUpowerTypeComboBoxText = "";
@@ -74,7 +75,8 @@ namespace Computer_house
             InitializeComponent();
         }
         public ComponentsOptionsForm(Users _user, List<Warehouse_info> _wareHouse, List<CPU> _cpus, List<GPU> _gpus,
-            List<Motherboard> _motherboards, List<Case> _cases, List<RAM> _rams, List<Cooling_system> _coolingSys)
+            List<Motherboard> _motherboards, List<Case> _cases, List<RAM> _rams, List<Cooling_system> _coolingSys,
+            List<PSU> _psus)
         {
             InitializeComponent();
             //WarehouseInfo = _wareHouse; не используется
@@ -85,6 +87,7 @@ namespace Computer_house
             CaseList = _cases;
             RAMList = _rams;
             CoolingSystemList = _coolingSys;
+            PSUList = _psus;
         }
 
         private void AddComponentsOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -104,8 +107,9 @@ namespace Computer_house
             FindCaseIDButton.Enabled = false;
             FindRAMIDButton.Enabled = false;
             FindCoolingSystemIDButton.Enabled = false;
+            FindPSUIDButton.Enabled = false;
             SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU, ActWithMotherboard,
-                ActWithCase, ActWithRAM, ActWithCoolingSystem);
+                ActWithCase, ActWithRAM, ActWithCoolingSystem,ActWithPSU);
 
 
             Task[] tasks =
@@ -121,12 +125,12 @@ namespace Computer_house
             await Task.WhenAll(tasks);
 
             ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
-
             ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
             ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);
             ViewInfoInDataGrid<Case>(Case_DatagridView, CaseList);
             ViewInfoInDataGrid<RAM>(RAM_DatagridView, RAMList);
             ViewInfoInDataGrid<Cooling_system>(CoolingSystem_DatagridView, CoolingSystemList);
+            ViewInfoInDataGrid<PSU>(PSU_DatagridView, PSUList);
 
             SystemFunctions.ChangeCPUTextBoxesEnable(this, false);
             SystemFunctions.ChangeMotherboardTextBoxesEnable(this, false);
@@ -134,6 +138,7 @@ namespace Computer_house
             SystemFunctions.ChangeGPUTextBoxesEnable(this, false);
             SystemFunctions.ChangeRAMTextBoxesEnable(this, false);
             SystemFunctions.ChangeCoolingSystemTextBoxesEnable(this, false);
+            SystemFunctions.ChangePSUTextBoxesEnable(this, false);
 
             await Task.Run(() => ViewDocsInDataGrid());
 
@@ -1414,13 +1419,15 @@ namespace Computer_house
             LoadMemoryTypeInComboBox(_form.RAMTypeComboBox, "RAM");
             LoadRamFrequencyInComboBox(_form.RAMFrequencyComboBox);
             LoadPowerTypeInComboBox(_form.CoolingSystemPowerTypeComboBox);
+            LoadPowerTypeInComboBox(_form.PSUMotherboardPowerTypeComboBox);
         }
 
         private void tabPage1_Enter(object sender, EventArgs e)
         {
             if (othersTabsLostFocus)
             {
-                if (tabControl2.SelectedTab.Text != "Оперативная память" && tabControl2.SelectedTab.Text != "Охлаждение")
+                if (tabControl2.SelectedTab.Text != "Оперативная память" &&
+                    tabControl2.SelectedTab.Text != "Охлаждение" && tabControl2.SelectedTab.Text != "Блок питания")
                     AutoScroll = true;
                 //можно через потоки
                 ViewInfoFromListsToFormElements(this);
@@ -2068,6 +2075,168 @@ namespace Computer_house
         private void tabPage8_Enter(object sender, EventArgs e)
         {
             this.AutoScroll = false;
+        }
+
+        private void PSUIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (AddPSURadio.Checked)
+            {
+                if (PSUIDTextBox.Text == "")
+                    FindPSUIDButton.Enabled = false;
+                else
+                {
+                    FindPSUIDButton.Enabled = true;
+                    FindInfoFromTextBox<PSU>(PSUIDTextBox, PSUList, ActWithPSU);
+                }
+            }
+        }
+
+        private void FindPSUIDButton_Click(object sender, EventArgs e)
+        {
+            SearchInfoInList<PSU>(PSUList, PSUIDTextBox, ActWithPSU);
+        }
+
+        private void AddPSURadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (AddPSURadio.Checked)
+            {
+                SystemFunctions.ClearPSUTextBoxes(this);
+                SystemFunctions.SetEditOrAddButtonMode(ActWithPSU, true);
+                SystemFunctions.ChangePSUTextBoxesEnable(this, true);
+                FindPSUIDButton.Enabled = true;
+            }
+        }
+
+        private void ChangePSURadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChangePSURadio.Checked)
+            {
+                SystemFunctions.ChangePSUTextBoxesEnable(this, true);
+
+                FindPSUIDButton.Enabled = false;
+                PSUIDTextBox.Enabled = false;
+                SystemFunctions.SetEditOrAddButtonMode(ActWithPSU, false);
+                ViewPSUInfoToChange();
+            }
+        }
+        
+        private void ViewPSUInfoToChange()
+        {
+            if (PSU_DatagridView.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = PSU_DatagridView.SelectedCells[0].RowIndex;
+                DataGridViewRow currentRow = PSU_DatagridView.Rows[selectedrowindex];
+
+                PSU currentPSU = new PSU();
+                currentPSU = PSUList.Single(i => i.ID == (string)currentRow.Cells[0].Value);
+                PSUIDTextBox.Text = currentPSU.ID;
+                PSUNameTextBox.Text = currentPSU.Name;
+                PSUConsumptionTextBox.Text = Convert.ToString(currentPSU.Consumption);
+                PSUsataCountTextBox.Text = Convert.ToString(currentPSU.Sata_power_count);
+                PSUStandartTextBox.Text = currentPSU.PSU_standart;
+                PSUTwelveLineTextBox.Text = Convert.ToString(currentPSU.Line_plus_twelve_V_count);
+                PSUTwelveLineMaxAmperageTextBox.Text = Convert.ToString(currentPSU.Max_amperage_on_line_plus_twelve);
+                PSUEfficiencyTextBox.Text =  Convert.ToString(currentPSU.Efficiency);
+                PSUModularityCheckBox.Checked = currentPSU.Modularity;
+                PSUMotherboardPowerTypeComboBox.SelectedItem = PowerConnectorsList.Single(i =>
+                                                              i.ID == currentPSU.Power_motherboard_type_ID).Connectors;
+                PSUPowerUSBCheckBox.Checked = currentPSU.Power_USB;
+                PSUcpuPowerTypeTextBox.Text = currentPSU.Power_CPU;
+                PSUidePowerTypeTextBox.Text = currentPSU.Power_IDE;
+                PSUpciePowerTypeTextBox.Text = currentPSU.Power_PCIe;
+                PSULengthTextBox.Text = Convert.ToString(currentPSU.Length);
+            }
+        }
+
+        private void PSU_DatagridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ChangePSURadio.Checked)
+                ViewPSUInfoToChange();
+        }
+
+        private void tabPage9_Enter(object sender, EventArgs e)
+        {
+            AutoScroll = false;
+        }
+
+        private void ActWithPSU_Click(object sender, EventArgs e)
+        {
+            if (SystemFunctions.CheckNullForPSUTextBoxes(this))
+            {
+                MessageBox.Show("Не все поля заполнены");
+                return;
+            }
+            else
+            {
+                if (!SystemFunctions.CheckNumConvertForPSUTextBoxes(this))
+                {
+                    MessageBox.Show("Не все поля можно привести к числовому типу");
+                    return;
+                }
+            }
+            if (AddPSURadio.Checked)
+            {
+                PSU newPSU = AddInfoAboutPSU();
+                if (SQLRequests.Warning(true, newPSU.Name))
+                {
+                    SQLRequests.AddPSU(newPSU);
+                    SQLRequests.EditPSUMediator(newPSU, "Add");
+                    PSUList.Add(newPSU);
+                    MessageBox.Show("Добавление прошло успешно!");
+                ViewInfoInDataGrid<PSU>(PSU_DatagridView, PSUList);
+                }
+            }
+            else if (ChangePSURadio.Checked)
+            {
+                PSU changedPSU = AddInfoAboutPSU();
+                if (SQLRequests.Warning(false, changedPSU.Name))
+                {
+                    SQLRequests.ChangePSU(changedPSU);
+                    SQLRequests.EditPSUMediator(changedPSU, "Edit");
+                    int temp = PSUList.IndexOf(PSUList.Single(i => i.ID == changedPSU.ID));
+                    PSUList[temp] = changedPSU;
+                    MessageBox.Show("Изменение прошло успешно!");
+                    ViewInfoInDataGrid<PSU>(PSU_DatagridView, PSUList);
+                }
+            }
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                PSUList.Clear();
+                int counter = 0;
+                foreach (PSU c in db.PSU)
+                {
+                    PSUList.Add(new PSU(c.ID));
+                    PSUList[counter].GetDataFromDB();
+                    counter++;
+                }
+            }
+            SystemFunctions.ClearPSUTextBoxes(this);
+            this.ActiveControl = null;
+        }
+
+        private PSU AddInfoAboutPSU()
+        {
+
+            PSU changedPSU = new PSU();
+            changedPSU.ID = PSUIDTextBox.Text;
+            changedPSU.Name = PSUNameTextBox.Text;
+            changedPSU.PSU_standart = PSUStandartTextBox.Text;
+            changedPSU.Line_plus_twelve_V_count = Convert.ToInt32(PSUTwelveLineTextBox.Text);
+            changedPSU.Max_amperage_on_line_plus_twelve = Convert.ToInt32(PSUTwelveLineMaxAmperageTextBox.Text);
+            changedPSU.Efficiency = Convert.ToInt32(PSUEfficiencyTextBox.Text);
+            changedPSU.Modularity = PSUModularityCheckBox.Checked;
+
+            changedPSU.Power_motherboard_type_ID = PowerConnectorsList.Single(i => 
+                                                   i.Connectors == PSUMotherboardPowerTypeComboBox.Text).ID;
+
+            changedPSU.Power_USB = PSUPowerUSBCheckBox.Checked;
+            changedPSU.Power_CPU = PSUcpuPowerTypeTextBox.Text;
+            changedPSU.Power_IDE = PSUidePowerTypeTextBox.Text;
+            changedPSU.Power_PCIe = PSUpciePowerTypeTextBox.Text;
+            changedPSU.Sata_power_count = Convert.ToInt32(PSUsataCountTextBox.Text);
+            changedPSU.Consumption = Convert.ToInt32(PSUConsumptionTextBox.Text);
+            changedPSU.Length = Convert.ToInt32(PSULengthTextBox.Text);
+            return changedPSU;
         }
     }
 }

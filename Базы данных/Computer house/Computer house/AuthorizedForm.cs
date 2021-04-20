@@ -27,7 +27,7 @@ namespace Computer_house
         private List<GPU> Gpus = new List<GPU>();
         //private List<HDD> Hdds;
         private List<Motherboard> Motherboards = new List<Motherboard>();
-        private List<PSU> Psus;
+        private List<PSU> Psus = new List<PSU>();
         private List<RAM> Rams = new List<RAM>();
        // private List<SSD> Ssds;
         private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
@@ -61,6 +61,7 @@ namespace Computer_house
             threads[6] = new Thread(new ThreadStart(LoadInfoAboutMediatorFromDB));
             Task.Run(() => LoadInfoAboutRAM());
             Task.Run(() => LoadInfoAboutCooling());
+            Task.Run(() => LoadInfoAboutPSU());
             foreach (var th in threads)
             {
                 th.Start();
@@ -417,11 +418,20 @@ namespace Computer_house
                             $"Макс частота ОЗУ: {currentCPU.RAM_frequency} Mhz;\n" +
                             $"Встроенная графика: {integratedGPU};\n" +
                              $"Энергопотребление: {currentCPU.Consumption} нм\n" +
-                            $"Техпроцесс: {currentCPU.Technical_process} нм\n" +
-                            $"Количество на складе: \n";
+                            $"Техпроцесс: {currentCPU.Technical_process} нм\n";
                         break;
                     case "Cooling system":
+                        Cooling_system currentCoolSys = CoolingSystems.Single(i => i.Product_ID == warehouseInfo.Product_ID);
 
+                        AllProductInfo.Text = $"ID товара: {currentCoolSys.ID};\n" +
+                            $"Наименование: {currentCoolSys.Name};\n" +
+                            $"Поддерживаемые сокеты: {currentCoolSys.Supported_sockets};\n" +
+                            $"Количество тепловых трубок: {currentCoolSys.Count_of_heat_pipes};\n" +
+                            $"Тип подшипника: {currentCoolSys.Type_of_bearing};\n" +
+                            $"Уровень шума: {currentCoolSys.Noise_level} дБ;\n" +
+                            $"Тип питания: {currentCoolSys.PowerType};\n" +
+                            $"Максимальная скорость вращения кулера {currentCoolSys.Max_state} об/мин;\n" +
+                            $"Рассеиваемая мощность /  диаметр: {currentCoolSys.Consumption} / {currentCoolSys.Diameter} мм;\n";
                         break;
                     case "GPU":
                         GPU currentGPU = Gpus.Single(i => i.Product_ID == warehouseInfo.Product_ID);
@@ -445,8 +455,7 @@ namespace Computer_house
                             $"Кол-во вентиляторов: {Convert.ToString(currentGPU.Coolers_count)};\n" +
                             $"Толщина системы охлаждения: {Convert.ToString(currentGPU.Cooling_system_thikness)} слотов;\n" +
                             $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / " +
-                            $"{Convert.ToString(currentGPU.Height)} мм;\n" +
-                            $"Количество на складе: \n";
+                            $"{Convert.ToString(currentGPU.Height)} мм;\n";
                         break;
                     case "HDD":
 
@@ -474,10 +483,34 @@ namespace Computer_house
                         AllProductInfo.Text += "\n";
                         AllProductInfo.Text += $"Разъёмы: {currentMotherboard.Connectors}\n" +
                             $"Длина / ширина платы: {Convert.ToString(currentMotherboard.Length)} / " +
-                            $"{Convert.ToString(currentMotherboard.Width)} ММ \n";
+                            $"{Convert.ToString(currentMotherboard.Width)} мм\n";
                         break;
                     case "PSU":
-
+                        PSU currentPSU = Psus.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+                        AllProductInfo.Text = $"ID товара: {currentPSU.ID};\n" +
+                            $"Наименование: {currentPSU.Name};\n" +
+                            $"Стандарт блока питания: {currentPSU.PSU_standart};\n" +
+                            $"Кол-во разъёмов SATA / отдельных линий +12V: {currentPSU.Sata_power_count} / " +
+                            $"{currentPSU.Line_plus_twelve_V_count} шт;\n" +
+                            $"Максимальный ток по линии +12V / КПД: {currentPSU.Max_amperage_on_line_plus_twelve} А / " +
+                            $"{currentPSU.Efficiency} %;\n" +
+                            $"Мощность: {currentPSU.Consumption} Вт;\n" +
+                            $"Тип питания материнской платы: {currentPSU.PowerMotherboardType};\n" +
+                            $"Питание CPU / IDE / PCIe: {currentPSU.Power_CPU} / {currentPSU.Power_IDE} /" +
+                            $" {currentPSU.Power_PCIe};\n" +
+                            $"Длина БП: {currentPSU.Length} мм;\n" +
+                            $"Доп. опции: ";
+                        var psuTuple = new List<(bool state, string elem)>
+                        {
+                            (currentPSU.Power_USB, "поддержка USB power"),
+                            (currentPSU.Modularity, "модульность")
+                        };
+                        foreach (var i in psuTuple)
+                        {
+                            if (i.state)
+                                AllProductInfo.Text += i.elem + "; ";
+                        }
+                        AllProductInfo.Text += "\n";
                         break;
                     case "RAM":
                         RAM currentRAM = Rams.Single(i => i.Product_ID == warehouseInfo.Product_ID);
@@ -534,19 +567,20 @@ namespace Computer_house
                             $"Установлено кулеров/кол-во слотов для их установки: {currentCase.Coolers_count} /" +
                             $" {currentCase.Coolers_slots};\n" +
                             $"Высота/ширина/глубина: {Convert.ToString(currentCase.Height)} / " +
-                            $"{Convert.ToString(currentCase.Width)} / {Convert.ToString(currentCase.Depth)} ММ;\n" +
+                            $"{Convert.ToString(currentCase.Width)} / {Convert.ToString(currentCase.Depth)} мм;\n" +
                             $"Отсеки под накопители/слоты расширения: " +
                             $"{Convert.ToString(currentCase.Storage_sections_count)} / " +
                             $"{Convert.ToString(currentCase.Expansion_slots_count)} шт.;\n" +
                             $"Макс. длина GPU/высота кулера CPU/длина БП: {Convert.ToString(currentCase.Max_GPU_length)} / " +
                             $"{Convert.ToString(currentCase.Max_CPU_cooler_height)} / " +
-                            $"{Convert.ToString(currentCase.Max_PSU_length)} ММ;\n" +
-                            $"Вес: {Convert.ToString(currentCase.Weight)}.\n";
+                            $"{Convert.ToString(currentCase.Max_PSU_length)} мм;\n" +
+                            $"Вес: {Convert.ToString(currentCase.Weight)} Кг.\n";
                         break;
                     default:
                         break;
                 }
                 bool countMoreThanZero = false;
+                AllProductInfo.Text += "Количество на складе: \n";
                 foreach (var i in LocationInWarehouseList)
                 {
                     //countMoreThanZero = false;
@@ -580,7 +614,7 @@ namespace Computer_house
         private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, 
-                WarehouseInformationList, Cpus, Gpus, Motherboards, Cases, Rams, CoolingSystems);
+                WarehouseInformationList, Cpus, Gpus, Motherboards, Cases, Rams, CoolingSystems, Psus);
             this.Hide();
             addComponentsOptionsForm.Show();
         }
@@ -636,11 +670,16 @@ namespace Computer_house
                         List<Mediator> tempRequestMotherboard = new List<Mediator>();
                         List<Mediator> tempRequestCase = new List<Mediator>();
                         List<Mediator> tempRequestRAM = new List<Mediator>();
+                        List<Mediator> tempRequestCoolingSys = new List<Mediator>();
+                        List<Mediator> tempRequestPSU = new List<Mediator>();
+
                         tempRequestCPU.AddRange(GetSearchInfo("CPU"));
                         tempRequestGPU.AddRange(GetSearchInfo("GPU"));
                         tempRequestMotherboard.AddRange(GetSearchInfo("Motherboard"));
                         tempRequestCase.AddRange(GetSearchInfo("Case"));
                         tempRequestRAM.AddRange(GetSearchInfo("RAM"));
+                        tempRequestCoolingSys.AddRange(GetSearchInfo("Cooling system"));
+                        tempRequestPSU.AddRange(GetSearchInfo("PSU"));
                         tempRequest.AddRange((from b in tempRequestCPU
                                               where b.CPU_ID == SearchInfo.Text
                                               select b).ToList());
@@ -655,6 +694,12 @@ namespace Computer_house
                                               select b).ToList());
                         tempRequest.AddRange((from b in tempRequestRAM
                                               where b.RAM_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestCoolingSys
+                                              where b.Cooling_system_ID.Contains(SearchInfo.Text)
+                                              select b).ToList());
+                        tempRequest.AddRange((from b in tempRequestPSU
+                                              where b.PSU_ID.Contains(SearchInfo.Text)
                                               select b).ToList());
                         //Проверка наличия такого ID как в строке поиска
                         if (tempRequest != null)
@@ -715,10 +760,7 @@ namespace Computer_house
         private void Move_Click(object sender, EventArgs e)
         {
             string question = "Сейчас будет ";
-            if (Convert.ToInt32(AddProduct.Value) > 0)
-                question += "добавлено на склад ";
-            else
-                question += "снято со склада ";
+            question += Convert.ToInt32(AddProduct.Value) > 0 ? "добавлено на склад " : "снято со склада ";
             question += Convert.ToInt32(AddProduct.Value) + " элементов товара.";
             DialogResult questionResult = MessageBox.Show(question,
                                         "Проведение товара",

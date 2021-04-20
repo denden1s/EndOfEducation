@@ -292,6 +292,48 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label128 = new System.Windows.Forms.Label();
+            this.ActWithPSU = new System.Windows.Forms.Button();
+            this.label136 = new System.Windows.Forms.Label();
+            this.PSUPowerUSBCheckBox = new System.Windows.Forms.CheckBox();
+            this.label135 = new System.Windows.Forms.Label();
+            this.PSULengthTextBox = new System.Windows.Forms.TextBox();
+            this.label133 = new System.Windows.Forms.Label();
+            this.PSUConsumptionTextBox = new System.Windows.Forms.TextBox();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label119 = new System.Windows.Forms.Label();
+            this.label131 = new System.Windows.Forms.Label();
+            this.PSUTwelveLineTextBox = new System.Windows.Forms.TextBox();
+            this.label130 = new System.Windows.Forms.Label();
+            this.PSUsataCountTextBox = new System.Windows.Forms.TextBox();
+            this.label129 = new System.Windows.Forms.Label();
+            this.PSUidePowerTypeTextBox = new System.Windows.Forms.TextBox();
+            this.PSUpciePowerTypeTextBox = new System.Windows.Forms.TextBox();
+            this.label127 = new System.Windows.Forms.Label();
+            this.PSUcpuPowerTypeTextBox = new System.Windows.Forms.TextBox();
+            this.label120 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.PSUMotherboardPowerTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.PSUModularityCheckBox = new System.Windows.Forms.CheckBox();
+            this.label123 = new System.Windows.Forms.Label();
+            this.PSUEfficiencyTextBox = new System.Windows.Forms.TextBox();
+            this.label124 = new System.Windows.Forms.Label();
+            this.label121 = new System.Windows.Forms.Label();
+            this.PSUTwelveLineMaxAmperageTextBox = new System.Windows.Forms.TextBox();
+            this.label122 = new System.Windows.Forms.Label();
+            this.PSUStandartTextBox = new System.Windows.Forms.TextBox();
+            this.label118 = new System.Windows.Forms.Label();
+            this.PSUNameTextBox = new System.Windows.Forms.TextBox();
+            this.label116 = new System.Windows.Forms.Label();
+            this.FindPSUIDButton = new System.Windows.Forms.Button();
+            this.PSUIDTextBox = new System.Windows.Forms.TextBox();
+            this.label117 = new System.Windows.Forms.Label();
+            this.ChangePSURadio = new System.Windows.Forms.RadioButton();
+            this.AddPSURadio = new System.Windows.Forms.RadioButton();
+            this.PSU_DatagridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -330,6 +372,8 @@ namespace Computer_house
             ((System.ComponentModel.ISupportInitialize)(this.RAM_DatagridView)).BeginInit();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoolingSystem_DatagridView)).BeginInit();
+            this.tabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
@@ -341,21 +385,22 @@ namespace Computer_house
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(9, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.HotTrack = true;
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(622, 859);
+            this.tabControl1.Size = new System.Drawing.Size(829, 1057);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tabControl2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 30);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 37);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(614, 825);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(821, 1016);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Комплектующие";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -373,11 +418,12 @@ namespace Computer_house
             this.tabControl2.Controls.Add(this.tabPage10);
             this.tabControl2.Controls.Add(this.tabPage11);
             this.tabControl2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl2.Location = new System.Drawing.Point(2, 4);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl2.HotTrack = true;
+            this.tabControl2.Location = new System.Drawing.Point(3, 5);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(609, 818);
+            this.tabControl2.Size = new System.Drawing.Size(812, 1007);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage3
@@ -424,11 +470,11 @@ namespace Computer_house
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 32);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(601, 786);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage3.Size = new System.Drawing.Size(804, 971);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Процессор";
             this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -442,20 +488,19 @@ namespace Computer_house
             this.DeliveryTypeComboBox.Items.AddRange(new object[] {
             "OEM",
             "Box"});
-            this.DeliveryTypeComboBox.Location = new System.Drawing.Point(257, 274);
-            this.DeliveryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DeliveryTypeComboBox.Location = new System.Drawing.Point(343, 337);
+            this.DeliveryTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeliveryTypeComboBox.Name = "DeliveryTypeComboBox";
-            this.DeliveryTypeComboBox.Size = new System.Drawing.Size(328, 25);
+            this.DeliveryTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.DeliveryTypeComboBox.TabIndex = 42;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(545, 436);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Location = new System.Drawing.Point(727, 537);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(43, 21);
+            this.label24.Size = new System.Drawing.Size(52, 28);
             this.label24.TabIndex = 41;
             this.label24.Text = "МГц";
             // 
@@ -463,10 +508,9 @@ namespace Computer_house
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(545, 474);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(727, 583);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(43, 21);
+            this.label23.Size = new System.Drawing.Size(52, 28);
             this.label23.TabIndex = 40;
             this.label23.Text = "МГц";
             // 
@@ -474,10 +518,9 @@ namespace Computer_house
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(545, 594);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Location = new System.Drawing.Point(727, 731);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(43, 21);
+            this.label22.Size = new System.Drawing.Size(52, 28);
             this.label22.TabIndex = 39;
             this.label22.Text = "МГц";
             // 
@@ -485,10 +528,9 @@ namespace Computer_house
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(560, 659);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Location = new System.Drawing.Point(747, 811);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(26, 21);
+            this.label21.Size = new System.Drawing.Size(32, 28);
             this.label21.TabIndex = 38;
             this.label21.Text = "Вт";
             // 
@@ -496,20 +538,19 @@ namespace Computer_house
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(551, 701);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(735, 863);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 21);
+            this.label13.Size = new System.Drawing.Size(44, 28);
             this.label13.TabIndex = 37;
             this.label13.Text = "НМ";
             // 
             // ActWithCPU
             // 
             this.ActWithCPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithCPU.Location = new System.Drawing.Point(19, 741);
-            this.ActWithCPU.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithCPU.Location = new System.Drawing.Point(25, 912);
+            this.ActWithCPU.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithCPU.Name = "ActWithCPU";
-            this.ActWithCPU.Size = new System.Drawing.Size(566, 38);
+            this.ActWithCPU.Size = new System.Drawing.Size(755, 47);
             this.ActWithCPU.TabIndex = 36;
             this.ActWithCPU.Text = "button3";
             this.ActWithCPU.UseVisualStyleBackColor = true;
@@ -518,29 +559,29 @@ namespace Computer_house
             // CPUTechprocessTextBox
             // 
             this.CPUTechprocessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUTechprocessTextBox.Location = new System.Drawing.Point(257, 700);
-            this.CPUTechprocessTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUTechprocessTextBox.Location = new System.Drawing.Point(343, 862);
+            this.CPUTechprocessTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUTechprocessTextBox.Name = "CPUTechprocessTextBox";
-            this.CPUTechprocessTextBox.Size = new System.Drawing.Size(282, 25);
+            this.CPUTechprocessTextBox.Size = new System.Drawing.Size(375, 30);
             this.CPUTechprocessTextBox.TabIndex = 35;
             // 
             // CPUTDPTextBox
             // 
             this.CPUTDPTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUTDPTextBox.Location = new System.Drawing.Point(332, 657);
-            this.CPUTDPTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUTDPTextBox.Location = new System.Drawing.Point(443, 809);
+            this.CPUTDPTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUTDPTextBox.Name = "CPUTDPTextBox";
-            this.CPUTDPTextBox.Size = new System.Drawing.Size(206, 25);
+            this.CPUTDPTextBox.Size = new System.Drawing.Size(273, 30);
             this.CPUTDPTextBox.TabIndex = 34;
             // 
             // CPUIntegratedGraphicCheckBox
             // 
             this.CPUIntegratedGraphicCheckBox.AutoSize = true;
             this.CPUIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CPUIntegratedGraphicCheckBox.Location = new System.Drawing.Point(440, 621);
-            this.CPUIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUIntegratedGraphicCheckBox.Location = new System.Drawing.Point(587, 764);
+            this.CPUIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUIntegratedGraphicCheckBox.Name = "CPUIntegratedGraphicCheckBox";
-            this.CPUIntegratedGraphicCheckBox.Size = new System.Drawing.Size(158, 25);
+            this.CPUIntegratedGraphicCheckBox.Size = new System.Drawing.Size(192, 32);
             this.CPUIntegratedGraphicCheckBox.TabIndex = 33;
             this.CPUIntegratedGraphicCheckBox.Text = "Поддерживается";
             this.CPUIntegratedGraphicCheckBox.UseVisualStyleBackColor = true;
@@ -562,10 +603,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPURamFrequaencyComboBox.Location = new System.Drawing.Point(320, 591);
-            this.CPURamFrequaencyComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPURamFrequaencyComboBox.Location = new System.Drawing.Point(427, 727);
+            this.CPURamFrequaencyComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPURamFrequaencyComboBox.Name = "CPURamFrequaencyComboBox";
-            this.CPURamFrequaencyComboBox.Size = new System.Drawing.Size(218, 25);
+            this.CPURamFrequaencyComboBox.Size = new System.Drawing.Size(289, 31);
             this.CPURamFrequaencyComboBox.TabIndex = 32;
             this.CPURamFrequaencyComboBox.Leave += new System.EventHandler(this.CPURamFrequaencyComboBox_Leave);
             // 
@@ -586,10 +627,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPUChanelsComboBox.Location = new System.Drawing.Point(257, 552);
-            this.CPUChanelsComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUChanelsComboBox.Location = new System.Drawing.Point(343, 679);
+            this.CPUChanelsComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUChanelsComboBox.Name = "CPUChanelsComboBox";
-            this.CPUChanelsComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUChanelsComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUChanelsComboBox.TabIndex = 31;
             this.CPUChanelsComboBox.Leave += new System.EventHandler(this.CPUChanelsComboBox_Leave);
             // 
@@ -610,39 +651,39 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPUMemoryTypeComboBox.Location = new System.Drawing.Point(257, 511);
-            this.CPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUMemoryTypeComboBox.Location = new System.Drawing.Point(343, 629);
+            this.CPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUMemoryTypeComboBox.Name = "CPUMemoryTypeComboBox";
-            this.CPUMemoryTypeComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUMemoryTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUMemoryTypeComboBox.TabIndex = 30;
             this.CPUMemoryTypeComboBox.Leave += new System.EventHandler(this.CPUMemoryTypeComboBox_Leave);
             // 
             // CPUMaxStateTextBox
             // 
             this.CPUMaxStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUMaxStateTextBox.Location = new System.Drawing.Point(332, 472);
-            this.CPUMaxStateTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUMaxStateTextBox.Location = new System.Drawing.Point(443, 581);
+            this.CPUMaxStateTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUMaxStateTextBox.Name = "CPUMaxStateTextBox";
-            this.CPUMaxStateTextBox.Size = new System.Drawing.Size(206, 25);
+            this.CPUMaxStateTextBox.Size = new System.Drawing.Size(273, 30);
             this.CPUMaxStateTextBox.TabIndex = 29;
             // 
             // CPUBaseStateTextBox
             // 
             this.CPUBaseStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUBaseStateTextBox.Location = new System.Drawing.Point(270, 434);
-            this.CPUBaseStateTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUBaseStateTextBox.Location = new System.Drawing.Point(360, 534);
+            this.CPUBaseStateTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUBaseStateTextBox.Name = "CPUBaseStateTextBox";
-            this.CPUBaseStateTextBox.Size = new System.Drawing.Size(269, 25);
+            this.CPUBaseStateTextBox.Size = new System.Drawing.Size(357, 30);
             this.CPUBaseStateTextBox.TabIndex = 28;
             // 
             // MultithreadingCheckBox
             // 
             this.MultithreadingCheckBox.AutoSize = true;
             this.MultithreadingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MultithreadingCheckBox.Location = new System.Drawing.Point(432, 396);
-            this.MultithreadingCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MultithreadingCheckBox.Location = new System.Drawing.Point(576, 487);
+            this.MultithreadingCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MultithreadingCheckBox.Name = "MultithreadingCheckBox";
-            this.MultithreadingCheckBox.Size = new System.Drawing.Size(166, 25);
+            this.MultithreadingCheckBox.Size = new System.Drawing.Size(203, 32);
             this.MultithreadingCheckBox.TabIndex = 27;
             this.MultithreadingCheckBox.Text = "Многопоточность";
             this.MultithreadingCheckBox.UseVisualStyleBackColor = true;
@@ -650,10 +691,10 @@ namespace Computer_house
             // CPUCoresTextBox
             // 
             this.CPUCoresTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUCoresTextBox.Location = new System.Drawing.Point(257, 396);
-            this.CPUCoresTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUCoresTextBox.Location = new System.Drawing.Point(343, 487);
+            this.CPUCoresTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUCoresTextBox.Name = "CPUCoresTextBox";
-            this.CPUCoresTextBox.Size = new System.Drawing.Size(161, 25);
+            this.CPUCoresTextBox.Size = new System.Drawing.Size(213, 30);
             this.CPUCoresTextBox.TabIndex = 26;
             // 
             // CPUSocketComboBox
@@ -673,10 +714,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPUSocketComboBox.Location = new System.Drawing.Point(257, 353);
-            this.CPUSocketComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUSocketComboBox.Location = new System.Drawing.Point(343, 434);
+            this.CPUSocketComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUSocketComboBox.Name = "CPUSocketComboBox";
-            this.CPUSocketComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUSocketComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUSocketComboBox.TabIndex = 25;
             this.CPUSocketComboBox.Leave += new System.EventHandler(this.CPUSocketComboBox_Leave);
             // 
@@ -697,10 +738,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPUCodeNameComboBox.Location = new System.Drawing.Point(257, 314);
-            this.CPUCodeNameComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUCodeNameComboBox.Location = new System.Drawing.Point(343, 386);
+            this.CPUCodeNameComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUCodeNameComboBox.Name = "CPUCodeNameComboBox";
-            this.CPUCodeNameComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUCodeNameComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUCodeNameComboBox.TabIndex = 24;
             this.CPUCodeNameComboBox.Leave += new System.EventHandler(this.CPUCodeNameComboBox_Leave);
             // 
@@ -721,20 +762,20 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CPUSeriesComboBox.Location = new System.Drawing.Point(257, 238);
-            this.CPUSeriesComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUSeriesComboBox.Location = new System.Drawing.Point(343, 293);
+            this.CPUSeriesComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUSeriesComboBox.Name = "CPUSeriesComboBox";
-            this.CPUSeriesComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUSeriesComboBox.Size = new System.Drawing.Size(436, 31);
             this.CPUSeriesComboBox.TabIndex = 22;
             this.CPUSeriesComboBox.Leave += new System.EventHandler(this.CPUSeriesComboBox_Leave);
             // 
             // FindCPUIDButton
             // 
             this.FindCPUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindCPUIDButton.Location = new System.Drawing.Point(491, 158);
-            this.FindCPUIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindCPUIDButton.Location = new System.Drawing.Point(655, 194);
+            this.FindCPUIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindCPUIDButton.Name = "FindCPUIDButton";
-            this.FindCPUIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindCPUIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindCPUIDButton.TabIndex = 21;
             this.FindCPUIDButton.Text = "Поиск";
             this.FindCPUIDButton.UseVisualStyleBackColor = true;
@@ -743,19 +784,19 @@ namespace Computer_house
             // CPUNameTextBox
             // 
             this.CPUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUNameTextBox.Location = new System.Drawing.Point(257, 199);
-            this.CPUNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUNameTextBox.Location = new System.Drawing.Point(343, 245);
+            this.CPUNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUNameTextBox.Name = "CPUNameTextBox";
-            this.CPUNameTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CPUNameTextBox.Size = new System.Drawing.Size(436, 30);
             this.CPUNameTextBox.TabIndex = 20;
             // 
             // CPUIDTextBox
             // 
             this.CPUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CPUIDTextBox.Location = new System.Drawing.Point(257, 161);
-            this.CPUIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CPUIDTextBox.Location = new System.Drawing.Point(343, 198);
+            this.CPUIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPUIDTextBox.Name = "CPUIDTextBox";
-            this.CPUIDTextBox.Size = new System.Drawing.Size(218, 25);
+            this.CPUIDTextBox.Size = new System.Drawing.Size(289, 30);
             this.CPUIDTextBox.TabIndex = 19;
             this.CPUIDTextBox.TextChanged += new System.EventHandler(this.CPUIDTextBox_TextChanged);
             // 
@@ -763,10 +804,10 @@ namespace Computer_house
             // 
             this.ChangeCPURadio.AutoSize = true;
             this.ChangeCPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeCPURadio.Location = new System.Drawing.Point(491, 115);
-            this.ChangeCPURadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeCPURadio.Location = new System.Drawing.Point(655, 142);
+            this.ChangeCPURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeCPURadio.Name = "ChangeCPURadio";
-            this.ChangeCPURadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeCPURadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeCPURadio.TabIndex = 18;
             this.ChangeCPURadio.TabStop = true;
             this.ChangeCPURadio.Text = "Изменить";
@@ -777,10 +818,10 @@ namespace Computer_house
             // 
             this.AddCPURadio.AutoSize = true;
             this.AddCPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCPURadio.Location = new System.Drawing.Point(493, 19);
-            this.AddCPURadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddCPURadio.Location = new System.Drawing.Point(657, 23);
+            this.AddCPURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddCPURadio.Name = "AddCPURadio";
-            this.AddCPURadio.Size = new System.Drawing.Size(99, 25);
+            this.AddCPURadio.Size = new System.Drawing.Size(122, 32);
             this.AddCPURadio.TabIndex = 17;
             this.AddCPURadio.TabStop = true;
             this.AddCPURadio.Text = "Добавить";
@@ -797,14 +838,14 @@ namespace Computer_house
             this.CPU_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CPU_ID,
             this.CPU_Name});
-            this.CPU_DatagridView.Location = new System.Drawing.Point(19, 19);
-            this.CPU_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.CPU_DatagridView.Location = new System.Drawing.Point(25, 23);
+            this.CPU_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CPU_DatagridView.MultiSelect = false;
             this.CPU_DatagridView.Name = "CPU_DatagridView";
             this.CPU_DatagridView.ReadOnly = true;
             this.CPU_DatagridView.RowHeadersWidth = 51;
             this.CPU_DatagridView.RowTemplate.Height = 24;
-            this.CPU_DatagridView.Size = new System.Drawing.Size(455, 122);
+            this.CPU_DatagridView.Size = new System.Drawing.Size(607, 150);
             this.CPU_DatagridView.TabIndex = 16;
             this.CPU_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
@@ -828,10 +869,9 @@ namespace Computer_house
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(14, 698);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Location = new System.Drawing.Point(19, 859);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(119, 25);
+            this.label20.Size = new System.Drawing.Size(153, 32);
             this.label20.TabIndex = 15;
             this.label20.Text = "Техпроцесс";
             // 
@@ -839,10 +879,9 @@ namespace Computer_house
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(14, 655);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Location = new System.Drawing.Point(19, 806);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(304, 25);
+            this.label19.Size = new System.Drawing.Size(383, 32);
             this.label19.TabIndex = 14;
             this.label19.Text = "Расчётная тепловая мощность";
             // 
@@ -850,10 +889,9 @@ namespace Computer_house
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 622);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Location = new System.Drawing.Point(19, 766);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(206, 25);
+            this.label18.Size = new System.Drawing.Size(259, 32);
             this.label18.TabIndex = 13;
             this.label18.Text = "Встроенная графика";
             // 
@@ -861,10 +899,9 @@ namespace Computer_house
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(14, 547);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Location = new System.Drawing.Point(19, 673);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(238, 25);
+            this.label17.Size = new System.Drawing.Size(298, 32);
             this.label17.TabIndex = 12;
             this.label17.Text = "Кол-во каналов памяти";
             // 
@@ -872,10 +909,9 @@ namespace Computer_house
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(14, 508);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(19, 625);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(198, 25);
+            this.label16.Size = new System.Drawing.Size(247, 32);
             this.label16.TabIndex = 11;
             this.label16.Text = "Поддержка памяти";
             // 
@@ -883,10 +919,9 @@ namespace Computer_house
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 469);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(19, 577);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(320, 25);
+            this.label15.Size = new System.Drawing.Size(402, 32);
             this.label15.TabIndex = 10;
             this.label15.Text = "Максимальная тактовая частота";
             // 
@@ -894,10 +929,9 @@ namespace Computer_house
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(14, 431);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(19, 530);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(255, 25);
+            this.label14.Size = new System.Drawing.Size(321, 32);
             this.label14.TabIndex = 9;
             this.label14.Text = "Базовая тактовая частота";
             // 
@@ -905,10 +939,9 @@ namespace Computer_house
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(14, 589);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(19, 725);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(306, 25);
+            this.label12.Size = new System.Drawing.Size(385, 32);
             this.label12.TabIndex = 7;
             this.label12.Text = "Максимальная частота памяти";
             // 
@@ -916,10 +949,9 @@ namespace Computer_house
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(14, 394);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(19, 485);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(174, 25);
+            this.label11.Size = new System.Drawing.Size(219, 32);
             this.label11.TabIndex = 6;
             this.label11.Text = "Количество ядер";
             // 
@@ -927,10 +959,9 @@ namespace Computer_house
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(14, 349);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(19, 430);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 25);
+            this.label10.Size = new System.Drawing.Size(82, 32);
             this.label10.TabIndex = 5;
             this.label10.Text = "Сокет";
             // 
@@ -938,10 +969,9 @@ namespace Computer_house
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(14, 310);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(19, 382);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(186, 25);
+            this.label9.Size = new System.Drawing.Size(235, 32);
             this.label9.TabIndex = 4;
             this.label9.Text = "Кодовое название";
             // 
@@ -949,10 +979,9 @@ namespace Computer_house
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 274);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(19, 337);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(140, 25);
+            this.label8.Size = new System.Drawing.Size(175, 32);
             this.label8.TabIndex = 3;
             this.label8.Text = "Тип поставки";
             // 
@@ -960,10 +989,9 @@ namespace Computer_house
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 235);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(19, 289);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 25);
+            this.label7.Size = new System.Drawing.Size(209, 32);
             this.label7.TabIndex = 2;
             this.label7.Text = "Модельный ряд";
             // 
@@ -971,10 +999,9 @@ namespace Computer_house
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(14, 196);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(19, 241);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(153, 25);
+            this.label6.Size = new System.Drawing.Size(193, 32);
             this.label6.TabIndex = 1;
             this.label6.Text = "Наименование";
             // 
@@ -982,10 +1009,9 @@ namespace Computer_house
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(14, 158);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(19, 194);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(149, 25);
+            this.label5.Size = new System.Drawing.Size(189, 32);
             this.label5.TabIndex = 0;
             this.label5.Text = "ID процессора";
             // 
@@ -1035,11 +1061,11 @@ namespace Computer_house
             this.tabPage4.Controls.Add(this.ChangeGPURadio);
             this.tabPage4.Controls.Add(this.AddGPURadio);
             this.tabPage4.Controls.Add(this.GPU_DatagridView);
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 32);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(601, 786);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage4.Size = new System.Drawing.Size(804, 971);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Видеокарта";
             this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
@@ -1048,10 +1074,9 @@ namespace Computer_house
             // 
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(500, 697);
-            this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label59.Location = new System.Drawing.Point(667, 858);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(40, 21);
+            this.label59.Size = new System.Drawing.Size(48, 28);
             this.label59.TabIndex = 59;
             this.label59.Text = "ММ";
             // 
@@ -1059,10 +1084,9 @@ namespace Computer_house
             // 
             this.label58.AutoSize = true;
             this.label58.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.Location = new System.Drawing.Point(521, 652);
-            this.label58.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label58.Location = new System.Drawing.Point(695, 802);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(65, 21);
+            this.label58.Size = new System.Drawing.Size(79, 28);
             this.label58.TabIndex = 58;
             this.label58.Text = "Слотов";
             // 
@@ -1070,10 +1094,9 @@ namespace Computer_house
             // 
             this.label57.AutoSize = true;
             this.label57.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(559, 437);
-            this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label57.Location = new System.Drawing.Point(745, 538);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(26, 21);
+            this.label57.Size = new System.Drawing.Size(32, 28);
             this.label57.TabIndex = 57;
             this.label57.Text = "Вт";
             // 
@@ -1081,10 +1104,9 @@ namespace Computer_house
             // 
             this.label56.AutoSize = true;
             this.label56.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(368, 395);
-            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label56.Location = new System.Drawing.Point(491, 486);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(35, 21);
+            this.label56.Size = new System.Drawing.Size(44, 28);
             this.label56.TabIndex = 56;
             this.label56.Text = "Бит";
             // 
@@ -1092,20 +1114,19 @@ namespace Computer_house
             // 
             this.label55.AutoSize = true;
             this.label55.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(557, 313);
-            this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label55.Location = new System.Drawing.Point(743, 385);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(27, 21);
+            this.label55.Size = new System.Drawing.Size(34, 28);
             this.label55.TabIndex = 55;
             this.label55.Text = "Гб";
             // 
             // ActWithGPU
             // 
             this.ActWithGPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithGPU.Location = new System.Drawing.Point(20, 745);
-            this.ActWithGPU.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithGPU.Location = new System.Drawing.Point(27, 917);
+            this.ActWithGPU.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithGPU.Name = "ActWithGPU";
-            this.ActWithGPU.Size = new System.Drawing.Size(562, 38);
+            this.ActWithGPU.Size = new System.Drawing.Size(749, 47);
             this.ActWithGPU.TabIndex = 54;
             this.ActWithGPU.Text = "button3";
             this.ActWithGPU.UseVisualStyleBackColor = true;
@@ -1114,100 +1135,95 @@ namespace Computer_house
             // GPUEnergyConsumptTextBox
             // 
             this.GPUEnergyConsumptTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUEnergyConsumptTextBox.Location = new System.Drawing.Point(254, 438);
-            this.GPUEnergyConsumptTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUEnergyConsumptTextBox.Location = new System.Drawing.Point(339, 539);
+            this.GPUEnergyConsumptTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUEnergyConsumptTextBox.Name = "GPUEnergyConsumptTextBox";
-            this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(296, 25);
+            this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(393, 30);
             this.GPUEnergyConsumptTextBox.TabIndex = 53;
             // 
             // label39
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(15, 435);
-            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label39.Location = new System.Drawing.Point(20, 535);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(200, 25);
+            this.label39.Size = new System.Drawing.Size(252, 32);
             this.label39.TabIndex = 52;
             this.label39.Text = "Энергопотребление";
             // 
             // GPUCapacityTextBox
             // 
             this.GPUCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUCapacityTextBox.Location = new System.Drawing.Point(254, 311);
-            this.GPUCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUCapacityTextBox.Location = new System.Drawing.Point(339, 383);
+            this.GPUCapacityTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCapacityTextBox.Name = "GPUCapacityTextBox";
-            this.GPUCapacityTextBox.Size = new System.Drawing.Size(296, 25);
+            this.GPUCapacityTextBox.Size = new System.Drawing.Size(393, 30);
             this.GPUCapacityTextBox.TabIndex = 51;
             // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(15, 310);
-            this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label38.Location = new System.Drawing.Point(20, 382);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(152, 25);
+            this.label38.Size = new System.Drawing.Size(192, 32);
             this.label38.TabIndex = 50;
             this.label38.Text = "Объём памяти";
             // 
             // GPUHeightTextBox
             // 
             this.GPUHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUHeightTextBox.Location = new System.Drawing.Point(426, 697);
-            this.GPUHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUHeightTextBox.Location = new System.Drawing.Point(568, 858);
+            this.GPUHeightTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUHeightTextBox.Name = "GPUHeightTextBox";
-            this.GPUHeightTextBox.Size = new System.Drawing.Size(68, 25);
+            this.GPUHeightTextBox.Size = new System.Drawing.Size(89, 30);
             this.GPUHeightTextBox.TabIndex = 49;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(387, 695);
-            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Location = new System.Drawing.Point(516, 855);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(27, 25);
+            this.label37.Size = new System.Drawing.Size(34, 32);
             this.label37.TabIndex = 48;
             this.label37.Text = " /";
             // 
             // GPULengthTextBox
             // 
             this.GPULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPULengthTextBox.Location = new System.Drawing.Point(308, 697);
-            this.GPULengthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPULengthTextBox.Location = new System.Drawing.Point(411, 858);
+            this.GPULengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPULengthTextBox.Name = "GPULengthTextBox";
-            this.GPULengthTextBox.Size = new System.Drawing.Size(68, 25);
+            this.GPULengthTextBox.Size = new System.Drawing.Size(89, 30);
             this.GPULengthTextBox.TabIndex = 47;
             // 
             // label36
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(15, 694);
-            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label36.Location = new System.Drawing.Point(20, 854);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(281, 25);
+            this.label36.Size = new System.Drawing.Size(353, 32);
             this.label36.TabIndex = 46;
             this.label36.Text = "Длина / высота видеокарты";
             // 
             // GPUCoolingSysThicknessTextBox
             // 
             this.GPUCoolingSysThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUCoolingSysThicknessTextBox.Location = new System.Drawing.Point(323, 652);
-            this.GPUCoolingSysThicknessTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUCoolingSysThicknessTextBox.Location = new System.Drawing.Point(431, 802);
+            this.GPUCoolingSysThicknessTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCoolingSysThicknessTextBox.Name = "GPUCoolingSysThicknessTextBox";
-            this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(179, 25);
+            this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(237, 30);
             this.GPUCoolingSysThicknessTextBox.TabIndex = 45;
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(15, 649);
-            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label35.Location = new System.Drawing.Point(20, 799);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(306, 25);
+            this.label35.Size = new System.Drawing.Size(387, 32);
             this.label35.TabIndex = 44;
             this.label35.Text = "Толщина системы охлаждения";
             // 
@@ -1215,30 +1231,28 @@ namespace Computer_house
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(15, 610);
-            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Location = new System.Drawing.Point(20, 751);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(261, 25);
+            this.label34.Size = new System.Drawing.Size(328, 32);
             this.label34.TabIndex = 43;
             this.label34.Text = "Количество вентиляторов";
             // 
             // GPUCoolersCountTextBox
             // 
             this.GPUCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(322, 611);
-            this.GPUCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(429, 752);
+            this.GPUCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUCoolersCountTextBox.Name = "GPUCoolersCountTextBox";
-            this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(259, 25);
+            this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(344, 30);
             this.GPUCoolersCountTextBox.TabIndex = 42;
             // 
             // label33
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(15, 569);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Location = new System.Drawing.Point(20, 700);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(132, 25);
+            this.label33.Size = new System.Drawing.Size(165, 32);
             this.label33.TabIndex = 41;
             this.label33.Text = "Тип питания";
             // 
@@ -1259,70 +1273,67 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.GPUPowerTypeComboBox.Location = new System.Drawing.Point(254, 569);
-            this.GPUPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUPowerTypeComboBox.Location = new System.Drawing.Point(339, 700);
+            this.GPUPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUPowerTypeComboBox.Name = "GPUPowerTypeComboBox";
-            this.GPUPowerTypeComboBox.Size = new System.Drawing.Size(328, 25);
+            this.GPUPowerTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.GPUPowerTypeComboBox.TabIndex = 40;
             this.GPUPowerTypeComboBox.Leave += new System.EventHandler(this.GPUPowerTypeComboBox_Leave);
             // 
             // GPUOutputInterfacesTextBox
             // 
             this.GPUOutputInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUOutputInterfacesTextBox.Location = new System.Drawing.Point(254, 524);
-            this.GPUOutputInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUOutputInterfacesTextBox.Location = new System.Drawing.Point(339, 645);
+            this.GPUOutputInterfacesTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUOutputInterfacesTextBox.Name = "GPUOutputInterfacesTextBox";
-            this.GPUOutputInterfacesTextBox.Size = new System.Drawing.Size(328, 25);
+            this.GPUOutputInterfacesTextBox.Size = new System.Drawing.Size(436, 30);
             this.GPUOutputInterfacesTextBox.TabIndex = 39;
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(15, 524);
-            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Location = new System.Drawing.Point(20, 645);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(219, 25);
+            this.label32.Size = new System.Drawing.Size(277, 32);
             this.label32.TabIndex = 38;
             this.label32.Text = "Внешние интерфейсы";
             // 
             // GPUDirectXVersionTextBox
             // 
             this.GPUDirectXVersionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUDirectXVersionTextBox.Location = new System.Drawing.Point(254, 482);
-            this.GPUDirectXVersionTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUDirectXVersionTextBox.Location = new System.Drawing.Point(339, 593);
+            this.GPUDirectXVersionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUDirectXVersionTextBox.Name = "GPUDirectXVersionTextBox";
-            this.GPUDirectXVersionTextBox.Size = new System.Drawing.Size(328, 25);
+            this.GPUDirectXVersionTextBox.Size = new System.Drawing.Size(436, 30);
             this.GPUDirectXVersionTextBox.TabIndex = 37;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(15, 479);
-            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Location = new System.Drawing.Point(20, 590);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(148, 25);
+            this.label31.Size = new System.Drawing.Size(190, 32);
             this.label31.TabIndex = 36;
             this.label31.Text = "DirectX версия";
             // 
             // GPUBusWidthTextBox
             // 
             this.GPUBusWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUBusWidthTextBox.Location = new System.Drawing.Point(254, 395);
-            this.GPUBusWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUBusWidthTextBox.Location = new System.Drawing.Point(339, 486);
+            this.GPUBusWidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUBusWidthTextBox.Name = "GPUBusWidthTextBox";
-            this.GPUBusWidthTextBox.Size = new System.Drawing.Size(103, 25);
+            this.GPUBusWidthTextBox.Size = new System.Drawing.Size(136, 30);
             this.GPUBusWidthTextBox.TabIndex = 35;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(15, 392);
-            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label30.Location = new System.Drawing.Point(20, 482);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(151, 25);
+            this.label30.Size = new System.Drawing.Size(190, 32);
             this.label30.TabIndex = 34;
             this.label30.Text = "Ширина шины";
             // 
@@ -1343,10 +1354,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.GPUMemoryTypeComboBox.Location = new System.Drawing.Point(254, 352);
-            this.GPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUMemoryTypeComboBox.Location = new System.Drawing.Point(339, 433);
+            this.GPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUMemoryTypeComboBox.Name = "GPUMemoryTypeComboBox";
-            this.GPUMemoryTypeComboBox.Size = new System.Drawing.Size(328, 25);
+            this.GPUMemoryTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.GPUMemoryTypeComboBox.TabIndex = 33;
             this.GPUMemoryTypeComboBox.Leave += new System.EventHandler(this.GPUMemoryTypeComboBox_Leave);
             // 
@@ -1354,10 +1365,9 @@ namespace Computer_house
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(15, 349);
-            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Location = new System.Drawing.Point(20, 430);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(180, 25);
+            this.label29.Size = new System.Drawing.Size(226, 32);
             this.label29.TabIndex = 32;
             this.label29.Text = "Тип видеопамяти";
             // 
@@ -1365,10 +1375,10 @@ namespace Computer_house
             // 
             this.GPUSLISupportCheckBox.AutoSize = true;
             this.GPUSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GPUSLISupportCheckBox.Location = new System.Drawing.Point(451, 276);
-            this.GPUSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUSLISupportCheckBox.Location = new System.Drawing.Point(601, 340);
+            this.GPUSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUSLISupportCheckBox.Name = "GPUSLISupportCheckBox";
-            this.GPUSLISupportCheckBox.Size = new System.Drawing.Size(143, 25);
+            this.GPUSLISupportCheckBox.Size = new System.Drawing.Size(174, 32);
             this.GPUSLISupportCheckBox.TabIndex = 31;
             this.GPUSLISupportCheckBox.Text = "Поддержка SLI";
             this.GPUSLISupportCheckBox.UseVisualStyleBackColor = true;
@@ -1377,10 +1387,10 @@ namespace Computer_house
             // 
             this.GPUOverclockingCheckBox.AutoSize = true;
             this.GPUOverclockingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GPUOverclockingCheckBox.Location = new System.Drawing.Point(415, 393);
-            this.GPUOverclockingCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUOverclockingCheckBox.Location = new System.Drawing.Point(553, 484);
+            this.GPUOverclockingCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUOverclockingCheckBox.Name = "GPUOverclockingCheckBox";
-            this.GPUOverclockingCheckBox.Size = new System.Drawing.Size(179, 25);
+            this.GPUOverclockingCheckBox.Size = new System.Drawing.Size(222, 32);
             this.GPUOverclockingCheckBox.TabIndex = 30;
             this.GPUOverclockingCheckBox.Text = "Разогнанная версия";
             this.GPUOverclockingCheckBox.UseVisualStyleBackColor = true;
@@ -1388,20 +1398,19 @@ namespace Computer_house
             // GPUManufactureTextBox
             // 
             this.GPUManufactureTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUManufactureTextBox.Location = new System.Drawing.Point(254, 276);
-            this.GPUManufactureTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUManufactureTextBox.Location = new System.Drawing.Point(339, 340);
+            this.GPUManufactureTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUManufactureTextBox.Name = "GPUManufactureTextBox";
-            this.GPUManufactureTextBox.Size = new System.Drawing.Size(189, 25);
+            this.GPUManufactureTextBox.Size = new System.Drawing.Size(251, 30);
             this.GPUManufactureTextBox.TabIndex = 29;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(15, 273);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Location = new System.Drawing.Point(20, 336);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(160, 25);
+            this.label28.Size = new System.Drawing.Size(200, 32);
             this.label28.TabIndex = 28;
             this.label28.Text = "Производитель";
             // 
@@ -1409,10 +1418,9 @@ namespace Computer_house
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(15, 234);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Location = new System.Drawing.Point(20, 288);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(255, 25);
+            this.label27.Size = new System.Drawing.Size(320, 32);
             this.label27.TabIndex = 27;
             this.label27.Text = "Интерфейс подключения";
             // 
@@ -1433,40 +1441,39 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.GPUInterfacesComboBox.Location = new System.Drawing.Point(274, 234);
-            this.GPUInterfacesComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUInterfacesComboBox.Location = new System.Drawing.Point(365, 288);
+            this.GPUInterfacesComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUInterfacesComboBox.Name = "GPUInterfacesComboBox";
-            this.GPUInterfacesComboBox.Size = new System.Drawing.Size(308, 25);
+            this.GPUInterfacesComboBox.Size = new System.Drawing.Size(409, 31);
             this.GPUInterfacesComboBox.TabIndex = 26;
             this.GPUInterfacesComboBox.Leave += new System.EventHandler(this.GPUInterfacesComboBox_Leave);
             // 
             // GPUNameTextBox
             // 
             this.GPUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUNameTextBox.Location = new System.Drawing.Point(254, 195);
-            this.GPUNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUNameTextBox.Location = new System.Drawing.Point(339, 240);
+            this.GPUNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUNameTextBox.Name = "GPUNameTextBox";
-            this.GPUNameTextBox.Size = new System.Drawing.Size(328, 25);
+            this.GPUNameTextBox.Size = new System.Drawing.Size(436, 30);
             this.GPUNameTextBox.TabIndex = 25;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(15, 192);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Location = new System.Drawing.Point(20, 236);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(153, 25);
+            this.label26.Size = new System.Drawing.Size(193, 32);
             this.label26.TabIndex = 24;
             this.label26.Text = "Наименование";
             // 
             // FindGPUIDButton
             // 
             this.FindGPUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindGPUIDButton.Location = new System.Drawing.Point(488, 151);
-            this.FindGPUIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindGPUIDButton.Location = new System.Drawing.Point(651, 186);
+            this.FindGPUIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindGPUIDButton.Name = "FindGPUIDButton";
-            this.FindGPUIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindGPUIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindGPUIDButton.TabIndex = 23;
             this.FindGPUIDButton.Text = "Поиск";
             this.FindGPUIDButton.UseVisualStyleBackColor = true;
@@ -1475,10 +1482,10 @@ namespace Computer_house
             // GPUIDTextBox
             // 
             this.GPUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.GPUIDTextBox.Location = new System.Drawing.Point(254, 154);
-            this.GPUIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.GPUIDTextBox.Location = new System.Drawing.Point(339, 190);
+            this.GPUIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPUIDTextBox.Name = "GPUIDTextBox";
-            this.GPUIDTextBox.Size = new System.Drawing.Size(230, 25);
+            this.GPUIDTextBox.Size = new System.Drawing.Size(305, 30);
             this.GPUIDTextBox.TabIndex = 22;
             this.GPUIDTextBox.TextChanged += new System.EventHandler(this.GPUIDTextBox_TextChanged);
             // 
@@ -1486,10 +1493,9 @@ namespace Computer_house
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(15, 154);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Location = new System.Drawing.Point(20, 190);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(153, 25);
+            this.label25.Size = new System.Drawing.Size(191, 32);
             this.label25.TabIndex = 20;
             this.label25.Text = "ID видеокарты";
             // 
@@ -1497,10 +1503,10 @@ namespace Computer_house
             // 
             this.ChangeGPURadio.AutoSize = true;
             this.ChangeGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeGPURadio.Location = new System.Drawing.Point(488, 114);
-            this.ChangeGPURadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeGPURadio.Location = new System.Drawing.Point(651, 140);
+            this.ChangeGPURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeGPURadio.Name = "ChangeGPURadio";
-            this.ChangeGPURadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeGPURadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeGPURadio.TabIndex = 19;
             this.ChangeGPURadio.TabStop = true;
             this.ChangeGPURadio.Text = "Изменить";
@@ -1511,10 +1517,10 @@ namespace Computer_house
             // 
             this.AddGPURadio.AutoSize = true;
             this.AddGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddGPURadio.Location = new System.Drawing.Point(490, 20);
-            this.AddGPURadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddGPURadio.Location = new System.Drawing.Point(653, 25);
+            this.AddGPURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddGPURadio.Name = "AddGPURadio";
-            this.AddGPURadio.Size = new System.Drawing.Size(99, 25);
+            this.AddGPURadio.Size = new System.Drawing.Size(122, 32);
             this.AddGPURadio.TabIndex = 18;
             this.AddGPURadio.TabStop = true;
             this.AddGPURadio.Text = "Добавить";
@@ -1531,14 +1537,14 @@ namespace Computer_house
             this.GPU_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GPU_ID,
             this.GPU_Name});
-            this.GPU_DatagridView.Location = new System.Drawing.Point(20, 20);
-            this.GPU_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.GPU_DatagridView.Location = new System.Drawing.Point(27, 25);
+            this.GPU_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GPU_DatagridView.MultiSelect = false;
             this.GPU_DatagridView.Name = "GPU_DatagridView";
             this.GPU_DatagridView.ReadOnly = true;
             this.GPU_DatagridView.RowHeadersWidth = 51;
             this.GPU_DatagridView.RowTemplate.Height = 24;
-            this.GPU_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.GPU_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.GPU_DatagridView.TabIndex = 0;
             this.GPU_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GPU_DatagridView_RowEnter);
             // 
@@ -1604,11 +1610,11 @@ namespace Computer_house
             this.tabPage5.Controls.Add(this.ChangeMotherboardRadio);
             this.tabPage5.Controls.Add(this.AddMotherboardRadio);
             this.tabPage5.Controls.Add(this.Motherboard_DatagridView);
-            this.tabPage5.Location = new System.Drawing.Point(4, 28);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 32);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage5.Size = new System.Drawing.Size(601, 786);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage5.Size = new System.Drawing.Size(804, 971);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Материнская плата";
             this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
@@ -1630,10 +1636,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherboardRamFrequencyComboBox.Location = new System.Drawing.Point(260, 508);
-            this.MotherboardRamFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardRamFrequencyComboBox.Location = new System.Drawing.Point(347, 625);
+            this.MotherboardRamFrequencyComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardRamFrequencyComboBox.Name = "MotherboardRamFrequencyComboBox";
-            this.MotherboardRamFrequencyComboBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardRamFrequencyComboBox.Size = new System.Drawing.Size(436, 31);
             this.MotherboardRamFrequencyComboBox.TabIndex = 66;
             this.MotherboardRamFrequencyComboBox.Leave += new System.EventHandler(this.MotherboardRamFrequencyComboBox_Leave);
             // 
@@ -1641,10 +1647,9 @@ namespace Computer_house
             // 
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(10, 504);
-            this.label64.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label64.Location = new System.Drawing.Point(13, 620);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(219, 25);
+            this.label64.Size = new System.Drawing.Size(275, 32);
             this.label64.TabIndex = 65;
             this.label64.Text = "Макс. частота памяти";
             // 
@@ -1652,10 +1657,9 @@ namespace Computer_house
             // 
             this.label63.AutoSize = true;
             this.label63.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(551, 708);
-            this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label63.Location = new System.Drawing.Point(735, 871);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(40, 21);
+            this.label63.Size = new System.Drawing.Size(48, 28);
             this.label63.TabIndex = 64;
             this.label63.Text = "ММ";
             // 
@@ -1663,50 +1667,47 @@ namespace Computer_house
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(562, 388);
-            this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label62.Location = new System.Drawing.Point(749, 478);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(27, 21);
+            this.label62.Size = new System.Drawing.Size(34, 28);
             this.label62.TabIndex = 63;
             this.label62.Text = "Гб";
             // 
             // MotherboardWidthTextBox
             // 
             this.MotherboardWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardWidthTextBox.Location = new System.Drawing.Point(423, 708);
-            this.MotherboardWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardWidthTextBox.Location = new System.Drawing.Point(564, 871);
+            this.MotherboardWidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardWidthTextBox.Name = "MotherboardWidthTextBox";
-            this.MotherboardWidthTextBox.Size = new System.Drawing.Size(117, 25);
+            this.MotherboardWidthTextBox.Size = new System.Drawing.Size(155, 30);
             this.MotherboardWidthTextBox.TabIndex = 62;
             // 
             // label61
             // 
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(388, 706);
-            this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label61.Location = new System.Drawing.Point(517, 869);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(20, 25);
+            this.label61.Size = new System.Drawing.Size(26, 32);
             this.label61.TabIndex = 61;
             this.label61.Text = "/";
             // 
             // MotherboardLengthTextBox
             // 
             this.MotherboardLengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardLengthTextBox.Location = new System.Drawing.Point(260, 708);
-            this.MotherboardLengthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardLengthTextBox.Location = new System.Drawing.Point(347, 871);
+            this.MotherboardLengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardLengthTextBox.Name = "MotherboardLengthTextBox";
-            this.MotherboardLengthTextBox.Size = new System.Drawing.Size(117, 25);
+            this.MotherboardLengthTextBox.Size = new System.Drawing.Size(155, 30);
             this.MotherboardLengthTextBox.TabIndex = 60;
             // 
             // label54
             // 
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(10, 703);
-            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label54.Location = new System.Drawing.Point(13, 865);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(232, 25);
+            this.label54.Size = new System.Drawing.Size(292, 32);
             this.label54.TabIndex = 59;
             this.label54.Text = "Длина / ширина платы";
             // 
@@ -1714,20 +1715,19 @@ namespace Computer_house
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(486, 385);
-            this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label60.Location = new System.Drawing.Point(648, 474);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(20, 25);
+            this.label60.Size = new System.Drawing.Size(26, 32);
             this.label60.TabIndex = 58;
             this.label60.Text = "/";
             // 
             // ActWithMotherboard
             // 
             this.ActWithMotherboard.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithMotherboard.Location = new System.Drawing.Point(15, 745);
-            this.ActWithMotherboard.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithMotherboard.Location = new System.Drawing.Point(20, 917);
+            this.ActWithMotherboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithMotherboard.Name = "ActWithMotherboard";
-            this.ActWithMotherboard.Size = new System.Drawing.Size(572, 38);
+            this.ActWithMotherboard.Size = new System.Drawing.Size(763, 47);
             this.ActWithMotherboard.TabIndex = 57;
             this.ActWithMotherboard.Text = "button3";
             this.ActWithMotherboard.UseVisualStyleBackColor = true;
@@ -1736,29 +1736,28 @@ namespace Computer_house
             // MotherboardRAMCapacityTextBox
             // 
             this.MotherboardRAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardRAMCapacityTextBox.Location = new System.Drawing.Point(513, 387);
-            this.MotherboardRAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardRAMCapacityTextBox.Location = new System.Drawing.Point(684, 476);
+            this.MotherboardRAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardRAMCapacityTextBox.Name = "MotherboardRAMCapacityTextBox";
-            this.MotherboardRAMCapacityTextBox.Size = new System.Drawing.Size(45, 25);
+            this.MotherboardRAMCapacityTextBox.Size = new System.Drawing.Size(59, 30);
             this.MotherboardRAMCapacityTextBox.TabIndex = 56;
             // 
             // MotherboardConnectorsTextBox
             // 
             this.MotherboardConnectorsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardConnectorsTextBox.Location = new System.Drawing.Point(260, 669);
-            this.MotherboardConnectorsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardConnectorsTextBox.Location = new System.Drawing.Point(347, 823);
+            this.MotherboardConnectorsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardConnectorsTextBox.Name = "MotherboardConnectorsTextBox";
-            this.MotherboardConnectorsTextBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardConnectorsTextBox.Size = new System.Drawing.Size(436, 30);
             this.MotherboardConnectorsTextBox.TabIndex = 54;
             // 
             // label53
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(10, 665);
-            this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label53.Location = new System.Drawing.Point(13, 818);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(95, 25);
+            this.label53.Size = new System.Drawing.Size(122, 32);
             this.label53.TabIndex = 53;
             this.label53.Text = "Разъёмы";
             // 
@@ -1766,10 +1765,9 @@ namespace Computer_house
             // 
             this.label52.AutoSize = true;
             this.label52.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(396, 623);
-            this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label52.Location = new System.Drawing.Point(528, 767);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(20, 25);
+            this.label52.Size = new System.Drawing.Size(26, 32);
             this.label52.TabIndex = 52;
             this.label52.Text = "/";
             // 
@@ -1777,10 +1775,10 @@ namespace Computer_house
             // 
             this.MotherboardIntegratedGraphicCheckBox.AutoSize = true;
             this.MotherboardIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MotherboardIntegratedGraphicCheckBox.Location = new System.Drawing.Point(418, 624);
-            this.MotherboardIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardIntegratedGraphicCheckBox.Location = new System.Drawing.Point(557, 768);
+            this.MotherboardIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardIntegratedGraphicCheckBox.Name = "MotherboardIntegratedGraphicCheckBox";
-            this.MotherboardIntegratedGraphicCheckBox.Size = new System.Drawing.Size(182, 25);
+            this.MotherboardIntegratedGraphicCheckBox.Size = new System.Drawing.Size(225, 32);
             this.MotherboardIntegratedGraphicCheckBox.TabIndex = 51;
             this.MotherboardIntegratedGraphicCheckBox.Text = "Встроенная графика";
             this.MotherboardIntegratedGraphicCheckBox.UseVisualStyleBackColor = true;
@@ -1789,10 +1787,10 @@ namespace Computer_house
             // 
             this.MotherboardSLISupportCheckBox.AutoSize = true;
             this.MotherboardSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(345, 626);
-            this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(460, 770);
+            this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSLISupportCheckBox.Name = "MotherboardSLISupportCheckBox";
-            this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(50, 25);
+            this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(60, 32);
             this.MotherboardSLISupportCheckBox.TabIndex = 50;
             this.MotherboardSLISupportCheckBox.Text = "SLI";
             this.MotherboardSLISupportCheckBox.UseVisualStyleBackColor = true;
@@ -1801,50 +1799,47 @@ namespace Computer_house
             // 
             this.label51.AutoSize = true;
             this.label51.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(10, 623);
-            this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label51.Location = new System.Drawing.Point(13, 767);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(254, 25);
+            this.label51.Size = new System.Drawing.Size(318, 32);
             this.label51.TabIndex = 49;
             this.label51.Text = "SLI / встроенная графика";
             // 
             // MotherboardStorageInterfacesTextBox
             // 
             this.MotherboardStorageInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardStorageInterfacesTextBox.Location = new System.Drawing.Point(268, 588);
-            this.MotherboardStorageInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardStorageInterfacesTextBox.Location = new System.Drawing.Point(357, 724);
+            this.MotherboardStorageInterfacesTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardStorageInterfacesTextBox.Name = "MotherboardStorageInterfacesTextBox";
-            this.MotherboardStorageInterfacesTextBox.Size = new System.Drawing.Size(320, 25);
+            this.MotherboardStorageInterfacesTextBox.Size = new System.Drawing.Size(425, 30);
             this.MotherboardStorageInterfacesTextBox.TabIndex = 48;
             // 
             // label50
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(10, 585);
-            this.label50.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label50.Location = new System.Drawing.Point(13, 720);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(259, 25);
+            this.label50.Size = new System.Drawing.Size(326, 32);
             this.label50.TabIndex = 47;
             this.label50.Text = "Интерфейсы накопителей";
             // 
             // MotherboardExpansionsSlotsTextBox
             // 
             this.MotherboardExpansionsSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardExpansionsSlotsTextBox.Location = new System.Drawing.Point(260, 544);
-            this.MotherboardExpansionsSlotsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardExpansionsSlotsTextBox.Location = new System.Drawing.Point(347, 670);
+            this.MotherboardExpansionsSlotsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardExpansionsSlotsTextBox.Name = "MotherboardExpansionsSlotsTextBox";
-            this.MotherboardExpansionsSlotsTextBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardExpansionsSlotsTextBox.Size = new System.Drawing.Size(436, 30);
             this.MotherboardExpansionsSlotsTextBox.TabIndex = 46;
             // 
             // label49
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(10, 542);
-            this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label49.Location = new System.Drawing.Point(13, 667);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(194, 25);
+            this.label49.Size = new System.Drawing.Size(245, 32);
             this.label49.TabIndex = 45;
             this.label49.Text = "Слоты расширения";
             // 
@@ -1865,10 +1860,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherBoardRAMChanelsComboBox.Location = new System.Drawing.Point(260, 468);
-            this.MotherBoardRAMChanelsComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherBoardRAMChanelsComboBox.Location = new System.Drawing.Point(347, 576);
+            this.MotherBoardRAMChanelsComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherBoardRAMChanelsComboBox.Name = "MotherBoardRAMChanelsComboBox";
-            this.MotherBoardRAMChanelsComboBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherBoardRAMChanelsComboBox.Size = new System.Drawing.Size(436, 31);
             this.MotherBoardRAMChanelsComboBox.TabIndex = 44;
             this.MotherBoardRAMChanelsComboBox.Leave += new System.EventHandler(this.MotherBoardRAMChanelsComboBox_Leave);
             // 
@@ -1876,30 +1871,28 @@ namespace Computer_house
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(10, 464);
-            this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label48.Location = new System.Drawing.Point(13, 571);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(238, 25);
+            this.label48.Size = new System.Drawing.Size(298, 32);
             this.label48.TabIndex = 43;
             this.label48.Text = "Кол-во каналов памяти";
             // 
             // MotherboardCountOfRAMSlotsTextBox
             // 
             this.MotherboardCountOfRAMSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardCountOfRAMSlotsTextBox.Location = new System.Drawing.Point(260, 428);
-            this.MotherboardCountOfRAMSlotsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardCountOfRAMSlotsTextBox.Location = new System.Drawing.Point(347, 527);
+            this.MotherboardCountOfRAMSlotsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardCountOfRAMSlotsTextBox.Name = "MotherboardCountOfRAMSlotsTextBox";
-            this.MotherboardCountOfRAMSlotsTextBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardCountOfRAMSlotsTextBox.Size = new System.Drawing.Size(436, 30);
             this.MotherboardCountOfRAMSlotsTextBox.TabIndex = 42;
             // 
             // label47
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(10, 425);
-            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label47.Location = new System.Drawing.Point(13, 523);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(225, 25);
+            this.label47.Size = new System.Drawing.Size(282, 32);
             this.label47.TabIndex = 41;
             this.label47.Text = "Кол-во слотов памяти";
             // 
@@ -1920,10 +1913,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherboardSupportedRAMComboBox.Location = new System.Drawing.Point(369, 387);
-            this.MotherboardSupportedRAMComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardSupportedRAMComboBox.Location = new System.Drawing.Point(492, 476);
+            this.MotherboardSupportedRAMComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSupportedRAMComboBox.Name = "MotherboardSupportedRAMComboBox";
-            this.MotherboardSupportedRAMComboBox.Size = new System.Drawing.Size(111, 25);
+            this.MotherboardSupportedRAMComboBox.Size = new System.Drawing.Size(147, 31);
             this.MotherboardSupportedRAMComboBox.TabIndex = 40;
             this.MotherboardSupportedRAMComboBox.Leave += new System.EventHandler(this.MotherboardSupportedRAMComboBox_Leave);
             // 
@@ -1931,10 +1924,9 @@ namespace Computer_house
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(10, 384);
-            this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label46.Location = new System.Drawing.Point(13, 473);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(354, 25);
+            this.label46.Size = new System.Drawing.Size(444, 32);
             this.label46.TabIndex = 39;
             this.label46.Text = "Поддерживаемый тип / объём ОЗУ";
             // 
@@ -1955,10 +1947,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherboardFormFactorComboBox.Location = new System.Drawing.Point(260, 342);
-            this.MotherboardFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardFormFactorComboBox.Location = new System.Drawing.Point(347, 421);
+            this.MotherboardFormFactorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardFormFactorComboBox.Name = "MotherboardFormFactorComboBox";
-            this.MotherboardFormFactorComboBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardFormFactorComboBox.Size = new System.Drawing.Size(436, 31);
             this.MotherboardFormFactorComboBox.TabIndex = 38;
             this.MotherboardFormFactorComboBox.Leave += new System.EventHandler(this.MotherboardFormFactorComboBox_Leave);
             // 
@@ -1966,10 +1958,9 @@ namespace Computer_house
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(10, 339);
-            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label45.Location = new System.Drawing.Point(13, 417);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(144, 25);
+            this.label45.Size = new System.Drawing.Size(180, 32);
             this.label45.TabIndex = 37;
             this.label45.Text = "Форм-фактор";
             // 
@@ -1990,10 +1981,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherboardChipsetComboBox.Location = new System.Drawing.Point(448, 298);
-            this.MotherboardChipsetComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardChipsetComboBox.Location = new System.Drawing.Point(597, 367);
+            this.MotherboardChipsetComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardChipsetComboBox.Name = "MotherboardChipsetComboBox";
-            this.MotherboardChipsetComboBox.Size = new System.Drawing.Size(140, 25);
+            this.MotherboardChipsetComboBox.Size = new System.Drawing.Size(185, 31);
             this.MotherboardChipsetComboBox.TabIndex = 36;
             this.MotherboardChipsetComboBox.Leave += new System.EventHandler(this.MotherboardChipsetComboBox_Leave);
             // 
@@ -2001,10 +1992,9 @@ namespace Computer_house
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(421, 297);
-            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label44.Location = new System.Drawing.Point(561, 366);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(20, 25);
+            this.label44.Size = new System.Drawing.Size(26, 32);
             this.label44.TabIndex = 35;
             this.label44.Text = "/";
             // 
@@ -2025,10 +2015,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.MotherboardSocketComboBox.Location = new System.Drawing.Point(260, 297);
-            this.MotherboardSocketComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardSocketComboBox.Location = new System.Drawing.Point(347, 366);
+            this.MotherboardSocketComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSocketComboBox.Name = "MotherboardSocketComboBox";
-            this.MotherboardSocketComboBox.Size = new System.Drawing.Size(157, 25);
+            this.MotherboardSocketComboBox.Size = new System.Drawing.Size(208, 31);
             this.MotherboardSocketComboBox.TabIndex = 34;
             this.MotherboardSocketComboBox.Leave += new System.EventHandler(this.MotherboardSocketComboBox_Leave);
             // 
@@ -2036,60 +2026,57 @@ namespace Computer_house
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(10, 292);
-            this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label43.Location = new System.Drawing.Point(13, 359);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(154, 25);
+            this.label43.Size = new System.Drawing.Size(192, 32);
             this.label43.TabIndex = 33;
             this.label43.Text = "Сокет / Чипсет";
             // 
             // MotherboardSupportedCPUTextBox
             // 
             this.MotherboardSupportedCPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(317, 248);
-            this.MotherboardSupportedCPUTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(423, 305);
+            this.MotherboardSupportedCPUTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardSupportedCPUTextBox.Name = "MotherboardSupportedCPUTextBox";
-            this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(271, 25);
+            this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(360, 30);
             this.MotherboardSupportedCPUTextBox.TabIndex = 32;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(10, 245);
-            this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label42.Location = new System.Drawing.Point(13, 302);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(306, 25);
+            this.label42.Size = new System.Drawing.Size(387, 32);
             this.label42.TabIndex = 31;
             this.label42.Text = "Поддерживаемые процессоры";
             // 
             // MotherboardNameTextBox
             // 
             this.MotherboardNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardNameTextBox.Location = new System.Drawing.Point(260, 207);
-            this.MotherboardNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardNameTextBox.Location = new System.Drawing.Point(347, 255);
+            this.MotherboardNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardNameTextBox.Name = "MotherboardNameTextBox";
-            this.MotherboardNameTextBox.Size = new System.Drawing.Size(328, 25);
+            this.MotherboardNameTextBox.Size = new System.Drawing.Size(436, 30);
             this.MotherboardNameTextBox.TabIndex = 30;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(10, 204);
-            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label40.Location = new System.Drawing.Point(13, 251);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(153, 25);
+            this.label40.Size = new System.Drawing.Size(193, 32);
             this.label40.TabIndex = 29;
             this.label40.Text = "Наименование";
             // 
             // FindMotherboardIDButton
             // 
             this.FindMotherboardIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindMotherboardIDButton.Location = new System.Drawing.Point(494, 163);
-            this.FindMotherboardIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindMotherboardIDButton.Location = new System.Drawing.Point(659, 201);
+            this.FindMotherboardIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindMotherboardIDButton.Name = "FindMotherboardIDButton";
-            this.FindMotherboardIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindMotherboardIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindMotherboardIDButton.TabIndex = 28;
             this.FindMotherboardIDButton.Text = "Поиск";
             this.FindMotherboardIDButton.UseVisualStyleBackColor = true;
@@ -2098,10 +2085,10 @@ namespace Computer_house
             // MotherboardIDTextBox
             // 
             this.MotherboardIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.MotherboardIDTextBox.Location = new System.Drawing.Point(260, 166);
-            this.MotherboardIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MotherboardIDTextBox.Location = new System.Drawing.Point(347, 204);
+            this.MotherboardIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MotherboardIDTextBox.Name = "MotherboardIDTextBox";
-            this.MotherboardIDTextBox.Size = new System.Drawing.Size(230, 25);
+            this.MotherboardIDTextBox.Size = new System.Drawing.Size(305, 30);
             this.MotherboardIDTextBox.TabIndex = 27;
             this.MotherboardIDTextBox.TextChanged += new System.EventHandler(this.MotherboardIDTextBox_TextChanged);
             // 
@@ -2109,10 +2096,9 @@ namespace Computer_house
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(10, 164);
-            this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label41.Location = new System.Drawing.Point(13, 202);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(227, 25);
+            this.label41.Size = new System.Drawing.Size(284, 32);
             this.label41.TabIndex = 26;
             this.label41.Text = "ID материнской платы";
             // 
@@ -2120,10 +2106,10 @@ namespace Computer_house
             // 
             this.ChangeMotherboardRadio.AutoSize = true;
             this.ChangeMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeMotherboardRadio.Location = new System.Drawing.Point(484, 112);
-            this.ChangeMotherboardRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeMotherboardRadio.Location = new System.Drawing.Point(645, 138);
+            this.ChangeMotherboardRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeMotherboardRadio.Name = "ChangeMotherboardRadio";
-            this.ChangeMotherboardRadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeMotherboardRadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeMotherboardRadio.TabIndex = 22;
             this.ChangeMotherboardRadio.TabStop = true;
             this.ChangeMotherboardRadio.Text = "Изменить";
@@ -2134,10 +2120,10 @@ namespace Computer_house
             // 
             this.AddMotherboardRadio.AutoSize = true;
             this.AddMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddMotherboardRadio.Location = new System.Drawing.Point(485, 19);
-            this.AddMotherboardRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddMotherboardRadio.Location = new System.Drawing.Point(647, 23);
+            this.AddMotherboardRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddMotherboardRadio.Name = "AddMotherboardRadio";
-            this.AddMotherboardRadio.Size = new System.Drawing.Size(99, 25);
+            this.AddMotherboardRadio.Size = new System.Drawing.Size(122, 32);
             this.AddMotherboardRadio.TabIndex = 21;
             this.AddMotherboardRadio.TabStop = true;
             this.AddMotherboardRadio.Text = "Добавить";
@@ -2154,14 +2140,14 @@ namespace Computer_house
             this.Motherboard_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MotherboardID,
             this.MotherboardName});
-            this.Motherboard_DatagridView.Location = new System.Drawing.Point(15, 19);
-            this.Motherboard_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.Motherboard_DatagridView.Location = new System.Drawing.Point(20, 23);
+            this.Motherboard_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Motherboard_DatagridView.MultiSelect = false;
             this.Motherboard_DatagridView.Name = "Motherboard_DatagridView";
             this.Motherboard_DatagridView.ReadOnly = true;
             this.Motherboard_DatagridView.RowHeadersWidth = 51;
             this.Motherboard_DatagridView.RowTemplate.Height = 24;
-            this.Motherboard_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.Motherboard_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.Motherboard_DatagridView.TabIndex = 20;
             this.Motherboard_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.Motherboard_DatagridView_RowEnter);
             // 
@@ -2239,11 +2225,11 @@ namespace Computer_house
             this.tabPage6.Controls.Add(this.ChangeCaseRadio);
             this.tabPage6.Controls.Add(this.AddCaseRadio);
             this.tabPage6.Controls.Add(this.Case_DatagridView);
-            this.tabPage6.Location = new System.Drawing.Point(4, 28);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage6.Location = new System.Drawing.Point(4, 32);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage6.Size = new System.Drawing.Size(601, 786);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage6.Size = new System.Drawing.Size(804, 971);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Корпус";
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
@@ -2251,10 +2237,10 @@ namespace Computer_house
             // ActWithCase
             // 
             this.ActWithCase.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithCase.Location = new System.Drawing.Point(16, 744);
-            this.ActWithCase.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithCase.Location = new System.Drawing.Point(21, 916);
+            this.ActWithCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithCase.Name = "ActWithCase";
-            this.ActWithCase.Size = new System.Drawing.Size(573, 38);
+            this.ActWithCase.Size = new System.Drawing.Size(764, 47);
             this.ActWithCase.TabIndex = 93;
             this.ActWithCase.Text = "button3";
             this.ActWithCase.UseVisualStyleBackColor = true;
@@ -2264,10 +2250,9 @@ namespace Computer_house
             // 
             this.label89.AutoSize = true;
             this.label89.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.Location = new System.Drawing.Point(553, 522);
-            this.label89.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label89.Location = new System.Drawing.Point(737, 642);
             this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(40, 21);
+            this.label89.Size = new System.Drawing.Size(48, 28);
             this.label89.TabIndex = 92;
             this.label89.Text = "ММ";
             // 
@@ -2275,99 +2260,94 @@ namespace Computer_house
             // 
             this.label88.AutoSize = true;
             this.label88.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.Location = new System.Drawing.Point(363, 520);
-            this.label88.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label88.Location = new System.Drawing.Point(484, 640);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(20, 25);
+            this.label88.Size = new System.Drawing.Size(26, 32);
             this.label88.TabIndex = 91;
             this.label88.Text = "/";
             // 
             // CaseHeightTextBox
             // 
             this.CaseHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseHeightTextBox.Location = new System.Drawing.Point(299, 521);
-            this.CaseHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseHeightTextBox.Location = new System.Drawing.Point(399, 641);
+            this.CaseHeightTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseHeightTextBox.Name = "CaseHeightTextBox";
-            this.CaseHeightTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseHeightTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseHeightTextBox.TabIndex = 90;
             // 
             // CaseDepthTextBox
             // 
             this.CaseDepthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseDepthTextBox.Location = new System.Drawing.Point(473, 521);
-            this.CaseDepthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseDepthTextBox.Location = new System.Drawing.Point(631, 641);
+            this.CaseDepthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseDepthTextBox.Name = "CaseDepthTextBox";
-            this.CaseDepthTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseDepthTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseDepthTextBox.TabIndex = 89;
             // 
             // label87
             // 
             this.label87.AutoSize = true;
             this.label87.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label87.Location = new System.Drawing.Point(449, 520);
-            this.label87.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label87.Location = new System.Drawing.Point(599, 640);
             this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(20, 25);
+            this.label87.Size = new System.Drawing.Size(26, 32);
             this.label87.TabIndex = 88;
             this.label87.Text = "/";
             // 
             // CaseWidthTextBox
             // 
             this.CaseWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseWidthTextBox.Location = new System.Drawing.Point(385, 521);
-            this.CaseWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseWidthTextBox.Location = new System.Drawing.Point(513, 641);
+            this.CaseWidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseWidthTextBox.Name = "CaseWidthTextBox";
-            this.CaseWidthTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseWidthTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseWidthTextBox.TabIndex = 87;
             // 
             // label86
             // 
             this.label86.AutoSize = true;
             this.label86.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.Location = new System.Drawing.Point(12, 521);
-            this.label86.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label86.Location = new System.Drawing.Point(16, 641);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(272, 25);
+            this.label86.Size = new System.Drawing.Size(343, 32);
             this.label86.TabIndex = 86;
             this.label86.Text = "Высота / ширина / глубина";
             // 
             // CaseCoolerSlotsCountTextBox
             // 
             this.CaseCoolerSlotsCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseCoolerSlotsCountTextBox.Location = new System.Drawing.Point(529, 485);
-            this.CaseCoolerSlotsCountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseCoolerSlotsCountTextBox.Location = new System.Drawing.Point(705, 597);
+            this.CaseCoolerSlotsCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseCoolerSlotsCountTextBox.Name = "CaseCoolerSlotsCountTextBox";
-            this.CaseCoolerSlotsCountTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseCoolerSlotsCountTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseCoolerSlotsCountTextBox.TabIndex = 85;
             // 
             // label85
             // 
             this.label85.AutoSize = true;
             this.label85.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(489, 484);
-            this.label85.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label85.Location = new System.Drawing.Point(652, 596);
             this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(20, 25);
+            this.label85.Size = new System.Drawing.Size(26, 32);
             this.label85.TabIndex = 84;
             this.label85.Text = "/";
             // 
             // CaseCoolersCountTextBox
             // 
             this.CaseCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseCoolersCountTextBox.Location = new System.Drawing.Point(405, 485);
-            this.CaseCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseCoolersCountTextBox.Location = new System.Drawing.Point(540, 597);
+            this.CaseCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseCoolersCountTextBox.Name = "CaseCoolersCountTextBox";
-            this.CaseCoolersCountTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseCoolersCountTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseCoolersCountTextBox.TabIndex = 83;
             // 
             // label84
             // 
             this.label84.AutoSize = true;
             this.label84.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(12, 485);
-            this.label84.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label84.Location = new System.Drawing.Point(16, 597);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(374, 25);
+            this.label84.Size = new System.Drawing.Size(469, 32);
             this.label84.TabIndex = 82;
             this.label84.Text = "Установлено кулеров / кол-во слотов";
             // 
@@ -2375,30 +2355,28 @@ namespace Computer_house
             // 
             this.label83.AutoSize = true;
             this.label83.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(460, 706);
-            this.label83.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label83.Location = new System.Drawing.Point(613, 869);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(25, 21);
+            this.label83.Size = new System.Drawing.Size(32, 28);
             this.label83.TabIndex = 81;
             this.label83.Text = "Кг";
             // 
             // CaseWeightTextBox
             // 
             this.CaseWeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseWeightTextBox.Location = new System.Drawing.Point(395, 705);
-            this.CaseWeightTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseWeightTextBox.Location = new System.Drawing.Point(527, 868);
+            this.CaseWeightTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseWeightTextBox.Name = "CaseWeightTextBox";
-            this.CaseWeightTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseWeightTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseWeightTextBox.TabIndex = 80;
             // 
             // label82
             // 
             this.label82.AutoSize = true;
             this.label82.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label82.Location = new System.Drawing.Point(371, 704);
-            this.label82.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label82.Location = new System.Drawing.Point(495, 866);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(20, 25);
+            this.label82.Size = new System.Drawing.Size(26, 32);
             this.label82.TabIndex = 79;
             this.label82.Text = "/";
             // 
@@ -2406,30 +2384,28 @@ namespace Computer_house
             // 
             this.label80.AutoSize = true;
             this.label80.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label80.Location = new System.Drawing.Point(331, 706);
-            this.label80.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label80.Location = new System.Drawing.Point(441, 869);
             this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(40, 21);
+            this.label80.Size = new System.Drawing.Size(48, 28);
             this.label80.TabIndex = 78;
             this.label80.Text = "ММ";
             // 
             // CaseMaxPSULengthTextBox
             // 
             this.CaseMaxPSULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseMaxPSULengthTextBox.Location = new System.Drawing.Point(267, 705);
-            this.CaseMaxPSULengthTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseMaxPSULengthTextBox.Location = new System.Drawing.Point(356, 868);
+            this.CaseMaxPSULengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseMaxPSULengthTextBox.Name = "CaseMaxPSULengthTextBox";
-            this.CaseMaxPSULengthTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseMaxPSULengthTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseMaxPSULengthTextBox.TabIndex = 77;
             // 
             // label81
             // 
             this.label81.AutoSize = true;
             this.label81.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.Location = new System.Drawing.Point(12, 708);
-            this.label81.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label81.Location = new System.Drawing.Point(16, 871);
             this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(216, 25);
+            this.label81.Size = new System.Drawing.Size(270, 32);
             this.label81.TabIndex = 76;
             this.label81.Text = "Макс. длина БП / Вес";
             // 
@@ -2437,10 +2413,10 @@ namespace Computer_house
             // 
             this.CaseDustFiltersCheckBox.AutoSize = true;
             this.CaseDustFiltersCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaseDustFiltersCheckBox.Location = new System.Drawing.Point(437, 672);
-            this.CaseDustFiltersCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseDustFiltersCheckBox.Location = new System.Drawing.Point(583, 827);
+            this.CaseDustFiltersCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseDustFiltersCheckBox.Name = "CaseDustFiltersCheckBox";
-            this.CaseDustFiltersCheckBox.Size = new System.Drawing.Size(166, 25);
+            this.CaseDustFiltersCheckBox.Size = new System.Drawing.Size(201, 32);
             this.CaseDustFiltersCheckBox.TabIndex = 75;
             this.CaseDustFiltersCheckBox.Text = "Пылевые фильры";
             this.CaseDustFiltersCheckBox.UseVisualStyleBackColor = true;
@@ -2449,30 +2425,28 @@ namespace Computer_house
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(331, 671);
-            this.label76.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label76.Location = new System.Drawing.Point(441, 826);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(40, 21);
+            this.label76.Size = new System.Drawing.Size(48, 28);
             this.label76.TabIndex = 74;
             this.label76.Text = "ММ";
             // 
             // CaseMaxCPUCoolerHeightTextBox
             // 
             this.CaseMaxCPUCoolerHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseMaxCPUCoolerHeightTextBox.Location = new System.Drawing.Point(267, 670);
-            this.CaseMaxCPUCoolerHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseMaxCPUCoolerHeightTextBox.Location = new System.Drawing.Point(356, 825);
+            this.CaseMaxCPUCoolerHeightTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseMaxCPUCoolerHeightTextBox.Name = "CaseMaxCPUCoolerHeightTextBox";
-            this.CaseMaxCPUCoolerHeightTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseMaxCPUCoolerHeightTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseMaxCPUCoolerHeightTextBox.TabIndex = 73;
             // 
             // label77
             // 
             this.label77.AutoSize = true;
             this.label77.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(12, 667);
-            this.label77.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label77.Location = new System.Drawing.Point(16, 821);
             this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(254, 25);
+            this.label77.Size = new System.Drawing.Size(319, 32);
             this.label77.TabIndex = 72;
             this.label77.Text = "Макс. высота кулера CPU";
             // 
@@ -2480,30 +2454,28 @@ namespace Computer_house
             // 
             this.label78.AutoSize = true;
             this.label78.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(331, 634);
-            this.label78.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label78.Location = new System.Drawing.Point(441, 780);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(40, 21);
+            this.label78.Size = new System.Drawing.Size(48, 28);
             this.label78.TabIndex = 71;
             this.label78.Text = "ММ";
             // 
             // CaseMaxLengthOfGPUTextBox
             // 
             this.CaseMaxLengthOfGPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseMaxLengthOfGPUTextBox.Location = new System.Drawing.Point(267, 633);
-            this.CaseMaxLengthOfGPUTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseMaxLengthOfGPUTextBox.Location = new System.Drawing.Point(356, 779);
+            this.CaseMaxLengthOfGPUTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseMaxLengthOfGPUTextBox.Name = "CaseMaxLengthOfGPUTextBox";
-            this.CaseMaxLengthOfGPUTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseMaxLengthOfGPUTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseMaxLengthOfGPUTextBox.TabIndex = 70;
             // 
             // label79
             // 
             this.label79.AutoSize = true;
             this.label79.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(12, 630);
-            this.label79.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label79.Location = new System.Drawing.Point(16, 775);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(250, 25);
+            this.label79.Size = new System.Drawing.Size(313, 32);
             this.label79.TabIndex = 69;
             this.label79.Text = "Макс. длина видеокарты";
             // 
@@ -2511,30 +2483,28 @@ namespace Computer_house
             // 
             this.label75.AutoSize = true;
             this.label75.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(331, 601);
-            this.label75.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label75.Location = new System.Drawing.Point(441, 740);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(33, 21);
+            this.label75.Size = new System.Drawing.Size(39, 28);
             this.label75.TabIndex = 68;
             this.label75.Text = "Шт";
             // 
             // CaseExpansionSlotsCount
             // 
             this.CaseExpansionSlotsCount.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseExpansionSlotsCount.Location = new System.Drawing.Point(267, 597);
-            this.CaseExpansionSlotsCount.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseExpansionSlotsCount.Location = new System.Drawing.Point(356, 735);
+            this.CaseExpansionSlotsCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseExpansionSlotsCount.Name = "CaseExpansionSlotsCount";
-            this.CaseExpansionSlotsCount.Size = new System.Drawing.Size(60, 25);
+            this.CaseExpansionSlotsCount.Size = new System.Drawing.Size(79, 30);
             this.CaseExpansionSlotsCount.TabIndex = 67;
             // 
             // label74
             // 
             this.label74.AutoSize = true;
             this.label74.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(12, 594);
-            this.label74.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label74.Location = new System.Drawing.Point(16, 731);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(194, 25);
+            this.label74.Size = new System.Drawing.Size(245, 32);
             this.label74.TabIndex = 66;
             this.label74.Text = "Слоты расширения";
             // 
@@ -2542,30 +2512,28 @@ namespace Computer_house
             // 
             this.label73.AutoSize = true;
             this.label73.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.Location = new System.Drawing.Point(331, 561);
-            this.label73.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label73.Location = new System.Drawing.Point(441, 690);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(33, 21);
+            this.label73.Size = new System.Drawing.Size(39, 28);
             this.label73.TabIndex = 65;
             this.label73.Text = "Шт";
             // 
             // CaseStorageLocationCountTextBox
             // 
             this.CaseStorageLocationCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseStorageLocationCountTextBox.Location = new System.Drawing.Point(267, 560);
-            this.CaseStorageLocationCountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseStorageLocationCountTextBox.Location = new System.Drawing.Point(356, 689);
+            this.CaseStorageLocationCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseStorageLocationCountTextBox.Name = "CaseStorageLocationCountTextBox";
-            this.CaseStorageLocationCountTextBox.Size = new System.Drawing.Size(60, 25);
+            this.CaseStorageLocationCountTextBox.Size = new System.Drawing.Size(79, 30);
             this.CaseStorageLocationCountTextBox.TabIndex = 64;
             // 
             // label72
             // 
             this.label72.AutoSize = true;
             this.label72.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.Location = new System.Drawing.Point(12, 557);
-            this.label72.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label72.Location = new System.Drawing.Point(16, 686);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(239, 25);
+            this.label72.Size = new System.Drawing.Size(298, 32);
             this.label72.TabIndex = 63;
             this.label72.Text = "Отсеки под накопители";
             // 
@@ -2573,10 +2541,10 @@ namespace Computer_house
             // 
             this.CaseSoundIsolationCheckBox.AutoSize = true;
             this.CaseSoundIsolationCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaseSoundIsolationCheckBox.Location = new System.Drawing.Point(456, 634);
-            this.CaseSoundIsolationCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseSoundIsolationCheckBox.Location = new System.Drawing.Point(608, 780);
+            this.CaseSoundIsolationCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseSoundIsolationCheckBox.Name = "CaseSoundIsolationCheckBox";
-            this.CaseSoundIsolationCheckBox.Size = new System.Drawing.Size(144, 25);
+            this.CaseSoundIsolationCheckBox.Size = new System.Drawing.Size(177, 32);
             this.CaseSoundIsolationCheckBox.TabIndex = 62;
             this.CaseSoundIsolationCheckBox.Text = "Шумоизоляция";
             this.CaseSoundIsolationCheckBox.UseVisualStyleBackColor = true;
@@ -2585,10 +2553,10 @@ namespace Computer_house
             // 
             this.CaseWaterCoolingCheckBox.AutoSize = true;
             this.CaseWaterCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaseWaterCoolingCheckBox.Location = new System.Drawing.Point(386, 560);
-            this.CaseWaterCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseWaterCoolingCheckBox.Location = new System.Drawing.Point(515, 689);
+            this.CaseWaterCoolingCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseWaterCoolingCheckBox.Name = "CaseWaterCoolingCheckBox";
-            this.CaseWaterCoolingCheckBox.Size = new System.Drawing.Size(219, 25);
+            this.CaseWaterCoolingCheckBox.Size = new System.Drawing.Size(270, 32);
             this.CaseWaterCoolingCheckBox.TabIndex = 61;
             this.CaseWaterCoolingCheckBox.Text = "Жидкостное охлаждение";
             this.CaseWaterCoolingCheckBox.UseVisualStyleBackColor = true;
@@ -2597,10 +2565,10 @@ namespace Computer_house
             // 
             this.CaseCoolerInSetCheckBox.AutoSize = true;
             this.CaseCoolerInSetCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaseCoolerInSetCheckBox.Location = new System.Drawing.Point(389, 597);
-            this.CaseCoolerInSetCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseCoolerInSetCheckBox.Location = new System.Drawing.Point(519, 735);
+            this.CaseCoolerInSetCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseCoolerInSetCheckBox.Name = "CaseCoolerInSetCheckBox";
-            this.CaseCoolerInSetCheckBox.Size = new System.Drawing.Size(217, 25);
+            this.CaseCoolerInSetCheckBox.Size = new System.Drawing.Size(266, 32);
             this.CaseCoolerInSetCheckBox.TabIndex = 60;
             this.CaseCoolerInSetCheckBox.Text = "Вентилятор в комплекте";
             this.CaseCoolerInSetCheckBox.UseVisualStyleBackColor = true;
@@ -2608,80 +2576,76 @@ namespace Computer_house
             // CaseCoolingTypeTextBox
             // 
             this.CaseCoolingTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseCoolingTypeTextBox.Location = new System.Drawing.Point(261, 448);
-            this.CaseCoolingTypeTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseCoolingTypeTextBox.Location = new System.Drawing.Point(348, 551);
+            this.CaseCoolingTypeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseCoolingTypeTextBox.Name = "CaseCoolingTypeTextBox";
-            this.CaseCoolingTypeTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CaseCoolingTypeTextBox.Size = new System.Drawing.Size(436, 30);
             this.CaseCoolingTypeTextBox.TabIndex = 59;
             // 
             // label71
             // 
             this.label71.AutoSize = true;
             this.label71.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(11, 445);
-            this.label71.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label71.Location = new System.Drawing.Point(15, 548);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(171, 25);
+            this.label71.Size = new System.Drawing.Size(215, 32);
             this.label71.TabIndex = 58;
             this.label71.Text = "Вид охлаждения";
             // 
             // CasePSUPositionTextBox
             // 
             this.CasePSUPositionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CasePSUPositionTextBox.Location = new System.Drawing.Point(261, 286);
-            this.CasePSUPositionTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CasePSUPositionTextBox.Location = new System.Drawing.Point(348, 352);
+            this.CasePSUPositionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CasePSUPositionTextBox.Name = "CasePSUPositionTextBox";
-            this.CasePSUPositionTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CasePSUPositionTextBox.Size = new System.Drawing.Size(436, 30);
             this.CasePSUPositionTextBox.TabIndex = 57;
             // 
             // label70
             // 
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(11, 283);
-            this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label70.Location = new System.Drawing.Point(15, 348);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(184, 25);
+            this.label70.Size = new System.Drawing.Size(231, 32);
             this.label70.TabIndex = 56;
             this.label70.Text = "Расположение БП";
             // 
             // CaseSupportedMotherboardsTextBox
             // 
             this.CaseSupportedMotherboardsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseSupportedMotherboardsTextBox.Location = new System.Drawing.Point(267, 408);
-            this.CaseSupportedMotherboardsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseSupportedMotherboardsTextBox.Location = new System.Drawing.Point(356, 502);
+            this.CaseSupportedMotherboardsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseSupportedMotherboardsTextBox.Name = "CaseSupportedMotherboardsTextBox";
-            this.CaseSupportedMotherboardsTextBox.Size = new System.Drawing.Size(322, 25);
+            this.CaseSupportedMotherboardsTextBox.Size = new System.Drawing.Size(428, 30);
             this.CaseSupportedMotherboardsTextBox.TabIndex = 55;
             // 
             // label69
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(11, 405);
-            this.label69.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label69.Location = new System.Drawing.Point(15, 498);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(252, 25);
+            this.label69.Size = new System.Drawing.Size(317, 32);
             this.label69.TabIndex = 54;
             this.label69.Text = "Совместимые мат. платы";
             // 
             // CaseMaterialTextBox
             // 
             this.CaseMaterialTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseMaterialTextBox.Location = new System.Drawing.Point(261, 368);
-            this.CaseMaterialTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseMaterialTextBox.Location = new System.Drawing.Point(348, 453);
+            this.CaseMaterialTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseMaterialTextBox.Name = "CaseMaterialTextBox";
-            this.CaseMaterialTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CaseMaterialTextBox.Size = new System.Drawing.Size(436, 30);
             this.CaseMaterialTextBox.TabIndex = 53;
             // 
             // label68
             // 
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(11, 365);
-            this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label68.Location = new System.Drawing.Point(15, 449);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(187, 25);
+            this.label68.Size = new System.Drawing.Size(236, 32);
             this.label68.TabIndex = 52;
             this.label68.Text = "Материал корпуса";
             // 
@@ -2689,10 +2653,10 @@ namespace Computer_house
             // 
             this.CasesGamingCheckBox.AutoSize = true;
             this.CasesGamingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CasesGamingCheckBox.Location = new System.Drawing.Point(491, 246);
-            this.CasesGamingCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CasesGamingCheckBox.Location = new System.Drawing.Point(655, 303);
+            this.CasesGamingCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CasesGamingCheckBox.Name = "CasesGamingCheckBox";
-            this.CasesGamingCheckBox.Size = new System.Drawing.Size(95, 25);
+            this.CasesGamingCheckBox.Size = new System.Drawing.Size(116, 32);
             this.CasesGamingCheckBox.TabIndex = 51;
             this.CasesGamingCheckBox.Text = "Игровой";
             this.CasesGamingCheckBox.UseVisualStyleBackColor = true;
@@ -2714,10 +2678,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CaseFormFactorComboBox.Location = new System.Drawing.Point(262, 325);
-            this.CaseFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseFormFactorComboBox.Location = new System.Drawing.Point(349, 400);
+            this.CaseFormFactorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseFormFactorComboBox.Name = "CaseFormFactorComboBox";
-            this.CaseFormFactorComboBox.Size = new System.Drawing.Size(328, 25);
+            this.CaseFormFactorComboBox.Size = new System.Drawing.Size(436, 31);
             this.CaseFormFactorComboBox.TabIndex = 40;
             this.CaseFormFactorComboBox.Leave += new System.EventHandler(this.CaseFormFactorComboBox_Leave);
             // 
@@ -2725,60 +2689,57 @@ namespace Computer_house
             // 
             this.label67.AutoSize = true;
             this.label67.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(12, 322);
-            this.label67.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label67.Location = new System.Drawing.Point(16, 396);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(130, 25);
+            this.label67.Size = new System.Drawing.Size(163, 32);
             this.label67.TabIndex = 39;
             this.label67.Text = "Тип корпуса";
             // 
             // CasePSUTextBox
             // 
             this.CasePSUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CasePSUTextBox.Location = new System.Drawing.Point(262, 246);
-            this.CasePSUTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CasePSUTextBox.Location = new System.Drawing.Point(349, 303);
+            this.CasePSUTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CasePSUTextBox.Name = "CasePSUTextBox";
-            this.CasePSUTextBox.Size = new System.Drawing.Size(225, 25);
+            this.CasePSUTextBox.Size = new System.Drawing.Size(299, 30);
             this.CasePSUTextBox.TabIndex = 38;
             // 
             // CasePSU
             // 
             this.CasePSU.AutoSize = true;
             this.CasePSU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CasePSU.Location = new System.Drawing.Point(12, 243);
-            this.CasePSU.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CasePSU.Location = new System.Drawing.Point(16, 299);
             this.CasePSU.Name = "CasePSU";
-            this.CasePSU.Size = new System.Drawing.Size(143, 25);
+            this.CasePSU.Size = new System.Drawing.Size(178, 32);
             this.CasePSU.TabIndex = 37;
             this.CasePSU.Text = "Блок питания";
             // 
             // CaseNameTextBox
             // 
             this.CaseNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseNameTextBox.Location = new System.Drawing.Point(261, 206);
-            this.CaseNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseNameTextBox.Location = new System.Drawing.Point(348, 254);
+            this.CaseNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseNameTextBox.Name = "CaseNameTextBox";
-            this.CaseNameTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CaseNameTextBox.Size = new System.Drawing.Size(436, 30);
             this.CaseNameTextBox.TabIndex = 36;
             // 
             // label66
             // 
             this.label66.AutoSize = true;
             this.label66.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(11, 203);
-            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label66.Location = new System.Drawing.Point(15, 250);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(153, 25);
+            this.label66.Size = new System.Drawing.Size(193, 32);
             this.label66.TabIndex = 35;
             this.label66.Text = "Наименование";
             // 
             // FindCaseIDButton
             // 
             this.FindCaseIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindCaseIDButton.Location = new System.Drawing.Point(496, 162);
-            this.FindCaseIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindCaseIDButton.Location = new System.Drawing.Point(661, 199);
+            this.FindCaseIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindCaseIDButton.Name = "FindCaseIDButton";
-            this.FindCaseIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindCaseIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindCaseIDButton.TabIndex = 34;
             this.FindCaseIDButton.Text = "Поиск";
             this.FindCaseIDButton.UseVisualStyleBackColor = true;
@@ -2787,10 +2748,10 @@ namespace Computer_house
             // CaseIDTextBox
             // 
             this.CaseIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CaseIDTextBox.Location = new System.Drawing.Point(262, 165);
-            this.CaseIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CaseIDTextBox.Location = new System.Drawing.Point(349, 203);
+            this.CaseIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CaseIDTextBox.Name = "CaseIDTextBox";
-            this.CaseIDTextBox.Size = new System.Drawing.Size(230, 25);
+            this.CaseIDTextBox.Size = new System.Drawing.Size(305, 30);
             this.CaseIDTextBox.TabIndex = 33;
             this.CaseIDTextBox.TextChanged += new System.EventHandler(this.CaseIDTextBox_TextChanged);
             // 
@@ -2798,10 +2759,9 @@ namespace Computer_house
             // 
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(12, 163);
-            this.label65.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label65.Location = new System.Drawing.Point(16, 201);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(115, 25);
+            this.label65.Size = new System.Drawing.Size(144, 32);
             this.label65.TabIndex = 32;
             this.label65.Text = "ID корпуса";
             // 
@@ -2809,10 +2769,10 @@ namespace Computer_house
             // 
             this.ChangeCaseRadio.AutoSize = true;
             this.ChangeCaseRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeCaseRadio.Location = new System.Drawing.Point(486, 111);
-            this.ChangeCaseRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeCaseRadio.Location = new System.Drawing.Point(648, 137);
+            this.ChangeCaseRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeCaseRadio.Name = "ChangeCaseRadio";
-            this.ChangeCaseRadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeCaseRadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeCaseRadio.TabIndex = 31;
             this.ChangeCaseRadio.TabStop = true;
             this.ChangeCaseRadio.Text = "Изменить";
@@ -2823,10 +2783,10 @@ namespace Computer_house
             // 
             this.AddCaseRadio.AutoSize = true;
             this.AddCaseRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCaseRadio.Location = new System.Drawing.Point(487, 18);
-            this.AddCaseRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddCaseRadio.Location = new System.Drawing.Point(649, 22);
+            this.AddCaseRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddCaseRadio.Name = "AddCaseRadio";
-            this.AddCaseRadio.Size = new System.Drawing.Size(99, 25);
+            this.AddCaseRadio.Size = new System.Drawing.Size(122, 32);
             this.AddCaseRadio.TabIndex = 30;
             this.AddCaseRadio.TabStop = true;
             this.AddCaseRadio.Text = "Добавить";
@@ -2843,14 +2803,14 @@ namespace Computer_house
             this.Case_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.Case_DatagridView.Location = new System.Drawing.Point(17, 18);
-            this.Case_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.Case_DatagridView.Location = new System.Drawing.Point(23, 22);
+            this.Case_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Case_DatagridView.MultiSelect = false;
             this.Case_DatagridView.Name = "Case_DatagridView";
             this.Case_DatagridView.ReadOnly = true;
             this.Case_DatagridView.RowHeadersWidth = 51;
             this.Case_DatagridView.RowTemplate.Height = 24;
-            this.Case_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.Case_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.Case_DatagridView.TabIndex = 29;
             this.Case_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.Case_DatagridView_RowEnter);
             // 
@@ -2901,11 +2861,11 @@ namespace Computer_house
             this.tabPage7.Controls.Add(this.ChangeRAMRadio);
             this.tabPage7.Controls.Add(this.AddRAMRadio);
             this.tabPage7.Controls.Add(this.RAM_DatagridView);
-            this.tabPage7.Location = new System.Drawing.Point(4, 28);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage7.Location = new System.Drawing.Point(4, 32);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage7.Size = new System.Drawing.Size(601, 786);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage7.Size = new System.Drawing.Size(804, 971);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.Text = "Оперативная память";
             this.tabPage7.Enter += new System.EventHandler(this.tabPage7_Enter);
@@ -2914,10 +2874,10 @@ namespace Computer_house
             // 
             this.RAMCoolingCheckBox.AutoSize = true;
             this.RAMCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RAMCoolingCheckBox.Location = new System.Drawing.Point(464, 468);
-            this.RAMCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMCoolingCheckBox.Location = new System.Drawing.Point(619, 576);
+            this.RAMCoolingCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMCoolingCheckBox.Name = "RAMCoolingCheckBox";
-            this.RAMCoolingCheckBox.Size = new System.Drawing.Size(122, 25);
+            this.RAMCoolingCheckBox.Size = new System.Drawing.Size(151, 32);
             this.RAMCoolingCheckBox.TabIndex = 84;
             this.RAMCoolingCheckBox.Text = "Охлаждение";
             this.RAMCoolingCheckBox.UseVisualStyleBackColor = true;
@@ -2926,10 +2886,10 @@ namespace Computer_house
             // 
             this.RAMLowProfileModuleCheckBox.AutoSize = true;
             this.RAMLowProfileModuleCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RAMLowProfileModuleCheckBox.Location = new System.Drawing.Point(362, 385);
-            this.RAMLowProfileModuleCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMLowProfileModuleCheckBox.Location = new System.Drawing.Point(483, 474);
+            this.RAMLowProfileModuleCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMLowProfileModuleCheckBox.Name = "RAMLowProfileModuleCheckBox";
-            this.RAMLowProfileModuleCheckBox.Size = new System.Drawing.Size(232, 25);
+            this.RAMLowProfileModuleCheckBox.Size = new System.Drawing.Size(287, 32);
             this.RAMLowProfileModuleCheckBox.TabIndex = 82;
             this.RAMLowProfileModuleCheckBox.Text = "Низкопрофильный модуль";
             this.RAMLowProfileModuleCheckBox.UseVisualStyleBackColor = true;
@@ -2937,20 +2897,19 @@ namespace Computer_house
             // RAMTimingsTextBox
             // 
             this.RAMTimingsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMTimingsTextBox.Location = new System.Drawing.Point(259, 468);
-            this.RAMTimingsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMTimingsTextBox.Location = new System.Drawing.Point(345, 576);
+            this.RAMTimingsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMTimingsTextBox.Name = "RAMTimingsTextBox";
-            this.RAMTimingsTextBox.Size = new System.Drawing.Size(167, 25);
+            this.RAMTimingsTextBox.Size = new System.Drawing.Size(221, 30);
             this.RAMTimingsTextBox.TabIndex = 81;
             // 
             // label101
             // 
             this.label101.AutoSize = true;
             this.label101.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label101.Location = new System.Drawing.Point(12, 465);
-            this.label101.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label101.Location = new System.Drawing.Point(16, 572);
             this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(104, 25);
+            this.label101.Size = new System.Drawing.Size(131, 32);
             this.label101.TabIndex = 80;
             this.label101.Text = "Тайминги";
             // 
@@ -2958,30 +2917,28 @@ namespace Computer_house
             // 
             this.label99.AutoSize = true;
             this.label99.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label99.Location = new System.Drawing.Point(366, 430);
-            this.label99.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label99.Location = new System.Drawing.Point(488, 529);
             this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(27, 21);
+            this.label99.Size = new System.Drawing.Size(34, 28);
             this.label99.TabIndex = 79;
             this.label99.Text = "Гб";
             // 
             // RAMCapacityTextBox
             // 
             this.RAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMCapacityTextBox.Location = new System.Drawing.Point(258, 427);
-            this.RAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMCapacityTextBox.Location = new System.Drawing.Point(344, 526);
+            this.RAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMCapacityTextBox.Name = "RAMCapacityTextBox";
-            this.RAMCapacityTextBox.Size = new System.Drawing.Size(104, 25);
+            this.RAMCapacityTextBox.Size = new System.Drawing.Size(137, 30);
             this.RAMCapacityTextBox.TabIndex = 78;
             // 
             // label100
             // 
             this.label100.AutoSize = true;
             this.label100.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label100.Location = new System.Drawing.Point(12, 426);
-            this.label100.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label100.Location = new System.Drawing.Point(16, 524);
             this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(230, 25);
+            this.label100.Size = new System.Drawing.Size(290, 32);
             this.label100.TabIndex = 77;
             this.label100.Text = "Объём модуля памяти";
             // 
@@ -2989,10 +2946,10 @@ namespace Computer_house
             // 
             this.RAMxmpSupportCheckBox.AutoSize = true;
             this.RAMxmpSupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RAMxmpSupportCheckBox.Location = new System.Drawing.Point(436, 427);
-            this.RAMxmpSupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMxmpSupportCheckBox.Location = new System.Drawing.Point(581, 526);
+            this.RAMxmpSupportCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMxmpSupportCheckBox.Name = "RAMxmpSupportCheckBox";
-            this.RAMxmpSupportCheckBox.Size = new System.Drawing.Size(156, 25);
+            this.RAMxmpSupportCheckBox.Size = new System.Drawing.Size(189, 32);
             this.RAMxmpSupportCheckBox.TabIndex = 76;
             this.RAMxmpSupportCheckBox.Text = "Поддержка XMP";
             this.RAMxmpSupportCheckBox.UseVisualStyleBackColor = true;
@@ -3001,40 +2958,38 @@ namespace Computer_house
             // 
             this.label97.AutoSize = true;
             this.label97.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label97.Location = new System.Drawing.Point(329, 385);
-            this.label97.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label97.Location = new System.Drawing.Point(439, 474);
             this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(19, 21);
+            this.label97.Size = new System.Drawing.Size(24, 28);
             this.label97.TabIndex = 75;
             this.label97.Text = "В";
             // 
             // RAMVoltageTextBox
             // 
             this.RAMVoltageTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMVoltageTextBox.Location = new System.Drawing.Point(259, 384);
-            this.RAMVoltageTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMVoltageTextBox.Location = new System.Drawing.Point(345, 473);
+            this.RAMVoltageTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMVoltageTextBox.Name = "RAMVoltageTextBox";
-            this.RAMVoltageTextBox.Size = new System.Drawing.Size(64, 25);
+            this.RAMVoltageTextBox.Size = new System.Drawing.Size(84, 30);
             this.RAMVoltageTextBox.TabIndex = 74;
             // 
             // label98
             // 
             this.label98.AutoSize = true;
             this.label98.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label98.Location = new System.Drawing.Point(12, 381);
-            this.label98.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label98.Location = new System.Drawing.Point(16, 469);
             this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(217, 25);
+            this.label98.Size = new System.Drawing.Size(272, 32);
             this.label98.TabIndex = 73;
             this.label98.Text = "Напряжение питания";
             // 
             // ActWithRAM
             // 
             this.ActWithRAM.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithRAM.Location = new System.Drawing.Point(17, 508);
-            this.ActWithRAM.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithRAM.Location = new System.Drawing.Point(23, 625);
+            this.ActWithRAM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithRAM.Name = "ActWithRAM";
-            this.ActWithRAM.Size = new System.Drawing.Size(572, 38);
+            this.ActWithRAM.Size = new System.Drawing.Size(763, 47);
             this.ActWithRAM.TabIndex = 72;
             this.ActWithRAM.Text = "button3";
             this.ActWithRAM.UseVisualStyleBackColor = true;
@@ -3044,10 +2999,9 @@ namespace Computer_house
             // 
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(546, 339);
-            this.label94.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label94.Location = new System.Drawing.Point(728, 417);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(43, 21);
+            this.label94.Size = new System.Drawing.Size(52, 28);
             this.label94.TabIndex = 71;
             this.label94.Text = "МГц";
             // 
@@ -3068,10 +3022,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.RAMFrequencyComboBox.Location = new System.Drawing.Point(258, 336);
-            this.RAMFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMFrequencyComboBox.Location = new System.Drawing.Point(344, 414);
+            this.RAMFrequencyComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMFrequencyComboBox.Name = "RAMFrequencyComboBox";
-            this.RAMFrequencyComboBox.Size = new System.Drawing.Size(281, 25);
+            this.RAMFrequencyComboBox.Size = new System.Drawing.Size(373, 31);
             this.RAMFrequencyComboBox.TabIndex = 70;
             this.RAMFrequencyComboBox.Leave += new System.EventHandler(this.RAMFrequencyComboBox_Leave);
             // 
@@ -3092,10 +3046,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.RAMTypeComboBox.Location = new System.Drawing.Point(258, 292);
-            this.RAMTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMTypeComboBox.Location = new System.Drawing.Point(344, 359);
+            this.RAMTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMTypeComboBox.Name = "RAMTypeComboBox";
-            this.RAMTypeComboBox.Size = new System.Drawing.Size(328, 25);
+            this.RAMTypeComboBox.Size = new System.Drawing.Size(436, 31);
             this.RAMTypeComboBox.TabIndex = 69;
             this.RAMTypeComboBox.Leave += new System.EventHandler(this.RAMTypeComboBox_Leave);
             // 
@@ -3103,10 +3057,9 @@ namespace Computer_house
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(12, 292);
-            this.label95.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label95.Location = new System.Drawing.Point(16, 359);
             this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(123, 25);
+            this.label95.Size = new System.Drawing.Size(154, 32);
             this.label95.TabIndex = 68;
             this.label95.Text = "Тип памяти";
             // 
@@ -3114,10 +3067,9 @@ namespace Computer_house
             // 
             this.label96.AutoSize = true;
             this.label96.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.Location = new System.Drawing.Point(12, 335);
-            this.label96.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label96.Location = new System.Drawing.Point(16, 412);
             this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(161, 25);
+            this.label96.Size = new System.Drawing.Size(202, 32);
             this.label96.TabIndex = 67;
             this.label96.Text = "Частота памяти";
             // 
@@ -3125,60 +3077,57 @@ namespace Computer_house
             // 
             this.label93.AutoSize = true;
             this.label93.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(553, 249);
-            this.label93.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label93.Location = new System.Drawing.Point(737, 306);
             this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(33, 21);
+            this.label93.Size = new System.Drawing.Size(39, 28);
             this.label93.TabIndex = 66;
             this.label93.Text = "Шт";
             // 
             // RAMKitTextBox
             // 
             this.RAMKitTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMKitTextBox.Location = new System.Drawing.Point(258, 248);
-            this.RAMKitTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMKitTextBox.Location = new System.Drawing.Point(344, 305);
+            this.RAMKitTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMKitTextBox.Name = "RAMKitTextBox";
-            this.RAMKitTextBox.Size = new System.Drawing.Size(290, 25);
+            this.RAMKitTextBox.Size = new System.Drawing.Size(385, 30);
             this.RAMKitTextBox.TabIndex = 46;
             // 
             // label92
             // 
             this.label92.AutoSize = true;
             this.label92.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(11, 245);
-            this.label92.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label92.Location = new System.Drawing.Point(15, 302);
             this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(73, 25);
+            this.label92.Size = new System.Drawing.Size(91, 32);
             this.label92.TabIndex = 45;
             this.label92.Text = "Набор";
             // 
             // RAMNameTextBox
             // 
             this.RAMNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMNameTextBox.Location = new System.Drawing.Point(258, 207);
-            this.RAMNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMNameTextBox.Location = new System.Drawing.Point(344, 255);
+            this.RAMNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMNameTextBox.Name = "RAMNameTextBox";
-            this.RAMNameTextBox.Size = new System.Drawing.Size(331, 25);
+            this.RAMNameTextBox.Size = new System.Drawing.Size(440, 30);
             this.RAMNameTextBox.TabIndex = 44;
             // 
             // label90
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(11, 204);
-            this.label90.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label90.Location = new System.Drawing.Point(15, 251);
             this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(153, 25);
+            this.label90.Size = new System.Drawing.Size(193, 32);
             this.label90.TabIndex = 43;
             this.label90.Text = "Наименование";
             // 
             // FindRAMIDButton
             // 
             this.FindRAMIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindRAMIDButton.Location = new System.Drawing.Point(496, 163);
-            this.FindRAMIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindRAMIDButton.Location = new System.Drawing.Point(661, 201);
+            this.FindRAMIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindRAMIDButton.Name = "FindRAMIDButton";
-            this.FindRAMIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindRAMIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindRAMIDButton.TabIndex = 42;
             this.FindRAMIDButton.Text = "Поиск";
             this.FindRAMIDButton.UseVisualStyleBackColor = true;
@@ -3187,10 +3136,10 @@ namespace Computer_house
             // RAMIDTextBox
             // 
             this.RAMIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.RAMIDTextBox.Location = new System.Drawing.Point(258, 166);
-            this.RAMIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.RAMIDTextBox.Location = new System.Drawing.Point(344, 204);
+            this.RAMIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAMIDTextBox.Name = "RAMIDTextBox";
-            this.RAMIDTextBox.Size = new System.Drawing.Size(234, 25);
+            this.RAMIDTextBox.Size = new System.Drawing.Size(311, 30);
             this.RAMIDTextBox.TabIndex = 41;
             this.RAMIDTextBox.TextChanged += new System.EventHandler(this.RAMIDTextBox_TextChanged);
             // 
@@ -3198,10 +3147,9 @@ namespace Computer_house
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(12, 164);
-            this.label91.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label91.Location = new System.Drawing.Point(16, 202);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(108, 25);
+            this.label91.Size = new System.Drawing.Size(135, 32);
             this.label91.TabIndex = 40;
             this.label91.Text = "ID памяти";
             // 
@@ -3209,10 +3157,10 @@ namespace Computer_house
             // 
             this.ChangeRAMRadio.AutoSize = true;
             this.ChangeRAMRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeRAMRadio.Location = new System.Drawing.Point(486, 112);
-            this.ChangeRAMRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeRAMRadio.Location = new System.Drawing.Point(648, 138);
+            this.ChangeRAMRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeRAMRadio.Name = "ChangeRAMRadio";
-            this.ChangeRAMRadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeRAMRadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeRAMRadio.TabIndex = 39;
             this.ChangeRAMRadio.TabStop = true;
             this.ChangeRAMRadio.Text = "Изменить";
@@ -3223,10 +3171,10 @@ namespace Computer_house
             // 
             this.AddRAMRadio.AutoSize = true;
             this.AddRAMRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddRAMRadio.Location = new System.Drawing.Point(487, 19);
-            this.AddRAMRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddRAMRadio.Location = new System.Drawing.Point(649, 23);
+            this.AddRAMRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddRAMRadio.Name = "AddRAMRadio";
-            this.AddRAMRadio.Size = new System.Drawing.Size(99, 25);
+            this.AddRAMRadio.Size = new System.Drawing.Size(122, 32);
             this.AddRAMRadio.TabIndex = 38;
             this.AddRAMRadio.TabStop = true;
             this.AddRAMRadio.Text = "Добавить";
@@ -3243,14 +3191,14 @@ namespace Computer_house
             this.RAM_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.RAM_DatagridView.Location = new System.Drawing.Point(17, 19);
-            this.RAM_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.RAM_DatagridView.Location = new System.Drawing.Point(23, 23);
+            this.RAM_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAM_DatagridView.MultiSelect = false;
             this.RAM_DatagridView.Name = "RAM_DatagridView";
             this.RAM_DatagridView.ReadOnly = true;
             this.RAM_DatagridView.RowHeadersWidth = 51;
             this.RAM_DatagridView.RowTemplate.Height = 24;
-            this.RAM_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.RAM_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.RAM_DatagridView.TabIndex = 37;
             this.RAM_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.RAM_DatagridView_RowEnter);
             // 
@@ -3304,11 +3252,11 @@ namespace Computer_house
             this.tabPage8.Controls.Add(this.ChangeCoolingSystemRadio);
             this.tabPage8.Controls.Add(this.AddCoolingSystemRadio);
             this.tabPage8.Controls.Add(this.CoolingSystem_DatagridView);
-            this.tabPage8.Location = new System.Drawing.Point(4, 28);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage8.Location = new System.Drawing.Point(4, 32);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage8.Size = new System.Drawing.Size(601, 786);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage8.Size = new System.Drawing.Size(804, 971);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.Text = "Охлаждение";
             this.tabPage8.Enter += new System.EventHandler(this.tabPage8_Enter);
@@ -3316,10 +3264,10 @@ namespace Computer_house
             // ActWithCoolingSystem
             // 
             this.ActWithCoolingSystem.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActWithCoolingSystem.Location = new System.Drawing.Point(15, 512);
-            this.ActWithCoolingSystem.Margin = new System.Windows.Forms.Padding(2);
+            this.ActWithCoolingSystem.Location = new System.Drawing.Point(20, 630);
+            this.ActWithCoolingSystem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActWithCoolingSystem.Name = "ActWithCoolingSystem";
-            this.ActWithCoolingSystem.Size = new System.Drawing.Size(572, 38);
+            this.ActWithCoolingSystem.Size = new System.Drawing.Size(763, 47);
             this.ActWithCoolingSystem.TabIndex = 100;
             this.ActWithCoolingSystem.Text = "button3";
             this.ActWithCoolingSystem.UseVisualStyleBackColor = true;
@@ -3329,50 +3277,47 @@ namespace Computer_house
             // 
             this.label115.AutoSize = true;
             this.label115.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label115.Location = new System.Drawing.Point(518, 472);
-            this.label115.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label115.Location = new System.Drawing.Point(691, 581);
             this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(40, 21);
+            this.label115.Size = new System.Drawing.Size(48, 28);
             this.label115.TabIndex = 99;
             this.label115.Text = "ММ";
             // 
             // CoolingSystemDiametrTextBox
             // 
             this.CoolingSystemDiametrTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemDiametrTextBox.Location = new System.Drawing.Point(459, 470);
-            this.CoolingSystemDiametrTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemDiametrTextBox.Location = new System.Drawing.Point(612, 578);
+            this.CoolingSystemDiametrTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemDiametrTextBox.Name = "CoolingSystemDiametrTextBox";
-            this.CoolingSystemDiametrTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemDiametrTextBox.Size = new System.Drawing.Size(72, 30);
             this.CoolingSystemDiametrTextBox.TabIndex = 98;
             // 
             // label114
             // 
             this.label114.AutoSize = true;
             this.label114.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label114.Location = new System.Drawing.Point(420, 472);
-            this.label114.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label114.Location = new System.Drawing.Point(560, 581);
             this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(38, 21);
+            this.label114.Size = new System.Drawing.Size(47, 28);
             this.label114.TabIndex = 97;
             this.label114.Text = "Вт /";
             // 
             // CoolingSystemConsumptionTextBox
             // 
             this.CoolingSystemConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemConsumptionTextBox.Location = new System.Drawing.Point(362, 470);
-            this.CoolingSystemConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemConsumptionTextBox.Location = new System.Drawing.Point(483, 578);
+            this.CoolingSystemConsumptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemConsumptionTextBox.Name = "CoolingSystemConsumptionTextBox";
-            this.CoolingSystemConsumptionTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemConsumptionTextBox.Size = new System.Drawing.Size(72, 30);
             this.CoolingSystemConsumptionTextBox.TabIndex = 96;
             // 
             // label113
             // 
             this.label113.AutoSize = true;
             this.label113.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label113.Location = new System.Drawing.Point(11, 467);
-            this.label113.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label113.Location = new System.Drawing.Point(15, 575);
             this.label113.Name = "label113";
-            this.label113.Size = new System.Drawing.Size(347, 25);
+            this.label113.Size = new System.Drawing.Size(439, 32);
             this.label113.TabIndex = 95;
             this.label113.Text = "Рассеиваемая мощность / диаметр";
             // 
@@ -3380,30 +3325,28 @@ namespace Computer_house
             // 
             this.label112.AutoSize = true;
             this.label112.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label112.Location = new System.Drawing.Point(517, 432);
-            this.label112.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label112.Location = new System.Drawing.Point(689, 532);
             this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(76, 21);
+            this.label112.Size = new System.Drawing.Size(96, 28);
             this.label112.TabIndex = 94;
             this.label112.Text = "об / мин";
             // 
             // CoolingSystemMaxSpeedTextBox
             // 
             this.CoolingSystemMaxSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemMaxSpeedTextBox.Location = new System.Drawing.Point(362, 432);
-            this.CoolingSystemMaxSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemMaxSpeedTextBox.Location = new System.Drawing.Point(483, 532);
+            this.CoolingSystemMaxSpeedTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemMaxSpeedTextBox.Name = "CoolingSystemMaxSpeedTextBox";
-            this.CoolingSystemMaxSpeedTextBox.Size = new System.Drawing.Size(152, 25);
+            this.CoolingSystemMaxSpeedTextBox.Size = new System.Drawing.Size(201, 30);
             this.CoolingSystemMaxSpeedTextBox.TabIndex = 93;
             // 
             // label111
             // 
             this.label111.AutoSize = true;
             this.label111.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label111.Location = new System.Drawing.Point(10, 428);
-            this.label111.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label111.Location = new System.Drawing.Point(13, 527);
             this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(330, 25);
+            this.label111.Size = new System.Drawing.Size(414, 32);
             this.label111.TabIndex = 92;
             this.label111.Text = "Макс. скорость вращения кулера";
             // 
@@ -3411,10 +3354,9 @@ namespace Computer_house
             // 
             this.label110.AutoSize = true;
             this.label110.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label110.Location = new System.Drawing.Point(11, 389);
-            this.label110.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label110.Location = new System.Drawing.Point(15, 479);
             this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(132, 25);
+            this.label110.Size = new System.Drawing.Size(165, 32);
             this.label110.TabIndex = 91;
             this.label110.Text = "Тип питания";
             // 
@@ -3435,10 +3377,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.CoolingSystemPowerTypeComboBox.Location = new System.Drawing.Point(258, 387);
-            this.CoolingSystemPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemPowerTypeComboBox.Location = new System.Drawing.Point(344, 476);
+            this.CoolingSystemPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemPowerTypeComboBox.Name = "CoolingSystemPowerTypeComboBox";
-            this.CoolingSystemPowerTypeComboBox.Size = new System.Drawing.Size(332, 25);
+            this.CoolingSystemPowerTypeComboBox.Size = new System.Drawing.Size(441, 31);
             this.CoolingSystemPowerTypeComboBox.TabIndex = 90;
             this.CoolingSystemPowerTypeComboBox.Leave += new System.EventHandler(this.CoolingSystemPowerTypeComboBox_Leave);
             // 
@@ -3446,10 +3388,10 @@ namespace Computer_house
             // 
             this.CoolingSystemRSCCheckBox.AutoSize = true;
             this.CoolingSystemRSCCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoolingSystemRSCCheckBox.Location = new System.Drawing.Point(362, 351);
-            this.CoolingSystemRSCCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemRSCCheckBox.Location = new System.Drawing.Point(483, 432);
+            this.CoolingSystemRSCCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemRSCCheckBox.Name = "CoolingSystemRSCCheckBox";
-            this.CoolingSystemRSCCheckBox.Size = new System.Drawing.Size(235, 25);
+            this.CoolingSystemRSCCheckBox.Size = new System.Drawing.Size(287, 32);
             this.CoolingSystemRSCCheckBox.TabIndex = 89;
             this.CoolingSystemRSCCheckBox.Text = "Контр. скорости вращения";
             this.CoolingSystemRSCCheckBox.UseVisualStyleBackColor = true;
@@ -3458,50 +3400,47 @@ namespace Computer_house
             // 
             this.label109.AutoSize = true;
             this.label109.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label109.Location = new System.Drawing.Point(317, 351);
-            this.label109.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label109.Location = new System.Drawing.Point(423, 432);
             this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(28, 21);
+            this.label109.Size = new System.Drawing.Size(35, 28);
             this.label109.TabIndex = 88;
             this.label109.Text = "дБ";
             // 
             // CoolingSystemNoiseLevelTextBox
             // 
             this.CoolingSystemNoiseLevelTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemNoiseLevelTextBox.Location = new System.Drawing.Point(258, 348);
-            this.CoolingSystemNoiseLevelTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemNoiseLevelTextBox.Location = new System.Drawing.Point(344, 428);
+            this.CoolingSystemNoiseLevelTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemNoiseLevelTextBox.Name = "CoolingSystemNoiseLevelTextBox";
-            this.CoolingSystemNoiseLevelTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemNoiseLevelTextBox.Size = new System.Drawing.Size(72, 30);
             this.CoolingSystemNoiseLevelTextBox.TabIndex = 87;
             // 
             // label108
             // 
             this.label108.AutoSize = true;
             this.label108.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label108.Location = new System.Drawing.Point(11, 347);
-            this.label108.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label108.Location = new System.Drawing.Point(15, 427);
             this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(150, 25);
+            this.label108.Size = new System.Drawing.Size(189, 32);
             this.label108.TabIndex = 86;
             this.label108.Text = "Уровень шума";
             // 
             // CoolingSystemTypeOfBearing
             // 
             this.CoolingSystemTypeOfBearing.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemTypeOfBearing.Location = new System.Drawing.Point(258, 312);
-            this.CoolingSystemTypeOfBearing.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemTypeOfBearing.Location = new System.Drawing.Point(344, 384);
+            this.CoolingSystemTypeOfBearing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemTypeOfBearing.Name = "CoolingSystemTypeOfBearing";
-            this.CoolingSystemTypeOfBearing.Size = new System.Drawing.Size(332, 25);
+            this.CoolingSystemTypeOfBearing.Size = new System.Drawing.Size(441, 30);
             this.CoolingSystemTypeOfBearing.TabIndex = 85;
             // 
             // label107
             // 
             this.label107.AutoSize = true;
             this.label107.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label107.Location = new System.Drawing.Point(11, 309);
-            this.label107.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label107.Location = new System.Drawing.Point(15, 380);
             this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(175, 25);
+            this.label107.Size = new System.Drawing.Size(219, 32);
             this.label107.TabIndex = 84;
             this.label107.Text = "Тип подшипника";
             // 
@@ -3509,10 +3448,10 @@ namespace Computer_house
             // 
             this.CoolingSystemEvaporationChamberCheckBox.AutoSize = true;
             this.CoolingSystemEvaporationChamberCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoolingSystemEvaporationChamberCheckBox.Location = new System.Drawing.Point(362, 275);
-            this.CoolingSystemEvaporationChamberCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemEvaporationChamberCheckBox.Location = new System.Drawing.Point(483, 338);
+            this.CoolingSystemEvaporationChamberCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemEvaporationChamberCheckBox.Name = "CoolingSystemEvaporationChamberCheckBox";
-            this.CoolingSystemEvaporationChamberCheckBox.Size = new System.Drawing.Size(203, 25);
+            this.CoolingSystemEvaporationChamberCheckBox.Size = new System.Drawing.Size(250, 32);
             this.CoolingSystemEvaporationChamberCheckBox.TabIndex = 83;
             this.CoolingSystemEvaporationChamberCheckBox.Text = "Испарительная камера";
             this.CoolingSystemEvaporationChamberCheckBox.UseVisualStyleBackColor = true;
@@ -3521,80 +3460,76 @@ namespace Computer_house
             // 
             this.label106.AutoSize = true;
             this.label106.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label106.Location = new System.Drawing.Point(317, 277);
-            this.label106.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label106.Location = new System.Drawing.Point(423, 341);
             this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(33, 21);
+            this.label106.Size = new System.Drawing.Size(39, 28);
             this.label106.TabIndex = 66;
             this.label106.Text = "Шт";
             // 
             // CoolingSystemCountOfHeatPipesTextBox
             // 
             this.CoolingSystemCountOfHeatPipesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemCountOfHeatPipesTextBox.Location = new System.Drawing.Point(258, 274);
-            this.CoolingSystemCountOfHeatPipesTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemCountOfHeatPipesTextBox.Location = new System.Drawing.Point(344, 337);
+            this.CoolingSystemCountOfHeatPipesTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemCountOfHeatPipesTextBox.Name = "CoolingSystemCountOfHeatPipesTextBox";
-            this.CoolingSystemCountOfHeatPipesTextBox.Size = new System.Drawing.Size(55, 25);
+            this.CoolingSystemCountOfHeatPipesTextBox.Size = new System.Drawing.Size(72, 30);
             this.CoolingSystemCountOfHeatPipesTextBox.TabIndex = 56;
             // 
             // label105
             // 
             this.label105.AutoSize = true;
             this.label105.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label105.Location = new System.Drawing.Point(10, 274);
-            this.label105.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label105.Location = new System.Drawing.Point(13, 337);
             this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(248, 25);
+            this.label105.Size = new System.Drawing.Size(310, 32);
             this.label105.TabIndex = 55;
             this.label105.Text = "Кол-во тепловых трубок";
             // 
             // CoolingSystemSocketsTextBox
             // 
             this.CoolingSystemSocketsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemSocketsTextBox.Location = new System.Drawing.Point(269, 238);
-            this.CoolingSystemSocketsTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemSocketsTextBox.Location = new System.Drawing.Point(359, 293);
+            this.CoolingSystemSocketsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemSocketsTextBox.Name = "CoolingSystemSocketsTextBox";
-            this.CoolingSystemSocketsTextBox.Size = new System.Drawing.Size(320, 25);
+            this.CoolingSystemSocketsTextBox.Size = new System.Drawing.Size(425, 30);
             this.CoolingSystemSocketsTextBox.TabIndex = 54;
             // 
             // label104
             // 
             this.label104.AutoSize = true;
             this.label104.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label104.Location = new System.Drawing.Point(10, 236);
-            this.label104.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label104.Location = new System.Drawing.Point(13, 290);
             this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(257, 25);
+            this.label104.Size = new System.Drawing.Size(323, 32);
             this.label104.TabIndex = 53;
             this.label104.Text = "Поддерживаемые сокеты";
             // 
             // CoolingSystemNameTextBox
             // 
             this.CoolingSystemNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemNameTextBox.Location = new System.Drawing.Point(258, 199);
-            this.CoolingSystemNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemNameTextBox.Location = new System.Drawing.Point(344, 245);
+            this.CoolingSystemNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemNameTextBox.Name = "CoolingSystemNameTextBox";
-            this.CoolingSystemNameTextBox.Size = new System.Drawing.Size(331, 25);
+            this.CoolingSystemNameTextBox.Size = new System.Drawing.Size(440, 30);
             this.CoolingSystemNameTextBox.TabIndex = 52;
             // 
             // label102
             // 
             this.label102.AutoSize = true;
             this.label102.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(11, 196);
-            this.label102.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label102.Location = new System.Drawing.Point(15, 241);
             this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(153, 25);
+            this.label102.Size = new System.Drawing.Size(193, 32);
             this.label102.TabIndex = 51;
             this.label102.Text = "Наименование";
             // 
             // FindCoolingSystemIDButton
             // 
             this.FindCoolingSystemIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindCoolingSystemIDButton.Location = new System.Drawing.Point(496, 158);
-            this.FindCoolingSystemIDButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FindCoolingSystemIDButton.Location = new System.Drawing.Point(661, 194);
+            this.FindCoolingSystemIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindCoolingSystemIDButton.Name = "FindCoolingSystemIDButton";
-            this.FindCoolingSystemIDButton.Size = new System.Drawing.Size(93, 28);
+            this.FindCoolingSystemIDButton.Size = new System.Drawing.Size(124, 34);
             this.FindCoolingSystemIDButton.TabIndex = 50;
             this.FindCoolingSystemIDButton.Text = "Поиск";
             this.FindCoolingSystemIDButton.UseVisualStyleBackColor = true;
@@ -3603,10 +3538,10 @@ namespace Computer_house
             // CoolingSystemIDTextBox
             // 
             this.CoolingSystemIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.CoolingSystemIDTextBox.Location = new System.Drawing.Point(258, 160);
-            this.CoolingSystemIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystemIDTextBox.Location = new System.Drawing.Point(344, 197);
+            this.CoolingSystemIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystemIDTextBox.Name = "CoolingSystemIDTextBox";
-            this.CoolingSystemIDTextBox.Size = new System.Drawing.Size(234, 25);
+            this.CoolingSystemIDTextBox.Size = new System.Drawing.Size(311, 30);
             this.CoolingSystemIDTextBox.TabIndex = 49;
             this.CoolingSystemIDTextBox.TextChanged += new System.EventHandler(this.CoolingSystemIDTextBox_TextChanged);
             // 
@@ -3614,10 +3549,9 @@ namespace Computer_house
             // 
             this.label103.AutoSize = true;
             this.label103.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label103.Location = new System.Drawing.Point(12, 158);
-            this.label103.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label103.Location = new System.Drawing.Point(16, 194);
             this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(241, 25);
+            this.label103.Size = new System.Drawing.Size(304, 32);
             this.label103.TabIndex = 48;
             this.label103.Text = "ID системы охлаждения";
             // 
@@ -3625,10 +3559,10 @@ namespace Computer_house
             // 
             this.ChangeCoolingSystemRadio.AutoSize = true;
             this.ChangeCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeCoolingSystemRadio.Location = new System.Drawing.Point(486, 112);
-            this.ChangeCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.ChangeCoolingSystemRadio.Location = new System.Drawing.Point(648, 138);
+            this.ChangeCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeCoolingSystemRadio.Name = "ChangeCoolingSystemRadio";
-            this.ChangeCoolingSystemRadio.Size = new System.Drawing.Size(100, 25);
+            this.ChangeCoolingSystemRadio.Size = new System.Drawing.Size(124, 32);
             this.ChangeCoolingSystemRadio.TabIndex = 47;
             this.ChangeCoolingSystemRadio.TabStop = true;
             this.ChangeCoolingSystemRadio.Text = "Изменить";
@@ -3639,10 +3573,10 @@ namespace Computer_house
             // 
             this.AddCoolingSystemRadio.AutoSize = true;
             this.AddCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCoolingSystemRadio.Location = new System.Drawing.Point(487, 19);
-            this.AddCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.AddCoolingSystemRadio.Location = new System.Drawing.Point(649, 23);
+            this.AddCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddCoolingSystemRadio.Name = "AddCoolingSystemRadio";
-            this.AddCoolingSystemRadio.Size = new System.Drawing.Size(99, 25);
+            this.AddCoolingSystemRadio.Size = new System.Drawing.Size(122, 32);
             this.AddCoolingSystemRadio.TabIndex = 46;
             this.AddCoolingSystemRadio.TabStop = true;
             this.AddCoolingSystemRadio.Text = "Добавить";
@@ -3659,14 +3593,14 @@ namespace Computer_house
             this.CoolingSystem_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
-            this.CoolingSystem_DatagridView.Location = new System.Drawing.Point(17, 19);
-            this.CoolingSystem_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.CoolingSystem_DatagridView.Location = new System.Drawing.Point(23, 23);
+            this.CoolingSystem_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoolingSystem_DatagridView.MultiSelect = false;
             this.CoolingSystem_DatagridView.Name = "CoolingSystem_DatagridView";
             this.CoolingSystem_DatagridView.ReadOnly = true;
             this.CoolingSystem_DatagridView.RowHeadersWidth = 51;
             this.CoolingSystem_DatagridView.RowTemplate.Height = 24;
-            this.CoolingSystem_DatagridView.Size = new System.Drawing.Size(423, 119);
+            this.CoolingSystem_DatagridView.Size = new System.Drawing.Size(564, 146);
             this.CoolingSystem_DatagridView.TabIndex = 45;
             this.CoolingSystem_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.CoolingSystem_DatagridView_RowEnter);
             // 
@@ -3689,33 +3623,518 @@ namespace Computer_house
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage9.Location = new System.Drawing.Point(4, 28);
-            this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage9.Controls.Add(this.label128);
+            this.tabPage9.Controls.Add(this.ActWithPSU);
+            this.tabPage9.Controls.Add(this.label136);
+            this.tabPage9.Controls.Add(this.PSUPowerUSBCheckBox);
+            this.tabPage9.Controls.Add(this.label135);
+            this.tabPage9.Controls.Add(this.PSULengthTextBox);
+            this.tabPage9.Controls.Add(this.label133);
+            this.tabPage9.Controls.Add(this.PSUConsumptionTextBox);
+            this.tabPage9.Controls.Add(this.label132);
+            this.tabPage9.Controls.Add(this.label119);
+            this.tabPage9.Controls.Add(this.label131);
+            this.tabPage9.Controls.Add(this.PSUTwelveLineTextBox);
+            this.tabPage9.Controls.Add(this.label130);
+            this.tabPage9.Controls.Add(this.PSUsataCountTextBox);
+            this.tabPage9.Controls.Add(this.label129);
+            this.tabPage9.Controls.Add(this.PSUidePowerTypeTextBox);
+            this.tabPage9.Controls.Add(this.PSUpciePowerTypeTextBox);
+            this.tabPage9.Controls.Add(this.label127);
+            this.tabPage9.Controls.Add(this.PSUcpuPowerTypeTextBox);
+            this.tabPage9.Controls.Add(this.label120);
+            this.tabPage9.Controls.Add(this.label126);
+            this.tabPage9.Controls.Add(this.label125);
+            this.tabPage9.Controls.Add(this.PSUMotherboardPowerTypeComboBox);
+            this.tabPage9.Controls.Add(this.PSUModularityCheckBox);
+            this.tabPage9.Controls.Add(this.label123);
+            this.tabPage9.Controls.Add(this.PSUEfficiencyTextBox);
+            this.tabPage9.Controls.Add(this.label124);
+            this.tabPage9.Controls.Add(this.label121);
+            this.tabPage9.Controls.Add(this.PSUTwelveLineMaxAmperageTextBox);
+            this.tabPage9.Controls.Add(this.label122);
+            this.tabPage9.Controls.Add(this.PSUStandartTextBox);
+            this.tabPage9.Controls.Add(this.label118);
+            this.tabPage9.Controls.Add(this.PSUNameTextBox);
+            this.tabPage9.Controls.Add(this.label116);
+            this.tabPage9.Controls.Add(this.FindPSUIDButton);
+            this.tabPage9.Controls.Add(this.PSUIDTextBox);
+            this.tabPage9.Controls.Add(this.label117);
+            this.tabPage9.Controls.Add(this.ChangePSURadio);
+            this.tabPage9.Controls.Add(this.AddPSURadio);
+            this.tabPage9.Controls.Add(this.PSU_DatagridView);
+            this.tabPage9.Location = new System.Drawing.Point(4, 32);
+            this.tabPage9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage9.Size = new System.Drawing.Size(601, 786);
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage9.Size = new System.Drawing.Size(804, 971);
             this.tabPage9.TabIndex = 6;
             this.tabPage9.Text = "Блок питания";
+            this.tabPage9.Enter += new System.EventHandler(this.tabPage9_Enter);
+            // 
+            // label128
+            // 
+            this.label128.AutoSize = true;
+            this.label128.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.Location = new System.Drawing.Point(527, 568);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(20, 28);
+            this.label128.TabIndex = 115;
+            this.label128.Text = "/";
+            // 
+            // ActWithPSU
+            // 
+            this.ActWithPSU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActWithPSU.Location = new System.Drawing.Point(22, 622);
+            this.ActWithPSU.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ActWithPSU.Name = "ActWithPSU";
+            this.ActWithPSU.Size = new System.Drawing.Size(763, 47);
+            this.ActWithPSU.TabIndex = 114;
+            this.ActWithPSU.Text = "button3";
+            this.ActWithPSU.UseVisualStyleBackColor = true;
+            this.ActWithPSU.Click += new System.EventHandler(this.ActWithPSU_Click);
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label136.Location = new System.Drawing.Point(556, 524);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(20, 28);
+            this.label136.TabIndex = 113;
+            this.label136.Text = "/";
+            // 
+            // PSUPowerUSBCheckBox
+            // 
+            this.PSUPowerUSBCheckBox.AutoSize = true;
+            this.PSUPowerUSBCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PSUPowerUSBCheckBox.Location = new System.Drawing.Point(652, 284);
+            this.PSUPowerUSBCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUPowerUSBCheckBox.Name = "PSUPowerUSBCheckBox";
+            this.PSUPowerUSBCheckBox.Size = new System.Drawing.Size(134, 32);
+            this.PSUPowerUSBCheckBox.TabIndex = 112;
+            this.PSUPowerUSBCheckBox.Text = "Power USB";
+            this.PSUPowerUSBCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label135
+            // 
+            this.label135.AutoSize = true;
+            this.label135.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label135.Location = new System.Drawing.Point(734, 571);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(48, 28);
+            this.label135.TabIndex = 111;
+            this.label135.Text = "ММ";
+            // 
+            // PSULengthTextBox
+            // 
+            this.PSULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSULengthTextBox.Location = new System.Drawing.Point(555, 569);
+            this.PSULengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSULengthTextBox.Name = "PSULengthTextBox";
+            this.PSULengthTextBox.Size = new System.Drawing.Size(175, 30);
+            this.PSULengthTextBox.TabIndex = 110;
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.Location = new System.Drawing.Point(567, 426);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(32, 28);
+            this.label133.TabIndex = 108;
+            this.label133.Text = "Вт";
+            // 
+            // PSUConsumptionTextBox
+            // 
+            this.PSUConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUConsumptionTextBox.Location = new System.Drawing.Point(347, 424);
+            this.PSUConsumptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUConsumptionTextBox.Name = "PSUConsumptionTextBox";
+            this.PSUConsumptionTextBox.Size = new System.Drawing.Size(213, 30);
+            this.PSUConsumptionTextBox.TabIndex = 107;
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.Location = new System.Drawing.Point(13, 424);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(141, 32);
+            this.label132.TabIndex = 106;
+            this.label132.Text = "Мощность";
+            // 
+            // label119
+            // 
+            this.label119.AutoSize = true;
+            this.label119.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label119.Location = new System.Drawing.Point(603, 379);
+            this.label119.Name = "label119";
+            this.label119.Size = new System.Drawing.Size(20, 28);
+            this.label119.TabIndex = 105;
+            this.label119.Text = "/";
+            // 
+            // label131
+            // 
+            this.label131.AutoSize = true;
+            this.label131.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.Location = new System.Drawing.Point(743, 333);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(39, 28);
+            this.label131.TabIndex = 104;
+            this.label131.Text = "Шт";
+            // 
+            // PSUTwelveLineTextBox
+            // 
+            this.PSUTwelveLineTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUTwelveLineTextBox.Location = new System.Drawing.Point(629, 332);
+            this.PSUTwelveLineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUTwelveLineTextBox.Name = "PSUTwelveLineTextBox";
+            this.PSUTwelveLineTextBox.Size = new System.Drawing.Size(91, 30);
+            this.PSUTwelveLineTextBox.TabIndex = 103;
+            // 
+            // label130
+            // 
+            this.label130.AutoSize = true;
+            this.label130.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.Location = new System.Drawing.Point(601, 333);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(20, 28);
+            this.label130.TabIndex = 102;
+            this.label130.Text = "/";
+            // 
+            // PSUsataCountTextBox
+            // 
+            this.PSUsataCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUsataCountTextBox.Location = new System.Drawing.Point(500, 332);
+            this.PSUsataCountTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUsataCountTextBox.Name = "PSUsataCountTextBox";
+            this.PSUsataCountTextBox.Size = new System.Drawing.Size(91, 30);
+            this.PSUsataCountTextBox.TabIndex = 101;
+            // 
+            // label129
+            // 
+            this.label129.AutoSize = true;
+            this.label129.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.Location = new System.Drawing.Point(16, 332);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(463, 32);
+            this.label129.TabIndex = 100;
+            this.label129.Text = "Кол-во разъёмов SATA / линий +12V";
+            // 
+            // PSUidePowerTypeTextBox
+            // 
+            this.PSUidePowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUidePowerTypeTextBox.Location = new System.Drawing.Point(586, 524);
+            this.PSUidePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUidePowerTypeTextBox.Name = "PSUidePowerTypeTextBox";
+            this.PSUidePowerTypeTextBox.Size = new System.Drawing.Size(200, 30);
+            this.PSUidePowerTypeTextBox.TabIndex = 99;
+            // 
+            // PSUpciePowerTypeTextBox
+            // 
+            this.PSUpciePowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUpciePowerTypeTextBox.Location = new System.Drawing.Point(344, 569);
+            this.PSUpciePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUpciePowerTypeTextBox.Name = "PSUpciePowerTypeTextBox";
+            this.PSUpciePowerTypeTextBox.Size = new System.Drawing.Size(175, 30);
+            this.PSUpciePowerTypeTextBox.TabIndex = 97;
+            // 
+            // label127
+            // 
+            this.label127.AutoSize = true;
+            this.label127.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label127.Location = new System.Drawing.Point(11, 569);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(313, 32);
+            this.label127.TabIndex = 96;
+            this.label127.Text = "Питание PCIe / длина БП";
+            // 
+            // PSUcpuPowerTypeTextBox
+            // 
+            this.PSUcpuPowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUcpuPowerTypeTextBox.Location = new System.Drawing.Point(344, 524);
+            this.PSUcpuPowerTypeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUcpuPowerTypeTextBox.Name = "PSUcpuPowerTypeTextBox";
+            this.PSUcpuPowerTypeTextBox.Size = new System.Drawing.Size(200, 30);
+            this.PSUcpuPowerTypeTextBox.TabIndex = 95;
+            // 
+            // label120
+            // 
+            this.label120.AutoSize = true;
+            this.label120.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label120.Location = new System.Drawing.Point(11, 524);
+            this.label120.Name = "label120";
+            this.label120.Size = new System.Drawing.Size(236, 32);
+            this.label120.TabIndex = 94;
+            this.label120.Text = "Питание CPU / IDE";
+            // 
+            // label126
+            // 
+            this.label126.AutoSize = true;
+            this.label126.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.Location = new System.Drawing.Point(11, 524);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(171, 32);
+            this.label126.TabIndex = 94;
+            this.label126.Text = "Питание CPU";
+            // 
+            // label125
+            // 
+            this.label125.AutoSize = true;
+            this.label125.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label125.Location = new System.Drawing.Point(11, 472);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(409, 32);
+            this.label125.TabIndex = 93;
+            this.label125.Text = "Тип питания материнской платы";
+            // 
+            // PSUMotherboardPowerTypeComboBox
+            // 
+            this.PSUMotherboardPowerTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PSUMotherboardPowerTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PSUMotherboardPowerTypeComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUMotherboardPowerTypeComboBox.FormattingEnabled = true;
+            this.PSUMotherboardPowerTypeComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+            this.PSUMotherboardPowerTypeComboBox.Location = new System.Drawing.Point(455, 472);
+            this.PSUMotherboardPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUMotherboardPowerTypeComboBox.Name = "PSUMotherboardPowerTypeComboBox";
+            this.PSUMotherboardPowerTypeComboBox.Size = new System.Drawing.Size(329, 31);
+            this.PSUMotherboardPowerTypeComboBox.TabIndex = 92;
+            // 
+            // PSUModularityCheckBox
+            // 
+            this.PSUModularityCheckBox.AutoSize = true;
+            this.PSUModularityCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PSUModularityCheckBox.Location = new System.Drawing.Point(628, 424);
+            this.PSUModularityCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUModularityCheckBox.Name = "PSUModularityCheckBox";
+            this.PSUModularityCheckBox.Size = new System.Drawing.Size(157, 32);
+            this.PSUModularityCheckBox.TabIndex = 84;
+            this.PSUModularityCheckBox.Text = "Модульность";
+            this.PSUModularityCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label123
+            // 
+            this.label123.AutoSize = true;
+            this.label123.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label123.Location = new System.Drawing.Point(749, 375);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(29, 28);
+            this.label123.TabIndex = 73;
+            this.label123.Text = "%";
+            // 
+            // PSUEfficiencyTextBox
+            // 
+            this.PSUEfficiencyTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUEfficiencyTextBox.Location = new System.Drawing.Point(631, 376);
+            this.PSUEfficiencyTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUEfficiencyTextBox.Name = "PSUEfficiencyTextBox";
+            this.PSUEfficiencyTextBox.Size = new System.Drawing.Size(112, 30);
+            this.PSUEfficiencyTextBox.TabIndex = 72;
+            // 
+            // label124
+            // 
+            this.label124.AutoSize = true;
+            this.label124.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label124.Location = new System.Drawing.Point(535, 379);
+            this.label124.Name = "label124";
+            this.label124.Size = new System.Drawing.Size(0, 32);
+            this.label124.TabIndex = 71;
+            // 
+            // label121
+            // 
+            this.label121.AutoSize = true;
+            this.label121.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label121.Location = new System.Drawing.Point(569, 380);
+            this.label121.Name = "label121";
+            this.label121.Size = new System.Drawing.Size(25, 28);
+            this.label121.TabIndex = 70;
+            this.label121.Text = "А";
+            // 
+            // PSUTwelveLineMaxAmperageTextBox
+            // 
+            this.PSUTwelveLineMaxAmperageTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUTwelveLineMaxAmperageTextBox.Location = new System.Drawing.Point(448, 379);
+            this.PSUTwelveLineMaxAmperageTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUTwelveLineMaxAmperageTextBox.Name = "PSUTwelveLineMaxAmperageTextBox";
+            this.PSUTwelveLineMaxAmperageTextBox.Size = new System.Drawing.Size(112, 30);
+            this.PSUTwelveLineMaxAmperageTextBox.TabIndex = 69;
+            // 
+            // label122
+            // 
+            this.label122.AutoSize = true;
+            this.label122.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label122.Location = new System.Drawing.Point(11, 378);
+            this.label122.Name = "label122";
+            this.label122.Size = new System.Drawing.Size(397, 32);
+            this.label122.TabIndex = 68;
+            this.label122.Text = "Макс. ток по линии +12V / КПД";
+            // 
+            // PSUStandartTextBox
+            // 
+            this.PSUStandartTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUStandartTextBox.Location = new System.Drawing.Point(344, 285);
+            this.PSUStandartTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUStandartTextBox.Name = "PSUStandartTextBox";
+            this.PSUStandartTextBox.Size = new System.Drawing.Size(247, 30);
+            this.PSUStandartTextBox.TabIndex = 62;
+            // 
+            // label118
+            // 
+            this.label118.AutoSize = true;
+            this.label118.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label118.Location = new System.Drawing.Point(11, 284);
+            this.label118.Name = "label118";
+            this.label118.Size = new System.Drawing.Size(307, 32);
+            this.label118.TabIndex = 61;
+            this.label118.Text = "Стандарт блока питания";
+            // 
+            // PSUNameTextBox
+            // 
+            this.PSUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUNameTextBox.Location = new System.Drawing.Point(344, 238);
+            this.PSUNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUNameTextBox.Name = "PSUNameTextBox";
+            this.PSUNameTextBox.Size = new System.Drawing.Size(440, 30);
+            this.PSUNameTextBox.TabIndex = 60;
+            // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label116.Location = new System.Drawing.Point(12, 237);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(193, 32);
+            this.label116.TabIndex = 59;
+            this.label116.Text = "Наименование";
+            // 
+            // FindPSUIDButton
+            // 
+            this.FindPSUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindPSUIDButton.Location = new System.Drawing.Point(661, 188);
+            this.FindPSUIDButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FindPSUIDButton.Name = "FindPSUIDButton";
+            this.FindPSUIDButton.Size = new System.Drawing.Size(124, 34);
+            this.FindPSUIDButton.TabIndex = 58;
+            this.FindPSUIDButton.Text = "Поиск";
+            this.FindPSUIDButton.UseVisualStyleBackColor = true;
+            this.FindPSUIDButton.Click += new System.EventHandler(this.FindPSUIDButton_Click);
+            // 
+            // PSUIDTextBox
+            // 
+            this.PSUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+            this.PSUIDTextBox.Location = new System.Drawing.Point(344, 190);
+            this.PSUIDTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSUIDTextBox.Name = "PSUIDTextBox";
+            this.PSUIDTextBox.Size = new System.Drawing.Size(311, 30);
+            this.PSUIDTextBox.TabIndex = 57;
+            this.PSUIDTextBox.TextChanged += new System.EventHandler(this.PSUIDTextBox_TextChanged);
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.Location = new System.Drawing.Point(15, 191);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(224, 32);
+            this.label117.TabIndex = 56;
+            this.label117.Text = "ID блока питания";
+            // 
+            // ChangePSURadio
+            // 
+            this.ChangePSURadio.AutoSize = true;
+            this.ChangePSURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangePSURadio.Location = new System.Drawing.Point(648, 139);
+            this.ChangePSURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChangePSURadio.Name = "ChangePSURadio";
+            this.ChangePSURadio.Size = new System.Drawing.Size(124, 32);
+            this.ChangePSURadio.TabIndex = 55;
+            this.ChangePSURadio.TabStop = true;
+            this.ChangePSURadio.Text = "Изменить";
+            this.ChangePSURadio.UseVisualStyleBackColor = true;
+            this.ChangePSURadio.CheckedChanged += new System.EventHandler(this.ChangePSURadio_CheckedChanged);
+            // 
+            // AddPSURadio
+            // 
+            this.AddPSURadio.AutoSize = true;
+            this.AddPSURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddPSURadio.Location = new System.Drawing.Point(649, 25);
+            this.AddPSURadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AddPSURadio.Name = "AddPSURadio";
+            this.AddPSURadio.Size = new System.Drawing.Size(122, 32);
+            this.AddPSURadio.TabIndex = 54;
+            this.AddPSURadio.TabStop = true;
+            this.AddPSURadio.Text = "Добавить";
+            this.AddPSURadio.UseVisualStyleBackColor = true;
+            this.AddPSURadio.CheckedChanged += new System.EventHandler(this.AddPSURadio_CheckedChanged);
+            // 
+            // PSU_DatagridView
+            // 
+            this.PSU_DatagridView.AllowUserToAddRows = false;
+            this.PSU_DatagridView.AllowUserToDeleteRows = false;
+            this.PSU_DatagridView.AllowUserToOrderColumns = true;
+            this.PSU_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.PSU_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PSU_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8});
+            this.PSU_DatagridView.Location = new System.Drawing.Point(23, 25);
+            this.PSU_DatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PSU_DatagridView.MultiSelect = false;
+            this.PSU_DatagridView.Name = "PSU_DatagridView";
+            this.PSU_DatagridView.ReadOnly = true;
+            this.PSU_DatagridView.RowHeadersWidth = 51;
+            this.PSU_DatagridView.RowTemplate.Height = 24;
+            this.PSU_DatagridView.Size = new System.Drawing.Size(564, 146);
+            this.PSU_DatagridView.TabIndex = 53;
+            this.PSU_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.PSU_DatagridView_RowEnter);
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Наименование";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 250;
             // 
             // tabPage10
             // 
             this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage10.Location = new System.Drawing.Point(4, 28);
-            this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage10.Location = new System.Drawing.Point(4, 32);
+            this.tabPage10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage10.Size = new System.Drawing.Size(601, 786);
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage10.Size = new System.Drawing.Size(804, 971);
             this.tabPage10.TabIndex = 7;
             this.tabPage10.Text = "HDD";
             // 
             // tabPage11
             // 
             this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tabPage11.Location = new System.Drawing.Point(4, 28);
-            this.tabPage11.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage11.Location = new System.Drawing.Point(4, 32);
+            this.tabPage11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage11.Size = new System.Drawing.Size(601, 786);
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage11.Size = new System.Drawing.Size(804, 971);
             this.tabPage11.TabIndex = 8;
             this.tabPage11.Text = "SSD";
             // 
@@ -3733,11 +4152,11 @@ namespace Computer_house
             this.tabPage2.Controls.Add(this.ComponentsListBox);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.TypesOfComponentComboBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 30);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 37);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(614, 825);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Size = new System.Drawing.Size(821, 1016);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Доп. сведения о комплектующих";
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
@@ -3760,30 +4179,29 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.ComponentTypeComboBox.Location = new System.Drawing.Point(386, 231);
-            this.ComponentTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ComponentTypeComboBox.Location = new System.Drawing.Point(515, 284);
+            this.ComponentTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ComponentTypeComboBox.Name = "ComponentTypeComboBox";
-            this.ComponentTypeComboBox.Size = new System.Drawing.Size(205, 25);
+            this.ComponentTypeComboBox.Size = new System.Drawing.Size(272, 31);
             this.ComponentTypeComboBox.TabIndex = 15;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(225, 231);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(300, 284);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 21);
+            this.label4.Size = new System.Drawing.Size(159, 28);
             this.label4.TabIndex = 14;
             this.label4.Text = "Тип устройства:";
             // 
             // ActToComponent
             // 
             this.ActToComponent.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActToComponent.Location = new System.Drawing.Point(386, 277);
-            this.ActToComponent.Margin = new System.Windows.Forms.Padding(2);
+            this.ActToComponent.Location = new System.Drawing.Point(515, 341);
+            this.ActToComponent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActToComponent.Name = "ActToComponent";
-            this.ActToComponent.Size = new System.Drawing.Size(217, 39);
+            this.ActToComponent.Size = new System.Drawing.Size(289, 48);
             this.ActToComponent.TabIndex = 13;
             this.ActToComponent.Text = "button1";
             this.ActToComponent.UseVisualStyleBackColor = true;
@@ -3793,30 +4211,29 @@ namespace Computer_house
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(225, 167);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(300, 206);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 21);
+            this.label3.Size = new System.Drawing.Size(55, 28);
             this.label3.TabIndex = 12;
             this.label3.Text = "Имя:";
             // 
             // ComponentNameTextBox
             // 
             this.ComponentNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-            this.ComponentNameTextBox.Location = new System.Drawing.Point(386, 166);
-            this.ComponentNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ComponentNameTextBox.Location = new System.Drawing.Point(515, 204);
+            this.ComponentNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ComponentNameTextBox.Name = "ComponentNameTextBox";
-            this.ComponentNameTextBox.Size = new System.Drawing.Size(218, 25);
+            this.ComponentNameTextBox.Size = new System.Drawing.Size(289, 30);
             this.ComponentNameTextBox.TabIndex = 10;
             this.ComponentNameTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // EditComponent
             // 
             this.EditComponent.AutoSize = true;
-            this.EditComponent.Location = new System.Drawing.Point(509, 97);
-            this.EditComponent.Margin = new System.Windows.Forms.Padding(2);
+            this.EditComponent.Location = new System.Drawing.Point(679, 119);
+            this.EditComponent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EditComponent.Name = "EditComponent";
-            this.EditComponent.Size = new System.Drawing.Size(100, 25);
+            this.EditComponent.Size = new System.Drawing.Size(124, 32);
             this.EditComponent.TabIndex = 9;
             this.EditComponent.TabStop = true;
             this.EditComponent.Text = "Изменить";
@@ -3826,10 +4243,10 @@ namespace Computer_house
             // AddNewComponent
             // 
             this.AddNewComponent.AutoSize = true;
-            this.AddNewComponent.Location = new System.Drawing.Point(386, 97);
-            this.AddNewComponent.Margin = new System.Windows.Forms.Padding(2);
+            this.AddNewComponent.Location = new System.Drawing.Point(515, 119);
+            this.AddNewComponent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddNewComponent.Name = "AddNewComponent";
-            this.AddNewComponent.Size = new System.Drawing.Size(99, 25);
+            this.AddNewComponent.Size = new System.Drawing.Size(122, 32);
             this.AddNewComponent.TabIndex = 8;
             this.AddNewComponent.TabStop = true;
             this.AddNewComponent.Text = "Добавить";
@@ -3840,21 +4257,20 @@ namespace Computer_house
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 96);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(5, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 25);
+            this.label2.Size = new System.Drawing.Size(240, 32);
             this.label2.TabIndex = 7;
             this.label2.Text = "Список элементов:";
             // 
             // ComponentsListBox
             // 
             this.ComponentsListBox.FormattingEnabled = true;
-            this.ComponentsListBox.ItemHeight = 21;
-            this.ComponentsListBox.Location = new System.Drawing.Point(9, 128);
-            this.ComponentsListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ComponentsListBox.ItemHeight = 28;
+            this.ComponentsListBox.Location = new System.Drawing.Point(12, 158);
+            this.ComponentsListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ComponentsListBox.Name = "ComponentsListBox";
-            this.ComponentsListBox.Size = new System.Drawing.Size(198, 277);
+            this.ComponentsListBox.Size = new System.Drawing.Size(263, 340);
             this.ComponentsListBox.TabIndex = 6;
             this.ComponentsListBox.SelectedIndexChanged += new System.EventHandler(this.ComponentsList_SelectedIndexChanged);
             // 
@@ -3862,10 +4278,9 @@ namespace Computer_house
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(3, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(386, 25);
+            this.label1.Size = new System.Drawing.Size(484, 32);
             this.label1.TabIndex = 5;
             this.label1.Text = "Выберите данные для редактирования";
             // 
@@ -3886,10 +4301,10 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-            this.TypesOfComponentComboBox.Location = new System.Drawing.Point(398, 29);
-            this.TypesOfComponentComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.TypesOfComponentComboBox.Location = new System.Drawing.Point(531, 36);
+            this.TypesOfComponentComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TypesOfComponentComboBox.Name = "TypesOfComponentComboBox";
-            this.TypesOfComponentComboBox.Size = new System.Drawing.Size(205, 25);
+            this.TypesOfComponentComboBox.Size = new System.Drawing.Size(272, 31);
             this.TypesOfComponentComboBox.TabIndex = 4;
             this.TypesOfComponentComboBox.SelectedIndexChanged += new System.EventHandler(this.TypesOfComponentComboBox_SelectedIndexChanged);
             // 
@@ -3897,11 +4312,11 @@ namespace Computer_house
             // 
             this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tabPage12.Controls.Add(this.HoldingDocsDatagridView);
-            this.tabPage12.Location = new System.Drawing.Point(4, 30);
-            this.tabPage12.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage12.Location = new System.Drawing.Point(4, 37);
+            this.tabPage12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage12.Size = new System.Drawing.Size(614, 825);
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage12.Size = new System.Drawing.Size(821, 1016);
             this.tabPage12.TabIndex = 2;
             this.tabPage12.Text = "Складские материалы";
             this.tabPage12.Enter += new System.EventHandler(this.tabPage12_Enter);
@@ -3923,12 +4338,12 @@ namespace Computer_house
             this.WorkerID,
             this.Location});
             this.HoldingDocsDatagridView.Location = new System.Drawing.Point(0, 0);
-            this.HoldingDocsDatagridView.Margin = new System.Windows.Forms.Padding(2);
+            this.HoldingDocsDatagridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HoldingDocsDatagridView.Name = "HoldingDocsDatagridView";
             this.HoldingDocsDatagridView.ReadOnly = true;
             this.HoldingDocsDatagridView.RowHeadersWidth = 51;
             this.HoldingDocsDatagridView.RowTemplate.Height = 24;
-            this.HoldingDocsDatagridView.Size = new System.Drawing.Size(614, 587);
+            this.HoldingDocsDatagridView.Size = new System.Drawing.Size(819, 722);
             this.HoldingDocsDatagridView.TabIndex = 0;
             this.HoldingDocsDatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowEnter);
             // 
@@ -3991,15 +4406,15 @@ namespace Computer_house
             // 
             // ComponentsOptionsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(648, 628);
+            this.ClientSize = new System.Drawing.Size(864, 773);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ComponentsOptionsForm";
@@ -4028,6 +4443,9 @@ namespace Computer_house
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoolingSystem_DatagridView)).EndInit();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage12.ResumeLayout(false);
@@ -4323,5 +4741,47 @@ namespace Computer_house
         internal System.Windows.Forms.TextBox CoolingSystemConsumptionTextBox;
         internal System.Windows.Forms.Label label113;
         internal System.Windows.Forms.Button ActWithCoolingSystem;
+        internal System.Windows.Forms.TextBox PSUNameTextBox;
+        internal System.Windows.Forms.Label label116;
+        internal System.Windows.Forms.Button FindPSUIDButton;
+        internal System.Windows.Forms.TextBox PSUIDTextBox;
+        internal System.Windows.Forms.Label label117;
+        internal System.Windows.Forms.RadioButton ChangePSURadio;
+        internal System.Windows.Forms.RadioButton AddPSURadio;
+        internal System.Windows.Forms.DataGridView PSU_DatagridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        internal System.Windows.Forms.TextBox PSUStandartTextBox;
+        internal System.Windows.Forms.Label label118;
+        internal System.Windows.Forms.Label label121;
+        internal System.Windows.Forms.TextBox PSUTwelveLineMaxAmperageTextBox;
+        internal System.Windows.Forms.Label label122;
+        internal System.Windows.Forms.Label label123;
+        internal System.Windows.Forms.TextBox PSUEfficiencyTextBox;
+        internal System.Windows.Forms.Label label124;
+        internal System.Windows.Forms.CheckBox PSUModularityCheckBox;
+        internal System.Windows.Forms.Label label125;
+        internal System.Windows.Forms.ComboBox PSUMotherboardPowerTypeComboBox;
+        internal System.Windows.Forms.TextBox PSUcpuPowerTypeTextBox;
+        internal System.Windows.Forms.Label label126;
+        internal System.Windows.Forms.TextBox PSUpciePowerTypeTextBox;
+        internal System.Windows.Forms.Label label127;
+        internal System.Windows.Forms.TextBox PSUidePowerTypeTextBox;
+        internal System.Windows.Forms.Label label119;
+        internal System.Windows.Forms.Label label131;
+        internal System.Windows.Forms.TextBox PSUTwelveLineTextBox;
+        internal System.Windows.Forms.Label label130;
+        internal System.Windows.Forms.TextBox PSUsataCountTextBox;
+        internal System.Windows.Forms.Label label129;
+        internal System.Windows.Forms.Label label133;
+        internal System.Windows.Forms.TextBox PSUConsumptionTextBox;
+        internal System.Windows.Forms.Label label132;
+        internal System.Windows.Forms.Label label120;
+        internal System.Windows.Forms.TextBox PSULengthTextBox;
+        internal System.Windows.Forms.Label label135;
+        internal System.Windows.Forms.CheckBox PSUPowerUSBCheckBox;
+        internal System.Windows.Forms.Button ActWithPSU;
+        internal System.Windows.Forms.Label label136;
+        internal System.Windows.Forms.Label label128;
     }
 }

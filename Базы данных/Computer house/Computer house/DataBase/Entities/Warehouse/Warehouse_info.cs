@@ -8,6 +8,7 @@ namespace Computer_house.DataBase.Entities.Warehouse
     {
         public int Product_ID { get; set; }
         public int Current_items_count { get; set; }
+        public int Items_in_shop { get; set; } = 0;
         internal string ProductName { get; set; }
         internal string ProductType { get; set; }
 
