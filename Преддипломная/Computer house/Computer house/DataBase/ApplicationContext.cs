@@ -23,6 +23,8 @@ namespace Computer_house.DataBase
         public DbSet<Sellings> Sellings { get; set; }
         public DbSet<ShopRequests> ShopRequests { get; set; }
 
+        public DbSet<NeedToUpdate> NeedToUpdate { get; set; }
+
         //Классы основанные на интерфейсах 
         public DbSet<Base_and_max_options> Base_and_max_options { get; set; }
         public DbSet<Energy_consumption> Energy_consumption { get; set; }
@@ -102,6 +104,7 @@ namespace Computer_house.DataBase
             modelBuilder.Entity<Mediator>().HasKey(i => i.ID);
             modelBuilder.Entity<Sellings>().HasKey(i => i.ID);
             modelBuilder.Entity<ShopRequests>().HasKey(i => i.ID);
+            modelBuilder.Entity<NeedToUpdate>().HasKey(i => i.ID);
         }
     }
 }

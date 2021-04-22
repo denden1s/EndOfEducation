@@ -18,5 +18,14 @@ namespace Computer_house.DataBase.Entities.Warehouse
         public decimal Price { get; set; }
 
         public int Worker_ID { get; set; }
+
+        public Sellings() { }
+        public Sellings(int _productID, string _paymentMethod, int _workerID, decimal _price)
+        {
+            Product_ID = _productID;
+            Payment_method = _paymentMethod;
+            Worker_ID = _workerID;
+            Price = _price;
+        }
     }
 }

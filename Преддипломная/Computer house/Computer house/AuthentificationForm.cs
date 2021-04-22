@@ -26,7 +26,7 @@ namespace Computer_house
                     {
                         foreach (Users u in db.Users)
                         {
-                            u.Authorization_status = false;
+                            u.Authorization_status_in_shop = false;
                         }
                         db.SaveChanges();
                     }
@@ -46,6 +46,9 @@ namespace Computer_house
             PasswordInfo.Enabled = false;
             //Обработка событий авторизации на форме
             Authorization();
+            BAuthentificate.Enabled = true;
+            LoginInfo.Enabled = true;
+            PasswordInfo.Enabled = true;
         }
 
         private void Authorization()
@@ -61,7 +64,7 @@ namespace Computer_house
                         if (user.Password == PasswordInfo.Text)
                         {
                             findUser = true;
-                            user.Authorization_status = true;
+                            user.Authorization_status_in_shop = true;
                             db.SaveChanges();
                             authorizedForm = new AuthorizedForm(user);
                             authorizedForm.Show();

@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="DataBase\ApplicationContext.cs" />
     <Compile Include="DataBase\Entities\Mediator.cs" />
+    <Compile Include="DataBase\Entities\NeedToUpdate.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Case.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Chipset.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Motherboard.cs" />

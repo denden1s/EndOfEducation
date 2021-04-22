@@ -145,6 +145,7 @@ namespace Computer_house
 
             await Task.Run(() => ViewInfoFromListsToFormElements(this));
             ViewSecondPartDataFromListsToFormEl(this);
+            Task.Run(() => UpdateInfo());
         }
 
         //Методы для загрузки данных из БД
@@ -2237,6 +2238,26 @@ namespace Computer_house
             changedPSU.Consumption = Convert.ToInt32(PSUConsumptionTextBox.Text);
             changedPSU.Length = Convert.ToInt32(PSULengthTextBox.Text);
             return changedPSU;
+        }
+
+        private async void UpdateInfo()
+        {
+            while(true)
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
+                    if (needToUpdate.UpdateStatus)
+                    {
+                        await Task.Run(() => LoadHoldingDocsFromDB());
+                        await Task.Run(() => ViewDocsInDataGrid());
+                        needToUpdate.UpdateStatus = false;
+                        db.NeedToUpdate.Update(needToUpdate);
+                        db.SaveChanges();
+                    }
+                }               
+            }
+            
         }
     }
 }

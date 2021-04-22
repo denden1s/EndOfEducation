@@ -21,6 +21,8 @@ namespace Computer_house.DataBase
         public DbSet<Products_location> Products_location { get; set; }
         public DbSet<Warehouse_info> Warehouse_info { get; set; }
 
+        public DbSet<NeedToUpdate> NeedToUpdate { get; set; }
+
         //Классы основанные на интерфейсах 
         public DbSet<Base_and_max_options> Base_and_max_options { get; set; }
         public DbSet<Energy_consumption> Energy_consumption { get; set; }
@@ -98,6 +100,7 @@ namespace Computer_house.DataBase
             modelBuilder.Entity<Sockets>().HasKey(i => i.ID);
             modelBuilder.Entity<Memory_types>().HasKey(i => i.ID);
             modelBuilder.Entity<Mediator>().HasKey(i => i.ID);
+            modelBuilder.Entity<NeedToUpdate>().HasKey(i => i.ID);
         }
     }
 }

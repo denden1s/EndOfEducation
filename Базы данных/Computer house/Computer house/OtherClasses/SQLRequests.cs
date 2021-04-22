@@ -522,7 +522,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
+                        db.Price_list.Add(new Price_list(tempMediatorID,0,0));
                         db.Warehouse_info.Add(info);
+                    }
+                        
 
                     Energy_consumption energy = new Energy_consumption(tempMediatorID, _cpu.Consumption);
                     if (_method == "Add")
@@ -636,7 +640,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                        
                     //настроить возможные варианты если происходит добавление или изменение
 
                     Energy_consumption energy_Consumption = new Energy_consumption(info.Product_ID, _gpu.Consumption);
@@ -725,7 +733,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                        
                     //настроить возможные варианты если происходит добавление или изменение
 
                     Sizes_of_components sizes = new Sizes_of_components();
@@ -823,7 +835,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    { 
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                       
                     //настроить возможные варианты если происходит добавление или изменение
                     Sizes_of_components sizesOfCase = new Sizes_of_components();
                     sizesOfCase.Product_ID = info.Product_ID;
@@ -908,7 +924,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                        
                     //настроить возможные варианты если происходит добавление или изменение
                     Memory_capacity capacity = new Memory_capacity();
                     capacity.Product_ID = info.Product_ID;
@@ -983,7 +1003,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                        
                     //настроить возможные варианты если происходит добавление или изменение
                     Base_and_max_options options = new Base_and_max_options(info.Product_ID, 0, _coolingSys.Max_state);
                     if (_method == "Add")
@@ -1071,7 +1095,11 @@ namespace Computer_house.OtherClasses
                                           select b.ID).SingleOrDefault();
                     Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
                     if (_method == "Add")
+                    {
                         db.Warehouse_info.Add(info);
+                        db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+                    }
+                        
                     //настроить возможные варианты если происходит добавление или изменение
                     Energy_consumption consumption = new Energy_consumption(info.Product_ID, _psu.Consumption);
                     if (_method == "Add")

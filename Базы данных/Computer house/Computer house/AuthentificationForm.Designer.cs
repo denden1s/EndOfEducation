@@ -90,19 +90,20 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.настроитьIPToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(382, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(382, 30);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // настроитьIPToolStripMenuItem
             // 
             this.настроитьIPToolStripMenuItem.Name = "настроитьIPToolStripMenuItem";
-            this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.настроитьIPToolStripMenuItem.Text = "Настроить IP";
             this.настроитьIPToolStripMenuItem.Click += new System.EventHandler(this.настроитьIPToolStripMenuItem_Click);
             // 

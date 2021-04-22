@@ -8,7 +8,7 @@
 
         public string Password { get; private set; }
 
-        public bool Authorization_status { get; set; } = false;
+        public bool Authorization_status_in_shop { get; set; } = false;
 
         public string Name { get; set; }
 

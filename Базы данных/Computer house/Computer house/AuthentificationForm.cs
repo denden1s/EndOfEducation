@@ -46,6 +46,9 @@ namespace Computer_house
             PasswordInfo.Enabled = false;
             //Обработка событий авторизации на форме
             Authorization();
+            BAuthentificate.Enabled = true;
+            LoginInfo.Enabled = true;
+            PasswordInfo.Enabled = true;
         }
 
         private void Authorization()
