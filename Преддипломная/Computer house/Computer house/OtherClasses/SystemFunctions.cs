@@ -18,5 +18,11 @@ namespace Computer_house.OtherClasses
             setIP.ChangeXmlFile();
         }
 
+        public static void ChangeEnable(bool status, params Control[] objects)
+        {
+            foreach (Control i in objects)
+                i.Enabled = status;
+        }
+
     }
 }

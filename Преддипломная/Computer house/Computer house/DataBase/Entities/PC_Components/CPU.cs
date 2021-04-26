@@ -40,7 +40,7 @@ namespace Computer_house.DataBase.Entities
 
         public CPU(string _id):base (_id){}
         //Выгрузка данных из бд
-        public void GetDataFromDB()
+        public override void GetDataFromDB()
         {
             try
             {

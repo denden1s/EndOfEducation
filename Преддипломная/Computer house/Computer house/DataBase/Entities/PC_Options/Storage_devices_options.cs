@@ -1,16 +1,11 @@
 ﻿using Computer_house.DataBase.Entities.PC_Components;
-using Computer_house.DataBase.Interfaces;
-using Computer_house.OtherClasses;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
-    public class Storage_devices_options //: IStorage_devices_options, IMemory_capacity, IEnergy_consumption, ISizes_of_components
+    public class Storage_devices_options
     {
         public  string ID { get; set; }
         public int Storage_device_ID { get; set; }
@@ -28,14 +23,14 @@ namespace Computer_house.DataBase.Entities.PC_Options
         internal string ConnectionInterface { get; set; }
 
         //Реализация интерфейса IMemory_capacity
-        internal int Product_ID { get; set; } //Аналогично свойству Storage_device_ID
+        internal int Product_ID { get; set; }
         internal int Capacity { get; set; }
 
         //Реализация интерфейса IEnergy_consumption
         internal int Consumption { get; set; }
 
         //Реализация интерфейса ISizes_of_components
-        internal float Thickness { get; set; } //Толщина устройства
+        internal float Thickness { get; set; }
 
         public Storage_devices_options() { }
 

@@ -1,6 +1,4 @@
-﻿using Computer_house.DataBase.Interfaces;
-using Computer_house.OtherClasses;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -35,7 +33,7 @@ namespace Computer_house.DataBase.Entities
         public Cooling_system(string _id) : base(_id) { }
         //Выборка данных из БД
 
-        public  void GetDataFromDB()
+        public override void GetDataFromDB()
         {
             try
             {

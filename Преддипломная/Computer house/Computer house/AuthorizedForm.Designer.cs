@@ -105,28 +105,28 @@ namespace Computer_house
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1336, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1336, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // настроитьIPToolStripMenuItem
             // 
             this.настроитьIPToolStripMenuItem.Name = "настроитьIPToolStripMenuItem";
-            this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.настроитьIPToolStripMenuItem.Text = "Настроить IP";
             this.настроитьIPToolStripMenuItem.Click += new System.EventHandler(this.настроитьIPToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.справкаToolStripMenuItem.Text = "Справка";
             this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
             // 
             // выйтиИзУчётнойЗаписиToolStripMenuItem
             // 
             this.выйтиИзУчётнойЗаписиToolStripMenuItem.Name = "выйтиИзУчётнойЗаписиToolStripMenuItem";
-            this.выйтиИзУчётнойЗаписиToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+            this.выйтиИзУчётнойЗаписиToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.выйтиИзУчётнойЗаписиToolStripMenuItem.Text = "Выйти из учётной записи";
             this.выйтиИзУчётнойЗаписиToolStripMenuItem.Click += new System.EventHandler(this.выйтиИзУчётнойЗаписиToolStripMenuItem_Click);
             // 
@@ -200,6 +200,7 @@ namespace Computer_house
             this.EnterPurchaseWindow.TabIndex = 44;
             this.EnterPurchaseWindow.Text = "Оформить покупку";
             this.EnterPurchaseWindow.UseVisualStyleBackColor = true;
+            this.EnterPurchaseWindow.Click += new System.EventHandler(this.EnterPurchaseWindow_Click);
             // 
             // PCConfigsDataGridView
             // 
@@ -341,6 +342,7 @@ namespace Computer_house
             this.SelectedConfigIntemsListBox.Name = "SelectedConfigIntemsListBox";
             this.SelectedConfigIntemsListBox.Size = new System.Drawing.Size(305, 172);
             this.SelectedConfigIntemsListBox.TabIndex = 31;
+            this.SelectedConfigIntemsListBox.SelectedIndexChanged += new System.EventHandler(this.SelectedConfigIntemsListBox_SelectedIndexChanged);
             // 
             // Case_ComboBox
             // 
@@ -364,6 +366,7 @@ namespace Computer_house
             this.Case_ComboBox.Name = "Case_ComboBox";
             this.Case_ComboBox.Size = new System.Drawing.Size(423, 31);
             this.Case_ComboBox.TabIndex = 30;
+            this.Case_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Case_ComboBox_SelectedIndexChanged);
             // 
             // StorageDevice_ComboBox
             // 
@@ -387,6 +390,7 @@ namespace Computer_house
             this.StorageDevice_ComboBox.Name = "StorageDevice_ComboBox";
             this.StorageDevice_ComboBox.Size = new System.Drawing.Size(381, 31);
             this.StorageDevice_ComboBox.TabIndex = 29;
+            this.StorageDevice_ComboBox.SelectedIndexChanged += new System.EventHandler(this.StorageDevice_ComboBox_SelectedIndexChanged);
             // 
             // PSU_ComboBox
             // 
@@ -410,6 +414,7 @@ namespace Computer_house
             this.PSU_ComboBox.Name = "PSU_ComboBox";
             this.PSU_ComboBox.Size = new System.Drawing.Size(358, 31);
             this.PSU_ComboBox.TabIndex = 28;
+            this.PSU_ComboBox.SelectedIndexChanged += new System.EventHandler(this.PSU_ComboBox_SelectedIndexChanged);
             // 
             // CoolingSystem_ComboBox
             // 
@@ -433,6 +438,7 @@ namespace Computer_house
             this.CoolingSystem_ComboBox.Name = "CoolingSystem_ComboBox";
             this.CoolingSystem_ComboBox.Size = new System.Drawing.Size(381, 31);
             this.CoolingSystem_ComboBox.TabIndex = 27;
+            this.CoolingSystem_ComboBox.SelectedIndexChanged += new System.EventHandler(this.CoolingSystem_ComboBox_SelectedIndexChanged);
             // 
             // RAM_ComboBox
             // 
@@ -456,6 +462,7 @@ namespace Computer_house
             this.RAM_ComboBox.Name = "RAM_ComboBox";
             this.RAM_ComboBox.Size = new System.Drawing.Size(289, 31);
             this.RAM_ComboBox.TabIndex = 26;
+            this.RAM_ComboBox.SelectedIndexChanged += new System.EventHandler(this.RAM_ComboBox_SelectedIndexChanged);
             // 
             // Motherboard_ComboBox
             // 
@@ -479,6 +486,7 @@ namespace Computer_house
             this.Motherboard_ComboBox.Name = "Motherboard_ComboBox";
             this.Motherboard_ComboBox.Size = new System.Drawing.Size(302, 31);
             this.Motherboard_ComboBox.TabIndex = 25;
+            this.Motherboard_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Motherboard_ComboBox_SelectedIndexChanged);
             // 
             // GPU_ComboBox
             // 
@@ -823,7 +831,6 @@ namespace Computer_house
             this.Text = "Computer house";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthorizedForm_FormClosed);
             this.Load += new System.EventHandler(this.AuthorizedForm_Load);
-            this.Enter += new System.EventHandler(this.AuthorizedForm_Enter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);

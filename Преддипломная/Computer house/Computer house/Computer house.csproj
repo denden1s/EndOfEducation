@@ -214,11 +214,6 @@
     <Compile Include="DataBase\Entities\Warehouse\ShopRequests.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Users.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Warehouse_info.cs" />
-    <Compile Include="DataBase\Interfaces\IBase_and_max_options.cs" />
-    <Compile Include="DataBase\Interfaces\IEnergy_consumption.cs" />
-    <Compile Include="DataBase\Interfaces\IMemory_capacity.cs" />
-    <Compile Include="DataBase\Interfaces\ISizes_of_components.cs" />
-    <Compile Include="DataBase\Interfaces\IStorage_devices_options.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
     <Compile Include="DataBase\Limited\ProductWithOnlyName.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />

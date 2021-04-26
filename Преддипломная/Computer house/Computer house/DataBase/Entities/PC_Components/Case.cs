@@ -1,6 +1,4 @@
-﻿using Computer_house.DataBase.Interfaces;
-using Computer_house.OtherClasses;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -45,7 +43,7 @@ namespace Computer_house.DataBase.Entities
         public Case(string _id) : base(_id) { }
         //Выборка из БД
 
-        public void GetDataFromDB()
+        public override void GetDataFromDB()
         {
             try
             {

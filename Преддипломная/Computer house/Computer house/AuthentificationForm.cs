@@ -2,6 +2,7 @@
 using Computer_house.OtherClasses;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
@@ -18,63 +19,61 @@ namespace Computer_house
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Task.Run(() => LoadUsersFromDB());
+        }
+        
+        private void LoadUsersFromDB()
+        {
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
-                {
                     if (db.Users.Count() != 0)
                     {
                         foreach (Users u in db.Users)
-                        {
                             u.Authorization_status_in_shop = false;
-                        }
+
                         db.SaveChanges();
                     }
-                    
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void BAuthentificate_Click(object sender, EventArgs e)
         {
-            BAuthentificate.Enabled = false;
-            LoginInfo.Enabled = false;
-            PasswordInfo.Enabled = false;
-            //Обработка событий авторизации на форме
+            SystemFunctions.ChangeEnable(false, BAuthentificate, LoginInfo, PasswordInfo);
             Authorization();
-            BAuthentificate.Enabled = true;
-            LoginInfo.Enabled = true;
-            PasswordInfo.Enabled = true;
+            SystemFunctions.ChangeEnable(true, BAuthentificate, LoginInfo, PasswordInfo);
         }
 
+        //Нужен для обработки авторизации
         private void Authorization()
         {
-            bool findUser = false;
             try
             {
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    var user = db.Users.Single(i => i.Login == LoginInfo.Text);
+                    Users user = db.Users.Single(i => i.Login == LoginInfo.Text);
                     if (user != null)
                     {
-                        if (user.Password == PasswordInfo.Text)
+                        if (!user.Authorization_status)
                         {
-                            findUser = true;
-                            user.Authorization_status_in_shop = true;
-                            db.SaveChanges();
-                            authorizedForm = new AuthorizedForm(user);
-                            authorizedForm.Show();
-                            this.Hide();
-                        }
-                    }
+                            if(user.Password == PasswordInfo.Text)
+                            {
+                                user.Authorization_status_in_shop = true;
+                                db.SaveChanges();
+                                authorizedForm = new AuthorizedForm(user);
+                                authorizedForm.Show();
+                                this.Hide();
+                            }
+                            else MessageBox.Show("Введённый пароль неверный.");
 
+                        }
+                        else MessageBox.Show("Вход в систему уже выполнен.");
+                    }
+                    else MessageBox.Show("Пользователь не найден.");
                 }
-                if (!findUser)
-                    MessageBox.Show("Пользователь не найден либо пароль не верный.");
             }
             catch (Exception ex)
             {

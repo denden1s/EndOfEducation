@@ -16,5 +16,9 @@ namespace Computer_house.DataBase
         {
             ID = _id;
         }
+
+        public virtual void GetDataFromDB()
+        {
+        }
     }
 }

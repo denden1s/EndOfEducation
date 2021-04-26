@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Computer_house.DataBase.Entities.PC_Options;
-using Computer_house.DataBase.Interfaces;
-using Computer_house.OtherClasses;
 
 namespace Computer_house.DataBase.Entities
 {

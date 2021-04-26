@@ -10,6 +10,8 @@
 
         public bool Authorization_status_in_shop { get; set; } = false;
 
+        public bool Authorization_status { get; set; }
+
         public string Name { get; set; }
 
         public Users() { }
