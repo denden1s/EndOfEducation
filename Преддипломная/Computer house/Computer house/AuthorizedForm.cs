@@ -586,8 +586,6 @@ namespace Computer_house
             db.ShopRequests.Add(newRequest);
             db.SaveChanges();
             MessageBox.Show("Товар успешно запрошен");
-            warehouseInfo.Items_in_shop--;
-            currentRow.Cells[3].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[3].Value) - 1);
           }
           else
             MessageBox.Show("Невозможно запросить такое кол-во товара, возможно товар уже был запрошен.");
@@ -623,6 +621,7 @@ namespace Computer_house
             }
             SQLRequests.CreateHoldingDocument(warehouse, user, deviceType, decimal.Parse(PriceLabel.Text));
           }
+          SQLRequests.UpdateWarehouseData();
           //Узнать нужно ли вывести информацию на печать
           SelectedItemsListBox.Items.Clear();
           AllProductInfo.Clear();
@@ -934,6 +933,16 @@ namespace Computer_house
     private void Case_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
       AddConfigItemInListBox(Case_ComboBox, ref caseNameInListBox);
+    }
+
+    private void SelectedItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if(SelectedItemsListBox.SelectedIndex != -1)
+      {
+        Warehouse_info warehouse = WarehouseInformationList.Single(i =>
+          i.ProductName == Convert.ToString(SelectedItemsListBox.SelectedItem));
+        ViewInfoAboutComponent(AllProductInfo, warehouse);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Computer_house.DataBase.Entities;
 using Computer_house.DataBase.Entities.Warehouse;
 using System.Linq;
+using System.Threading;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
 namespace Computer_house.OtherClasses
@@ -67,10 +68,18 @@ namespace Computer_house.OtherClasses
         db.Holding_document.Add(holding_Document);
         Sellings selling = new Sellings(_infoAboutProduct.Product_ID, "единовременно", _user.ID, _price);
         db.Sellings.Add(selling);
+        //позже нужно сделать чтобы работало и в обратную сторону
+        db.SaveChanges();
+      }
+    }
+
+    public static void UpdateWarehouseData()
+    {
+      using(ApplicationContext db = new ApplicationContext())
+      {
         NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
         needToUpdate.UpdateStatus = true;
         db.NeedToUpdate.Update(needToUpdate);
-        //позже нужно сделать чтобы работало и в обратную сторону
         db.SaveChanges();
       }
     }
