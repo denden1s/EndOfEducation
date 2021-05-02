@@ -581,7 +581,7 @@ namespace Computer_house
           int requestedItemsCountBefore = items.Sum(i => i.Count);
           //Нужно проверить есть ли запросы на товар, во избежание превышения кол-ва элементов в запросе
           //над кол-вом элементов на складе
-          if (AddProduct.Value + requestedItemsCountBefore < warehouseInfo.Current_items_count)
+          if (AddProduct.Value + requestedItemsCountBefore <= warehouseInfo.Current_items_count)
           {
             db.ShopRequests.Add(newRequest);
             db.SaveChanges();
