@@ -47,6 +47,13 @@ namespace Computer_house
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.выйтиИзУчётнойЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.label1 = new System.Windows.Forms.Label();
+      this.CPUViewRadio = new System.Windows.Forms.RadioButton();
+      this.GPUViewRadio = new System.Windows.Forms.RadioButton();
+      this.MothersViewRadio = new System.Windows.Forms.RadioButton();
+      this.CasesViewRadio = new System.Windows.Forms.RadioButton();
+      this.ResetFilters = new System.Windows.Forms.Button();
+      this.RAMViewRadio = new System.Windows.Forms.RadioButton();
+      this.CoolingSystemViewRadio = new System.Windows.Forms.RadioButton();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).BeginInit();
@@ -56,6 +63,13 @@ namespace Computer_house
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.CoolingSystemViewRadio);
+      this.panel1.Controls.Add(this.RAMViewRadio);
+      this.panel1.Controls.Add(this.ResetFilters);
+      this.panel1.Controls.Add(this.CasesViewRadio);
+      this.panel1.Controls.Add(this.MothersViewRadio);
+      this.panel1.Controls.Add(this.GPUViewRadio);
+      this.panel1.Controls.Add(this.CPUViewRadio);
       this.panel1.Controls.Add(this.label2);
       this.panel1.Location = new System.Drawing.Point(9, 25);
       this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -67,12 +81,12 @@ namespace Computer_house
       // 
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.Location = new System.Drawing.Point(21, 164);
+      this.label2.Location = new System.Drawing.Point(34, 7);
       this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(114, 21);
+      this.label2.Size = new System.Drawing.Size(82, 21);
       this.label2.TabIndex = 6;
-      this.label2.Text = "Coming Soon";
+      this.label2.Text = "Фильтры";
       // 
       // SearchInfo
       // 
@@ -132,10 +146,10 @@ namespace Computer_house
       // 
       this.Move.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.Move.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Move.Location = new System.Drawing.Point(269, 485);
+      this.Move.Location = new System.Drawing.Point(269, 482);
       this.Move.Margin = new System.Windows.Forms.Padding(2);
       this.Move.Name = "Move";
-      this.Move.Size = new System.Drawing.Size(127, 36);
+      this.Move.Size = new System.Drawing.Size(127, 46);
       this.Move.TabIndex = 3;
       this.Move.Text = "Провести";
       this.Move.UseVisualStyleBackColor = true;
@@ -246,6 +260,96 @@ namespace Computer_house
       this.label1.TabIndex = 5;
       this.label1.Text = "Поиск:";
       // 
+      // CPUViewRadio
+      // 
+      this.CPUViewRadio.AutoSize = true;
+      this.CPUViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.CPUViewRadio.Location = new System.Drawing.Point(12, 53);
+      this.CPUViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.CPUViewRadio.Name = "CPUViewRadio";
+      this.CPUViewRadio.Size = new System.Drawing.Size(127, 25);
+      this.CPUViewRadio.TabIndex = 18;
+      this.CPUViewRadio.TabStop = true;
+      this.CPUViewRadio.Text = "Процессоры";
+      this.CPUViewRadio.UseVisualStyleBackColor = true;
+      // 
+      // GPUViewRadio
+      // 
+      this.GPUViewRadio.AutoSize = true;
+      this.GPUViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.GPUViewRadio.Location = new System.Drawing.Point(12, 116);
+      this.GPUViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.GPUViewRadio.Name = "GPUViewRadio";
+      this.GPUViewRadio.Size = new System.Drawing.Size(119, 25);
+      this.GPUViewRadio.TabIndex = 19;
+      this.GPUViewRadio.TabStop = true;
+      this.GPUViewRadio.Text = "Видеокарты";
+      this.GPUViewRadio.UseVisualStyleBackColor = true;
+      // 
+      // MothersViewRadio
+      // 
+      this.MothersViewRadio.AutoSize = true;
+      this.MothersViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.MothersViewRadio.Location = new System.Drawing.Point(12, 179);
+      this.MothersViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.MothersViewRadio.Name = "MothersViewRadio";
+      this.MothersViewRadio.Size = new System.Drawing.Size(113, 25);
+      this.MothersViewRadio.TabIndex = 20;
+      this.MothersViewRadio.TabStop = true;
+      this.MothersViewRadio.Text = "Мат. платы";
+      this.MothersViewRadio.UseVisualStyleBackColor = true;
+      // 
+      // CasesViewRadio
+      // 
+      this.CasesViewRadio.AutoSize = true;
+      this.CasesViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.CasesViewRadio.Location = new System.Drawing.Point(12, 242);
+      this.CasesViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.CasesViewRadio.Name = "CasesViewRadio";
+      this.CasesViewRadio.Size = new System.Drawing.Size(90, 25);
+      this.CasesViewRadio.TabIndex = 21;
+      this.CasesViewRadio.TabStop = true;
+      this.CasesViewRadio.Text = "Корпуса";
+      this.CasesViewRadio.UseVisualStyleBackColor = true;
+      // 
+      // ResetFilters
+      // 
+      this.ResetFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.ResetFilters.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ResetFilters.Location = new System.Drawing.Point(2, 481);
+      this.ResetFilters.Margin = new System.Windows.Forms.Padding(2);
+      this.ResetFilters.Name = "ResetFilters";
+      this.ResetFilters.Size = new System.Drawing.Size(146, 36);
+      this.ResetFilters.TabIndex = 22;
+      this.ResetFilters.Text = "Сбросить";
+      this.ResetFilters.UseVisualStyleBackColor = true;
+      // 
+      // RAMViewRadio
+      // 
+      this.RAMViewRadio.AutoSize = true;
+      this.RAMViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.RAMViewRadio.Location = new System.Drawing.Point(12, 305);
+      this.RAMViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.RAMViewRadio.Name = "RAMViewRadio";
+      this.RAMViewRadio.Size = new System.Drawing.Size(58, 25);
+      this.RAMViewRadio.TabIndex = 23;
+      this.RAMViewRadio.TabStop = true;
+      this.RAMViewRadio.Text = "ОЗУ";
+      this.RAMViewRadio.UseVisualStyleBackColor = true;
+      // 
+      // CoolingSystemViewRadio
+      // 
+      this.CoolingSystemViewRadio.AutoSize = true;
+      this.CoolingSystemViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.CoolingSystemViewRadio.Location = new System.Drawing.Point(12, 368);
+      this.CoolingSystemViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.CoolingSystemViewRadio.Name = "CoolingSystemViewRadio";
+      this.CoolingSystemViewRadio.Size = new System.Drawing.Size(121, 25);
+      this.CoolingSystemViewRadio.TabIndex = 24;
+      this.CoolingSystemViewRadio.TabStop = true;
+      this.CoolingSystemViewRadio.Text = "Охлаждение";
+      this.CoolingSystemViewRadio.UseVisualStyleBackColor = true;
+      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,5 +405,12 @@ namespace Computer_house
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_name;
     private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+    internal System.Windows.Forms.RadioButton GPUViewRadio;
+    internal System.Windows.Forms.RadioButton CPUViewRadio;
+    internal System.Windows.Forms.RadioButton MothersViewRadio;
+    internal System.Windows.Forms.RadioButton RAMViewRadio;
+    private System.Windows.Forms.Button ResetFilters;
+    internal System.Windows.Forms.RadioButton CasesViewRadio;
+    internal System.Windows.Forms.RadioButton CoolingSystemViewRadio;
   }
 }

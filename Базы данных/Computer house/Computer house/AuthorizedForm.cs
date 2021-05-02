@@ -35,14 +35,12 @@ namespace Computer_house
     private List<Products_location> ProductLocationsList = new List<Products_location>();
     private List<Mediator> Mediators = new List<Mediator>();
 
+    private List<Warehouse_info> FilteredInfo = new List<Warehouse_info>();
     private Users user;
 
     //организация блокирования функции перетаскивания формы
     const int SC_CLOSE = 0xF010;
     const int MF_BYCOMMAND = 0;
-    const int WM_NCLBUTTONDOWN = 0x00A1;
-    const int WM_NCHITTEST = 0x0084;
-    const int HTCAPTION = 2;
     [DllImport("User32.dll")]
     static extern int SendMessage(IntPtr hWnd,
     int Msg, IntPtr wParam, IntPtr lParam);
@@ -316,7 +314,7 @@ namespace Computer_house
     private async void LoadInfoFromDBAndView()
     {
       await Task.Run(() => LoadAllInfoFromDB());
-      ViewInfoInDataGrid();
+      ViewInfoInDataGrid(WarehouseInformationList);
     }
 
     private void LoadAllInfoFromDB()
@@ -337,12 +335,12 @@ namespace Computer_house
       } 
     }
 
-    public void ViewInfoInDataGrid()
+    public void ViewInfoInDataGrid(List<Warehouse_info> warehouseInfo)
     {
       AllInfoDatagridView.Rows.Clear();
       try
       {
-        foreach(Warehouse_info wi in WarehouseInformationList)
+        foreach(Warehouse_info wi in warehouseInfo)
           AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
       }
       catch(Exception ex)
@@ -594,6 +592,7 @@ namespace Computer_house
       {
         try
         {
+          //проверка на выбор радиокнопки
           List<Warehouse_info> SearchResultList = new List<Warehouse_info>();
           //Поиск по имени
           SearchResultList = (from b in WarehouseInformationList
@@ -674,7 +673,7 @@ namespace Computer_house
         }
       }
       else
-        ViewInfoInDataGrid();
+        ViewInfoInDataGrid(WarehouseInformationList);
     }
 
     private List<Mediator> GetSearchInfo(string _deviceType)
