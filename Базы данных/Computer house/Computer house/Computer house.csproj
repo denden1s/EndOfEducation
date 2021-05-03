@@ -193,7 +193,6 @@
     <Compile Include="DataBase\Entities\PC_Components\Motherboard.cs" />
     <Compile Include="DataBase\Entities\PC_Components\PSU.cs" />
     <Compile Include="DataBase\Entities\PC_Components\RAM.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\SSD.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Base_and_max_options.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Connection_interfaces.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Cooling_system.cs" />
@@ -203,13 +202,12 @@
     <Compile Include="DataBase\Entities\PC_Options\Energy_consumption.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Form_factors.cs" />
     <Compile Include="DataBase\Entities\PC_Components\GPU.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\HDD.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Memory_capacity.cs" />
     <Compile Include="DataBase\Entities\PC_Options\RAM_chanels.cs" />
     <Compile Include="DataBase\Entities\PC_Options\RAM_frequency.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Sizes_of_components.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Sockets.cs" />
-    <Compile Include="DataBase\Entities\PC_Options\Storage_devices_options.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\Storage_devices.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Holding_document.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Locations_in_warehouse.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Memory_types.cs" />
@@ -218,11 +216,6 @@
     <Compile Include="DataBase\Entities\Warehouse\Products_location.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Users.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Warehouse_info.cs" />
-    <Compile Include="DataBase\Interfaces\IBase_and_max_options.cs" />
-    <Compile Include="DataBase\Interfaces\IEnergy_consumption.cs" />
-    <Compile Include="DataBase\Interfaces\IMemory_capacity.cs" />
-    <Compile Include="DataBase\Interfaces\ISizes_of_components.cs" />
-    <Compile Include="DataBase\Interfaces\IStorage_devices_options.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
     <Compile Include="DataBase\Limited\ProductWithOnlyName.cs" />
     <Compile Include="OtherClasses\DesktopScreen.cs" />

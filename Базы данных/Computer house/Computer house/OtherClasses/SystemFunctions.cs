@@ -545,13 +545,20 @@ namespace Computer_house.OtherClasses
     //Раздел для разного
 
     //Нужен для проверки выбран ли один из фильтров поиска
-    private static bool CheckSetFilterRadio(params RadioButton[] radioButtons)
+    public static bool IsSetFilterRadio(params RadioButton[] radioButtons)
     {
       foreach(RadioButton i in radioButtons)
         if(i.Checked)
           return true;
 
       return false;
+    }
+
+    //Нужен для установки радиокнопок в отключенное состояние
+    public static void UnsetRadio(params RadioButton[] radioButtons)
+    {
+      foreach(RadioButton r in radioButtons)
+        r.Checked = false;
     }
 
     public static void SetEditOrAddButtonMode(Button _button, bool _workMode)

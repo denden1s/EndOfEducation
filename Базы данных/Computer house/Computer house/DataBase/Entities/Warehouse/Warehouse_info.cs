@@ -40,8 +40,8 @@ namespace Computer_house.DataBase.Entities.Warehouse
                     case "GPU":
                         ProductName = db.GPU.Single(i => i.ID == temp[0]).Name;
                         break;
-                    case "HDD":
-                        ProductName = db.HDD.Single(i => i.ID == temp[0]).Name;
+                    case "SD":
+                        ProductName = db.Storage_devices.Single(i => i.ID == temp[0]).Name;
                         break;
                     case "Motherboard":
                         ProductName = db.Motherboard.Single(i => i.ID == temp[0]).Name;

@@ -335,7 +335,6 @@ namespace Computer_house
       this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage10 = new System.Windows.Forms.TabPage();
-      this.tabPage11 = new System.Windows.Forms.TabPage();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.ComponentTypeComboBox = new System.Windows.Forms.ComboBox();
       this.label4 = new System.Windows.Forms.Label();
@@ -357,6 +356,16 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.label134 = new System.Windows.Forms.Label();
+      this.button1 = new System.Windows.Forms.Button();
+      this.textBox2 = new System.Windows.Forms.TextBox();
+      this.label137 = new System.Windows.Forms.Label();
+      this.radioButton1 = new System.Windows.Forms.RadioButton();
+      this.radioButton2 = new System.Windows.Forms.RadioButton();
+      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabControl2.SuspendLayout();
@@ -374,9 +383,11 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.CoolingSystem_DatagridView)).BeginInit();
       this.tabPage9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).BeginInit();
+      this.tabPage10.SuspendLayout();
       this.tabPage2.SuspendLayout();
       this.tabPage12.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
       // tabControl1
@@ -387,7 +398,7 @@ namespace Computer_house
       this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tabControl1.HotTrack = true;
       this.tabControl1.Location = new System.Drawing.Point(9, 10);
-      this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
       this.tabControl1.Size = new System.Drawing.Size(622, 859);
@@ -397,9 +408,9 @@ namespace Computer_house
       // 
       this.tabPage1.Controls.Add(this.tabControl2);
       this.tabPage1.Location = new System.Drawing.Point(4, 30);
-      this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage1.Name = "tabPage1";
-      this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage1.Size = new System.Drawing.Size(614, 825);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Комплектующие";
@@ -416,11 +427,10 @@ namespace Computer_house
       this.tabControl2.Controls.Add(this.tabPage8);
       this.tabControl2.Controls.Add(this.tabPage9);
       this.tabControl2.Controls.Add(this.tabPage10);
-      this.tabControl2.Controls.Add(this.tabPage11);
       this.tabControl2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tabControl2.HotTrack = true;
       this.tabControl2.Location = new System.Drawing.Point(2, 4);
-      this.tabControl2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
       this.tabControl2.Name = "tabControl2";
       this.tabControl2.SelectedIndex = 0;
       this.tabControl2.Size = new System.Drawing.Size(609, 818);
@@ -471,9 +481,9 @@ namespace Computer_house
       this.tabPage3.Controls.Add(this.label6);
       this.tabPage3.Controls.Add(this.label5);
       this.tabPage3.Location = new System.Drawing.Point(4, 28);
-      this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage3.Name = "tabPage3";
-      this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage3.Size = new System.Drawing.Size(601, 786);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "Процессор";
@@ -489,7 +499,7 @@ namespace Computer_house
             "OEM",
             "Box"});
       this.DeliveryTypeComboBox.Location = new System.Drawing.Point(257, 274);
-      this.DeliveryTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.DeliveryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.DeliveryTypeComboBox.Name = "DeliveryTypeComboBox";
       this.DeliveryTypeComboBox.Size = new System.Drawing.Size(328, 25);
       this.DeliveryTypeComboBox.TabIndex = 42;
@@ -553,7 +563,7 @@ namespace Computer_house
       // 
       this.ActWithCPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithCPU.Location = new System.Drawing.Point(19, 741);
-      this.ActWithCPU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithCPU.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithCPU.Name = "ActWithCPU";
       this.ActWithCPU.Size = new System.Drawing.Size(566, 38);
       this.ActWithCPU.TabIndex = 36;
@@ -565,7 +575,7 @@ namespace Computer_house
       // 
       this.CPUTechprocessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUTechprocessTextBox.Location = new System.Drawing.Point(257, 700);
-      this.CPUTechprocessTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUTechprocessTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUTechprocessTextBox.Name = "CPUTechprocessTextBox";
       this.CPUTechprocessTextBox.Size = new System.Drawing.Size(282, 25);
       this.CPUTechprocessTextBox.TabIndex = 35;
@@ -574,7 +584,7 @@ namespace Computer_house
       // 
       this.CPUTDPTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUTDPTextBox.Location = new System.Drawing.Point(332, 657);
-      this.CPUTDPTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUTDPTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUTDPTextBox.Name = "CPUTDPTextBox";
       this.CPUTDPTextBox.Size = new System.Drawing.Size(206, 25);
       this.CPUTDPTextBox.TabIndex = 34;
@@ -584,7 +594,7 @@ namespace Computer_house
       this.CPUIntegratedGraphicCheckBox.AutoSize = true;
       this.CPUIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CPUIntegratedGraphicCheckBox.Location = new System.Drawing.Point(440, 621);
-      this.CPUIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUIntegratedGraphicCheckBox.Name = "CPUIntegratedGraphicCheckBox";
       this.CPUIntegratedGraphicCheckBox.Size = new System.Drawing.Size(158, 25);
       this.CPUIntegratedGraphicCheckBox.TabIndex = 33;
@@ -609,7 +619,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPURamFrequaencyComboBox.Location = new System.Drawing.Point(320, 591);
-      this.CPURamFrequaencyComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPURamFrequaencyComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPURamFrequaencyComboBox.Name = "CPURamFrequaencyComboBox";
       this.CPURamFrequaencyComboBox.Size = new System.Drawing.Size(218, 25);
       this.CPURamFrequaencyComboBox.TabIndex = 32;
@@ -633,7 +643,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPUChanelsComboBox.Location = new System.Drawing.Point(257, 552);
-      this.CPUChanelsComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUChanelsComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUChanelsComboBox.Name = "CPUChanelsComboBox";
       this.CPUChanelsComboBox.Size = new System.Drawing.Size(328, 25);
       this.CPUChanelsComboBox.TabIndex = 31;
@@ -657,7 +667,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPUMemoryTypeComboBox.Location = new System.Drawing.Point(257, 511);
-      this.CPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUMemoryTypeComboBox.Name = "CPUMemoryTypeComboBox";
       this.CPUMemoryTypeComboBox.Size = new System.Drawing.Size(328, 25);
       this.CPUMemoryTypeComboBox.TabIndex = 30;
@@ -667,7 +677,7 @@ namespace Computer_house
       // 
       this.CPUMaxStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUMaxStateTextBox.Location = new System.Drawing.Point(332, 472);
-      this.CPUMaxStateTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUMaxStateTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUMaxStateTextBox.Name = "CPUMaxStateTextBox";
       this.CPUMaxStateTextBox.Size = new System.Drawing.Size(206, 25);
       this.CPUMaxStateTextBox.TabIndex = 29;
@@ -676,7 +686,7 @@ namespace Computer_house
       // 
       this.CPUBaseStateTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUBaseStateTextBox.Location = new System.Drawing.Point(270, 434);
-      this.CPUBaseStateTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUBaseStateTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUBaseStateTextBox.Name = "CPUBaseStateTextBox";
       this.CPUBaseStateTextBox.Size = new System.Drawing.Size(269, 25);
       this.CPUBaseStateTextBox.TabIndex = 28;
@@ -686,7 +696,7 @@ namespace Computer_house
       this.MultithreadingCheckBox.AutoSize = true;
       this.MultithreadingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.MultithreadingCheckBox.Location = new System.Drawing.Point(432, 396);
-      this.MultithreadingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MultithreadingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.MultithreadingCheckBox.Name = "MultithreadingCheckBox";
       this.MultithreadingCheckBox.Size = new System.Drawing.Size(166, 25);
       this.MultithreadingCheckBox.TabIndex = 27;
@@ -697,7 +707,7 @@ namespace Computer_house
       // 
       this.CPUCoresTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUCoresTextBox.Location = new System.Drawing.Point(257, 396);
-      this.CPUCoresTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUCoresTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUCoresTextBox.Name = "CPUCoresTextBox";
       this.CPUCoresTextBox.Size = new System.Drawing.Size(161, 25);
       this.CPUCoresTextBox.TabIndex = 26;
@@ -720,7 +730,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPUSocketComboBox.Location = new System.Drawing.Point(257, 353);
-      this.CPUSocketComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUSocketComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUSocketComboBox.Name = "CPUSocketComboBox";
       this.CPUSocketComboBox.Size = new System.Drawing.Size(328, 25);
       this.CPUSocketComboBox.TabIndex = 25;
@@ -744,7 +754,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPUCodeNameComboBox.Location = new System.Drawing.Point(257, 314);
-      this.CPUCodeNameComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUCodeNameComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUCodeNameComboBox.Name = "CPUCodeNameComboBox";
       this.CPUCodeNameComboBox.Size = new System.Drawing.Size(328, 25);
       this.CPUCodeNameComboBox.TabIndex = 24;
@@ -768,7 +778,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CPUSeriesComboBox.Location = new System.Drawing.Point(257, 238);
-      this.CPUSeriesComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUSeriesComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUSeriesComboBox.Name = "CPUSeriesComboBox";
       this.CPUSeriesComboBox.Size = new System.Drawing.Size(328, 25);
       this.CPUSeriesComboBox.TabIndex = 22;
@@ -778,7 +788,7 @@ namespace Computer_house
       // 
       this.FindCPUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindCPUIDButton.Location = new System.Drawing.Point(491, 158);
-      this.FindCPUIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindCPUIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindCPUIDButton.Name = "FindCPUIDButton";
       this.FindCPUIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindCPUIDButton.TabIndex = 21;
@@ -790,7 +800,7 @@ namespace Computer_house
       // 
       this.CPUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUNameTextBox.Location = new System.Drawing.Point(257, 199);
-      this.CPUNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUNameTextBox.Name = "CPUNameTextBox";
       this.CPUNameTextBox.Size = new System.Drawing.Size(328, 25);
       this.CPUNameTextBox.TabIndex = 20;
@@ -799,7 +809,7 @@ namespace Computer_house
       // 
       this.CPUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CPUIDTextBox.Location = new System.Drawing.Point(257, 161);
-      this.CPUIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPUIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CPUIDTextBox.Name = "CPUIDTextBox";
       this.CPUIDTextBox.Size = new System.Drawing.Size(218, 25);
       this.CPUIDTextBox.TabIndex = 19;
@@ -810,7 +820,7 @@ namespace Computer_house
       this.ChangeCPURadio.AutoSize = true;
       this.ChangeCPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeCPURadio.Location = new System.Drawing.Point(491, 115);
-      this.ChangeCPURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeCPURadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeCPURadio.Name = "ChangeCPURadio";
       this.ChangeCPURadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeCPURadio.TabIndex = 18;
@@ -824,7 +834,7 @@ namespace Computer_house
       this.AddCPURadio.AutoSize = true;
       this.AddCPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddCPURadio.Location = new System.Drawing.Point(493, 19);
-      this.AddCPURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddCPURadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddCPURadio.Name = "AddCPURadio";
       this.AddCPURadio.Size = new System.Drawing.Size(99, 25);
       this.AddCPURadio.TabIndex = 17;
@@ -844,7 +854,7 @@ namespace Computer_house
             this.CPU_ID,
             this.CPU_Name});
       this.CPU_DatagridView.Location = new System.Drawing.Point(19, 19);
-      this.CPU_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CPU_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.CPU_DatagridView.MultiSelect = false;
       this.CPU_DatagridView.Name = "CPU_DatagridView";
       this.CPU_DatagridView.ReadOnly = true;
@@ -1082,9 +1092,9 @@ namespace Computer_house
       this.tabPage4.Controls.Add(this.AddGPURadio);
       this.tabPage4.Controls.Add(this.GPU_DatagridView);
       this.tabPage4.Location = new System.Drawing.Point(4, 28);
-      this.tabPage4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage4.Name = "tabPage4";
-      this.tabPage4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage4.Size = new System.Drawing.Size(601, 786);
       this.tabPage4.TabIndex = 1;
       this.tabPage4.Text = "Видеокарта";
@@ -1149,7 +1159,7 @@ namespace Computer_house
       // 
       this.ActWithGPU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithGPU.Location = new System.Drawing.Point(20, 745);
-      this.ActWithGPU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithGPU.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithGPU.Name = "ActWithGPU";
       this.ActWithGPU.Size = new System.Drawing.Size(562, 38);
       this.ActWithGPU.TabIndex = 54;
@@ -1161,7 +1171,7 @@ namespace Computer_house
       // 
       this.GPUEnergyConsumptTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUEnergyConsumptTextBox.Location = new System.Drawing.Point(254, 438);
-      this.GPUEnergyConsumptTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUEnergyConsumptTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUEnergyConsumptTextBox.Name = "GPUEnergyConsumptTextBox";
       this.GPUEnergyConsumptTextBox.Size = new System.Drawing.Size(296, 25);
       this.GPUEnergyConsumptTextBox.TabIndex = 53;
@@ -1181,7 +1191,7 @@ namespace Computer_house
       // 
       this.GPUCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUCapacityTextBox.Location = new System.Drawing.Point(254, 311);
-      this.GPUCapacityTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUCapacityTextBox.Name = "GPUCapacityTextBox";
       this.GPUCapacityTextBox.Size = new System.Drawing.Size(296, 25);
       this.GPUCapacityTextBox.TabIndex = 51;
@@ -1201,7 +1211,7 @@ namespace Computer_house
       // 
       this.GPUHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUHeightTextBox.Location = new System.Drawing.Point(426, 697);
-      this.GPUHeightTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUHeightTextBox.Name = "GPUHeightTextBox";
       this.GPUHeightTextBox.Size = new System.Drawing.Size(68, 25);
       this.GPUHeightTextBox.TabIndex = 49;
@@ -1221,7 +1231,7 @@ namespace Computer_house
       // 
       this.GPULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPULengthTextBox.Location = new System.Drawing.Point(308, 697);
-      this.GPULengthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPULengthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPULengthTextBox.Name = "GPULengthTextBox";
       this.GPULengthTextBox.Size = new System.Drawing.Size(68, 25);
       this.GPULengthTextBox.TabIndex = 47;
@@ -1241,7 +1251,7 @@ namespace Computer_house
       // 
       this.GPUCoolingSysThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUCoolingSysThicknessTextBox.Location = new System.Drawing.Point(323, 652);
-      this.GPUCoolingSysThicknessTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUCoolingSysThicknessTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUCoolingSysThicknessTextBox.Name = "GPUCoolingSysThicknessTextBox";
       this.GPUCoolingSysThicknessTextBox.Size = new System.Drawing.Size(179, 25);
       this.GPUCoolingSysThicknessTextBox.TabIndex = 45;
@@ -1272,7 +1282,7 @@ namespace Computer_house
       // 
       this.GPUCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUCoolersCountTextBox.Location = new System.Drawing.Point(322, 611);
-      this.GPUCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUCoolersCountTextBox.Name = "GPUCoolersCountTextBox";
       this.GPUCoolersCountTextBox.Size = new System.Drawing.Size(259, 25);
       this.GPUCoolersCountTextBox.TabIndex = 42;
@@ -1306,7 +1316,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.GPUPowerTypeComboBox.Location = new System.Drawing.Point(254, 569);
-      this.GPUPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUPowerTypeComboBox.Name = "GPUPowerTypeComboBox";
       this.GPUPowerTypeComboBox.Size = new System.Drawing.Size(328, 25);
       this.GPUPowerTypeComboBox.TabIndex = 40;
@@ -1316,7 +1326,7 @@ namespace Computer_house
       // 
       this.GPUOutputInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUOutputInterfacesTextBox.Location = new System.Drawing.Point(254, 524);
-      this.GPUOutputInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUOutputInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUOutputInterfacesTextBox.Name = "GPUOutputInterfacesTextBox";
       this.GPUOutputInterfacesTextBox.Size = new System.Drawing.Size(328, 25);
       this.GPUOutputInterfacesTextBox.TabIndex = 39;
@@ -1336,7 +1346,7 @@ namespace Computer_house
       // 
       this.GPUDirectXVersionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUDirectXVersionTextBox.Location = new System.Drawing.Point(254, 482);
-      this.GPUDirectXVersionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUDirectXVersionTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUDirectXVersionTextBox.Name = "GPUDirectXVersionTextBox";
       this.GPUDirectXVersionTextBox.Size = new System.Drawing.Size(328, 25);
       this.GPUDirectXVersionTextBox.TabIndex = 37;
@@ -1356,7 +1366,7 @@ namespace Computer_house
       // 
       this.GPUBusWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUBusWidthTextBox.Location = new System.Drawing.Point(254, 395);
-      this.GPUBusWidthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUBusWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUBusWidthTextBox.Name = "GPUBusWidthTextBox";
       this.GPUBusWidthTextBox.Size = new System.Drawing.Size(103, 25);
       this.GPUBusWidthTextBox.TabIndex = 35;
@@ -1390,7 +1400,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.GPUMemoryTypeComboBox.Location = new System.Drawing.Point(254, 352);
-      this.GPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUMemoryTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUMemoryTypeComboBox.Name = "GPUMemoryTypeComboBox";
       this.GPUMemoryTypeComboBox.Size = new System.Drawing.Size(328, 25);
       this.GPUMemoryTypeComboBox.TabIndex = 33;
@@ -1412,7 +1422,7 @@ namespace Computer_house
       this.GPUSLISupportCheckBox.AutoSize = true;
       this.GPUSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.GPUSLISupportCheckBox.Location = new System.Drawing.Point(451, 276);
-      this.GPUSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUSLISupportCheckBox.Name = "GPUSLISupportCheckBox";
       this.GPUSLISupportCheckBox.Size = new System.Drawing.Size(143, 25);
       this.GPUSLISupportCheckBox.TabIndex = 31;
@@ -1424,7 +1434,7 @@ namespace Computer_house
       this.GPUOverclockingCheckBox.AutoSize = true;
       this.GPUOverclockingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.GPUOverclockingCheckBox.Location = new System.Drawing.Point(415, 393);
-      this.GPUOverclockingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUOverclockingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUOverclockingCheckBox.Name = "GPUOverclockingCheckBox";
       this.GPUOverclockingCheckBox.Size = new System.Drawing.Size(179, 25);
       this.GPUOverclockingCheckBox.TabIndex = 30;
@@ -1435,7 +1445,7 @@ namespace Computer_house
       // 
       this.GPUManufactureTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUManufactureTextBox.Location = new System.Drawing.Point(254, 276);
-      this.GPUManufactureTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUManufactureTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUManufactureTextBox.Name = "GPUManufactureTextBox";
       this.GPUManufactureTextBox.Size = new System.Drawing.Size(189, 25);
       this.GPUManufactureTextBox.TabIndex = 29;
@@ -1480,7 +1490,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.GPUInterfacesComboBox.Location = new System.Drawing.Point(274, 234);
-      this.GPUInterfacesComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUInterfacesComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUInterfacesComboBox.Name = "GPUInterfacesComboBox";
       this.GPUInterfacesComboBox.Size = new System.Drawing.Size(308, 25);
       this.GPUInterfacesComboBox.TabIndex = 26;
@@ -1490,7 +1500,7 @@ namespace Computer_house
       // 
       this.GPUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUNameTextBox.Location = new System.Drawing.Point(254, 195);
-      this.GPUNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUNameTextBox.Name = "GPUNameTextBox";
       this.GPUNameTextBox.Size = new System.Drawing.Size(328, 25);
       this.GPUNameTextBox.TabIndex = 25;
@@ -1510,7 +1520,7 @@ namespace Computer_house
       // 
       this.FindGPUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindGPUIDButton.Location = new System.Drawing.Point(488, 151);
-      this.FindGPUIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindGPUIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindGPUIDButton.Name = "FindGPUIDButton";
       this.FindGPUIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindGPUIDButton.TabIndex = 23;
@@ -1522,7 +1532,7 @@ namespace Computer_house
       // 
       this.GPUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.GPUIDTextBox.Location = new System.Drawing.Point(254, 154);
-      this.GPUIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPUIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.GPUIDTextBox.Name = "GPUIDTextBox";
       this.GPUIDTextBox.Size = new System.Drawing.Size(230, 25);
       this.GPUIDTextBox.TabIndex = 22;
@@ -1544,7 +1554,7 @@ namespace Computer_house
       this.ChangeGPURadio.AutoSize = true;
       this.ChangeGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeGPURadio.Location = new System.Drawing.Point(488, 114);
-      this.ChangeGPURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeGPURadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeGPURadio.Name = "ChangeGPURadio";
       this.ChangeGPURadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeGPURadio.TabIndex = 19;
@@ -1558,7 +1568,7 @@ namespace Computer_house
       this.AddGPURadio.AutoSize = true;
       this.AddGPURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddGPURadio.Location = new System.Drawing.Point(490, 20);
-      this.AddGPURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddGPURadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddGPURadio.Name = "AddGPURadio";
       this.AddGPURadio.Size = new System.Drawing.Size(99, 25);
       this.AddGPURadio.TabIndex = 18;
@@ -1578,7 +1588,7 @@ namespace Computer_house
             this.GPU_ID,
             this.GPU_Name});
       this.GPU_DatagridView.Location = new System.Drawing.Point(20, 20);
-      this.GPU_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.GPU_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.GPU_DatagridView.MultiSelect = false;
       this.GPU_DatagridView.Name = "GPU_DatagridView";
       this.GPU_DatagridView.ReadOnly = true;
@@ -1651,9 +1661,9 @@ namespace Computer_house
       this.tabPage5.Controls.Add(this.AddMotherboardRadio);
       this.tabPage5.Controls.Add(this.Motherboard_DatagridView);
       this.tabPage5.Location = new System.Drawing.Point(4, 28);
-      this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage5.Name = "tabPage5";
-      this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage5.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage5.Size = new System.Drawing.Size(601, 786);
       this.tabPage5.TabIndex = 2;
       this.tabPage5.Text = "Материнская плата";
@@ -1677,7 +1687,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherboardRamFrequencyComboBox.Location = new System.Drawing.Point(260, 508);
-      this.MotherboardRamFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardRamFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardRamFrequencyComboBox.Name = "MotherboardRamFrequencyComboBox";
       this.MotherboardRamFrequencyComboBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardRamFrequencyComboBox.TabIndex = 66;
@@ -1720,7 +1730,7 @@ namespace Computer_house
       // 
       this.MotherboardWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardWidthTextBox.Location = new System.Drawing.Point(423, 708);
-      this.MotherboardWidthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardWidthTextBox.Name = "MotherboardWidthTextBox";
       this.MotherboardWidthTextBox.Size = new System.Drawing.Size(117, 25);
       this.MotherboardWidthTextBox.TabIndex = 62;
@@ -1740,7 +1750,7 @@ namespace Computer_house
       // 
       this.MotherboardLengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardLengthTextBox.Location = new System.Drawing.Point(260, 708);
-      this.MotherboardLengthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardLengthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardLengthTextBox.Name = "MotherboardLengthTextBox";
       this.MotherboardLengthTextBox.Size = new System.Drawing.Size(117, 25);
       this.MotherboardLengthTextBox.TabIndex = 60;
@@ -1771,7 +1781,7 @@ namespace Computer_house
       // 
       this.ActWithMotherboard.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithMotherboard.Location = new System.Drawing.Point(15, 745);
-      this.ActWithMotherboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithMotherboard.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithMotherboard.Name = "ActWithMotherboard";
       this.ActWithMotherboard.Size = new System.Drawing.Size(572, 38);
       this.ActWithMotherboard.TabIndex = 57;
@@ -1783,7 +1793,7 @@ namespace Computer_house
       // 
       this.MotherboardRAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardRAMCapacityTextBox.Location = new System.Drawing.Point(513, 387);
-      this.MotherboardRAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardRAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardRAMCapacityTextBox.Name = "MotherboardRAMCapacityTextBox";
       this.MotherboardRAMCapacityTextBox.Size = new System.Drawing.Size(45, 25);
       this.MotherboardRAMCapacityTextBox.TabIndex = 56;
@@ -1792,7 +1802,7 @@ namespace Computer_house
       // 
       this.MotherboardConnectorsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardConnectorsTextBox.Location = new System.Drawing.Point(260, 669);
-      this.MotherboardConnectorsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardConnectorsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardConnectorsTextBox.Name = "MotherboardConnectorsTextBox";
       this.MotherboardConnectorsTextBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardConnectorsTextBox.TabIndex = 54;
@@ -1824,7 +1834,7 @@ namespace Computer_house
       this.MotherboardIntegratedGraphicCheckBox.AutoSize = true;
       this.MotherboardIntegratedGraphicCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.MotherboardIntegratedGraphicCheckBox.Location = new System.Drawing.Point(418, 624);
-      this.MotherboardIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardIntegratedGraphicCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardIntegratedGraphicCheckBox.Name = "MotherboardIntegratedGraphicCheckBox";
       this.MotherboardIntegratedGraphicCheckBox.Size = new System.Drawing.Size(182, 25);
       this.MotherboardIntegratedGraphicCheckBox.TabIndex = 51;
@@ -1836,7 +1846,7 @@ namespace Computer_house
       this.MotherboardSLISupportCheckBox.AutoSize = true;
       this.MotherboardSLISupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.MotherboardSLISupportCheckBox.Location = new System.Drawing.Point(345, 626);
-      this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardSLISupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardSLISupportCheckBox.Name = "MotherboardSLISupportCheckBox";
       this.MotherboardSLISupportCheckBox.Size = new System.Drawing.Size(50, 25);
       this.MotherboardSLISupportCheckBox.TabIndex = 50;
@@ -1858,7 +1868,7 @@ namespace Computer_house
       // 
       this.MotherboardStorageInterfacesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardStorageInterfacesTextBox.Location = new System.Drawing.Point(268, 588);
-      this.MotherboardStorageInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardStorageInterfacesTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardStorageInterfacesTextBox.Name = "MotherboardStorageInterfacesTextBox";
       this.MotherboardStorageInterfacesTextBox.Size = new System.Drawing.Size(320, 25);
       this.MotherboardStorageInterfacesTextBox.TabIndex = 48;
@@ -1878,7 +1888,7 @@ namespace Computer_house
       // 
       this.MotherboardExpansionsSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardExpansionsSlotsTextBox.Location = new System.Drawing.Point(260, 544);
-      this.MotherboardExpansionsSlotsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardExpansionsSlotsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardExpansionsSlotsTextBox.Name = "MotherboardExpansionsSlotsTextBox";
       this.MotherboardExpansionsSlotsTextBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardExpansionsSlotsTextBox.TabIndex = 46;
@@ -1912,7 +1922,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherBoardRAMChanelsComboBox.Location = new System.Drawing.Point(260, 468);
-      this.MotherBoardRAMChanelsComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherBoardRAMChanelsComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherBoardRAMChanelsComboBox.Name = "MotherBoardRAMChanelsComboBox";
       this.MotherBoardRAMChanelsComboBox.Size = new System.Drawing.Size(328, 25);
       this.MotherBoardRAMChanelsComboBox.TabIndex = 44;
@@ -1933,7 +1943,7 @@ namespace Computer_house
       // 
       this.MotherboardCountOfRAMSlotsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardCountOfRAMSlotsTextBox.Location = new System.Drawing.Point(260, 428);
-      this.MotherboardCountOfRAMSlotsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardCountOfRAMSlotsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardCountOfRAMSlotsTextBox.Name = "MotherboardCountOfRAMSlotsTextBox";
       this.MotherboardCountOfRAMSlotsTextBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardCountOfRAMSlotsTextBox.TabIndex = 42;
@@ -1967,7 +1977,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherboardSupportedRAMComboBox.Location = new System.Drawing.Point(369, 387);
-      this.MotherboardSupportedRAMComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardSupportedRAMComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardSupportedRAMComboBox.Name = "MotherboardSupportedRAMComboBox";
       this.MotherboardSupportedRAMComboBox.Size = new System.Drawing.Size(111, 25);
       this.MotherboardSupportedRAMComboBox.TabIndex = 40;
@@ -2002,7 +2012,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherboardFormFactorComboBox.Location = new System.Drawing.Point(260, 342);
-      this.MotherboardFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardFormFactorComboBox.Name = "MotherboardFormFactorComboBox";
       this.MotherboardFormFactorComboBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardFormFactorComboBox.TabIndex = 38;
@@ -2037,7 +2047,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherboardChipsetComboBox.Location = new System.Drawing.Point(448, 298);
-      this.MotherboardChipsetComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardChipsetComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardChipsetComboBox.Name = "MotherboardChipsetComboBox";
       this.MotherboardChipsetComboBox.Size = new System.Drawing.Size(140, 25);
       this.MotherboardChipsetComboBox.TabIndex = 36;
@@ -2072,7 +2082,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.MotherboardSocketComboBox.Location = new System.Drawing.Point(260, 297);
-      this.MotherboardSocketComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardSocketComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardSocketComboBox.Name = "MotherboardSocketComboBox";
       this.MotherboardSocketComboBox.Size = new System.Drawing.Size(157, 25);
       this.MotherboardSocketComboBox.TabIndex = 34;
@@ -2093,7 +2103,7 @@ namespace Computer_house
       // 
       this.MotherboardSupportedCPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardSupportedCPUTextBox.Location = new System.Drawing.Point(317, 248);
-      this.MotherboardSupportedCPUTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardSupportedCPUTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardSupportedCPUTextBox.Name = "MotherboardSupportedCPUTextBox";
       this.MotherboardSupportedCPUTextBox.Size = new System.Drawing.Size(271, 25);
       this.MotherboardSupportedCPUTextBox.TabIndex = 32;
@@ -2113,7 +2123,7 @@ namespace Computer_house
       // 
       this.MotherboardNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardNameTextBox.Location = new System.Drawing.Point(260, 207);
-      this.MotherboardNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardNameTextBox.Name = "MotherboardNameTextBox";
       this.MotherboardNameTextBox.Size = new System.Drawing.Size(328, 25);
       this.MotherboardNameTextBox.TabIndex = 30;
@@ -2133,7 +2143,7 @@ namespace Computer_house
       // 
       this.FindMotherboardIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindMotherboardIDButton.Location = new System.Drawing.Point(494, 163);
-      this.FindMotherboardIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindMotherboardIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindMotherboardIDButton.Name = "FindMotherboardIDButton";
       this.FindMotherboardIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindMotherboardIDButton.TabIndex = 28;
@@ -2145,7 +2155,7 @@ namespace Computer_house
       // 
       this.MotherboardIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.MotherboardIDTextBox.Location = new System.Drawing.Point(260, 166);
-      this.MotherboardIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.MotherboardIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.MotherboardIDTextBox.Name = "MotherboardIDTextBox";
       this.MotherboardIDTextBox.Size = new System.Drawing.Size(230, 25);
       this.MotherboardIDTextBox.TabIndex = 27;
@@ -2167,7 +2177,7 @@ namespace Computer_house
       this.ChangeMotherboardRadio.AutoSize = true;
       this.ChangeMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeMotherboardRadio.Location = new System.Drawing.Point(484, 112);
-      this.ChangeMotherboardRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeMotherboardRadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeMotherboardRadio.Name = "ChangeMotherboardRadio";
       this.ChangeMotherboardRadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeMotherboardRadio.TabIndex = 22;
@@ -2181,7 +2191,7 @@ namespace Computer_house
       this.AddMotherboardRadio.AutoSize = true;
       this.AddMotherboardRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddMotherboardRadio.Location = new System.Drawing.Point(485, 19);
-      this.AddMotherboardRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddMotherboardRadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddMotherboardRadio.Name = "AddMotherboardRadio";
       this.AddMotherboardRadio.Size = new System.Drawing.Size(99, 25);
       this.AddMotherboardRadio.TabIndex = 21;
@@ -2201,7 +2211,7 @@ namespace Computer_house
             this.MotherboardID,
             this.MotherboardName});
       this.Motherboard_DatagridView.Location = new System.Drawing.Point(15, 19);
-      this.Motherboard_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.Motherboard_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.Motherboard_DatagridView.MultiSelect = false;
       this.Motherboard_DatagridView.Name = "Motherboard_DatagridView";
       this.Motherboard_DatagridView.ReadOnly = true;
@@ -2286,9 +2296,9 @@ namespace Computer_house
       this.tabPage6.Controls.Add(this.AddCaseRadio);
       this.tabPage6.Controls.Add(this.Case_DatagridView);
       this.tabPage6.Location = new System.Drawing.Point(4, 28);
-      this.tabPage6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage6.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage6.Name = "tabPage6";
-      this.tabPage6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage6.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage6.Size = new System.Drawing.Size(601, 786);
       this.tabPage6.TabIndex = 3;
       this.tabPage6.Text = "Корпус";
@@ -2298,7 +2308,7 @@ namespace Computer_house
       // 
       this.ActWithCase.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithCase.Location = new System.Drawing.Point(16, 744);
-      this.ActWithCase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithCase.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithCase.Name = "ActWithCase";
       this.ActWithCase.Size = new System.Drawing.Size(573, 38);
       this.ActWithCase.TabIndex = 93;
@@ -2332,7 +2342,7 @@ namespace Computer_house
       // 
       this.CaseHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseHeightTextBox.Location = new System.Drawing.Point(299, 521);
-      this.CaseHeightTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseHeightTextBox.Name = "CaseHeightTextBox";
       this.CaseHeightTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseHeightTextBox.TabIndex = 90;
@@ -2341,7 +2351,7 @@ namespace Computer_house
       // 
       this.CaseDepthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseDepthTextBox.Location = new System.Drawing.Point(473, 521);
-      this.CaseDepthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseDepthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseDepthTextBox.Name = "CaseDepthTextBox";
       this.CaseDepthTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseDepthTextBox.TabIndex = 89;
@@ -2361,7 +2371,7 @@ namespace Computer_house
       // 
       this.CaseWidthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseWidthTextBox.Location = new System.Drawing.Point(385, 521);
-      this.CaseWidthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseWidthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseWidthTextBox.Name = "CaseWidthTextBox";
       this.CaseWidthTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseWidthTextBox.TabIndex = 87;
@@ -2381,7 +2391,7 @@ namespace Computer_house
       // 
       this.CaseCoolerSlotsCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseCoolerSlotsCountTextBox.Location = new System.Drawing.Point(529, 485);
-      this.CaseCoolerSlotsCountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseCoolerSlotsCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseCoolerSlotsCountTextBox.Name = "CaseCoolerSlotsCountTextBox";
       this.CaseCoolerSlotsCountTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseCoolerSlotsCountTextBox.TabIndex = 85;
@@ -2401,7 +2411,7 @@ namespace Computer_house
       // 
       this.CaseCoolersCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseCoolersCountTextBox.Location = new System.Drawing.Point(405, 485);
-      this.CaseCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseCoolersCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseCoolersCountTextBox.Name = "CaseCoolersCountTextBox";
       this.CaseCoolersCountTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseCoolersCountTextBox.TabIndex = 83;
@@ -2432,7 +2442,7 @@ namespace Computer_house
       // 
       this.CaseWeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseWeightTextBox.Location = new System.Drawing.Point(395, 705);
-      this.CaseWeightTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseWeightTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseWeightTextBox.Name = "CaseWeightTextBox";
       this.CaseWeightTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseWeightTextBox.TabIndex = 80;
@@ -2463,7 +2473,7 @@ namespace Computer_house
       // 
       this.CaseMaxPSULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseMaxPSULengthTextBox.Location = new System.Drawing.Point(267, 705);
-      this.CaseMaxPSULengthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseMaxPSULengthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseMaxPSULengthTextBox.Name = "CaseMaxPSULengthTextBox";
       this.CaseMaxPSULengthTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseMaxPSULengthTextBox.TabIndex = 77;
@@ -2484,7 +2494,7 @@ namespace Computer_house
       this.CaseDustFiltersCheckBox.AutoSize = true;
       this.CaseDustFiltersCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CaseDustFiltersCheckBox.Location = new System.Drawing.Point(437, 672);
-      this.CaseDustFiltersCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseDustFiltersCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseDustFiltersCheckBox.Name = "CaseDustFiltersCheckBox";
       this.CaseDustFiltersCheckBox.Size = new System.Drawing.Size(166, 25);
       this.CaseDustFiltersCheckBox.TabIndex = 75;
@@ -2506,7 +2516,7 @@ namespace Computer_house
       // 
       this.CaseMaxCPUCoolerHeightTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseMaxCPUCoolerHeightTextBox.Location = new System.Drawing.Point(267, 670);
-      this.CaseMaxCPUCoolerHeightTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseMaxCPUCoolerHeightTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseMaxCPUCoolerHeightTextBox.Name = "CaseMaxCPUCoolerHeightTextBox";
       this.CaseMaxCPUCoolerHeightTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseMaxCPUCoolerHeightTextBox.TabIndex = 73;
@@ -2537,7 +2547,7 @@ namespace Computer_house
       // 
       this.CaseMaxLengthOfGPUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseMaxLengthOfGPUTextBox.Location = new System.Drawing.Point(267, 633);
-      this.CaseMaxLengthOfGPUTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseMaxLengthOfGPUTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseMaxLengthOfGPUTextBox.Name = "CaseMaxLengthOfGPUTextBox";
       this.CaseMaxLengthOfGPUTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseMaxLengthOfGPUTextBox.TabIndex = 70;
@@ -2568,7 +2578,7 @@ namespace Computer_house
       // 
       this.CaseExpansionSlotsCount.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseExpansionSlotsCount.Location = new System.Drawing.Point(267, 597);
-      this.CaseExpansionSlotsCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseExpansionSlotsCount.Margin = new System.Windows.Forms.Padding(2);
       this.CaseExpansionSlotsCount.Name = "CaseExpansionSlotsCount";
       this.CaseExpansionSlotsCount.Size = new System.Drawing.Size(60, 25);
       this.CaseExpansionSlotsCount.TabIndex = 67;
@@ -2599,7 +2609,7 @@ namespace Computer_house
       // 
       this.CaseStorageLocationCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseStorageLocationCountTextBox.Location = new System.Drawing.Point(267, 560);
-      this.CaseStorageLocationCountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseStorageLocationCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseStorageLocationCountTextBox.Name = "CaseStorageLocationCountTextBox";
       this.CaseStorageLocationCountTextBox.Size = new System.Drawing.Size(60, 25);
       this.CaseStorageLocationCountTextBox.TabIndex = 64;
@@ -2620,7 +2630,7 @@ namespace Computer_house
       this.CaseSoundIsolationCheckBox.AutoSize = true;
       this.CaseSoundIsolationCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CaseSoundIsolationCheckBox.Location = new System.Drawing.Point(456, 634);
-      this.CaseSoundIsolationCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseSoundIsolationCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseSoundIsolationCheckBox.Name = "CaseSoundIsolationCheckBox";
       this.CaseSoundIsolationCheckBox.Size = new System.Drawing.Size(144, 25);
       this.CaseSoundIsolationCheckBox.TabIndex = 62;
@@ -2632,7 +2642,7 @@ namespace Computer_house
       this.CaseWaterCoolingCheckBox.AutoSize = true;
       this.CaseWaterCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CaseWaterCoolingCheckBox.Location = new System.Drawing.Point(386, 560);
-      this.CaseWaterCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseWaterCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseWaterCoolingCheckBox.Name = "CaseWaterCoolingCheckBox";
       this.CaseWaterCoolingCheckBox.Size = new System.Drawing.Size(219, 25);
       this.CaseWaterCoolingCheckBox.TabIndex = 61;
@@ -2644,7 +2654,7 @@ namespace Computer_house
       this.CaseCoolerInSetCheckBox.AutoSize = true;
       this.CaseCoolerInSetCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CaseCoolerInSetCheckBox.Location = new System.Drawing.Point(389, 597);
-      this.CaseCoolerInSetCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseCoolerInSetCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseCoolerInSetCheckBox.Name = "CaseCoolerInSetCheckBox";
       this.CaseCoolerInSetCheckBox.Size = new System.Drawing.Size(217, 25);
       this.CaseCoolerInSetCheckBox.TabIndex = 60;
@@ -2655,7 +2665,7 @@ namespace Computer_house
       // 
       this.CaseCoolingTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseCoolingTypeTextBox.Location = new System.Drawing.Point(261, 448);
-      this.CaseCoolingTypeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseCoolingTypeTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseCoolingTypeTextBox.Name = "CaseCoolingTypeTextBox";
       this.CaseCoolingTypeTextBox.Size = new System.Drawing.Size(328, 25);
       this.CaseCoolingTypeTextBox.TabIndex = 59;
@@ -2675,7 +2685,7 @@ namespace Computer_house
       // 
       this.CasePSUPositionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CasePSUPositionTextBox.Location = new System.Drawing.Point(261, 286);
-      this.CasePSUPositionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CasePSUPositionTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CasePSUPositionTextBox.Name = "CasePSUPositionTextBox";
       this.CasePSUPositionTextBox.Size = new System.Drawing.Size(328, 25);
       this.CasePSUPositionTextBox.TabIndex = 57;
@@ -2695,7 +2705,7 @@ namespace Computer_house
       // 
       this.CaseSupportedMotherboardsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseSupportedMotherboardsTextBox.Location = new System.Drawing.Point(267, 408);
-      this.CaseSupportedMotherboardsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseSupportedMotherboardsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseSupportedMotherboardsTextBox.Name = "CaseSupportedMotherboardsTextBox";
       this.CaseSupportedMotherboardsTextBox.Size = new System.Drawing.Size(322, 25);
       this.CaseSupportedMotherboardsTextBox.TabIndex = 55;
@@ -2715,7 +2725,7 @@ namespace Computer_house
       // 
       this.CaseMaterialTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseMaterialTextBox.Location = new System.Drawing.Point(261, 368);
-      this.CaseMaterialTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseMaterialTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseMaterialTextBox.Name = "CaseMaterialTextBox";
       this.CaseMaterialTextBox.Size = new System.Drawing.Size(328, 25);
       this.CaseMaterialTextBox.TabIndex = 53;
@@ -2736,7 +2746,7 @@ namespace Computer_house
       this.CasesGamingCheckBox.AutoSize = true;
       this.CasesGamingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CasesGamingCheckBox.Location = new System.Drawing.Point(491, 246);
-      this.CasesGamingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CasesGamingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CasesGamingCheckBox.Name = "CasesGamingCheckBox";
       this.CasesGamingCheckBox.Size = new System.Drawing.Size(95, 25);
       this.CasesGamingCheckBox.TabIndex = 51;
@@ -2761,7 +2771,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CaseFormFactorComboBox.Location = new System.Drawing.Point(262, 325);
-      this.CaseFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseFormFactorComboBox.Name = "CaseFormFactorComboBox";
       this.CaseFormFactorComboBox.Size = new System.Drawing.Size(328, 25);
       this.CaseFormFactorComboBox.TabIndex = 40;
@@ -2782,7 +2792,7 @@ namespace Computer_house
       // 
       this.CasePSUTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CasePSUTextBox.Location = new System.Drawing.Point(262, 246);
-      this.CasePSUTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CasePSUTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CasePSUTextBox.Name = "CasePSUTextBox";
       this.CasePSUTextBox.Size = new System.Drawing.Size(225, 25);
       this.CasePSUTextBox.TabIndex = 38;
@@ -2802,7 +2812,7 @@ namespace Computer_house
       // 
       this.CaseNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseNameTextBox.Location = new System.Drawing.Point(261, 206);
-      this.CaseNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseNameTextBox.Name = "CaseNameTextBox";
       this.CaseNameTextBox.Size = new System.Drawing.Size(328, 25);
       this.CaseNameTextBox.TabIndex = 36;
@@ -2822,7 +2832,7 @@ namespace Computer_house
       // 
       this.FindCaseIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindCaseIDButton.Location = new System.Drawing.Point(496, 162);
-      this.FindCaseIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindCaseIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindCaseIDButton.Name = "FindCaseIDButton";
       this.FindCaseIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindCaseIDButton.TabIndex = 34;
@@ -2834,7 +2844,7 @@ namespace Computer_house
       // 
       this.CaseIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CaseIDTextBox.Location = new System.Drawing.Point(262, 165);
-      this.CaseIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CaseIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseIDTextBox.Name = "CaseIDTextBox";
       this.CaseIDTextBox.Size = new System.Drawing.Size(230, 25);
       this.CaseIDTextBox.TabIndex = 33;
@@ -2856,7 +2866,7 @@ namespace Computer_house
       this.ChangeCaseRadio.AutoSize = true;
       this.ChangeCaseRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeCaseRadio.Location = new System.Drawing.Point(486, 111);
-      this.ChangeCaseRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeCaseRadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeCaseRadio.Name = "ChangeCaseRadio";
       this.ChangeCaseRadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeCaseRadio.TabIndex = 31;
@@ -2870,7 +2880,7 @@ namespace Computer_house
       this.AddCaseRadio.AutoSize = true;
       this.AddCaseRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddCaseRadio.Location = new System.Drawing.Point(487, 18);
-      this.AddCaseRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddCaseRadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddCaseRadio.Name = "AddCaseRadio";
       this.AddCaseRadio.Size = new System.Drawing.Size(99, 25);
       this.AddCaseRadio.TabIndex = 30;
@@ -2890,7 +2900,7 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
       this.Case_DatagridView.Location = new System.Drawing.Point(17, 18);
-      this.Case_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.Case_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.Case_DatagridView.MultiSelect = false;
       this.Case_DatagridView.Name = "Case_DatagridView";
       this.Case_DatagridView.ReadOnly = true;
@@ -2948,9 +2958,9 @@ namespace Computer_house
       this.tabPage7.Controls.Add(this.AddRAMRadio);
       this.tabPage7.Controls.Add(this.RAM_DatagridView);
       this.tabPage7.Location = new System.Drawing.Point(4, 28);
-      this.tabPage7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage7.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage7.Name = "tabPage7";
-      this.tabPage7.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage7.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage7.Size = new System.Drawing.Size(601, 786);
       this.tabPage7.TabIndex = 4;
       this.tabPage7.Text = "Оперативная память";
@@ -2961,7 +2971,7 @@ namespace Computer_house
       this.RAMCoolingCheckBox.AutoSize = true;
       this.RAMCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.RAMCoolingCheckBox.Location = new System.Drawing.Point(464, 468);
-      this.RAMCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMCoolingCheckBox.Name = "RAMCoolingCheckBox";
       this.RAMCoolingCheckBox.Size = new System.Drawing.Size(122, 25);
       this.RAMCoolingCheckBox.TabIndex = 84;
@@ -2973,7 +2983,7 @@ namespace Computer_house
       this.RAMLowProfileModuleCheckBox.AutoSize = true;
       this.RAMLowProfileModuleCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.RAMLowProfileModuleCheckBox.Location = new System.Drawing.Point(362, 385);
-      this.RAMLowProfileModuleCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMLowProfileModuleCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMLowProfileModuleCheckBox.Name = "RAMLowProfileModuleCheckBox";
       this.RAMLowProfileModuleCheckBox.Size = new System.Drawing.Size(232, 25);
       this.RAMLowProfileModuleCheckBox.TabIndex = 82;
@@ -2984,7 +2994,7 @@ namespace Computer_house
       // 
       this.RAMTimingsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMTimingsTextBox.Location = new System.Drawing.Point(259, 468);
-      this.RAMTimingsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMTimingsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMTimingsTextBox.Name = "RAMTimingsTextBox";
       this.RAMTimingsTextBox.Size = new System.Drawing.Size(167, 25);
       this.RAMTimingsTextBox.TabIndex = 81;
@@ -3015,7 +3025,7 @@ namespace Computer_house
       // 
       this.RAMCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMCapacityTextBox.Location = new System.Drawing.Point(258, 427);
-      this.RAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMCapacityTextBox.Name = "RAMCapacityTextBox";
       this.RAMCapacityTextBox.Size = new System.Drawing.Size(104, 25);
       this.RAMCapacityTextBox.TabIndex = 78;
@@ -3036,7 +3046,7 @@ namespace Computer_house
       this.RAMxmpSupportCheckBox.AutoSize = true;
       this.RAMxmpSupportCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.RAMxmpSupportCheckBox.Location = new System.Drawing.Point(436, 427);
-      this.RAMxmpSupportCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMxmpSupportCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMxmpSupportCheckBox.Name = "RAMxmpSupportCheckBox";
       this.RAMxmpSupportCheckBox.Size = new System.Drawing.Size(156, 25);
       this.RAMxmpSupportCheckBox.TabIndex = 76;
@@ -3058,7 +3068,7 @@ namespace Computer_house
       // 
       this.RAMVoltageTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMVoltageTextBox.Location = new System.Drawing.Point(259, 384);
-      this.RAMVoltageTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMVoltageTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMVoltageTextBox.Name = "RAMVoltageTextBox";
       this.RAMVoltageTextBox.Size = new System.Drawing.Size(64, 25);
       this.RAMVoltageTextBox.TabIndex = 74;
@@ -3078,7 +3088,7 @@ namespace Computer_house
       // 
       this.ActWithRAM.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithRAM.Location = new System.Drawing.Point(17, 508);
-      this.ActWithRAM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithRAM.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithRAM.Name = "ActWithRAM";
       this.ActWithRAM.Size = new System.Drawing.Size(572, 38);
       this.ActWithRAM.TabIndex = 72;
@@ -3115,7 +3125,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.RAMFrequencyComboBox.Location = new System.Drawing.Point(258, 336);
-      this.RAMFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMFrequencyComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMFrequencyComboBox.Name = "RAMFrequencyComboBox";
       this.RAMFrequencyComboBox.Size = new System.Drawing.Size(281, 25);
       this.RAMFrequencyComboBox.TabIndex = 70;
@@ -3139,7 +3149,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.RAMTypeComboBox.Location = new System.Drawing.Point(258, 292);
-      this.RAMTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMTypeComboBox.Name = "RAMTypeComboBox";
       this.RAMTypeComboBox.Size = new System.Drawing.Size(328, 25);
       this.RAMTypeComboBox.TabIndex = 69;
@@ -3182,7 +3192,7 @@ namespace Computer_house
       // 
       this.RAMKitTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMKitTextBox.Location = new System.Drawing.Point(258, 248);
-      this.RAMKitTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMKitTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMKitTextBox.Name = "RAMKitTextBox";
       this.RAMKitTextBox.Size = new System.Drawing.Size(290, 25);
       this.RAMKitTextBox.TabIndex = 46;
@@ -3202,7 +3212,7 @@ namespace Computer_house
       // 
       this.RAMNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMNameTextBox.Location = new System.Drawing.Point(258, 207);
-      this.RAMNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMNameTextBox.Name = "RAMNameTextBox";
       this.RAMNameTextBox.Size = new System.Drawing.Size(331, 25);
       this.RAMNameTextBox.TabIndex = 44;
@@ -3222,7 +3232,7 @@ namespace Computer_house
       // 
       this.FindRAMIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindRAMIDButton.Location = new System.Drawing.Point(496, 163);
-      this.FindRAMIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindRAMIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindRAMIDButton.Name = "FindRAMIDButton";
       this.FindRAMIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindRAMIDButton.TabIndex = 42;
@@ -3234,7 +3244,7 @@ namespace Computer_house
       // 
       this.RAMIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.RAMIDTextBox.Location = new System.Drawing.Point(258, 166);
-      this.RAMIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAMIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.RAMIDTextBox.Name = "RAMIDTextBox";
       this.RAMIDTextBox.Size = new System.Drawing.Size(234, 25);
       this.RAMIDTextBox.TabIndex = 41;
@@ -3256,7 +3266,7 @@ namespace Computer_house
       this.ChangeRAMRadio.AutoSize = true;
       this.ChangeRAMRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeRAMRadio.Location = new System.Drawing.Point(486, 112);
-      this.ChangeRAMRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeRAMRadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeRAMRadio.Name = "ChangeRAMRadio";
       this.ChangeRAMRadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeRAMRadio.TabIndex = 39;
@@ -3270,7 +3280,7 @@ namespace Computer_house
       this.AddRAMRadio.AutoSize = true;
       this.AddRAMRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddRAMRadio.Location = new System.Drawing.Point(487, 19);
-      this.AddRAMRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddRAMRadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddRAMRadio.Name = "AddRAMRadio";
       this.AddRAMRadio.Size = new System.Drawing.Size(99, 25);
       this.AddRAMRadio.TabIndex = 38;
@@ -3290,7 +3300,7 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
       this.RAM_DatagridView.Location = new System.Drawing.Point(17, 19);
-      this.RAM_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.RAM_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.RAM_DatagridView.MultiSelect = false;
       this.RAM_DatagridView.Name = "RAM_DatagridView";
       this.RAM_DatagridView.ReadOnly = true;
@@ -3351,9 +3361,9 @@ namespace Computer_house
       this.tabPage8.Controls.Add(this.AddCoolingSystemRadio);
       this.tabPage8.Controls.Add(this.CoolingSystem_DatagridView);
       this.tabPage8.Location = new System.Drawing.Point(4, 28);
-      this.tabPage8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage8.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage8.Name = "tabPage8";
-      this.tabPage8.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage8.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage8.Size = new System.Drawing.Size(601, 786);
       this.tabPage8.TabIndex = 5;
       this.tabPage8.Text = "Охлаждение";
@@ -3363,7 +3373,7 @@ namespace Computer_house
       // 
       this.ActWithCoolingSystem.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithCoolingSystem.Location = new System.Drawing.Point(15, 512);
-      this.ActWithCoolingSystem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithCoolingSystem.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithCoolingSystem.Name = "ActWithCoolingSystem";
       this.ActWithCoolingSystem.Size = new System.Drawing.Size(572, 38);
       this.ActWithCoolingSystem.TabIndex = 100;
@@ -3386,7 +3396,7 @@ namespace Computer_house
       // 
       this.CoolingSystemDiametrTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemDiametrTextBox.Location = new System.Drawing.Point(459, 470);
-      this.CoolingSystemDiametrTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemDiametrTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemDiametrTextBox.Name = "CoolingSystemDiametrTextBox";
       this.CoolingSystemDiametrTextBox.Size = new System.Drawing.Size(55, 25);
       this.CoolingSystemDiametrTextBox.TabIndex = 98;
@@ -3406,7 +3416,7 @@ namespace Computer_house
       // 
       this.CoolingSystemConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemConsumptionTextBox.Location = new System.Drawing.Point(362, 470);
-      this.CoolingSystemConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemConsumptionTextBox.Name = "CoolingSystemConsumptionTextBox";
       this.CoolingSystemConsumptionTextBox.Size = new System.Drawing.Size(55, 25);
       this.CoolingSystemConsumptionTextBox.TabIndex = 96;
@@ -3437,7 +3447,7 @@ namespace Computer_house
       // 
       this.CoolingSystemMaxSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemMaxSpeedTextBox.Location = new System.Drawing.Point(362, 432);
-      this.CoolingSystemMaxSpeedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemMaxSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemMaxSpeedTextBox.Name = "CoolingSystemMaxSpeedTextBox";
       this.CoolingSystemMaxSpeedTextBox.Size = new System.Drawing.Size(152, 25);
       this.CoolingSystemMaxSpeedTextBox.TabIndex = 93;
@@ -3482,7 +3492,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.CoolingSystemPowerTypeComboBox.Location = new System.Drawing.Point(258, 387);
-      this.CoolingSystemPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemPowerTypeComboBox.Name = "CoolingSystemPowerTypeComboBox";
       this.CoolingSystemPowerTypeComboBox.Size = new System.Drawing.Size(332, 25);
       this.CoolingSystemPowerTypeComboBox.TabIndex = 90;
@@ -3493,7 +3503,7 @@ namespace Computer_house
       this.CoolingSystemRSCCheckBox.AutoSize = true;
       this.CoolingSystemRSCCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CoolingSystemRSCCheckBox.Location = new System.Drawing.Point(362, 351);
-      this.CoolingSystemRSCCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemRSCCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemRSCCheckBox.Name = "CoolingSystemRSCCheckBox";
       this.CoolingSystemRSCCheckBox.Size = new System.Drawing.Size(235, 25);
       this.CoolingSystemRSCCheckBox.TabIndex = 89;
@@ -3515,7 +3525,7 @@ namespace Computer_house
       // 
       this.CoolingSystemNoiseLevelTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemNoiseLevelTextBox.Location = new System.Drawing.Point(258, 348);
-      this.CoolingSystemNoiseLevelTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemNoiseLevelTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemNoiseLevelTextBox.Name = "CoolingSystemNoiseLevelTextBox";
       this.CoolingSystemNoiseLevelTextBox.Size = new System.Drawing.Size(55, 25);
       this.CoolingSystemNoiseLevelTextBox.TabIndex = 87;
@@ -3535,7 +3545,7 @@ namespace Computer_house
       // 
       this.CoolingSystemTypeOfBearing.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemTypeOfBearing.Location = new System.Drawing.Point(258, 312);
-      this.CoolingSystemTypeOfBearing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemTypeOfBearing.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemTypeOfBearing.Name = "CoolingSystemTypeOfBearing";
       this.CoolingSystemTypeOfBearing.Size = new System.Drawing.Size(332, 25);
       this.CoolingSystemTypeOfBearing.TabIndex = 85;
@@ -3556,7 +3566,7 @@ namespace Computer_house
       this.CoolingSystemEvaporationChamberCheckBox.AutoSize = true;
       this.CoolingSystemEvaporationChamberCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.CoolingSystemEvaporationChamberCheckBox.Location = new System.Drawing.Point(362, 275);
-      this.CoolingSystemEvaporationChamberCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemEvaporationChamberCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemEvaporationChamberCheckBox.Name = "CoolingSystemEvaporationChamberCheckBox";
       this.CoolingSystemEvaporationChamberCheckBox.Size = new System.Drawing.Size(203, 25);
       this.CoolingSystemEvaporationChamberCheckBox.TabIndex = 83;
@@ -3578,7 +3588,7 @@ namespace Computer_house
       // 
       this.CoolingSystemCountOfHeatPipesTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemCountOfHeatPipesTextBox.Location = new System.Drawing.Point(258, 274);
-      this.CoolingSystemCountOfHeatPipesTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemCountOfHeatPipesTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemCountOfHeatPipesTextBox.Name = "CoolingSystemCountOfHeatPipesTextBox";
       this.CoolingSystemCountOfHeatPipesTextBox.Size = new System.Drawing.Size(55, 25);
       this.CoolingSystemCountOfHeatPipesTextBox.TabIndex = 56;
@@ -3598,7 +3608,7 @@ namespace Computer_house
       // 
       this.CoolingSystemSocketsTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemSocketsTextBox.Location = new System.Drawing.Point(269, 238);
-      this.CoolingSystemSocketsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemSocketsTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemSocketsTextBox.Name = "CoolingSystemSocketsTextBox";
       this.CoolingSystemSocketsTextBox.Size = new System.Drawing.Size(320, 25);
       this.CoolingSystemSocketsTextBox.TabIndex = 54;
@@ -3618,7 +3628,7 @@ namespace Computer_house
       // 
       this.CoolingSystemNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemNameTextBox.Location = new System.Drawing.Point(258, 199);
-      this.CoolingSystemNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemNameTextBox.Name = "CoolingSystemNameTextBox";
       this.CoolingSystemNameTextBox.Size = new System.Drawing.Size(331, 25);
       this.CoolingSystemNameTextBox.TabIndex = 52;
@@ -3638,7 +3648,7 @@ namespace Computer_house
       // 
       this.FindCoolingSystemIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindCoolingSystemIDButton.Location = new System.Drawing.Point(496, 158);
-      this.FindCoolingSystemIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindCoolingSystemIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindCoolingSystemIDButton.Name = "FindCoolingSystemIDButton";
       this.FindCoolingSystemIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindCoolingSystemIDButton.TabIndex = 50;
@@ -3650,7 +3660,7 @@ namespace Computer_house
       // 
       this.CoolingSystemIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.CoolingSystemIDTextBox.Location = new System.Drawing.Point(258, 160);
-      this.CoolingSystemIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystemIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemIDTextBox.Name = "CoolingSystemIDTextBox";
       this.CoolingSystemIDTextBox.Size = new System.Drawing.Size(234, 25);
       this.CoolingSystemIDTextBox.TabIndex = 49;
@@ -3672,7 +3682,7 @@ namespace Computer_house
       this.ChangeCoolingSystemRadio.AutoSize = true;
       this.ChangeCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangeCoolingSystemRadio.Location = new System.Drawing.Point(486, 112);
-      this.ChangeCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangeCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangeCoolingSystemRadio.Name = "ChangeCoolingSystemRadio";
       this.ChangeCoolingSystemRadio.Size = new System.Drawing.Size(100, 25);
       this.ChangeCoolingSystemRadio.TabIndex = 47;
@@ -3686,7 +3696,7 @@ namespace Computer_house
       this.AddCoolingSystemRadio.AutoSize = true;
       this.AddCoolingSystemRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddCoolingSystemRadio.Location = new System.Drawing.Point(487, 19);
-      this.AddCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddCoolingSystemRadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddCoolingSystemRadio.Name = "AddCoolingSystemRadio";
       this.AddCoolingSystemRadio.Size = new System.Drawing.Size(99, 25);
       this.AddCoolingSystemRadio.TabIndex = 46;
@@ -3706,7 +3716,7 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
       this.CoolingSystem_DatagridView.Location = new System.Drawing.Point(17, 19);
-      this.CoolingSystem_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CoolingSystem_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystem_DatagridView.MultiSelect = false;
       this.CoolingSystem_DatagridView.Name = "CoolingSystem_DatagridView";
       this.CoolingSystem_DatagridView.ReadOnly = true;
@@ -3776,9 +3786,9 @@ namespace Computer_house
       this.tabPage9.Controls.Add(this.AddPSURadio);
       this.tabPage9.Controls.Add(this.PSU_DatagridView);
       this.tabPage9.Location = new System.Drawing.Point(4, 28);
-      this.tabPage9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage9.Name = "tabPage9";
-      this.tabPage9.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage9.Size = new System.Drawing.Size(601, 786);
       this.tabPage9.TabIndex = 6;
       this.tabPage9.Text = "Блок питания";
@@ -3799,7 +3809,7 @@ namespace Computer_house
       // 
       this.ActWithPSU.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActWithPSU.Location = new System.Drawing.Point(16, 505);
-      this.ActWithPSU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActWithPSU.Margin = new System.Windows.Forms.Padding(2);
       this.ActWithPSU.Name = "ActWithPSU";
       this.ActWithPSU.Size = new System.Drawing.Size(572, 38);
       this.ActWithPSU.TabIndex = 114;
@@ -3823,7 +3833,7 @@ namespace Computer_house
       this.PSUPowerUSBCheckBox.AutoSize = true;
       this.PSUPowerUSBCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.PSUPowerUSBCheckBox.Location = new System.Drawing.Point(489, 231);
-      this.PSUPowerUSBCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUPowerUSBCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUPowerUSBCheckBox.Name = "PSUPowerUSBCheckBox";
       this.PSUPowerUSBCheckBox.Size = new System.Drawing.Size(110, 25);
       this.PSUPowerUSBCheckBox.TabIndex = 112;
@@ -3845,7 +3855,7 @@ namespace Computer_house
       // 
       this.PSULengthTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSULengthTextBox.Location = new System.Drawing.Point(416, 462);
-      this.PSULengthTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSULengthTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSULengthTextBox.Name = "PSULengthTextBox";
       this.PSULengthTextBox.Size = new System.Drawing.Size(132, 25);
       this.PSULengthTextBox.TabIndex = 110;
@@ -3865,7 +3875,7 @@ namespace Computer_house
       // 
       this.PSUConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUConsumptionTextBox.Location = new System.Drawing.Point(260, 344);
-      this.PSUConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUConsumptionTextBox.Name = "PSUConsumptionTextBox";
       this.PSUConsumptionTextBox.Size = new System.Drawing.Size(161, 25);
       this.PSUConsumptionTextBox.TabIndex = 107;
@@ -3907,7 +3917,7 @@ namespace Computer_house
       // 
       this.PSUTwelveLineTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUTwelveLineTextBox.Location = new System.Drawing.Point(472, 270);
-      this.PSUTwelveLineTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUTwelveLineTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUTwelveLineTextBox.Name = "PSUTwelveLineTextBox";
       this.PSUTwelveLineTextBox.Size = new System.Drawing.Size(69, 25);
       this.PSUTwelveLineTextBox.TabIndex = 103;
@@ -3927,7 +3937,7 @@ namespace Computer_house
       // 
       this.PSUsataCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUsataCountTextBox.Location = new System.Drawing.Point(375, 270);
-      this.PSUsataCountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUsataCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUsataCountTextBox.Name = "PSUsataCountTextBox";
       this.PSUsataCountTextBox.Size = new System.Drawing.Size(69, 25);
       this.PSUsataCountTextBox.TabIndex = 101;
@@ -3947,7 +3957,7 @@ namespace Computer_house
       // 
       this.PSUidePowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUidePowerTypeTextBox.Location = new System.Drawing.Point(440, 426);
-      this.PSUidePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUidePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUidePowerTypeTextBox.Name = "PSUidePowerTypeTextBox";
       this.PSUidePowerTypeTextBox.Size = new System.Drawing.Size(151, 25);
       this.PSUidePowerTypeTextBox.TabIndex = 99;
@@ -3956,7 +3966,7 @@ namespace Computer_house
       // 
       this.PSUpciePowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUpciePowerTypeTextBox.Location = new System.Drawing.Point(258, 462);
-      this.PSUpciePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUpciePowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUpciePowerTypeTextBox.Name = "PSUpciePowerTypeTextBox";
       this.PSUpciePowerTypeTextBox.Size = new System.Drawing.Size(132, 25);
       this.PSUpciePowerTypeTextBox.TabIndex = 97;
@@ -3976,7 +3986,7 @@ namespace Computer_house
       // 
       this.PSUcpuPowerTypeTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUcpuPowerTypeTextBox.Location = new System.Drawing.Point(258, 426);
-      this.PSUcpuPowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUcpuPowerTypeTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUcpuPowerTypeTextBox.Name = "PSUcpuPowerTypeTextBox";
       this.PSUcpuPowerTypeTextBox.Size = new System.Drawing.Size(151, 25);
       this.PSUcpuPowerTypeTextBox.TabIndex = 95;
@@ -4032,7 +4042,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.PSUMotherboardPowerTypeComboBox.Location = new System.Drawing.Point(341, 384);
-      this.PSUMotherboardPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUMotherboardPowerTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUMotherboardPowerTypeComboBox.Name = "PSUMotherboardPowerTypeComboBox";
       this.PSUMotherboardPowerTypeComboBox.Size = new System.Drawing.Size(248, 25);
       this.PSUMotherboardPowerTypeComboBox.TabIndex = 92;
@@ -4042,7 +4052,7 @@ namespace Computer_house
       this.PSUModularityCheckBox.AutoSize = true;
       this.PSUModularityCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.PSUModularityCheckBox.Location = new System.Drawing.Point(471, 344);
-      this.PSUModularityCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUModularityCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUModularityCheckBox.Name = "PSUModularityCheckBox";
       this.PSUModularityCheckBox.Size = new System.Drawing.Size(130, 25);
       this.PSUModularityCheckBox.TabIndex = 84;
@@ -4064,7 +4074,7 @@ namespace Computer_house
       // 
       this.PSUEfficiencyTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUEfficiencyTextBox.Location = new System.Drawing.Point(473, 306);
-      this.PSUEfficiencyTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUEfficiencyTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUEfficiencyTextBox.Name = "PSUEfficiencyTextBox";
       this.PSUEfficiencyTextBox.Size = new System.Drawing.Size(85, 25);
       this.PSUEfficiencyTextBox.TabIndex = 72;
@@ -4094,7 +4104,7 @@ namespace Computer_house
       // 
       this.PSUTwelveLineMaxAmperageTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUTwelveLineMaxAmperageTextBox.Location = new System.Drawing.Point(336, 308);
-      this.PSUTwelveLineMaxAmperageTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUTwelveLineMaxAmperageTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUTwelveLineMaxAmperageTextBox.Name = "PSUTwelveLineMaxAmperageTextBox";
       this.PSUTwelveLineMaxAmperageTextBox.Size = new System.Drawing.Size(85, 25);
       this.PSUTwelveLineMaxAmperageTextBox.TabIndex = 69;
@@ -4114,7 +4124,7 @@ namespace Computer_house
       // 
       this.PSUStandartTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUStandartTextBox.Location = new System.Drawing.Point(258, 232);
-      this.PSUStandartTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUStandartTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUStandartTextBox.Name = "PSUStandartTextBox";
       this.PSUStandartTextBox.Size = new System.Drawing.Size(186, 25);
       this.PSUStandartTextBox.TabIndex = 62;
@@ -4134,7 +4144,7 @@ namespace Computer_house
       // 
       this.PSUNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUNameTextBox.Location = new System.Drawing.Point(258, 193);
-      this.PSUNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUNameTextBox.Name = "PSUNameTextBox";
       this.PSUNameTextBox.Size = new System.Drawing.Size(331, 25);
       this.PSUNameTextBox.TabIndex = 60;
@@ -4154,7 +4164,7 @@ namespace Computer_house
       // 
       this.FindPSUIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FindPSUIDButton.Location = new System.Drawing.Point(496, 153);
-      this.FindPSUIDButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.FindPSUIDButton.Margin = new System.Windows.Forms.Padding(2);
       this.FindPSUIDButton.Name = "FindPSUIDButton";
       this.FindPSUIDButton.Size = new System.Drawing.Size(93, 28);
       this.FindPSUIDButton.TabIndex = 58;
@@ -4166,7 +4176,7 @@ namespace Computer_house
       // 
       this.PSUIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.PSUIDTextBox.Location = new System.Drawing.Point(258, 154);
-      this.PSUIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSUIDTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUIDTextBox.Name = "PSUIDTextBox";
       this.PSUIDTextBox.Size = new System.Drawing.Size(234, 25);
       this.PSUIDTextBox.TabIndex = 57;
@@ -4188,7 +4198,7 @@ namespace Computer_house
       this.ChangePSURadio.AutoSize = true;
       this.ChangePSURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ChangePSURadio.Location = new System.Drawing.Point(486, 113);
-      this.ChangePSURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ChangePSURadio.Margin = new System.Windows.Forms.Padding(2);
       this.ChangePSURadio.Name = "ChangePSURadio";
       this.ChangePSURadio.Size = new System.Drawing.Size(100, 25);
       this.ChangePSURadio.TabIndex = 55;
@@ -4202,7 +4212,7 @@ namespace Computer_house
       this.AddPSURadio.AutoSize = true;
       this.AddPSURadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.AddPSURadio.Location = new System.Drawing.Point(487, 20);
-      this.AddPSURadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddPSURadio.Margin = new System.Windows.Forms.Padding(2);
       this.AddPSURadio.Name = "AddPSURadio";
       this.AddPSURadio.Size = new System.Drawing.Size(99, 25);
       this.AddPSURadio.TabIndex = 54;
@@ -4222,7 +4232,7 @@ namespace Computer_house
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
       this.PSU_DatagridView.Location = new System.Drawing.Point(17, 20);
-      this.PSU_DatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.PSU_DatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.PSU_DatagridView.MultiSelect = false;
       this.PSU_DatagridView.Name = "PSU_DatagridView";
       this.PSU_DatagridView.ReadOnly = true;
@@ -4251,24 +4261,21 @@ namespace Computer_house
       // tabPage10
       // 
       this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage10.Controls.Add(this.textBox1);
+      this.tabPage10.Controls.Add(this.label134);
+      this.tabPage10.Controls.Add(this.button1);
+      this.tabPage10.Controls.Add(this.textBox2);
+      this.tabPage10.Controls.Add(this.label137);
+      this.tabPage10.Controls.Add(this.radioButton1);
+      this.tabPage10.Controls.Add(this.radioButton2);
+      this.tabPage10.Controls.Add(this.dataGridView1);
       this.tabPage10.Location = new System.Drawing.Point(4, 28);
-      this.tabPage10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage10.Name = "tabPage10";
-      this.tabPage10.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage10.Size = new System.Drawing.Size(601, 786);
       this.tabPage10.TabIndex = 7;
-      this.tabPage10.Text = "HDD";
-      // 
-      // tabPage11
-      // 
-      this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.tabPage11.Location = new System.Drawing.Point(4, 28);
-      this.tabPage11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-      this.tabPage11.Name = "tabPage11";
-      this.tabPage11.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-      this.tabPage11.Size = new System.Drawing.Size(601, 786);
-      this.tabPage11.TabIndex = 8;
-      this.tabPage11.Text = "SSD";
+      this.tabPage10.Text = "Накопители";
       // 
       // tabPage2
       // 
@@ -4285,9 +4292,9 @@ namespace Computer_house
       this.tabPage2.Controls.Add(this.label1);
       this.tabPage2.Controls.Add(this.TypesOfComponentComboBox);
       this.tabPage2.Location = new System.Drawing.Point(4, 30);
-      this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage2.Size = new System.Drawing.Size(614, 825);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Доп. сведения о комплектующих";
@@ -4312,7 +4319,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.ComponentTypeComboBox.Location = new System.Drawing.Point(386, 231);
-      this.ComponentTypeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ComponentTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentTypeComboBox.Name = "ComponentTypeComboBox";
       this.ComponentTypeComboBox.Size = new System.Drawing.Size(205, 25);
       this.ComponentTypeComboBox.TabIndex = 15;
@@ -4332,7 +4339,7 @@ namespace Computer_house
       // 
       this.ActToComponent.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ActToComponent.Location = new System.Drawing.Point(386, 277);
-      this.ActToComponent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ActToComponent.Margin = new System.Windows.Forms.Padding(2);
       this.ActToComponent.Name = "ActToComponent";
       this.ActToComponent.Size = new System.Drawing.Size(217, 39);
       this.ActToComponent.TabIndex = 13;
@@ -4355,7 +4362,7 @@ namespace Computer_house
       // 
       this.ComponentNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
       this.ComponentNameTextBox.Location = new System.Drawing.Point(386, 166);
-      this.ComponentNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ComponentNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentNameTextBox.Name = "ComponentNameTextBox";
       this.ComponentNameTextBox.Size = new System.Drawing.Size(218, 25);
       this.ComponentNameTextBox.TabIndex = 10;
@@ -4365,7 +4372,7 @@ namespace Computer_house
       // 
       this.EditComponent.AutoSize = true;
       this.EditComponent.Location = new System.Drawing.Point(509, 97);
-      this.EditComponent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.EditComponent.Margin = new System.Windows.Forms.Padding(2);
       this.EditComponent.Name = "EditComponent";
       this.EditComponent.Size = new System.Drawing.Size(100, 25);
       this.EditComponent.TabIndex = 9;
@@ -4378,7 +4385,7 @@ namespace Computer_house
       // 
       this.AddNewComponent.AutoSize = true;
       this.AddNewComponent.Location = new System.Drawing.Point(386, 97);
-      this.AddNewComponent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.AddNewComponent.Margin = new System.Windows.Forms.Padding(2);
       this.AddNewComponent.Name = "AddNewComponent";
       this.AddNewComponent.Size = new System.Drawing.Size(99, 25);
       this.AddNewComponent.TabIndex = 8;
@@ -4403,7 +4410,7 @@ namespace Computer_house
       this.ComponentsListBox.FormattingEnabled = true;
       this.ComponentsListBox.ItemHeight = 21;
       this.ComponentsListBox.Location = new System.Drawing.Point(9, 128);
-      this.ComponentsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.ComponentsListBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentsListBox.Name = "ComponentsListBox";
       this.ComponentsListBox.Size = new System.Drawing.Size(198, 277);
       this.ComponentsListBox.TabIndex = 6;
@@ -4438,7 +4445,7 @@ namespace Computer_house
             "Интерфейсы",
             "Разъёмы питания"});
       this.TypesOfComponentComboBox.Location = new System.Drawing.Point(398, 29);
-      this.TypesOfComponentComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.TypesOfComponentComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.TypesOfComponentComboBox.Name = "TypesOfComponentComboBox";
       this.TypesOfComponentComboBox.Size = new System.Drawing.Size(205, 25);
       this.TypesOfComponentComboBox.TabIndex = 4;
@@ -4449,9 +4456,9 @@ namespace Computer_house
       this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
       this.tabPage12.Controls.Add(this.HoldingDocsDatagridView);
       this.tabPage12.Location = new System.Drawing.Point(4, 30);
-      this.tabPage12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage12.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage12.Name = "tabPage12";
-      this.tabPage12.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.tabPage12.Padding = new System.Windows.Forms.Padding(2);
       this.tabPage12.Size = new System.Drawing.Size(614, 825);
       this.tabPage12.TabIndex = 2;
       this.tabPage12.Text = "Складские материалы";
@@ -4474,7 +4481,7 @@ namespace Computer_house
             this.WorkerID,
             this.Location});
       this.HoldingDocsDatagridView.Location = new System.Drawing.Point(0, 0);
-      this.HoldingDocsDatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.HoldingDocsDatagridView.Margin = new System.Windows.Forms.Padding(2);
       this.HoldingDocsDatagridView.Name = "HoldingDocsDatagridView";
       this.HoldingDocsDatagridView.ReadOnly = true;
       this.HoldingDocsDatagridView.RowHeadersWidth = 51;
@@ -4540,6 +4547,119 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 180;
       // 
+      // textBox1
+      // 
+      this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.textBox1.Location = new System.Drawing.Point(260, 197);
+      this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(331, 25);
+      this.textBox1.TabIndex = 68;
+      // 
+      // label134
+      // 
+      this.label134.AutoSize = true;
+      this.label134.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label134.Location = new System.Drawing.Point(11, 197);
+      this.label134.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label134.Name = "label134";
+      this.label134.Size = new System.Drawing.Size(153, 25);
+      this.label134.TabIndex = 67;
+      this.label134.Text = "Наименование";
+      // 
+      // button1
+      // 
+      this.button1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button1.Location = new System.Drawing.Point(499, 161);
+      this.button1.Margin = new System.Windows.Forms.Padding(2);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(93, 28);
+      this.button1.TabIndex = 66;
+      this.button1.Text = "Поиск";
+      this.button1.UseVisualStyleBackColor = true;
+      // 
+      // textBox2
+      // 
+      this.textBox2.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.textBox2.Location = new System.Drawing.Point(260, 162);
+      this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+      this.textBox2.Name = "textBox2";
+      this.textBox2.Size = new System.Drawing.Size(234, 25);
+      this.textBox2.TabIndex = 65;
+      // 
+      // label137
+      // 
+      this.label137.AutoSize = true;
+      this.label137.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label137.Location = new System.Drawing.Point(13, 163);
+      this.label137.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label137.Name = "label137";
+      this.label137.Size = new System.Drawing.Size(149, 25);
+      this.label137.TabIndex = 64;
+      this.label137.Text = "ID накопителя";
+      // 
+      // radioButton1
+      // 
+      this.radioButton1.AutoSize = true;
+      this.radioButton1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.radioButton1.Location = new System.Drawing.Point(488, 109);
+      this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
+      this.radioButton1.Name = "radioButton1";
+      this.radioButton1.Size = new System.Drawing.Size(100, 25);
+      this.radioButton1.TabIndex = 63;
+      this.radioButton1.TabStop = true;
+      this.radioButton1.Text = "Изменить";
+      this.radioButton1.UseVisualStyleBackColor = true;
+      // 
+      // radioButton2
+      // 
+      this.radioButton2.AutoSize = true;
+      this.radioButton2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.radioButton2.Location = new System.Drawing.Point(489, 16);
+      this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
+      this.radioButton2.Name = "radioButton2";
+      this.radioButton2.Size = new System.Drawing.Size(99, 25);
+      this.radioButton2.TabIndex = 62;
+      this.radioButton2.TabStop = true;
+      this.radioButton2.Text = "Добавить";
+      this.radioButton2.UseVisualStyleBackColor = true;
+      // 
+      // dataGridView1
+      // 
+      this.dataGridView1.AllowUserToAddRows = false;
+      this.dataGridView1.AllowUserToDeleteRows = false;
+      this.dataGridView1.AllowUserToOrderColumns = true;
+      this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+      this.dataGridView1.Location = new System.Drawing.Point(19, 16);
+      this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+      this.dataGridView1.MultiSelect = false;
+      this.dataGridView1.Name = "dataGridView1";
+      this.dataGridView1.ReadOnly = true;
+      this.dataGridView1.RowHeadersWidth = 51;
+      this.dataGridView1.RowTemplate.Height = 24;
+      this.dataGridView1.Size = new System.Drawing.Size(423, 119);
+      this.dataGridView1.TabIndex = 61;
+      // 
+      // dataGridViewTextBoxColumn9
+      // 
+      this.dataGridViewTextBoxColumn9.HeaderText = "ID";
+      this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+      this.dataGridViewTextBoxColumn9.ReadOnly = true;
+      this.dataGridViewTextBoxColumn9.Width = 150;
+      // 
+      // dataGridViewTextBoxColumn10
+      // 
+      this.dataGridViewTextBoxColumn10.HeaderText = "Наименование";
+      this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+      this.dataGridViewTextBoxColumn10.ReadOnly = true;
+      this.dataGridViewTextBoxColumn10.Width = 250;
+      // 
       // ComponentsOptionsForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4550,7 +4670,7 @@ namespace Computer_house
       this.Controls.Add(this.tabControl1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.Margin = new System.Windows.Forms.Padding(2);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "ComponentsOptionsForm";
@@ -4582,10 +4702,13 @@ namespace Computer_house
       this.tabPage9.ResumeLayout(false);
       this.tabPage9.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).EndInit();
+      this.tabPage10.ResumeLayout(false);
+      this.tabPage10.PerformLayout();
       this.tabPage2.ResumeLayout(false);
       this.tabPage2.PerformLayout();
       this.tabPage12.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
 
         }
@@ -4603,7 +4726,6 @@ namespace Computer_house
         internal System.Windows.Forms.TabPage tabPage8;
         internal System.Windows.Forms.TabPage tabPage9;
         internal System.Windows.Forms.TabPage tabPage10;
-        internal System.Windows.Forms.TabPage tabPage11;
         internal System.Windows.Forms.TabPage tabPage2;
         internal System.Windows.Forms.ComboBox TypesOfComponentComboBox;
         internal System.Windows.Forms.Label label2;
@@ -4919,5 +5041,15 @@ namespace Computer_house
         internal System.Windows.Forms.Button ActWithPSU;
         internal System.Windows.Forms.Label label136;
         internal System.Windows.Forms.Label label128;
-    }
+    internal System.Windows.Forms.TextBox textBox1;
+    internal System.Windows.Forms.Label label134;
+    internal System.Windows.Forms.Button button1;
+    internal System.Windows.Forms.TextBox textBox2;
+    internal System.Windows.Forms.Label label137;
+    internal System.Windows.Forms.RadioButton radioButton1;
+    internal System.Windows.Forms.RadioButton radioButton2;
+    internal System.Windows.Forms.DataGridView dataGridView1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+  }
 }

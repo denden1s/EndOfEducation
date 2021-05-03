@@ -1,18 +1,12 @@
-﻿using Computer_house.DataBase;
-using Computer_house.DataBase.Entities;
+﻿using Computer_house.DataBase.Entities;
 using Computer_house.DataBase.Entities.PC_Components;
 using Computer_house.DataBase.Entities.Warehouse;
 using Computer_house.OtherClasses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Linq.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
@@ -26,15 +20,14 @@ namespace Computer_house
     private List<Cooling_system> CoolingSystems = new List<Cooling_system>();
     private List<CPU> Cpus = new List<CPU>();
     private List<GPU> Gpus = new List<GPU>();
-    //private List<HDD> Hdds;
     private List<Motherboard> Motherboards = new List<Motherboard>();
     private List<PSU> Psus = new List<PSU>();
     private List<RAM> Rams = new List<RAM>();
-    // private List<SSD> Ssds;
     private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
     private List<Products_location> ProductLocationsList = new List<Products_location>();
     private List<Mediator> Mediators = new List<Mediator>();
 
+    private string searchComponent = "";
     private List<Warehouse_info> FilteredInfo = new List<Warehouse_info>();
     private Users user;
 
@@ -67,21 +60,14 @@ namespace Computer_house
     public AuthorizedForm(Users _user)
     {
       user = _user;
-      InitializeComponent();
+      InitializeComponent();  
     }
 
     private void AuthorizedForm_Load(object sender, EventArgs e)
     {
-      //this.Width = DesktopScreen.Width;
-      //this.Height = DesktopScreen.Height;
-
-      //threads[0] = new Thread(new ThreadStart(LoadInfoAboutCPUFromDB));
-      //threads[1] = new Thread(new ThreadStart(LoadInfoAboutCasesFromDB));
-      //threads[2] = new Thread(new ThreadStart(LoadInfoAboutGPUFromDB));
-      //threads[3] = new Thread(new ThreadStart(LoadInfoAboutMotherboardsFromDB));
-      //threads[4] = new Thread(new ThreadStart(LoadLocationInWarehouseFromDB));
-      //threads[5] = new Thread(new ThreadStart(LoadProductLocationFromDB));
-      //threads[6] = new Thread(new ThreadStart(LoadInfoAboutMediatorFromDB));
+      CPUViewRadio.Checked = true;
+      CPUViewRadio.Checked = false;
+      ResetFilters.Enabled = false;
 
       Task.Run(() => LoadInfoAboutCPUFromDB());
       Task.Run(() => LoadInfoAboutCasesFromDB());
@@ -90,18 +76,13 @@ namespace Computer_house
       Task.Run(() => LoadProductLocationFromDB());
       Task.Run(() => LoadInfoAboutMediatorFromDB());
       Task.Run(() => LoadLocationInWarehouseFromDB());
-
       Task.Run(() => LoadInfoAboutRAM());
       Task.Run(() => LoadInfoAboutCooling());
       Task.Run(() => LoadInfoAboutPSU());
-      //foreach(var th in threads)
-      //{
-      //  th.Start();
-      //}
+
       LoadInfoFromDBAndView();
       AllInfoDatagridView.Rows.Clear();
     }
-
 
     private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
     {
@@ -120,7 +101,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-
     private void LoadInfoAboutCasesFromDB()
     {
       try
@@ -185,33 +165,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-
-    //private void LoadInfoAboutHDD()
-    //{
-    //    try
-    //    {
-    //        using (ApplicationContext db = new ApplicationContext())
-    //        {
-    //            int counter = 0;
-    //            foreach (GPU c in db.GPUs)
-    //            {
-    //                Gpus.Add(new GPU(c.ID));
-    //                Gpus[counter].GetDataFromDB();
-    //                counter++;
-    //            }
-    //            Hdds;
-    //            Motherboards;
-    //            Psus;
-    //            Rams;
-    //            Ssds;
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        SystemFunctions.SetNewDataBaseAdress(ex);
-    //    }
-    //}
-
     private void LoadInfoAboutMotherboardsFromDB()
     {
       try
@@ -228,7 +181,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-
     private void LoadInfoAboutPSU()
     {
       try
@@ -245,7 +197,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-
     private void LoadInfoAboutRAM()
     {
       try
@@ -262,28 +213,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-
-    //private void LoadInfoAboutSSD()
-    //{
-    //    try
-    //    {
-    //        using (ApplicationContext db = new ApplicationContext())
-    //        {
-    //            int counter = 0;
-    //            foreach (SSD c in db.SSDs)
-    //            {
-    //                Ssds.Add(new SSD(c.ID));
-    //                Ssds[counter].GetDataFromDB();
-    //                counter++;
-    //            }
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        SystemFunctions.SetNewDataBaseAdress(ex);
-    //    }
-    //}
-
     private void LoadProductLocationFromDB()
     {
       try
@@ -309,14 +238,12 @@ namespace Computer_house
       {
         MessageBox.Show(ex.Message);
       }
-    }
-        
+    }      
     private async void LoadInfoFromDBAndView()
     {
       await Task.Run(() => LoadAllInfoFromDB());
       ViewInfoInDataGrid(WarehouseInformationList);
     }
-
     private void LoadAllInfoFromDB()
     {
       try
@@ -586,109 +513,199 @@ namespace Computer_house
     //Нужен для поиска данных в таблице WarehouseInfo
     private void SearchInfo_TextChanged(object sender, EventArgs e)
     {
-      AllInfoDatagridView.Rows.Clear();
-      AllProductInfo.Clear();
-      if(SearchInfo.TextLength > 0)
+      try
       {
-        try
+        AllInfoDatagridView.Rows.Clear();
+        AllProductInfo.Clear();
+        if(SystemFunctions.IsSetFilterRadio(CPUViewRadio, GPUViewRadio, MothersViewRadio, CasesViewRadio, RAMViewRadio,
+          CoolingSystemViewRadio, PSUViewRadio))
         {
-          //проверка на выбор радиокнопки
-          List<Warehouse_info> SearchResultList = new List<Warehouse_info>();
-          //Поиск по имени
-          SearchResultList = (from b in WarehouseInformationList
-                              where b.ProductName.ToLower().Contains(SearchInfo.Text.ToLower())
-                              select b).ToList();
-          //Если результат есть то вывести данные
-          if(SearchResultList.Count != 0)
-          { 
-            foreach(Warehouse_info wi in SearchResultList)
-              AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
-          }
-          //Если результат пустой то делает поиск по ID
-          else
+          if(SearchInfo.TextLength > 0)
           {
-            //Вытягивает числовой ID из посредника
-
-            //MediatorRequest = FindIDInMediator("CPU");
-            //Проверка на наличие товара в целом
-            List<Mediator> tempRequest = new List<Mediator>();
-            List<Mediator> tempRequestCPU = new List<Mediator>();
-            List<Mediator> tempRequestGPU = new List<Mediator>();
-            List<Mediator> tempRequestMotherboard = new List<Mediator>();
-            List<Mediator> tempRequestCase = new List<Mediator>();
-            List<Mediator> tempRequestRAM = new List<Mediator>();
-            List<Mediator> tempRequestCoolingSys = new List<Mediator>();
-            List<Mediator> tempRequestPSU = new List<Mediator>();
-
-            tempRequestCPU.AddRange(GetSearchInfo("CPU"));
-            tempRequestGPU.AddRange(GetSearchInfo("GPU"));
-            tempRequestMotherboard.AddRange(GetSearchInfo("Motherboard"));
-            tempRequestCase.AddRange(GetSearchInfo("Case"));
-            tempRequestRAM.AddRange(GetSearchInfo("RAM"));
-            tempRequestCoolingSys.AddRange(GetSearchInfo("Cooling system"));
-            tempRequestPSU.AddRange(GetSearchInfo("PSU"));
-            tempRequest.AddRange((from b in tempRequestCPU
-                                  where b.CPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestGPU
-                                  where b.GPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestMotherboard
-                                  where b.Motherboard_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestCase
-                                  where b.Case_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestRAM
-                                  where b.RAM_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestCoolingSys
-                                  where b.Cooling_system_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            tempRequest.AddRange((from b in tempRequestPSU
-                                  where b.PSU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
-                                  select b).ToList());
-            //Проверка наличия такого ID как в строке поиска
-            if (tempRequest != null)
-            {                        
-              foreach(Mediator i in tempRequest)
-                SearchResultList.Add(WarehouseInformationList.Single(a => a.Product_ID == i.ID));
-              //Добавление и вывод при успешном поиске
-              if(SearchResultList.Count != 0)
-              {
-                foreach(Warehouse_info wi in SearchResultList)
-                  AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
-              }
-              //В противном случае очистить таблицу
-              else
-                AllInfoDatagridView.Rows.Clear();                                    
-            }
-            else
-              AllInfoDatagridView.Rows.Clear();                               
-          }              
+            SearchInfoWithFilter();//поиск по фильтрам
+          }
+          else
+            ViewInfoInDataGrid(FilteredInfo);
         }
-        catch(Exception ex)
+        else
         {
-          MessageBox.Show(ex.Message);
-        }
+          if(SearchInfo.TextLength > 0)
+          {
+            SearchInfoInWarehouse();//поиск без фильтров
+          }
+          else
+            ViewInfoInDataGrid(WarehouseInformationList);
+        } 
       }
-      else
-        ViewInfoInDataGrid(WarehouseInformationList);
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      } 
     }
 
+    //Нужен для поиска информации с учётом фильтрации
+    private void SearchInfoWithFilter()
+    {
+      //проверка на выбор радиокнопки
+      List<Warehouse_info> SearchResultList = SearchByName(FilteredInfo);
+      //Если результат есть то вывести данные
+      if(SearchResultList.Count != 0)
+      {
+        foreach(Warehouse_info wi in SearchResultList)
+          AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+      }
+      //Если результат пустой то делает поиск по ID
+      else
+      {
+        //Вытягивает числовой ID из посредника
+
+        //MediatorRequest = FindIDInMediator("CPU");
+        //Проверка на наличие товара в целом
+        List<Mediator> tempRequest = new List<Mediator>();
+        tempRequest.AddRange(GetSearchInfo(searchComponent));
+
+        List<Mediator> finalResult = new List<Mediator>();
+        switch(searchComponent)
+        {
+          case "CPU":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.CPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "GPU":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.GPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "Motherboard":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.Motherboard_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "Case":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.Case_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "RAM":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.RAM_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "Cooling system":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.Cooling_system_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          case "PSU":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.PSU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
+          default:
+            break;
+        }
+        //Проверка наличия такого ID как в строке поиска
+        ViewInfoAfterSearch(finalResult, SearchResultList);
+      }
+    }
+
+    //нужен для поиска данных по имени в списке переданном в параметрах
+    private List<Warehouse_info> SearchByName(List<Warehouse_info> WarehouseInfo)
+    {
+      List<Warehouse_info> SearchResultList = new List<Warehouse_info>();
+      //Поиск по имени
+      SearchResultList = (from b in WarehouseInfo
+                          where b.ProductName.ToLower().Contains(SearchInfo.Text.ToLower())
+                          select b).ToList();
+      return SearchResultList;
+    }
+
+    //Нужен для поиска информации без учёта фильтров
+    private void SearchInfoInWarehouse()
+    {
+      //проверка на выбор радиокнопки
+      List<Warehouse_info> SearchResultList = SearchByName(WarehouseInformationList);
+      //Если результат есть то вывести данные
+      if(SearchResultList.Count != 0)
+      {
+        foreach(Warehouse_info wi in SearchResultList)
+          AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+      }
+      //Если результат пустой то делает поиск по ID
+      else
+      {
+        //Вытягивает числовой ID из посредника
+
+        //MediatorRequest = FindIDInMediator("CPU");
+        //Проверка на наличие товара в целом
+        List<Mediator> tempRequest = new List<Mediator>();
+        List<Mediator> tempRequestCPU = new List<Mediator>();
+        List<Mediator> tempRequestGPU = new List<Mediator>();
+        List<Mediator> tempRequestMotherboard = new List<Mediator>();
+        List<Mediator> tempRequestCase = new List<Mediator>();
+        List<Mediator> tempRequestRAM = new List<Mediator>();
+        List<Mediator> tempRequestCoolingSys = new List<Mediator>();
+        List<Mediator> tempRequestPSU = new List<Mediator>();
+        
+        tempRequestCPU.AddRange(GetSearchInfo("CPU"));
+        tempRequestGPU.AddRange(GetSearchInfo("GPU"));
+        tempRequestMotherboard.AddRange(GetSearchInfo("Motherboard"));
+        tempRequestCase.AddRange(GetSearchInfo("Case"));
+        tempRequestRAM.AddRange(GetSearchInfo("RAM"));
+        tempRequestCoolingSys.AddRange(GetSearchInfo("Cooling system"));
+        tempRequestPSU.AddRange(GetSearchInfo("PSU"));
+        tempRequest.AddRange((from b in tempRequestCPU
+                              where b.CPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestGPU
+                              where b.GPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestMotherboard
+                              where b.Motherboard_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestCase
+                              where b.Case_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestRAM
+                              where b.RAM_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestCoolingSys
+                              where b.Cooling_system_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestPSU
+                              where b.PSU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        //Проверка наличия такого ID как в строке поиска
+        ViewInfoAfterSearch(tempRequest, SearchResultList);
+      }
+    }
+
+    //Нужен для отображения информации после поиска
+    private void ViewInfoAfterSearch(List<Mediator> RequestList, List<Warehouse_info> SearchResultList)
+    {
+      if(RequestList != null)
+      {
+        foreach(Mediator i in RequestList)
+          SearchResultList.Add(WarehouseInformationList.Single(a => a.Product_ID == i.ID));
+        //Добавление и вывод при успешном поиске
+        if(SearchResultList.Count != 0)
+        {
+          foreach(Warehouse_info wi in SearchResultList)
+            AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
+        }
+        //В противном случае очистить таблицу
+        else
+          AllInfoDatagridView.Rows.Clear();
+      }
+      else
+        AllInfoDatagridView.Rows.Clear();
+    }
+
+    //Аналог  FilterInfo только по таблице Nediator
     private List<Mediator> GetSearchInfo(string _deviceType)
     {
       return Mediators.Where(i => i.Components_type == _deviceType).ToList();
-    }
-    private List<Mediator> FindIDInMediator(string _componentType)
-    {
-      using(ApplicationContext db = new ApplicationContext())
-      {
-          var mediatorRequest = (from b in db.Mediator
-                                 where b.Components_type == _componentType
-                                 select b).ToList();
-        return mediatorRequest;
-      }   
     }
 
     private void Move_Click(object sender, EventArgs e)
@@ -725,5 +742,103 @@ namespace Computer_house
 
         AddProduct.Value = 0;
       }
+
+    private void CPUViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(CPUViewRadio.Checked)
+      {
+        searchComponent = "CPU";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    private void GPUViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(GPUViewRadio.Checked)
+      {
+        searchComponent = "GPU";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    private void MothersViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(MothersViewRadio.Checked)
+      {
+        searchComponent = "Motherboard";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    private void CasesViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(CasesViewRadio.Checked)
+      {
+        searchComponent = "Case";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    private void RAMViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(RAMViewRadio.Checked)
+      {
+        searchComponent = "RAM";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    private void CoolingSystemViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(CoolingSystemViewRadio.Checked)
+      {
+        searchComponent = "Cooling system";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    //Нужен для того чтобы выгрузить данные на основе фильтра
+    private List<Warehouse_info> FilterInfo()
+    {
+      List<Warehouse_info> info = WarehouseInformationList.Where(i => i.ProductType == searchComponent).ToList();
+      return info;
+    }
+
+    private void PSUViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(PSUViewRadio.Checked)
+      {
+        searchComponent = "PSU";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
+    }
+
+    //Нужен для отображения информации после выбора фильтра
+    private void ViewInfoAfterChangeRadio()
+    {
+      if(SearchInfo.TextLength == 0)
+        ViewInfoInDataGrid(FilteredInfo);
+      else
+        SearchInfo.Clear();
+      AllProductInfo.Clear();
+      ResetFilters.Enabled = true;
+    }
+
+    //Нужен для сброса фильтров поиска
+    private void ResetFilters_Click(object sender, EventArgs e)
+    {
+      SystemFunctions.UnsetRadio(CPUViewRadio, GPUViewRadio, MothersViewRadio,
+       CasesViewRadio, RAMViewRadio, CoolingSystemViewRadio, PSUViewRadio);
+      ViewInfoInDataGrid(WarehouseInformationList);
+      AllProductInfo.Clear();
+      ResetFilters.Enabled = false;
+    }
   }
 }
