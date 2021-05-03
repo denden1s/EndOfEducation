@@ -30,7 +30,7 @@ namespace Computer_house.DataBase
     public DbSet<Energy_consumption> Energy_consumption { get; set; }
     public DbSet<Memory_capacity> Memory_capacity { get; set; }
     public DbSet<Sizes_of_components> Sizes_of_components { get; set; }
-    public DbSet<Storage_devices_options> Storage_devices_options { get; set; }
+    public DbSet<Storage_devices> Storage_devices { get; set; }
 
     //Комплектующие
     public DbSet<Case> Case { get; set; }
@@ -38,11 +38,9 @@ namespace Computer_house.DataBase
     public DbSet<Cooling_system> Cooling_system { get; set; }
     public DbSet<CPU> CPU { get; set; }
     public DbSet<GPU> GPU { get; set; }
-    public DbSet<HDD> HDD { get; set; }
     public DbSet<Motherboard> Motherboard { get; set; }
     public DbSet<PSU> PSU { get; set; }
     public DbSet<RAM> RAM { get; set; }
-    public DbSet<SSD> SSD { get; set; }
 
     //Доп сведения
     public DbSet<Connection_interfaces> Connection_interfaces { get; set; }
@@ -82,17 +80,15 @@ namespace Computer_house.DataBase
       modelBuilder.Entity<Energy_consumption>().HasKey(i => i.Product_ID);
       modelBuilder.Entity<Memory_capacity>().HasKey(i => i.Product_ID);
       modelBuilder.Entity<Sizes_of_components>().HasKey(i => i.Product_ID);
-      modelBuilder.Entity<Storage_devices_options>().HasKey(i => i.Product_ID);
+      modelBuilder.Entity<Storage_devices>().HasKey(i => i.ID);
       modelBuilder.Entity<Case>().HasKey(i => i.ID);
       modelBuilder.Entity<Chipset>().HasKey(i => i.ID);
       modelBuilder.Entity<Cooling_system>().HasKey(i => i.ID);
       modelBuilder.Entity<CPU>().HasKey(i => i.ID);
       modelBuilder.Entity<GPU>().HasKey(i => i.ID);
-      modelBuilder.Entity<HDD>().HasKey(i => i.ID);
       modelBuilder.Entity<Motherboard>().HasKey(i => i.ID);
       modelBuilder.Entity<PSU>().HasKey(i => i.ID);
       modelBuilder.Entity<RAM>().HasKey(i => i.ID);
-      modelBuilder.Entity<SSD>().HasKey(i => i.ID);
       modelBuilder.Entity<Connection_interfaces>().HasKey(i => i.ID);
       modelBuilder.Entity<CPU_series>().HasKey(i => i.ID);
       modelBuilder.Entity<Form_factors>().HasKey(i => i.ID);

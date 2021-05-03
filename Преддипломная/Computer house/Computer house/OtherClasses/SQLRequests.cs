@@ -29,8 +29,8 @@ namespace Computer_house.OtherClasses
           case "GPU":
             productID = findProductName.GPU_ID;
             break;
-          case "HDD":
-            productID = findProductName.HDD_ID;
+          case "SD":
+            productID = findProductName.SD_ID;
             break;
           case "Motherboard":
             productID = findProductName.Motherboard_ID;
@@ -40,9 +40,6 @@ namespace Computer_house.OtherClasses
             break;
           case "RAM":
             productID = findProductName.RAM_ID;
-            break;
-          case "SSD":
-            productID = findProductName.SSD_ID;
             break;
           default:
             break;

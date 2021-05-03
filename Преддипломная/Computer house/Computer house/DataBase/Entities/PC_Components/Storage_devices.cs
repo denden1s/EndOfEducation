@@ -12,7 +12,7 @@ namespace Computer_house.DataBase.Entities.PC_Options
     public int Buffer { get; set; }
     public bool Hardware_encryption { get; set; }
     public int Sequential_read_speed { get; set; }
-    public int Sequeintial_write_speed { get ; set; }
+    public int Sequeintial_write_speed { get; set; }
     public int Random_read_speed { get; set; }
     public int Random_write_speed { get; set; }
 

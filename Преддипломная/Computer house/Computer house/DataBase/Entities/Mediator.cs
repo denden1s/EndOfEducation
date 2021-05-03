@@ -10,8 +10,7 @@
     public string RAM_ID { get; set; }
     public string Cooling_system_ID { get; set; }
     public string PSU_ID { get; set; }
-    public string HDD_ID { get; set; }
-    public string SSD_ID { get; set; }
+    public string SD_ID { get; set; }
     public string Motherboard_ID { get; set; }
 
     public Mediator() { }
