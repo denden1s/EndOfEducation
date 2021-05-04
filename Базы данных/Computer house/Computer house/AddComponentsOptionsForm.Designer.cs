@@ -335,6 +335,16 @@ namespace Computer_house
       this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage10 = new System.Windows.Forms.TabPage();
+      this.SDNameTextBox = new System.Windows.Forms.TextBox();
+      this.label134 = new System.Windows.Forms.Label();
+      this.FindSDIDButton = new System.Windows.Forms.Button();
+      this.SDIDTextBox = new System.Windows.Forms.TextBox();
+      this.label137 = new System.Windows.Forms.Label();
+      this.ChangeSDRadio = new System.Windows.Forms.RadioButton();
+      this.AddSDRadio = new System.Windows.Forms.RadioButton();
+      this.SD_DatagridView = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.ComponentTypeComboBox = new System.Windows.Forms.ComboBox();
       this.label4 = new System.Windows.Forms.Label();
@@ -356,16 +366,32 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.textBox1 = new System.Windows.Forms.TextBox();
-      this.label134 = new System.Windows.Forms.Label();
-      this.button1 = new System.Windows.Forms.Button();
-      this.textBox2 = new System.Windows.Forms.TextBox();
-      this.label137 = new System.Windows.Forms.Label();
-      this.radioButton1 = new System.Windows.Forms.RadioButton();
-      this.radioButton2 = new System.Windows.Forms.RadioButton();
-      this.dataGridView1 = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.SDCapacityTextBox = new System.Windows.Forms.TextBox();
+      this.label138 = new System.Windows.Forms.Label();
+      this.label139 = new System.Windows.Forms.Label();
+      this.SDBufferTextBox = new System.Windows.Forms.TextBox();
+      this.label140 = new System.Windows.Forms.Label();
+      this.label141 = new System.Windows.Forms.Label();
+      this.SDConnectionInterfaceComboBox = new System.Windows.Forms.ComboBox();
+      this.SDFormFactorComboBox = new System.Windows.Forms.ComboBox();
+      this.label142 = new System.Windows.Forms.Label();
+      this.checkBox1 = new System.Windows.Forms.CheckBox();
+      this.label143 = new System.Windows.Forms.Label();
+      this.SDSeqWriteSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label144 = new System.Windows.Forms.Label();
+      this.SDSeqReadSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label145 = new System.Windows.Forms.Label();
+      this.label146 = new System.Windows.Forms.Label();
+      this.SDRandWriteSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label147 = new System.Windows.Forms.Label();
+      this.SDRandReadSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label148 = new System.Windows.Forms.Label();
+      this.label149 = new System.Windows.Forms.Label();
+      this.SDThicknessTextBox = new System.Windows.Forms.TextBox();
+      this.label150 = new System.Windows.Forms.Label();
+      this.SDConsumptionTextBox = new System.Windows.Forms.TextBox();
+      this.label151 = new System.Windows.Forms.Label();
+      this.ActWithSD = new System.Windows.Forms.Button();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabControl2.SuspendLayout();
@@ -384,10 +410,10 @@ namespace Computer_house
       this.tabPage9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).BeginInit();
       this.tabPage10.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.SD_DatagridView)).BeginInit();
       this.tabPage2.SuspendLayout();
       this.tabPage12.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
       // tabControl1
@@ -4261,14 +4287,40 @@ namespace Computer_house
       // tabPage10
       // 
       this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.tabPage10.Controls.Add(this.textBox1);
+      this.tabPage10.Controls.Add(this.ActWithSD);
+      this.tabPage10.Controls.Add(this.label149);
+      this.tabPage10.Controls.Add(this.SDThicknessTextBox);
+      this.tabPage10.Controls.Add(this.label150);
+      this.tabPage10.Controls.Add(this.SDConsumptionTextBox);
+      this.tabPage10.Controls.Add(this.label151);
+      this.tabPage10.Controls.Add(this.label146);
+      this.tabPage10.Controls.Add(this.SDRandWriteSpeedTextBox);
+      this.tabPage10.Controls.Add(this.label147);
+      this.tabPage10.Controls.Add(this.SDRandReadSpeedTextBox);
+      this.tabPage10.Controls.Add(this.label148);
+      this.tabPage10.Controls.Add(this.label143);
+      this.tabPage10.Controls.Add(this.SDSeqWriteSpeedTextBox);
+      this.tabPage10.Controls.Add(this.label144);
+      this.tabPage10.Controls.Add(this.SDSeqReadSpeedTextBox);
+      this.tabPage10.Controls.Add(this.label145);
+      this.tabPage10.Controls.Add(this.checkBox1);
+      this.tabPage10.Controls.Add(this.SDFormFactorComboBox);
+      this.tabPage10.Controls.Add(this.label142);
+      this.tabPage10.Controls.Add(this.label141);
+      this.tabPage10.Controls.Add(this.SDConnectionInterfaceComboBox);
+      this.tabPage10.Controls.Add(this.label140);
+      this.tabPage10.Controls.Add(this.SDBufferTextBox);
+      this.tabPage10.Controls.Add(this.label139);
+      this.tabPage10.Controls.Add(this.SDCapacityTextBox);
+      this.tabPage10.Controls.Add(this.label138);
+      this.tabPage10.Controls.Add(this.SDNameTextBox);
       this.tabPage10.Controls.Add(this.label134);
-      this.tabPage10.Controls.Add(this.button1);
-      this.tabPage10.Controls.Add(this.textBox2);
+      this.tabPage10.Controls.Add(this.FindSDIDButton);
+      this.tabPage10.Controls.Add(this.SDIDTextBox);
       this.tabPage10.Controls.Add(this.label137);
-      this.tabPage10.Controls.Add(this.radioButton1);
-      this.tabPage10.Controls.Add(this.radioButton2);
-      this.tabPage10.Controls.Add(this.dataGridView1);
+      this.tabPage10.Controls.Add(this.ChangeSDRadio);
+      this.tabPage10.Controls.Add(this.AddSDRadio);
+      this.tabPage10.Controls.Add(this.SD_DatagridView);
       this.tabPage10.Location = new System.Drawing.Point(4, 28);
       this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage10.Name = "tabPage10";
@@ -4276,6 +4328,119 @@ namespace Computer_house
       this.tabPage10.Size = new System.Drawing.Size(601, 786);
       this.tabPage10.TabIndex = 7;
       this.tabPage10.Text = "Накопители";
+      // 
+      // SDNameTextBox
+      // 
+      this.SDNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDNameTextBox.Location = new System.Drawing.Point(260, 201);
+      this.SDNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDNameTextBox.Name = "SDNameTextBox";
+      this.SDNameTextBox.Size = new System.Drawing.Size(331, 25);
+      this.SDNameTextBox.TabIndex = 68;
+      // 
+      // label134
+      // 
+      this.label134.AutoSize = true;
+      this.label134.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label134.Location = new System.Drawing.Point(11, 201);
+      this.label134.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label134.Name = "label134";
+      this.label134.Size = new System.Drawing.Size(153, 25);
+      this.label134.TabIndex = 67;
+      this.label134.Text = "Наименование";
+      // 
+      // FindSDIDButton
+      // 
+      this.FindSDIDButton.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.FindSDIDButton.Location = new System.Drawing.Point(499, 161);
+      this.FindSDIDButton.Margin = new System.Windows.Forms.Padding(2);
+      this.FindSDIDButton.Name = "FindSDIDButton";
+      this.FindSDIDButton.Size = new System.Drawing.Size(93, 28);
+      this.FindSDIDButton.TabIndex = 66;
+      this.FindSDIDButton.Text = "Поиск";
+      this.FindSDIDButton.UseVisualStyleBackColor = true;
+      // 
+      // SDIDTextBox
+      // 
+      this.SDIDTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDIDTextBox.Location = new System.Drawing.Point(260, 162);
+      this.SDIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDIDTextBox.Name = "SDIDTextBox";
+      this.SDIDTextBox.Size = new System.Drawing.Size(234, 25);
+      this.SDIDTextBox.TabIndex = 65;
+      // 
+      // label137
+      // 
+      this.label137.AutoSize = true;
+      this.label137.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label137.Location = new System.Drawing.Point(13, 163);
+      this.label137.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label137.Name = "label137";
+      this.label137.Size = new System.Drawing.Size(149, 25);
+      this.label137.TabIndex = 64;
+      this.label137.Text = "ID накопителя";
+      // 
+      // ChangeSDRadio
+      // 
+      this.ChangeSDRadio.AutoSize = true;
+      this.ChangeSDRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ChangeSDRadio.Location = new System.Drawing.Point(488, 109);
+      this.ChangeSDRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.ChangeSDRadio.Name = "ChangeSDRadio";
+      this.ChangeSDRadio.Size = new System.Drawing.Size(100, 25);
+      this.ChangeSDRadio.TabIndex = 63;
+      this.ChangeSDRadio.TabStop = true;
+      this.ChangeSDRadio.Text = "Изменить";
+      this.ChangeSDRadio.UseVisualStyleBackColor = true;
+      // 
+      // AddSDRadio
+      // 
+      this.AddSDRadio.AutoSize = true;
+      this.AddSDRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.AddSDRadio.Location = new System.Drawing.Point(489, 16);
+      this.AddSDRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.AddSDRadio.Name = "AddSDRadio";
+      this.AddSDRadio.Size = new System.Drawing.Size(99, 25);
+      this.AddSDRadio.TabIndex = 62;
+      this.AddSDRadio.TabStop = true;
+      this.AddSDRadio.Text = "Добавить";
+      this.AddSDRadio.UseVisualStyleBackColor = true;
+      // 
+      // SD_DatagridView
+      // 
+      this.SD_DatagridView.AllowUserToAddRows = false;
+      this.SD_DatagridView.AllowUserToDeleteRows = false;
+      this.SD_DatagridView.AllowUserToOrderColumns = true;
+      this.SD_DatagridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.SD_DatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.SD_DatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+      this.SD_DatagridView.Location = new System.Drawing.Point(19, 16);
+      this.SD_DatagridView.Margin = new System.Windows.Forms.Padding(2);
+      this.SD_DatagridView.MultiSelect = false;
+      this.SD_DatagridView.Name = "SD_DatagridView";
+      this.SD_DatagridView.ReadOnly = true;
+      this.SD_DatagridView.RowHeadersWidth = 51;
+      this.SD_DatagridView.RowTemplate.Height = 24;
+      this.SD_DatagridView.Size = new System.Drawing.Size(423, 119);
+      this.SD_DatagridView.TabIndex = 61;
+      // 
+      // dataGridViewTextBoxColumn9
+      // 
+      this.dataGridViewTextBoxColumn9.HeaderText = "ID";
+      this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+      this.dataGridViewTextBoxColumn9.ReadOnly = true;
+      this.dataGridViewTextBoxColumn9.Width = 150;
+      // 
+      // dataGridViewTextBoxColumn10
+      // 
+      this.dataGridViewTextBoxColumn10.HeaderText = "Наименование";
+      this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+      this.dataGridViewTextBoxColumn10.ReadOnly = true;
+      this.dataGridViewTextBoxColumn10.Width = 250;
       // 
       // tabPage2
       // 
@@ -4318,17 +4483,17 @@ namespace Computer_house
             "Тип памяти",
             "Интерфейсы",
             "Разъёмы питания"});
-      this.ComponentTypeComboBox.Location = new System.Drawing.Point(386, 231);
+      this.ComponentTypeComboBox.Location = new System.Drawing.Point(386, 406);
       this.ComponentTypeComboBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentTypeComboBox.Name = "ComponentTypeComboBox";
-      this.ComponentTypeComboBox.Size = new System.Drawing.Size(205, 25);
+      this.ComponentTypeComboBox.Size = new System.Drawing.Size(217, 25);
       this.ComponentTypeComboBox.TabIndex = 15;
       // 
       // label4
       // 
       this.label4.AutoSize = true;
       this.label4.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label4.Location = new System.Drawing.Point(225, 231);
+      this.label4.Location = new System.Drawing.Point(225, 407);
       this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(131, 21);
@@ -4338,10 +4503,10 @@ namespace Computer_house
       // ActToComponent
       // 
       this.ActToComponent.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ActToComponent.Location = new System.Drawing.Point(386, 277);
+      this.ActToComponent.Location = new System.Drawing.Point(229, 534);
       this.ActToComponent.Margin = new System.Windows.Forms.Padding(2);
       this.ActToComponent.Name = "ActToComponent";
-      this.ActToComponent.Size = new System.Drawing.Size(217, 39);
+      this.ActToComponent.Size = new System.Drawing.Size(374, 39);
       this.ActToComponent.TabIndex = 13;
       this.ActToComponent.Text = "button1";
       this.ActToComponent.UseVisualStyleBackColor = true;
@@ -4351,7 +4516,7 @@ namespace Computer_house
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(225, 167);
+      this.label3.Location = new System.Drawing.Point(225, 242);
       this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(45, 21);
@@ -4361,7 +4526,7 @@ namespace Computer_house
       // ComponentNameTextBox
       // 
       this.ComponentNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.ComponentNameTextBox.Location = new System.Drawing.Point(386, 166);
+      this.ComponentNameTextBox.Location = new System.Drawing.Point(385, 242);
       this.ComponentNameTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentNameTextBox.Name = "ComponentNameTextBox";
       this.ComponentNameTextBox.Size = new System.Drawing.Size(218, 25);
@@ -4371,7 +4536,7 @@ namespace Computer_house
       // EditComponent
       // 
       this.EditComponent.AutoSize = true;
-      this.EditComponent.Location = new System.Drawing.Point(509, 97);
+      this.EditComponent.Location = new System.Drawing.Point(507, 128);
       this.EditComponent.Margin = new System.Windows.Forms.Padding(2);
       this.EditComponent.Name = "EditComponent";
       this.EditComponent.Size = new System.Drawing.Size(100, 25);
@@ -4384,7 +4549,7 @@ namespace Computer_house
       // AddNewComponent
       // 
       this.AddNewComponent.AutoSize = true;
-      this.AddNewComponent.Location = new System.Drawing.Point(386, 97);
+      this.AddNewComponent.Location = new System.Drawing.Point(385, 128);
       this.AddNewComponent.Margin = new System.Windows.Forms.Padding(2);
       this.AddNewComponent.Name = "AddNewComponent";
       this.AddNewComponent.Size = new System.Drawing.Size(99, 25);
@@ -4412,7 +4577,7 @@ namespace Computer_house
       this.ComponentsListBox.Location = new System.Drawing.Point(9, 128);
       this.ComponentsListBox.Margin = new System.Windows.Forms.Padding(2);
       this.ComponentsListBox.Name = "ComponentsListBox";
-      this.ComponentsListBox.Size = new System.Drawing.Size(198, 277);
+      this.ComponentsListBox.Size = new System.Drawing.Size(198, 445);
       this.ComponentsListBox.TabIndex = 6;
       this.ComponentsListBox.SelectedIndexChanged += new System.EventHandler(this.ComponentsList_SelectedIndexChanged);
       // 
@@ -4488,7 +4653,6 @@ namespace Computer_house
       this.HoldingDocsDatagridView.RowTemplate.Height = 24;
       this.HoldingDocsDatagridView.Size = new System.Drawing.Size(614, 587);
       this.HoldingDocsDatagridView.TabIndex = 0;
-      this.HoldingDocsDatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_RowEnter);
       // 
       // HoldingDocumentID
       // 
@@ -4547,118 +4711,300 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 180;
       // 
-      // textBox1
+      // SDCapacityTextBox
       // 
-      this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.textBox1.Location = new System.Drawing.Point(260, 197);
-      this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(331, 25);
-      this.textBox1.TabIndex = 68;
+      this.SDCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDCapacityTextBox.Location = new System.Drawing.Point(260, 241);
+      this.SDCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDCapacityTextBox.Name = "SDCapacityTextBox";
+      this.SDCapacityTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDCapacityTextBox.TabIndex = 70;
       // 
-      // label134
+      // label138
       // 
-      this.label134.AutoSize = true;
-      this.label134.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label134.Location = new System.Drawing.Point(11, 197);
-      this.label134.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label134.Name = "label134";
-      this.label134.Size = new System.Drawing.Size(153, 25);
-      this.label134.TabIndex = 67;
-      this.label134.Text = "Наименование";
+      this.label138.AutoSize = true;
+      this.label138.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label138.Location = new System.Drawing.Point(11, 241);
+      this.label138.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label138.Name = "label138";
+      this.label138.Size = new System.Drawing.Size(157, 25);
+      this.label138.TabIndex = 69;
+      this.label138.Text = "Объём / буфер";
       // 
-      // button1
+      // label139
       // 
-      this.button1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button1.Location = new System.Drawing.Point(499, 161);
-      this.button1.Margin = new System.Windows.Forms.Padding(2);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(93, 28);
-      this.button1.TabIndex = 66;
-      this.button1.Text = "Поиск";
-      this.button1.UseVisualStyleBackColor = true;
+      this.label139.AutoSize = true;
+      this.label139.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label139.Location = new System.Drawing.Point(349, 243);
+      this.label139.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label139.Name = "label139";
+      this.label139.Size = new System.Drawing.Size(39, 21);
+      this.label139.TabIndex = 71;
+      this.label139.Text = "Гб /";
       // 
-      // textBox2
+      // SDBufferTextBox
       // 
-      this.textBox2.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.textBox2.Location = new System.Drawing.Point(260, 162);
-      this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-      this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(234, 25);
-      this.textBox2.TabIndex = 65;
+      this.SDBufferTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDBufferTextBox.Location = new System.Drawing.Point(391, 241);
+      this.SDBufferTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDBufferTextBox.Name = "SDBufferTextBox";
+      this.SDBufferTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDBufferTextBox.TabIndex = 72;
       // 
-      // label137
+      // label140
       // 
-      this.label137.AutoSize = true;
-      this.label137.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label137.Location = new System.Drawing.Point(13, 163);
-      this.label137.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label137.Name = "label137";
-      this.label137.Size = new System.Drawing.Size(149, 25);
-      this.label137.TabIndex = 64;
-      this.label137.Text = "ID накопителя";
+      this.label140.AutoSize = true;
+      this.label140.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label140.Location = new System.Drawing.Point(481, 243);
+      this.label140.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label140.Name = "label140";
+      this.label140.Size = new System.Drawing.Size(34, 21);
+      this.label140.TabIndex = 93;
+      this.label140.Text = "Мб";
       // 
-      // radioButton1
+      // label141
       // 
-      this.radioButton1.AutoSize = true;
-      this.radioButton1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButton1.Location = new System.Drawing.Point(488, 109);
-      this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
-      this.radioButton1.Name = "radioButton1";
-      this.radioButton1.Size = new System.Drawing.Size(100, 25);
-      this.radioButton1.TabIndex = 63;
-      this.radioButton1.TabStop = true;
-      this.radioButton1.Text = "Изменить";
-      this.radioButton1.UseVisualStyleBackColor = true;
+      this.label141.AutoSize = true;
+      this.label141.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label141.Location = new System.Drawing.Point(14, 280);
+      this.label141.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label141.Name = "label141";
+      this.label141.Size = new System.Drawing.Size(255, 25);
+      this.label141.TabIndex = 95;
+      this.label141.Text = "Интерфейс подключения";
       // 
-      // radioButton2
+      // SDConnectionInterfaceComboBox
       // 
-      this.radioButton2.AutoSize = true;
-      this.radioButton2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButton2.Location = new System.Drawing.Point(489, 16);
-      this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
-      this.radioButton2.Name = "radioButton2";
-      this.radioButton2.Size = new System.Drawing.Size(99, 25);
-      this.radioButton2.TabIndex = 62;
-      this.radioButton2.TabStop = true;
-      this.radioButton2.Text = "Добавить";
-      this.radioButton2.UseVisualStyleBackColor = true;
+      this.SDConnectionInterfaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.SDConnectionInterfaceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.SDConnectionInterfaceComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDConnectionInterfaceComboBox.FormattingEnabled = true;
+      this.SDConnectionInterfaceComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+      this.SDConnectionInterfaceComboBox.Location = new System.Drawing.Point(282, 280);
+      this.SDConnectionInterfaceComboBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDConnectionInterfaceComboBox.Name = "SDConnectionInterfaceComboBox";
+      this.SDConnectionInterfaceComboBox.Size = new System.Drawing.Size(308, 25);
+      this.SDConnectionInterfaceComboBox.TabIndex = 94;
       // 
-      // dataGridView1
+      // SDFormFactorComboBox
       // 
-      this.dataGridView1.AllowUserToAddRows = false;
-      this.dataGridView1.AllowUserToDeleteRows = false;
-      this.dataGridView1.AllowUserToOrderColumns = true;
-      this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-      this.dataGridView1.Location = new System.Drawing.Point(19, 16);
-      this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-      this.dataGridView1.MultiSelect = false;
-      this.dataGridView1.Name = "dataGridView1";
-      this.dataGridView1.ReadOnly = true;
-      this.dataGridView1.RowHeadersWidth = 51;
-      this.dataGridView1.RowTemplate.Height = 24;
-      this.dataGridView1.Size = new System.Drawing.Size(423, 119);
-      this.dataGridView1.TabIndex = 61;
+      this.SDFormFactorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.SDFormFactorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.SDFormFactorComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDFormFactorComboBox.FormattingEnabled = true;
+      this.SDFormFactorComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+      this.SDFormFactorComboBox.Location = new System.Drawing.Point(166, 323);
+      this.SDFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDFormFactorComboBox.Name = "SDFormFactorComboBox";
+      this.SDFormFactorComboBox.Size = new System.Drawing.Size(200, 25);
+      this.SDFormFactorComboBox.TabIndex = 97;
       // 
-      // dataGridViewTextBoxColumn9
+      // label142
       // 
-      this.dataGridViewTextBoxColumn9.HeaderText = "ID";
-      this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-      this.dataGridViewTextBoxColumn9.ReadOnly = true;
-      this.dataGridViewTextBoxColumn9.Width = 150;
+      this.label142.AutoSize = true;
+      this.label142.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label142.Location = new System.Drawing.Point(14, 323);
+      this.label142.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label142.Name = "label142";
+      this.label142.Size = new System.Drawing.Size(144, 25);
+      this.label142.TabIndex = 96;
+      this.label142.Text = "Форм-фактор";
       // 
-      // dataGridViewTextBoxColumn10
+      // checkBox1
       // 
-      this.dataGridViewTextBoxColumn10.HeaderText = "Наименование";
-      this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-      this.dataGridViewTextBoxColumn10.ReadOnly = true;
-      this.dataGridViewTextBoxColumn10.Width = 250;
+      this.checkBox1.AutoSize = true;
+      this.checkBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBox1.Location = new System.Drawing.Point(370, 323);
+      this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+      this.checkBox1.Name = "checkBox1";
+      this.checkBox1.Size = new System.Drawing.Size(222, 25);
+      this.checkBox1.TabIndex = 98;
+      this.checkBox1.Text = "Аппаратное шифрование";
+      this.checkBox1.UseVisualStyleBackColor = true;
+      // 
+      // label143
+      // 
+      this.label143.AutoSize = true;
+      this.label143.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label143.Location = new System.Drawing.Point(541, 366);
+      this.label143.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label143.Name = "label143";
+      this.label143.Size = new System.Drawing.Size(48, 21);
+      this.label143.TabIndex = 103;
+      this.label143.Text = "Мб/c";
+      // 
+      // SDSeqWriteSpeedTextBox
+      // 
+      this.SDSeqWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDSeqWriteSpeedTextBox.Location = new System.Drawing.Point(471, 364);
+      this.SDSeqWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDSeqWriteSpeedTextBox.Name = "SDSeqWriteSpeedTextBox";
+      this.SDSeqWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDSeqWriteSpeedTextBox.TabIndex = 102;
+      // 
+      // label144
+      // 
+      this.label144.AutoSize = true;
+      this.label144.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label144.Location = new System.Drawing.Point(447, 366);
+      this.label144.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label144.Name = "label144";
+      this.label144.Size = new System.Drawing.Size(16, 21);
+      this.label144.TabIndex = 101;
+      this.label144.Text = "/";
+      // 
+      // SDSeqReadSpeedTextBox
+      // 
+      this.SDSeqReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDSeqReadSpeedTextBox.Location = new System.Drawing.Point(374, 365);
+      this.SDSeqReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDSeqReadSpeedTextBox.Name = "SDSeqReadSpeedTextBox";
+      this.SDSeqReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDSeqReadSpeedTextBox.TabIndex = 100;
+      // 
+      // label145
+      // 
+      this.label145.AutoSize = true;
+      this.label145.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label145.Location = new System.Drawing.Point(14, 365);
+      this.label145.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label145.Name = "label145";
+      this.label145.Size = new System.Drawing.Size(337, 25);
+      this.label145.TabIndex = 99;
+      this.label145.Text = "Скорость послед. чтения / записи";
+      // 
+      // label146
+      // 
+      this.label146.AutoSize = true;
+      this.label146.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label146.Location = new System.Drawing.Point(541, 406);
+      this.label146.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label146.Name = "label146";
+      this.label146.Size = new System.Drawing.Size(48, 21);
+      this.label146.TabIndex = 108;
+      this.label146.Text = "Мб/c";
+      // 
+      // SDRandWriteSpeedTextBox
+      // 
+      this.SDRandWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDRandWriteSpeedTextBox.Location = new System.Drawing.Point(471, 404);
+      this.SDRandWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDRandWriteSpeedTextBox.Name = "SDRandWriteSpeedTextBox";
+      this.SDRandWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDRandWriteSpeedTextBox.TabIndex = 107;
+      // 
+      // label147
+      // 
+      this.label147.AutoSize = true;
+      this.label147.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label147.Location = new System.Drawing.Point(447, 406);
+      this.label147.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label147.Name = "label147";
+      this.label147.Size = new System.Drawing.Size(16, 21);
+      this.label147.TabIndex = 106;
+      this.label147.Text = "/";
+      // 
+      // SDRandReadSpeedTextBox
+      // 
+      this.SDRandReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDRandReadSpeedTextBox.Location = new System.Drawing.Point(374, 405);
+      this.SDRandReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDRandReadSpeedTextBox.Name = "SDRandReadSpeedTextBox";
+      this.SDRandReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDRandReadSpeedTextBox.TabIndex = 105;
+      // 
+      // label148
+      // 
+      this.label148.AutoSize = true;
+      this.label148.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label148.Location = new System.Drawing.Point(14, 405);
+      this.label148.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label148.Name = "label148";
+      this.label148.Size = new System.Drawing.Size(313, 25);
+      this.label148.TabIndex = 104;
+      this.label148.Text = "Скорость случ. чтения / записи";
+      // 
+      // label149
+      // 
+      this.label149.AutoSize = true;
+      this.label149.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label149.Location = new System.Drawing.Point(550, 449);
+      this.label149.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label149.Name = "label149";
+      this.label149.Size = new System.Drawing.Size(40, 21);
+      this.label149.TabIndex = 113;
+      this.label149.Text = "ММ";
+      // 
+      // SDThicknessTextBox
+      // 
+      this.SDThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDThicknessTextBox.Location = new System.Drawing.Point(460, 447);
+      this.SDThicknessTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDThicknessTextBox.Name = "SDThicknessTextBox";
+      this.SDThicknessTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDThicknessTextBox.TabIndex = 112;
+      // 
+      // label150
+      // 
+      this.label150.AutoSize = true;
+      this.label150.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label150.Location = new System.Drawing.Point(418, 449);
+      this.label150.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label150.Name = "label150";
+      this.label150.Size = new System.Drawing.Size(38, 21);
+      this.label150.TabIndex = 111;
+      this.label150.Text = "Вт /";
+      // 
+      // SDConsumptionTextBox
+      // 
+      this.SDConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDConsumptionTextBox.Location = new System.Drawing.Point(329, 447);
+      this.SDConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDConsumptionTextBox.Name = "SDConsumptionTextBox";
+      this.SDConsumptionTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDConsumptionTextBox.TabIndex = 110;
+      // 
+      // label151
+      // 
+      this.label151.AutoSize = true;
+      this.label151.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label151.Location = new System.Drawing.Point(14, 447);
+      this.label151.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label151.Name = "label151";
+      this.label151.Size = new System.Drawing.Size(305, 25);
+      this.label151.TabIndex = 109;
+      this.label151.Text = "Энергопотребление / толщина";
+      // 
+      // ActWithSD
+      // 
+      this.ActWithSD.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ActWithSD.Location = new System.Drawing.Point(16, 507);
+      this.ActWithSD.Margin = new System.Windows.Forms.Padding(2);
+      this.ActWithSD.Name = "ActWithSD";
+      this.ActWithSD.Size = new System.Drawing.Size(572, 38);
+      this.ActWithSD.TabIndex = 115;
+      this.ActWithSD.Text = "button3";
+      this.ActWithSD.UseVisualStyleBackColor = true;
       // 
       // ComponentsOptionsForm
       // 
@@ -4704,11 +5050,11 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.PSU_DatagridView)).EndInit();
       this.tabPage10.ResumeLayout(false);
       this.tabPage10.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.SD_DatagridView)).EndInit();
       this.tabPage2.ResumeLayout(false);
       this.tabPage2.PerformLayout();
       this.tabPage12.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
 
         }
@@ -5041,15 +5387,41 @@ namespace Computer_house
         internal System.Windows.Forms.Button ActWithPSU;
         internal System.Windows.Forms.Label label136;
         internal System.Windows.Forms.Label label128;
-    internal System.Windows.Forms.TextBox textBox1;
+    internal System.Windows.Forms.TextBox SDNameTextBox;
     internal System.Windows.Forms.Label label134;
-    internal System.Windows.Forms.Button button1;
-    internal System.Windows.Forms.TextBox textBox2;
+    internal System.Windows.Forms.Button FindSDIDButton;
+    internal System.Windows.Forms.TextBox SDIDTextBox;
     internal System.Windows.Forms.Label label137;
-    internal System.Windows.Forms.RadioButton radioButton1;
-    internal System.Windows.Forms.RadioButton radioButton2;
-    internal System.Windows.Forms.DataGridView dataGridView1;
+    internal System.Windows.Forms.RadioButton ChangeSDRadio;
+    internal System.Windows.Forms.RadioButton AddSDRadio;
+    internal System.Windows.Forms.DataGridView SD_DatagridView;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+    internal System.Windows.Forms.Label label139;
+    internal System.Windows.Forms.TextBox SDCapacityTextBox;
+    internal System.Windows.Forms.Label label138;
+    internal System.Windows.Forms.Label label140;
+    internal System.Windows.Forms.TextBox SDBufferTextBox;
+    internal System.Windows.Forms.Label label141;
+    internal System.Windows.Forms.ComboBox SDConnectionInterfaceComboBox;
+    internal System.Windows.Forms.ComboBox SDFormFactorComboBox;
+    internal System.Windows.Forms.Label label142;
+    internal System.Windows.Forms.CheckBox checkBox1;
+    internal System.Windows.Forms.Label label146;
+    internal System.Windows.Forms.TextBox SDRandWriteSpeedTextBox;
+    internal System.Windows.Forms.Label label147;
+    internal System.Windows.Forms.TextBox SDRandReadSpeedTextBox;
+    internal System.Windows.Forms.Label label148;
+    internal System.Windows.Forms.Label label143;
+    internal System.Windows.Forms.TextBox SDSeqWriteSpeedTextBox;
+    internal System.Windows.Forms.Label label144;
+    internal System.Windows.Forms.TextBox SDSeqReadSpeedTextBox;
+    internal System.Windows.Forms.Label label145;
+    internal System.Windows.Forms.Label label149;
+    internal System.Windows.Forms.TextBox SDThicknessTextBox;
+    internal System.Windows.Forms.Label label150;
+    internal System.Windows.Forms.TextBox SDConsumptionTextBox;
+    internal System.Windows.Forms.Label label151;
+    internal System.Windows.Forms.Button ActWithSD;
   }
 }

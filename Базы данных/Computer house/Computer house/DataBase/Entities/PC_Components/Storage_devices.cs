@@ -46,6 +46,10 @@ namespace Computer_house.DataBase.Entities.PC_Options
         Name = storageDevice.Name;
         Interface_ID = storageDevice.Interface_ID;
         Form_factor_ID = storageDevice.Form_factor_ID;
+        FormFactor = (from b in db.Form_factors
+                      where b.Device_type == "SD" && b.ID == Form_factor_ID
+                      select b.Name).Single();
+        ConnectionInterface = db.Connection_interfaces.Single(i => i.ID == Interface_ID).Name;
         Buffer = storageDevice.Buffer;
         Hardware_encryption = storageDevice.Hardware_encryption;
         Sequential_read_speed = storageDevice.Sequential_read_speed;
