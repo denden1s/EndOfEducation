@@ -1,5 +1,6 @@
 ﻿using Computer_house.DataBase.Entities;
 using Computer_house.DataBase.Entities.PC_Components;
+using Computer_house.DataBase.Entities.PC_Options;
 using Computer_house.DataBase.Entities.Warehouse;
 using Computer_house.OtherClasses;
 using System;
@@ -23,6 +24,7 @@ namespace Computer_house
     private List<Motherboard> Motherboards = new List<Motherboard>();
     private List<PSU> Psus = new List<PSU>();
     private List<RAM> Rams = new List<RAM>();
+    private List<Storage_devices> StorageDevices = new List<Storage_devices>();
     private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
     private List<Products_location> ProductLocationsList = new List<Products_location>();
     private List<Mediator> Mediators = new List<Mediator>();
@@ -79,6 +81,7 @@ namespace Computer_house
       Task.Run(() => LoadInfoAboutRAM());
       Task.Run(() => LoadInfoAboutCooling());
       Task.Run(() => LoadInfoAboutPSU());
+      Task.Run(() => LoadInfoAboutSD());
 
       LoadInfoFromDBAndView();
       AllInfoDatagridView.Rows.Clear();
@@ -213,6 +216,22 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
+    private void LoadInfoAboutSD()
+    {
+      try
+      {
+        StorageDevices.Clear();
+        using(ApplicationContext db = new ApplicationContext())
+          StorageDevices = db.Storage_devices.ToList();
+
+        foreach(Storage_devices s in StorageDevices)
+          s.GetDataFromDB();
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
     private void LoadProductLocationFromDB()
     {
       try
@@ -341,9 +360,21 @@ namespace Computer_house
               $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / " +
               $"{Convert.ToString(currentGPU.Height)} мм;\n";
             break;
-          case "HDD":
-
-              break;
+          case "SD":
+            Storage_devices currentStorage = StorageDevices.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+            AllProductInfo.Text = $"ID товара: {currentStorage.ID};\n" +
+              $"Наименование: {currentStorage.Name};\n" +
+              $"Объём / буфер: {currentStorage.Capacity} Гб / {currentStorage.Buffer} Мб;\n" +
+              $"Интерфейс подключения: {currentStorage.ConnectionInterface};\n" +
+              $"Форм-фактор: {currentStorage.FormFactor};\n" +
+              $"Скорость послед. чтения / записи: {currentStorage.Sequential_read_speed} / " +
+              $"{currentStorage.Sequeintial_write_speed} Мб/c;\n" +
+              $"Скорость случ. чтения / записи: {currentStorage.Random_read_speed} / {currentStorage.Random_write_speed} Мб/c;\n" +
+              $"Энергопотребление / толщина: {currentStorage.Consumption} Вт / {Math.Round(currentStorage.Thickness, 2)} мм\n" +
+              $"Аппаратное шифрование: ";
+            AllProductInfo.Text += currentStorage.Hardware_encryption ? "Да" : "Нет";
+            AllProductInfo.Text += "\n";
+            break;
           case "Motherboard":
             Motherboard currentMotherboard = Motherboards.Single(i => i.Product_ID == warehouseInfo.Product_ID);
             AllProductInfo.Text = $"ID товара: {currentMotherboard.ID};\n" +
@@ -415,10 +446,7 @@ namespace Computer_house
                 AllProductInfo.Text += i.elem + "; ";
 
             AllProductInfo.Text += "\n";
-            break;
-          case "SSD":
-                    
-            break;
+            break; 
           case "Case":
             Case currentCase = Cases.Single(i => i.Product_ID == warehouseInfo.Product_ID);
             AllProductInfo.Text = $"ID товара: {currentCase.ID};\n" +
@@ -488,8 +516,8 @@ namespace Computer_house
 
     private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, 
-        WarehouseInformationList, Cpus, Gpus, Motherboards, Cases, Rams, CoolingSystems, Psus);
+      ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, Cpus, Gpus, 
+        Motherboards, Cases, Rams, CoolingSystems, Psus, StorageDevices);
       this.Hide();
       addComponentsOptionsForm.Show();
     }
@@ -518,21 +546,17 @@ namespace Computer_house
         AllInfoDatagridView.Rows.Clear();
         AllProductInfo.Clear();
         if(SystemFunctions.IsSetFilterRadio(CPUViewRadio, GPUViewRadio, MothersViewRadio, CasesViewRadio, RAMViewRadio,
-          CoolingSystemViewRadio, PSUViewRadio))
+          CoolingSystemViewRadio, PSUViewRadio, SDViewRadio))
         {
           if(SearchInfo.TextLength > 0)
-          {
             SearchInfoWithFilter();//поиск по фильтрам
-          }
           else
             ViewInfoInDataGrid(FilteredInfo);
         }
         else
         {
           if(SearchInfo.TextLength > 0)
-          {
             SearchInfoInWarehouse();//поиск без фильтров
-          }
           else
             ViewInfoInDataGrid(WarehouseInformationList);
         } 
@@ -835,10 +859,20 @@ namespace Computer_house
     private void ResetFilters_Click(object sender, EventArgs e)
     {
       SystemFunctions.UnsetRadio(CPUViewRadio, GPUViewRadio, MothersViewRadio,
-       CasesViewRadio, RAMViewRadio, CoolingSystemViewRadio, PSUViewRadio);
+       CasesViewRadio, RAMViewRadio, CoolingSystemViewRadio, PSUViewRadio, SDViewRadio);
       ViewInfoInDataGrid(WarehouseInformationList);
       AllProductInfo.Clear();
       ResetFilters.Enabled = false;
+    }
+
+    private void SDViewRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(SDViewRadio.Checked)
+      {
+        searchComponent = "SD";
+        FilteredInfo = FilterInfo();
+      }
+      ViewInfoAfterChangeRadio();
     }
   }
 }

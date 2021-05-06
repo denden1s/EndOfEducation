@@ -55,6 +55,7 @@ namespace Computer_house
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.выйтиИзУчётнойЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.label1 = new System.Windows.Forms.Label();
+      this.SDViewRadio = new System.Windows.Forms.RadioButton();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).BeginInit();
@@ -65,6 +66,7 @@ namespace Computer_house
       // panel1
       // 
       this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      this.panel1.Controls.Add(this.SDViewRadio);
       this.panel1.Controls.Add(this.PSUViewRadio);
       this.panel1.Controls.Add(this.CoolingSystemViewRadio);
       this.panel1.Controls.Add(this.RAMViewRadio);
@@ -85,7 +87,7 @@ namespace Computer_house
       this.PSUViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.PSUViewRadio.AutoSize = true;
       this.PSUViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.PSUViewRadio.Location = new System.Drawing.Point(10, 425);
+      this.PSUViewRadio.Location = new System.Drawing.Point(10, 390);
       this.PSUViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.PSUViewRadio.Name = "PSUViewRadio";
       this.PSUViewRadio.Size = new System.Drawing.Size(49, 25);
@@ -100,7 +102,7 @@ namespace Computer_house
       this.CoolingSystemViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.CoolingSystemViewRadio.AutoSize = true;
       this.CoolingSystemViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CoolingSystemViewRadio.Location = new System.Drawing.Point(12, 369);
+      this.CoolingSystemViewRadio.Location = new System.Drawing.Point(12, 333);
       this.CoolingSystemViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.CoolingSystemViewRadio.Name = "CoolingSystemViewRadio";
       this.CoolingSystemViewRadio.Size = new System.Drawing.Size(121, 25);
@@ -115,7 +117,7 @@ namespace Computer_house
       this.RAMViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.RAMViewRadio.AutoSize = true;
       this.RAMViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.RAMViewRadio.Location = new System.Drawing.Point(12, 306);
+      this.RAMViewRadio.Location = new System.Drawing.Point(12, 276);
       this.RAMViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.RAMViewRadio.Name = "RAMViewRadio";
       this.RAMViewRadio.Size = new System.Drawing.Size(58, 25);
@@ -143,7 +145,7 @@ namespace Computer_house
       this.CasesViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.CasesViewRadio.AutoSize = true;
       this.CasesViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CasesViewRadio.Location = new System.Drawing.Point(12, 243);
+      this.CasesViewRadio.Location = new System.Drawing.Point(12, 219);
       this.CasesViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.CasesViewRadio.Name = "CasesViewRadio";
       this.CasesViewRadio.Size = new System.Drawing.Size(90, 25);
@@ -158,7 +160,7 @@ namespace Computer_house
       this.MothersViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.MothersViewRadio.AutoSize = true;
       this.MothersViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.MothersViewRadio.Location = new System.Drawing.Point(12, 180);
+      this.MothersViewRadio.Location = new System.Drawing.Point(12, 162);
       this.MothersViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.MothersViewRadio.Name = "MothersViewRadio";
       this.MothersViewRadio.Size = new System.Drawing.Size(113, 25);
@@ -173,7 +175,7 @@ namespace Computer_house
       this.GPUViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.GPUViewRadio.AutoSize = true;
       this.GPUViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.GPUViewRadio.Location = new System.Drawing.Point(12, 117);
+      this.GPUViewRadio.Location = new System.Drawing.Point(12, 105);
       this.GPUViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.GPUViewRadio.Name = "GPUViewRadio";
       this.GPUViewRadio.Size = new System.Drawing.Size(119, 25);
@@ -188,7 +190,7 @@ namespace Computer_house
       this.CPUViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.CPUViewRadio.AutoSize = true;
       this.CPUViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CPUViewRadio.Location = new System.Drawing.Point(12, 54);
+      this.CPUViewRadio.Location = new System.Drawing.Point(12, 48);
       this.CPUViewRadio.Margin = new System.Windows.Forms.Padding(2);
       this.CPUViewRadio.Name = "CPUViewRadio";
       this.CPUViewRadio.Size = new System.Drawing.Size(127, 25);
@@ -381,6 +383,21 @@ namespace Computer_house
       this.label1.TabIndex = 5;
       this.label1.Text = "Поиск:";
       // 
+      // SDViewRadio
+      // 
+      this.SDViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
+      this.SDViewRadio.AutoSize = true;
+      this.SDViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.SDViewRadio.Location = new System.Drawing.Point(10, 447);
+      this.SDViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.SDViewRadio.Name = "SDViewRadio";
+      this.SDViewRadio.Size = new System.Drawing.Size(118, 25);
+      this.SDViewRadio.TabIndex = 26;
+      this.SDViewRadio.TabStop = true;
+      this.SDViewRadio.Text = "Накопители";
+      this.SDViewRadio.UseVisualStyleBackColor = true;
+      this.SDViewRadio.CheckedChanged += new System.EventHandler(this.SDViewRadio_CheckedChanged);
+      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,5 +461,6 @@ namespace Computer_house
     internal System.Windows.Forms.RadioButton CasesViewRadio;
     internal System.Windows.Forms.RadioButton CoolingSystemViewRadio;
     internal System.Windows.Forms.RadioButton PSUViewRadio;
+    internal System.Windows.Forms.RadioButton SDViewRadio;
   }
 }

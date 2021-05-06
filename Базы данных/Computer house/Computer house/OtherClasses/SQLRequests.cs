@@ -897,6 +897,7 @@ namespace Computer_house.OtherClasses
       catch (Exception ex)
       {
         MessageBox.Show(ex.Message);
+        MessageBox.Show(ex.InnerException.Message);
       }
     }
 
@@ -1061,6 +1062,91 @@ namespace Computer_house.OtherClasses
         //и добавить по int-товому id в warehouseinfo с количеством 0
       }
       catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+    public static void AddSD(Storage_devices _storageDevice)
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          db.Storage_devices.Add(_storageDevice);
+          db.SaveChanges();
+        }
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+    public static void ChangeSD(Storage_devices _storageDevice)
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          db.Storage_devices.Update(_storageDevice);
+          db.SaveChanges();
+        }
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+    public static void EditSDMediator(Storage_devices _sd, string _method)
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          Mediator mediator = new Mediator();
+          mediator.Components_type = "SD";
+          mediator.SD_ID = _sd.ID;
+          if(_method == "Add")
+          {
+            db.Mediator.Add(mediator);
+            db.SaveChanges();
+          }
+          int tempMediatorID = (from b in db.Mediator
+                                where b.Components_type == "SD" && b.SD_ID == _sd.ID
+                                select b.ID).SingleOrDefault();
+          Warehouse_info info = new Warehouse_info(tempMediatorID, 0);
+          if(_method == "Add")
+          {
+            db.Warehouse_info.Add(info);
+            db.Price_list.Add(new Price_list(tempMediatorID, 0, 0));
+          }
+          //настроить возможные варианты если происходит добавление или изменение
+          Memory_capacity capacity = new Memory_capacity(info.Product_ID, _sd.Capacity);
+          if(_method == "Add")
+            db.Memory_capacity.Add(capacity);
+          else if(_method == "Edit")
+            db.Memory_capacity.Update(capacity);
+
+          Energy_consumption consumption = new Energy_consumption(info.Product_ID, _sd.Consumption);
+          if(_method == "Add")
+            db.Energy_consumption.Add(consumption);
+          else if(_method == "Edit")
+            db.Energy_consumption.Update(consumption);
+
+          Sizes_of_components thickness = new Sizes_of_components(info.Product_ID);
+          thickness.Thickness = _sd.Thickness;
+          if(_method == "Add")
+            db.Sizes_of_components.Add(thickness);
+          else if(_method == "Edit")
+            db.Sizes_of_components.Update(thickness);
+
+          db.SaveChanges();
+        }
+        //После добавления в медиатор вытянуть этот же объект 
+        //и добавить по int-товому id в warehouseinfo с количеством 0
+      }
+      catch(Exception ex)
       {
         MessageBox.Show(ex.Message);
       }

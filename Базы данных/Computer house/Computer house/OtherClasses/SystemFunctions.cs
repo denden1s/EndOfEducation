@@ -21,6 +21,18 @@ namespace Computer_house.OtherClasses
     //Можно использовать общий метод выделив массивы в главной форме
 
     //Раздел очистки полей
+    public static void ClearSDTextBoxes(ComponentsOptionsForm componentsOptions)
+    {
+      TextBox[] textBoxes = {
+        componentsOptions.SDIDTextBox, componentsOptions.SDNameTextBox, componentsOptions.SDCapacityTextBox,
+        componentsOptions.SDBufferTextBox, componentsOptions.SDSeqReadSpeedTextBox, componentsOptions.SDSeqWriteSpeedTextBox,
+        componentsOptions.SDRandReadSpeedTextBox, componentsOptions.SDRandWriteSpeedTextBox,
+        componentsOptions.SDConsumptionTextBox, componentsOptions.SDThicknessTextBox
+      };
+      ComboBox[] comboBoxes = { componentsOptions.SDConnectionInterfaceComboBox, componentsOptions.SDFormFactorComboBox };
+      CheckBox[] checkBoxes = { componentsOptions.SDEncryptionCheckBox };
+      Clear(textBoxes, comboBoxes, checkBoxes);
+    }
     public static void ClearPSUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {
@@ -35,7 +47,6 @@ namespace Computer_house.OtherClasses
       CheckBox[] checkBoxes = {componentsOptions.PSUPowerUSBCheckBox, componentsOptions.PSUModularityCheckBox};
       Clear(textBoxes, comboBoxes, checkBoxes);
     }
-
     public static void ClearCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = { 
@@ -51,7 +62,6 @@ namespace Computer_house.OtherClasses
       };
       Clear(textBoxes, comboBoxes, checkBoxes);
     }
-
     public static void ClearRAMTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
@@ -79,7 +89,6 @@ namespace Computer_house.OtherClasses
       componentsOptions.MotherboardSLISupportCheckBox.Checked = false;
       Clear(textBoxes, comboBoxes);
     }
-
     public static void ClearCaseTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = 
@@ -101,7 +110,6 @@ namespace Computer_house.OtherClasses
       componentsOptions.CaseDustFiltersCheckBox.Checked = false;
       componentsOptions.CasesGamingCheckBox.Checked = false;
     }
-
     public static void ClearGPUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes =
@@ -122,7 +130,6 @@ namespace Computer_house.OtherClasses
       componentsOptions.GPUSLISupportCheckBox.Checked = false;
       Clear(textBoxes, comboboxes);
     }
-
     public static void ClearCPUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes =
@@ -162,6 +169,17 @@ namespace Computer_house.OtherClasses
 
 
     //Раздел проверки текстовых полей на нулевые значения
+    public static bool CheckNullForSDTextBoxes(ComponentsOptionsForm componentsOptions)
+    {
+      TextBox[] textBoxes = {
+        componentsOptions.SDIDTextBox, componentsOptions.SDNameTextBox, componentsOptions.SDCapacityTextBox,
+        componentsOptions.SDBufferTextBox, componentsOptions.SDSeqReadSpeedTextBox, componentsOptions.SDSeqWriteSpeedTextBox,
+        componentsOptions.SDRandReadSpeedTextBox, componentsOptions.SDRandWriteSpeedTextBox,
+        componentsOptions.SDConsumptionTextBox, componentsOptions.SDThicknessTextBox
+      };
+      ComboBox[] comboBoxes = { componentsOptions.SDConnectionInterfaceComboBox, componentsOptions.SDFormFactorComboBox };
+      return CheckNullTextBoxes(textBoxes, comboBoxes);
+    }
     public static bool CheckNullForPSUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {
@@ -176,7 +194,6 @@ namespace Computer_house.OtherClasses
 
       return CheckNullTextBoxes(textBoxes, comboBoxes);
     }
-
     public static bool CheckNullForCoolingSystemTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {
@@ -189,7 +206,6 @@ namespace Computer_house.OtherClasses
       ComboBox[] comboBoxes = { componentsOptions.CoolingSystemPowerTypeComboBox };
       return CheckNullTextBoxes(textBoxes, comboBoxes);
     }
-
     public static bool CheckNullForRAMTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
@@ -199,7 +215,6 @@ namespace Computer_house.OtherClasses
       ComboBox[] comboBoxes = { componentsOptions.RAMTypeComboBox, componentsOptions.RAMFrequencyComboBox };
       return CheckNullTextBoxes(textBoxes, comboBoxes);
     }
-
     public static bool CheckNullForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes =
@@ -231,7 +246,6 @@ namespace Computer_house.OtherClasses
       };
       return CheckNullTextBoxes(textBoxes, comboBoxes);
     }
-
     public static bool CheckNullForGPUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textboxes =
@@ -250,7 +264,6 @@ namespace Computer_house.OtherClasses
       };
       return CheckNullTextBoxes(textboxes, comboboxes);
     }
-
     public static bool CheckNullForCaseTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {
@@ -273,7 +286,6 @@ namespace Computer_house.OtherClasses
       else
         return true;
     }
-
     private static bool CheckNullTextBoxes(TextBox[] _textBoxes, ComboBox[] _comboBoxes)
     {
       foreach (var i in _textBoxes)
@@ -298,6 +310,19 @@ namespace Computer_house.OtherClasses
 
 
     //Раздел блокировки элементов управления
+    public static void ChangeSDTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
+    {
+      TextBox[] textBoxes = {
+        componentsOptions.SDIDTextBox, componentsOptions.SDNameTextBox, componentsOptions.SDCapacityTextBox,
+        componentsOptions.SDBufferTextBox, componentsOptions.SDSeqReadSpeedTextBox, componentsOptions.SDSeqWriteSpeedTextBox,
+        componentsOptions.SDRandReadSpeedTextBox, componentsOptions.SDRandWriteSpeedTextBox,
+        componentsOptions.SDConsumptionTextBox, componentsOptions.SDThicknessTextBox
+      };
+      ComboBox[] comboBoxes = { componentsOptions.SDConnectionInterfaceComboBox, componentsOptions.SDFormFactorComboBox };
+      CheckBox[] checkBoxes = { componentsOptions.SDEncryptionCheckBox };
+      Control[][] elems = { textBoxes, comboBoxes, checkBoxes };
+      SetEnableBoxes(elems, _status);
+    }
     public static void ChangePSUTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes = {
@@ -315,7 +340,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes, checkBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     public static void ChangeCoolingSystemTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes = {
@@ -331,7 +355,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes, checkBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     public static void ChangeRAMTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes = { componentsOptions.RAMIDTextBox, componentsOptions.RAMNameTextBox,
@@ -345,7 +368,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes, checkBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     public static void ChangeCPUTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes =
@@ -387,7 +409,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     public static void ChangeMotherboardTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes = { componentsOptions.MotherboardIDTextBox, componentsOptions.MotherboardNameTextBox,
@@ -405,7 +426,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     public static void ChangeCaseTextBoxesEnable(ComponentsOptionsForm componentsOptions, bool _status)
     {
       TextBox[] textBoxes =
@@ -427,7 +447,6 @@ namespace Computer_house.OtherClasses
       Control[][] elems = { textBoxes, comboBoxes, checkBoxes };
       SetEnableBoxes(elems, _status);
     }
-
     private static void SetEnableBoxes(Control[][] elements, bool status)
     {
       foreach(Control[] c in elements)
@@ -438,6 +457,22 @@ namespace Computer_house.OtherClasses
 
 
     //Раздел проверки на возможность преобразования к числовому типу
+    public static bool CheckNumConvertForSDTextBoxes(ComponentsOptionsForm componentsOptions)
+    {
+      TextBox[] textBoxes = {
+        componentsOptions.SDCapacityTextBox, componentsOptions.SDBufferTextBox, 
+        componentsOptions.SDSeqReadSpeedTextBox, componentsOptions.SDSeqWriteSpeedTextBox,
+        componentsOptions.SDRandReadSpeedTextBox, componentsOptions.SDRandWriteSpeedTextBox,
+        componentsOptions.SDConsumptionTextBox
+      };
+      float res;
+      bool isFloat = float.TryParse(componentsOptions.SDThicknessTextBox.Text, out res);
+      //true - если распарсит
+      if(!isFloat)
+        return false;
+      else
+        return CheckIntConvert(textBoxes);
+    }
     public static bool CheckNumConvertForPSUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = { 
@@ -461,8 +496,6 @@ namespace Computer_house.OtherClasses
       else
         return CheckIntConvert(textBoxes);
     }
-
-
     public static bool CheckNumConvertForRAMTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {componentsOptions.RAMKitTextBox, componentsOptions.RAMCapacityTextBox};
@@ -475,7 +508,6 @@ namespace Computer_house.OtherClasses
       else
         return CheckIntConvert(textBoxes);
     }
-
     public static bool CheckNumConvertForCPUTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes =
@@ -486,7 +518,6 @@ namespace Computer_house.OtherClasses
       };
       return CheckIntConvert(textBoxes);
     }
-
     public static bool CheckNumConvertForCaseTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = {
@@ -515,7 +546,6 @@ namespace Computer_house.OtherClasses
       };
       return (CheckIntConvert(textBoxes));
     }
-
     public static bool CheckNumConvertMotherboardTextBoxes(ComponentsOptionsForm componentsOptions)
     {
       TextBox[] textBoxes = { 
@@ -543,6 +573,13 @@ namespace Computer_house.OtherClasses
 
 
     //Раздел для разного
+
+    //Нужен для отключения кнопок при запуске программы
+    public static void ChangeButtonEnable(bool status, params Button[] buttons)
+    {
+      foreach(Button b in buttons)
+        b.Enabled = status;
+    }
 
     //Нужен для проверки выбран ли один из фильтров поиска
     public static bool IsSetFilterRadio(params RadioButton[] radioButtons)

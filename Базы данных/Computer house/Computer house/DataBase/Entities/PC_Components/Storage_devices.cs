@@ -2,11 +2,8 @@
 
 namespace Computer_house.DataBase.Entities.PC_Options
 {
-  public class Storage_devices
+  public class Storage_devices : Product
   {
-
-    public string ID { get; set; }
-    public string Name { get; set; }
     public int Interface_ID { get; set; }
     public int Form_factor_ID { get; set; }
     public int Buffer { get; set; }

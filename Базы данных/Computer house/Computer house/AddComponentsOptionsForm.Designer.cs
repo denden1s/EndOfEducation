@@ -335,6 +335,32 @@ namespace Computer_house
       this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage10 = new System.Windows.Forms.TabPage();
+      this.ActWithSD = new System.Windows.Forms.Button();
+      this.label149 = new System.Windows.Forms.Label();
+      this.SDThicknessTextBox = new System.Windows.Forms.TextBox();
+      this.label150 = new System.Windows.Forms.Label();
+      this.SDConsumptionTextBox = new System.Windows.Forms.TextBox();
+      this.label151 = new System.Windows.Forms.Label();
+      this.label146 = new System.Windows.Forms.Label();
+      this.SDRandWriteSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label147 = new System.Windows.Forms.Label();
+      this.SDRandReadSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label148 = new System.Windows.Forms.Label();
+      this.label143 = new System.Windows.Forms.Label();
+      this.SDSeqWriteSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label144 = new System.Windows.Forms.Label();
+      this.SDSeqReadSpeedTextBox = new System.Windows.Forms.TextBox();
+      this.label145 = new System.Windows.Forms.Label();
+      this.SDEncryptionCheckBox = new System.Windows.Forms.CheckBox();
+      this.SDFormFactorComboBox = new System.Windows.Forms.ComboBox();
+      this.label142 = new System.Windows.Forms.Label();
+      this.label141 = new System.Windows.Forms.Label();
+      this.SDConnectionInterfaceComboBox = new System.Windows.Forms.ComboBox();
+      this.label140 = new System.Windows.Forms.Label();
+      this.SDBufferTextBox = new System.Windows.Forms.TextBox();
+      this.label139 = new System.Windows.Forms.Label();
+      this.SDCapacityTextBox = new System.Windows.Forms.TextBox();
+      this.label138 = new System.Windows.Forms.Label();
       this.SDNameTextBox = new System.Windows.Forms.TextBox();
       this.label134 = new System.Windows.Forms.Label();
       this.FindSDIDButton = new System.Windows.Forms.Button();
@@ -366,32 +392,6 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.SDCapacityTextBox = new System.Windows.Forms.TextBox();
-      this.label138 = new System.Windows.Forms.Label();
-      this.label139 = new System.Windows.Forms.Label();
-      this.SDBufferTextBox = new System.Windows.Forms.TextBox();
-      this.label140 = new System.Windows.Forms.Label();
-      this.label141 = new System.Windows.Forms.Label();
-      this.SDConnectionInterfaceComboBox = new System.Windows.Forms.ComboBox();
-      this.SDFormFactorComboBox = new System.Windows.Forms.ComboBox();
-      this.label142 = new System.Windows.Forms.Label();
-      this.checkBox1 = new System.Windows.Forms.CheckBox();
-      this.label143 = new System.Windows.Forms.Label();
-      this.SDSeqWriteSpeedTextBox = new System.Windows.Forms.TextBox();
-      this.label144 = new System.Windows.Forms.Label();
-      this.SDSeqReadSpeedTextBox = new System.Windows.Forms.TextBox();
-      this.label145 = new System.Windows.Forms.Label();
-      this.label146 = new System.Windows.Forms.Label();
-      this.SDRandWriteSpeedTextBox = new System.Windows.Forms.TextBox();
-      this.label147 = new System.Windows.Forms.Label();
-      this.SDRandReadSpeedTextBox = new System.Windows.Forms.TextBox();
-      this.label148 = new System.Windows.Forms.Label();
-      this.label149 = new System.Windows.Forms.Label();
-      this.SDThicknessTextBox = new System.Windows.Forms.TextBox();
-      this.label150 = new System.Windows.Forms.Label();
-      this.SDConsumptionTextBox = new System.Windows.Forms.TextBox();
-      this.label151 = new System.Windows.Forms.Label();
-      this.ActWithSD = new System.Windows.Forms.Button();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabControl2.SuspendLayout();
@@ -2519,12 +2519,12 @@ namespace Computer_house
       // 
       this.CaseDustFiltersCheckBox.AutoSize = true;
       this.CaseDustFiltersCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CaseDustFiltersCheckBox.Location = new System.Drawing.Point(437, 672);
+      this.CaseDustFiltersCheckBox.Location = new System.Drawing.Point(424, 672);
       this.CaseDustFiltersCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseDustFiltersCheckBox.Name = "CaseDustFiltersCheckBox";
-      this.CaseDustFiltersCheckBox.Size = new System.Drawing.Size(166, 25);
+      this.CaseDustFiltersCheckBox.Size = new System.Drawing.Size(173, 25);
       this.CaseDustFiltersCheckBox.TabIndex = 75;
-      this.CaseDustFiltersCheckBox.Text = "Пылевые фильры";
+      this.CaseDustFiltersCheckBox.Text = "Пылевые фильтры";
       this.CaseDustFiltersCheckBox.UseVisualStyleBackColor = true;
       // 
       // label76
@@ -2655,7 +2655,7 @@ namespace Computer_house
       // 
       this.CaseSoundIsolationCheckBox.AutoSize = true;
       this.CaseSoundIsolationCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CaseSoundIsolationCheckBox.Location = new System.Drawing.Point(456, 634);
+      this.CaseSoundIsolationCheckBox.Location = new System.Drawing.Point(448, 634);
       this.CaseSoundIsolationCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseSoundIsolationCheckBox.Name = "CaseSoundIsolationCheckBox";
       this.CaseSoundIsolationCheckBox.Size = new System.Drawing.Size(144, 25);
@@ -2667,7 +2667,7 @@ namespace Computer_house
       // 
       this.CaseWaterCoolingCheckBox.AutoSize = true;
       this.CaseWaterCoolingCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CaseWaterCoolingCheckBox.Location = new System.Drawing.Point(386, 560);
+      this.CaseWaterCoolingCheckBox.Location = new System.Drawing.Point(378, 560);
       this.CaseWaterCoolingCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseWaterCoolingCheckBox.Name = "CaseWaterCoolingCheckBox";
       this.CaseWaterCoolingCheckBox.Size = new System.Drawing.Size(219, 25);
@@ -2679,7 +2679,7 @@ namespace Computer_house
       // 
       this.CaseCoolerInSetCheckBox.AutoSize = true;
       this.CaseCoolerInSetCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CaseCoolerInSetCheckBox.Location = new System.Drawing.Point(389, 597);
+      this.CaseCoolerInSetCheckBox.Location = new System.Drawing.Point(381, 597);
       this.CaseCoolerInSetCheckBox.Margin = new System.Windows.Forms.Padding(2);
       this.CaseCoolerInSetCheckBox.Name = "CaseCoolerInSetCheckBox";
       this.CaseCoolerInSetCheckBox.Size = new System.Drawing.Size(217, 25);
@@ -3942,7 +3942,7 @@ namespace Computer_house
       // PSUTwelveLineTextBox
       // 
       this.PSUTwelveLineTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.PSUTwelveLineTextBox.Location = new System.Drawing.Point(472, 270);
+      this.PSUTwelveLineTextBox.Location = new System.Drawing.Point(480, 270);
       this.PSUTwelveLineTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUTwelveLineTextBox.Name = "PSUTwelveLineTextBox";
       this.PSUTwelveLineTextBox.Size = new System.Drawing.Size(69, 25);
@@ -3952,7 +3952,7 @@ namespace Computer_house
       // 
       this.label130.AutoSize = true;
       this.label130.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label130.Location = new System.Drawing.Point(451, 271);
+      this.label130.Location = new System.Drawing.Point(459, 271);
       this.label130.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label130.Name = "label130";
       this.label130.Size = new System.Drawing.Size(16, 21);
@@ -3962,7 +3962,7 @@ namespace Computer_house
       // PSUsataCountTextBox
       // 
       this.PSUsataCountTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.PSUsataCountTextBox.Location = new System.Drawing.Point(375, 270);
+      this.PSUsataCountTextBox.Location = new System.Drawing.Point(383, 270);
       this.PSUsataCountTextBox.Margin = new System.Windows.Forms.Padding(2);
       this.PSUsataCountTextBox.Name = "PSUsataCountTextBox";
       this.PSUsataCountTextBox.Size = new System.Drawing.Size(69, 25);
@@ -3972,7 +3972,7 @@ namespace Computer_house
       // 
       this.label129.AutoSize = true;
       this.label129.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label129.Location = new System.Drawing.Point(12, 270);
+      this.label129.Location = new System.Drawing.Point(8, 270);
       this.label129.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label129.Name = "label129";
       this.label129.Size = new System.Drawing.Size(368, 25);
@@ -4072,6 +4072,7 @@ namespace Computer_house
       this.PSUMotherboardPowerTypeComboBox.Name = "PSUMotherboardPowerTypeComboBox";
       this.PSUMotherboardPowerTypeComboBox.Size = new System.Drawing.Size(248, 25);
       this.PSUMotherboardPowerTypeComboBox.TabIndex = 92;
+      this.PSUMotherboardPowerTypeComboBox.Leave += new System.EventHandler(this.PSUMotherboardPowerTypeComboBox_Leave);
       // 
       // PSUModularityCheckBox
       // 
@@ -4303,7 +4304,7 @@ namespace Computer_house
       this.tabPage10.Controls.Add(this.label144);
       this.tabPage10.Controls.Add(this.SDSeqReadSpeedTextBox);
       this.tabPage10.Controls.Add(this.label145);
-      this.tabPage10.Controls.Add(this.checkBox1);
+      this.tabPage10.Controls.Add(this.SDEncryptionCheckBox);
       this.tabPage10.Controls.Add(this.SDFormFactorComboBox);
       this.tabPage10.Controls.Add(this.label142);
       this.tabPage10.Controls.Add(this.label141);
@@ -4328,6 +4329,305 @@ namespace Computer_house
       this.tabPage10.Size = new System.Drawing.Size(601, 786);
       this.tabPage10.TabIndex = 7;
       this.tabPage10.Text = "Накопители";
+      this.tabPage10.Enter += new System.EventHandler(this.tabPage10_Enter);
+      // 
+      // ActWithSD
+      // 
+      this.ActWithSD.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ActWithSD.Location = new System.Drawing.Point(16, 507);
+      this.ActWithSD.Margin = new System.Windows.Forms.Padding(2);
+      this.ActWithSD.Name = "ActWithSD";
+      this.ActWithSD.Size = new System.Drawing.Size(572, 38);
+      this.ActWithSD.TabIndex = 115;
+      this.ActWithSD.Text = "button3";
+      this.ActWithSD.UseVisualStyleBackColor = true;
+      this.ActWithSD.Click += new System.EventHandler(this.ActWithSD_Click);
+      // 
+      // label149
+      // 
+      this.label149.AutoSize = true;
+      this.label149.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label149.Location = new System.Drawing.Point(550, 449);
+      this.label149.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label149.Name = "label149";
+      this.label149.Size = new System.Drawing.Size(40, 21);
+      this.label149.TabIndex = 113;
+      this.label149.Text = "ММ";
+      // 
+      // SDThicknessTextBox
+      // 
+      this.SDThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDThicknessTextBox.Location = new System.Drawing.Point(460, 447);
+      this.SDThicknessTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDThicknessTextBox.Name = "SDThicknessTextBox";
+      this.SDThicknessTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDThicknessTextBox.TabIndex = 112;
+      // 
+      // label150
+      // 
+      this.label150.AutoSize = true;
+      this.label150.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label150.Location = new System.Drawing.Point(418, 449);
+      this.label150.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label150.Name = "label150";
+      this.label150.Size = new System.Drawing.Size(38, 21);
+      this.label150.TabIndex = 111;
+      this.label150.Text = "Вт /";
+      // 
+      // SDConsumptionTextBox
+      // 
+      this.SDConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDConsumptionTextBox.Location = new System.Drawing.Point(329, 447);
+      this.SDConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDConsumptionTextBox.Name = "SDConsumptionTextBox";
+      this.SDConsumptionTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDConsumptionTextBox.TabIndex = 110;
+      // 
+      // label151
+      // 
+      this.label151.AutoSize = true;
+      this.label151.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label151.Location = new System.Drawing.Point(14, 447);
+      this.label151.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label151.Name = "label151";
+      this.label151.Size = new System.Drawing.Size(305, 25);
+      this.label151.TabIndex = 109;
+      this.label151.Text = "Энергопотребление / толщина";
+      // 
+      // label146
+      // 
+      this.label146.AutoSize = true;
+      this.label146.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label146.Location = new System.Drawing.Point(541, 406);
+      this.label146.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label146.Name = "label146";
+      this.label146.Size = new System.Drawing.Size(48, 21);
+      this.label146.TabIndex = 108;
+      this.label146.Text = "Мб/c";
+      // 
+      // SDRandWriteSpeedTextBox
+      // 
+      this.SDRandWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDRandWriteSpeedTextBox.Location = new System.Drawing.Point(471, 404);
+      this.SDRandWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDRandWriteSpeedTextBox.Name = "SDRandWriteSpeedTextBox";
+      this.SDRandWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDRandWriteSpeedTextBox.TabIndex = 107;
+      // 
+      // label147
+      // 
+      this.label147.AutoSize = true;
+      this.label147.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label147.Location = new System.Drawing.Point(447, 406);
+      this.label147.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label147.Name = "label147";
+      this.label147.Size = new System.Drawing.Size(16, 21);
+      this.label147.TabIndex = 106;
+      this.label147.Text = "/";
+      // 
+      // SDRandReadSpeedTextBox
+      // 
+      this.SDRandReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDRandReadSpeedTextBox.Location = new System.Drawing.Point(374, 405);
+      this.SDRandReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDRandReadSpeedTextBox.Name = "SDRandReadSpeedTextBox";
+      this.SDRandReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDRandReadSpeedTextBox.TabIndex = 105;
+      // 
+      // label148
+      // 
+      this.label148.AutoSize = true;
+      this.label148.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label148.Location = new System.Drawing.Point(14, 405);
+      this.label148.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label148.Name = "label148";
+      this.label148.Size = new System.Drawing.Size(313, 25);
+      this.label148.TabIndex = 104;
+      this.label148.Text = "Скорость случ. чтения / записи";
+      // 
+      // label143
+      // 
+      this.label143.AutoSize = true;
+      this.label143.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label143.Location = new System.Drawing.Point(541, 366);
+      this.label143.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label143.Name = "label143";
+      this.label143.Size = new System.Drawing.Size(48, 21);
+      this.label143.TabIndex = 103;
+      this.label143.Text = "Мб/c";
+      // 
+      // SDSeqWriteSpeedTextBox
+      // 
+      this.SDSeqWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDSeqWriteSpeedTextBox.Location = new System.Drawing.Point(471, 364);
+      this.SDSeqWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDSeqWriteSpeedTextBox.Name = "SDSeqWriteSpeedTextBox";
+      this.SDSeqWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDSeqWriteSpeedTextBox.TabIndex = 102;
+      // 
+      // label144
+      // 
+      this.label144.AutoSize = true;
+      this.label144.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label144.Location = new System.Drawing.Point(447, 366);
+      this.label144.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label144.Name = "label144";
+      this.label144.Size = new System.Drawing.Size(16, 21);
+      this.label144.TabIndex = 101;
+      this.label144.Text = "/";
+      // 
+      // SDSeqReadSpeedTextBox
+      // 
+      this.SDSeqReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDSeqReadSpeedTextBox.Location = new System.Drawing.Point(374, 365);
+      this.SDSeqReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDSeqReadSpeedTextBox.Name = "SDSeqReadSpeedTextBox";
+      this.SDSeqReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
+      this.SDSeqReadSpeedTextBox.TabIndex = 100;
+      // 
+      // label145
+      // 
+      this.label145.AutoSize = true;
+      this.label145.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label145.Location = new System.Drawing.Point(14, 365);
+      this.label145.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label145.Name = "label145";
+      this.label145.Size = new System.Drawing.Size(337, 25);
+      this.label145.TabIndex = 99;
+      this.label145.Text = "Скорость послед. чтения / записи";
+      // 
+      // SDEncryptionCheckBox
+      // 
+      this.SDEncryptionCheckBox.AutoSize = true;
+      this.SDEncryptionCheckBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.SDEncryptionCheckBox.Location = new System.Drawing.Point(370, 323);
+      this.SDEncryptionCheckBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDEncryptionCheckBox.Name = "SDEncryptionCheckBox";
+      this.SDEncryptionCheckBox.Size = new System.Drawing.Size(222, 25);
+      this.SDEncryptionCheckBox.TabIndex = 98;
+      this.SDEncryptionCheckBox.Text = "Аппаратное шифрование";
+      this.SDEncryptionCheckBox.UseVisualStyleBackColor = true;
+      // 
+      // SDFormFactorComboBox
+      // 
+      this.SDFormFactorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.SDFormFactorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.SDFormFactorComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDFormFactorComboBox.FormattingEnabled = true;
+      this.SDFormFactorComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+      this.SDFormFactorComboBox.Location = new System.Drawing.Point(166, 323);
+      this.SDFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDFormFactorComboBox.Name = "SDFormFactorComboBox";
+      this.SDFormFactorComboBox.Size = new System.Drawing.Size(200, 25);
+      this.SDFormFactorComboBox.TabIndex = 97;
+      this.SDFormFactorComboBox.Leave += new System.EventHandler(this.SDFormFactorComboBox_Leave);
+      // 
+      // label142
+      // 
+      this.label142.AutoSize = true;
+      this.label142.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label142.Location = new System.Drawing.Point(14, 323);
+      this.label142.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label142.Name = "label142";
+      this.label142.Size = new System.Drawing.Size(144, 25);
+      this.label142.TabIndex = 96;
+      this.label142.Text = "Форм-фактор";
+      // 
+      // label141
+      // 
+      this.label141.AutoSize = true;
+      this.label141.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label141.Location = new System.Drawing.Point(14, 280);
+      this.label141.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label141.Name = "label141";
+      this.label141.Size = new System.Drawing.Size(255, 25);
+      this.label141.TabIndex = 95;
+      this.label141.Text = "Интерфейс подключения";
+      // 
+      // SDConnectionInterfaceComboBox
+      // 
+      this.SDConnectionInterfaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.SDConnectionInterfaceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.SDConnectionInterfaceComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDConnectionInterfaceComboBox.FormattingEnabled = true;
+      this.SDConnectionInterfaceComboBox.Items.AddRange(new object[] {
+            "Модельный ряд процессора",
+            "Кодовое название процессора",
+            "Сокет",
+            "Чипсет",
+            "Каналы памяти",
+            "Частота ОЗУ",
+            "Форм-фактор",
+            "Тип памяти",
+            "Интерфейсы",
+            "Разъёмы питания"});
+      this.SDConnectionInterfaceComboBox.Location = new System.Drawing.Point(282, 280);
+      this.SDConnectionInterfaceComboBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDConnectionInterfaceComboBox.Name = "SDConnectionInterfaceComboBox";
+      this.SDConnectionInterfaceComboBox.Size = new System.Drawing.Size(308, 25);
+      this.SDConnectionInterfaceComboBox.TabIndex = 94;
+      this.SDConnectionInterfaceComboBox.Leave += new System.EventHandler(this.SDConnectionInterfaceComboBox_Leave);
+      // 
+      // label140
+      // 
+      this.label140.AutoSize = true;
+      this.label140.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label140.Location = new System.Drawing.Point(481, 243);
+      this.label140.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label140.Name = "label140";
+      this.label140.Size = new System.Drawing.Size(34, 21);
+      this.label140.TabIndex = 93;
+      this.label140.Text = "Мб";
+      // 
+      // SDBufferTextBox
+      // 
+      this.SDBufferTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDBufferTextBox.Location = new System.Drawing.Point(391, 241);
+      this.SDBufferTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDBufferTextBox.Name = "SDBufferTextBox";
+      this.SDBufferTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDBufferTextBox.TabIndex = 72;
+      // 
+      // label139
+      // 
+      this.label139.AutoSize = true;
+      this.label139.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label139.Location = new System.Drawing.Point(349, 243);
+      this.label139.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label139.Name = "label139";
+      this.label139.Size = new System.Drawing.Size(39, 21);
+      this.label139.TabIndex = 71;
+      this.label139.Text = "Гб /";
+      // 
+      // SDCapacityTextBox
+      // 
+      this.SDCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.SDCapacityTextBox.Location = new System.Drawing.Point(260, 241);
+      this.SDCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.SDCapacityTextBox.Name = "SDCapacityTextBox";
+      this.SDCapacityTextBox.Size = new System.Drawing.Size(85, 25);
+      this.SDCapacityTextBox.TabIndex = 70;
+      // 
+      // label138
+      // 
+      this.label138.AutoSize = true;
+      this.label138.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label138.Location = new System.Drawing.Point(11, 241);
+      this.label138.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label138.Name = "label138";
+      this.label138.Size = new System.Drawing.Size(157, 25);
+      this.label138.TabIndex = 69;
+      this.label138.Text = "Объём / буфер";
       // 
       // SDNameTextBox
       // 
@@ -4359,6 +4659,7 @@ namespace Computer_house
       this.FindSDIDButton.TabIndex = 66;
       this.FindSDIDButton.Text = "Поиск";
       this.FindSDIDButton.UseVisualStyleBackColor = true;
+      this.FindSDIDButton.Click += new System.EventHandler(this.FindSDIDButton_Click);
       // 
       // SDIDTextBox
       // 
@@ -4368,6 +4669,7 @@ namespace Computer_house
       this.SDIDTextBox.Name = "SDIDTextBox";
       this.SDIDTextBox.Size = new System.Drawing.Size(234, 25);
       this.SDIDTextBox.TabIndex = 65;
+      this.SDIDTextBox.TextChanged += new System.EventHandler(this.SDIDTextBox_TextChanged);
       // 
       // label137
       // 
@@ -4392,6 +4694,7 @@ namespace Computer_house
       this.ChangeSDRadio.TabStop = true;
       this.ChangeSDRadio.Text = "Изменить";
       this.ChangeSDRadio.UseVisualStyleBackColor = true;
+      this.ChangeSDRadio.CheckedChanged += new System.EventHandler(this.ChangeSDRadio_CheckedChanged);
       // 
       // AddSDRadio
       // 
@@ -4405,6 +4708,7 @@ namespace Computer_house
       this.AddSDRadio.TabStop = true;
       this.AddSDRadio.Text = "Добавить";
       this.AddSDRadio.UseVisualStyleBackColor = true;
+      this.AddSDRadio.CheckedChanged += new System.EventHandler(this.AddSDRadio_CheckedChanged);
       // 
       // SD_DatagridView
       // 
@@ -4425,6 +4729,7 @@ namespace Computer_house
       this.SD_DatagridView.RowTemplate.Height = 24;
       this.SD_DatagridView.Size = new System.Drawing.Size(423, 119);
       this.SD_DatagridView.TabIndex = 61;
+      this.SD_DatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.SD_DatagridView_RowEnter);
       // 
       // dataGridViewTextBoxColumn9
       // 
@@ -4711,308 +5016,13 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 180;
       // 
-      // SDCapacityTextBox
-      // 
-      this.SDCapacityTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDCapacityTextBox.Location = new System.Drawing.Point(260, 241);
-      this.SDCapacityTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDCapacityTextBox.Name = "SDCapacityTextBox";
-      this.SDCapacityTextBox.Size = new System.Drawing.Size(85, 25);
-      this.SDCapacityTextBox.TabIndex = 70;
-      // 
-      // label138
-      // 
-      this.label138.AutoSize = true;
-      this.label138.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label138.Location = new System.Drawing.Point(11, 241);
-      this.label138.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label138.Name = "label138";
-      this.label138.Size = new System.Drawing.Size(157, 25);
-      this.label138.TabIndex = 69;
-      this.label138.Text = "Объём / буфер";
-      // 
-      // label139
-      // 
-      this.label139.AutoSize = true;
-      this.label139.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label139.Location = new System.Drawing.Point(349, 243);
-      this.label139.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label139.Name = "label139";
-      this.label139.Size = new System.Drawing.Size(39, 21);
-      this.label139.TabIndex = 71;
-      this.label139.Text = "Гб /";
-      // 
-      // SDBufferTextBox
-      // 
-      this.SDBufferTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDBufferTextBox.Location = new System.Drawing.Point(391, 241);
-      this.SDBufferTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDBufferTextBox.Name = "SDBufferTextBox";
-      this.SDBufferTextBox.Size = new System.Drawing.Size(85, 25);
-      this.SDBufferTextBox.TabIndex = 72;
-      // 
-      // label140
-      // 
-      this.label140.AutoSize = true;
-      this.label140.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label140.Location = new System.Drawing.Point(481, 243);
-      this.label140.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label140.Name = "label140";
-      this.label140.Size = new System.Drawing.Size(34, 21);
-      this.label140.TabIndex = 93;
-      this.label140.Text = "Мб";
-      // 
-      // label141
-      // 
-      this.label141.AutoSize = true;
-      this.label141.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label141.Location = new System.Drawing.Point(14, 280);
-      this.label141.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label141.Name = "label141";
-      this.label141.Size = new System.Drawing.Size(255, 25);
-      this.label141.TabIndex = 95;
-      this.label141.Text = "Интерфейс подключения";
-      // 
-      // SDConnectionInterfaceComboBox
-      // 
-      this.SDConnectionInterfaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.SDConnectionInterfaceComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.SDConnectionInterfaceComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDConnectionInterfaceComboBox.FormattingEnabled = true;
-      this.SDConnectionInterfaceComboBox.Items.AddRange(new object[] {
-            "Модельный ряд процессора",
-            "Кодовое название процессора",
-            "Сокет",
-            "Чипсет",
-            "Каналы памяти",
-            "Частота ОЗУ",
-            "Форм-фактор",
-            "Тип памяти",
-            "Интерфейсы",
-            "Разъёмы питания"});
-      this.SDConnectionInterfaceComboBox.Location = new System.Drawing.Point(282, 280);
-      this.SDConnectionInterfaceComboBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDConnectionInterfaceComboBox.Name = "SDConnectionInterfaceComboBox";
-      this.SDConnectionInterfaceComboBox.Size = new System.Drawing.Size(308, 25);
-      this.SDConnectionInterfaceComboBox.TabIndex = 94;
-      // 
-      // SDFormFactorComboBox
-      // 
-      this.SDFormFactorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.SDFormFactorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.SDFormFactorComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDFormFactorComboBox.FormattingEnabled = true;
-      this.SDFormFactorComboBox.Items.AddRange(new object[] {
-            "Модельный ряд процессора",
-            "Кодовое название процессора",
-            "Сокет",
-            "Чипсет",
-            "Каналы памяти",
-            "Частота ОЗУ",
-            "Форм-фактор",
-            "Тип памяти",
-            "Интерфейсы",
-            "Разъёмы питания"});
-      this.SDFormFactorComboBox.Location = new System.Drawing.Point(166, 323);
-      this.SDFormFactorComboBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDFormFactorComboBox.Name = "SDFormFactorComboBox";
-      this.SDFormFactorComboBox.Size = new System.Drawing.Size(200, 25);
-      this.SDFormFactorComboBox.TabIndex = 97;
-      // 
-      // label142
-      // 
-      this.label142.AutoSize = true;
-      this.label142.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label142.Location = new System.Drawing.Point(14, 323);
-      this.label142.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label142.Name = "label142";
-      this.label142.Size = new System.Drawing.Size(144, 25);
-      this.label142.TabIndex = 96;
-      this.label142.Text = "Форм-фактор";
-      // 
-      // checkBox1
-      // 
-      this.checkBox1.AutoSize = true;
-      this.checkBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox1.Location = new System.Drawing.Point(370, 323);
-      this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-      this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(222, 25);
-      this.checkBox1.TabIndex = 98;
-      this.checkBox1.Text = "Аппаратное шифрование";
-      this.checkBox1.UseVisualStyleBackColor = true;
-      // 
-      // label143
-      // 
-      this.label143.AutoSize = true;
-      this.label143.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label143.Location = new System.Drawing.Point(541, 366);
-      this.label143.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label143.Name = "label143";
-      this.label143.Size = new System.Drawing.Size(48, 21);
-      this.label143.TabIndex = 103;
-      this.label143.Text = "Мб/c";
-      // 
-      // SDSeqWriteSpeedTextBox
-      // 
-      this.SDSeqWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDSeqWriteSpeedTextBox.Location = new System.Drawing.Point(471, 364);
-      this.SDSeqWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDSeqWriteSpeedTextBox.Name = "SDSeqWriteSpeedTextBox";
-      this.SDSeqWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
-      this.SDSeqWriteSpeedTextBox.TabIndex = 102;
-      // 
-      // label144
-      // 
-      this.label144.AutoSize = true;
-      this.label144.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label144.Location = new System.Drawing.Point(447, 366);
-      this.label144.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label144.Name = "label144";
-      this.label144.Size = new System.Drawing.Size(16, 21);
-      this.label144.TabIndex = 101;
-      this.label144.Text = "/";
-      // 
-      // SDSeqReadSpeedTextBox
-      // 
-      this.SDSeqReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDSeqReadSpeedTextBox.Location = new System.Drawing.Point(374, 365);
-      this.SDSeqReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDSeqReadSpeedTextBox.Name = "SDSeqReadSpeedTextBox";
-      this.SDSeqReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
-      this.SDSeqReadSpeedTextBox.TabIndex = 100;
-      // 
-      // label145
-      // 
-      this.label145.AutoSize = true;
-      this.label145.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label145.Location = new System.Drawing.Point(14, 365);
-      this.label145.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label145.Name = "label145";
-      this.label145.Size = new System.Drawing.Size(337, 25);
-      this.label145.TabIndex = 99;
-      this.label145.Text = "Скорость послед. чтения / записи";
-      // 
-      // label146
-      // 
-      this.label146.AutoSize = true;
-      this.label146.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label146.Location = new System.Drawing.Point(541, 406);
-      this.label146.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label146.Name = "label146";
-      this.label146.Size = new System.Drawing.Size(48, 21);
-      this.label146.TabIndex = 108;
-      this.label146.Text = "Мб/c";
-      // 
-      // SDRandWriteSpeedTextBox
-      // 
-      this.SDRandWriteSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDRandWriteSpeedTextBox.Location = new System.Drawing.Point(471, 404);
-      this.SDRandWriteSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDRandWriteSpeedTextBox.Name = "SDRandWriteSpeedTextBox";
-      this.SDRandWriteSpeedTextBox.Size = new System.Drawing.Size(66, 25);
-      this.SDRandWriteSpeedTextBox.TabIndex = 107;
-      // 
-      // label147
-      // 
-      this.label147.AutoSize = true;
-      this.label147.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label147.Location = new System.Drawing.Point(447, 406);
-      this.label147.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label147.Name = "label147";
-      this.label147.Size = new System.Drawing.Size(16, 21);
-      this.label147.TabIndex = 106;
-      this.label147.Text = "/";
-      // 
-      // SDRandReadSpeedTextBox
-      // 
-      this.SDRandReadSpeedTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDRandReadSpeedTextBox.Location = new System.Drawing.Point(374, 405);
-      this.SDRandReadSpeedTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDRandReadSpeedTextBox.Name = "SDRandReadSpeedTextBox";
-      this.SDRandReadSpeedTextBox.Size = new System.Drawing.Size(66, 25);
-      this.SDRandReadSpeedTextBox.TabIndex = 105;
-      // 
-      // label148
-      // 
-      this.label148.AutoSize = true;
-      this.label148.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label148.Location = new System.Drawing.Point(14, 405);
-      this.label148.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label148.Name = "label148";
-      this.label148.Size = new System.Drawing.Size(313, 25);
-      this.label148.TabIndex = 104;
-      this.label148.Text = "Скорость случ. чтения / записи";
-      // 
-      // label149
-      // 
-      this.label149.AutoSize = true;
-      this.label149.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label149.Location = new System.Drawing.Point(550, 449);
-      this.label149.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label149.Name = "label149";
-      this.label149.Size = new System.Drawing.Size(40, 21);
-      this.label149.TabIndex = 113;
-      this.label149.Text = "ММ";
-      // 
-      // SDThicknessTextBox
-      // 
-      this.SDThicknessTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDThicknessTextBox.Location = new System.Drawing.Point(460, 447);
-      this.SDThicknessTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDThicknessTextBox.Name = "SDThicknessTextBox";
-      this.SDThicknessTextBox.Size = new System.Drawing.Size(85, 25);
-      this.SDThicknessTextBox.TabIndex = 112;
-      // 
-      // label150
-      // 
-      this.label150.AutoSize = true;
-      this.label150.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label150.Location = new System.Drawing.Point(418, 449);
-      this.label150.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label150.Name = "label150";
-      this.label150.Size = new System.Drawing.Size(38, 21);
-      this.label150.TabIndex = 111;
-      this.label150.Text = "Вт /";
-      // 
-      // SDConsumptionTextBox
-      // 
-      this.SDConsumptionTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.SDConsumptionTextBox.Location = new System.Drawing.Point(329, 447);
-      this.SDConsumptionTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.SDConsumptionTextBox.Name = "SDConsumptionTextBox";
-      this.SDConsumptionTextBox.Size = new System.Drawing.Size(85, 25);
-      this.SDConsumptionTextBox.TabIndex = 110;
-      // 
-      // label151
-      // 
-      this.label151.AutoSize = true;
-      this.label151.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label151.Location = new System.Drawing.Point(14, 447);
-      this.label151.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label151.Name = "label151";
-      this.label151.Size = new System.Drawing.Size(305, 25);
-      this.label151.TabIndex = 109;
-      this.label151.Text = "Энергопотребление / толщина";
-      // 
-      // ActWithSD
-      // 
-      this.ActWithSD.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ActWithSD.Location = new System.Drawing.Point(16, 507);
-      this.ActWithSD.Margin = new System.Windows.Forms.Padding(2);
-      this.ActWithSD.Name = "ActWithSD";
-      this.ActWithSD.Size = new System.Drawing.Size(572, 38);
-      this.ActWithSD.TabIndex = 115;
-      this.ActWithSD.Text = "button3";
-      this.ActWithSD.UseVisualStyleBackColor = true;
-      // 
       // ComponentsOptionsForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScroll = true;
       this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.ClientSize = new System.Drawing.Size(648, 628);
+      this.ClientSize = new System.Drawing.Size(649, 628);
       this.Controls.Add(this.tabControl1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -5406,7 +5416,7 @@ namespace Computer_house
     internal System.Windows.Forms.ComboBox SDConnectionInterfaceComboBox;
     internal System.Windows.Forms.ComboBox SDFormFactorComboBox;
     internal System.Windows.Forms.Label label142;
-    internal System.Windows.Forms.CheckBox checkBox1;
+    internal System.Windows.Forms.CheckBox SDEncryptionCheckBox;
     internal System.Windows.Forms.Label label146;
     internal System.Windows.Forms.TextBox SDRandWriteSpeedTextBox;
     internal System.Windows.Forms.Label label147;
