@@ -584,6 +584,9 @@ namespace Computer_house
           if (AddProduct.Value + requestedItemsCountBefore <= warehouseInfo.Current_items_count)
           {
             db.ShopRequests.Add(newRequest);
+            List<NeedToUpdate> update = db.NeedToUpdate.ToList();
+            update[0].UpdateStatus = true;
+            db.NeedToUpdate.Update(update[0]);
             db.SaveChanges();
             MessageBox.Show("Товар успешно запрошен");
           }

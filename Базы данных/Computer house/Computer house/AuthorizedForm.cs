@@ -34,6 +34,7 @@ namespace Computer_house
     private List<Warehouse_info> FilteredInfo = new List<Warehouse_info>();
     private Users user;
     private bool firstLoad = false;
+    private bool checkUpdate = true;
 
     //организация блокирования функции перетаскивания формы
     const int SC_CLOSE = 0xF010;
@@ -77,12 +78,13 @@ namespace Computer_house
     }
     public AuthorizedForm(Users _user, bool isFirstLoad)
     {
+      checkUpdate = true;
       firstLoad = isFirstLoad;
       user = _user;
       InitializeComponent();
     }
 
-    private void AuthorizedForm_Load(object sender, EventArgs e)
+    private async void AuthorizedForm_Load(object sender, EventArgs e)
     {
       Width = Convert.ToInt32(DesktopScreen.Width / DesktopScreen.GetScalingFactor());
       Height = Convert.ToInt32(DesktopScreen.Height / DesktopScreen.GetScalingFactor());
@@ -100,9 +102,35 @@ namespace Computer_house
       Task.Run(() => LoadInfoAboutCooling());
       Task.Run(() => LoadInfoAboutPSU());
       Task.Run(() => LoadInfoAboutSD());
-      Task.Run(() => LoadShopRequestsFromDB(firstLoad));
+      await Task.Run(() => LoadShopRequestsFromDB(firstLoad));
       LoadInfoFromDBAndView();
       AllInfoDatagridView.Rows.Clear();
+      Task.Run(() => UpdateInfo());
+    }
+    private async void UpdateInfo()
+    {
+      while(checkUpdate)
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
+          if(needToUpdate.UpdateStatus)
+          {
+            ShopRequests.Clear();
+            foreach(ShopRequests s in db.ShopRequests)
+              if(!s.Status)
+                ShopRequests.Add(s);
+
+
+            foreach(ShopRequests r in ShopRequests)
+              r.GetDataFromDB();
+            MessageBox.Show("Появился новый запрос из магазина!");
+            needToUpdate.UpdateStatus = false;
+            db.NeedToUpdate.Update(needToUpdate);
+            db.SaveChanges();
+          }
+        }
+      }
     }
 
     private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -302,8 +330,10 @@ namespace Computer_house
     {
       try
       {
+        bool needUpdate = false;
         ShopRequests.Clear();
         using(ApplicationContext db = new ApplicationContext())
+        {
           if(db.ShopRequests.Count() > 0)
           {
             foreach(ShopRequests r in db.ShopRequests)
@@ -311,9 +341,12 @@ namespace Computer_house
                 ShopRequests.Add(r);
 
             foreach(ShopRequests r in ShopRequests)
-              r.GetDataFromDB();                   
+              r.GetDataFromDB();
           }
-        if(isFirst)
+          needUpdate = db.NeedToUpdate.Single(i => i.ID == 1).UpdateStatus;
+        }
+          
+        if(isFirst && !needUpdate)
           if(ShopRequests.Count > 0)
             MessageBox.Show($"На данный момент не обработано {ShopRequests.Count} запроса(ов) из магазина!");
       }
@@ -561,6 +594,7 @@ namespace Computer_house
     {
       ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, Cpus, Gpus, 
         Motherboards, Cases, Rams, CoolingSystems, Psus, StorageDevices, ShopRequests, WarehouseInformationList);
+      checkUpdate = false;
       this.Hide();
       addComponentsOptionsForm.Show();
     }

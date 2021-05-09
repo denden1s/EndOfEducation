@@ -3,10 +3,6 @@ namespace Computer_house
 {
     partial class ComponentsOptionsForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        internal System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -29,6 +25,7 @@ namespace Computer_house
         /// </summary>
         internal void InitializeComponent()
         {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComponentsOptionsForm));
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -386,17 +383,12 @@ namespace Computer_house
       this.tabPage12 = new System.Windows.Forms.TabPage();
       this.tabControl3 = new System.Windows.Forms.TabControl();
       this.tabPage11 = new System.Windows.Forms.TabPage();
-      this.tabPage13 = new System.Windows.Forms.TabPage();
-      this.HoldRequestButton = new System.Windows.Forms.Button();
-      this.ShopRequestsDataGrid = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.RequestItemsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.label152 = new System.Windows.Forms.Label();
-      this.LocationsListBox = new System.Windows.Forms.ListBox();
-      this.LocationInfoTextBox = new System.Windows.Forms.RichTextBox();
-      this.label153 = new System.Windows.Forms.Label();
-      this.label154 = new System.Windows.Forms.Label();
+      this.LocationMaxItems = new System.Windows.Forms.NumericUpDown();
+      this.AddLocationButton = new System.Windows.Forms.Button();
+      this.label157 = new System.Windows.Forms.Label();
+      this.label156 = new System.Windows.Forms.Label();
+      this.LocationNameTextBox = new System.Windows.Forms.TextBox();
+      this.label155 = new System.Windows.Forms.Label();
       this.LocationsSDRadio = new System.Windows.Forms.RadioButton();
       this.LocationsPSURadio = new System.Windows.Forms.RadioButton();
       this.LocationsCoolingSystemRadio = new System.Windows.Forms.RadioButton();
@@ -405,12 +397,20 @@ namespace Computer_house
       this.LocationsMothersRadio = new System.Windows.Forms.RadioButton();
       this.LocationsGPURadio = new System.Windows.Forms.RadioButton();
       this.LocationsCPURadio = new System.Windows.Forms.RadioButton();
-      this.LocationNameTextBox = new System.Windows.Forms.TextBox();
-      this.label155 = new System.Windows.Forms.Label();
-      this.label156 = new System.Windows.Forms.Label();
-      this.label157 = new System.Windows.Forms.Label();
-      this.AddLocationButton = new System.Windows.Forms.Button();
-      this.LocationMaxItems = new System.Windows.Forms.NumericUpDown();
+      this.label154 = new System.Windows.Forms.Label();
+      this.label153 = new System.Windows.Forms.Label();
+      this.LocationInfoTextBox = new System.Windows.Forms.RichTextBox();
+      this.label152 = new System.Windows.Forms.Label();
+      this.LocationsListBox = new System.Windows.Forms.ListBox();
+      this.tabPage13 = new System.Windows.Forms.TabPage();
+      this.HoldRequestButton = new System.Windows.Forms.Button();
+      this.ShopRequestsDataGrid = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.TimeRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.RequestItemsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabControl2.SuspendLayout();
@@ -434,9 +434,10 @@ namespace Computer_house
       this.tabPage12.SuspendLayout();
       this.tabControl3.SuspendLayout();
       this.tabPage11.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.LocationMaxItems)).BeginInit();
       this.tabPage13.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ShopRequestsDataGrid)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.LocationMaxItems)).BeginInit();
+      this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // tabControl1
@@ -5000,132 +5001,80 @@ namespace Computer_house
       this.tabPage11.Text = "Места хранения";
       this.tabPage11.Enter += new System.EventHandler(this.tabPage11_Enter);
       // 
-      // tabPage13
+      // LocationMaxItems
       // 
-      this.tabPage13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.tabPage13.Controls.Add(this.HoldRequestButton);
-      this.tabPage13.Controls.Add(this.ShopRequestsDataGrid);
-      this.tabPage13.Location = new System.Drawing.Point(4, 28);
-      this.tabPage13.Name = "tabPage13";
-      this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage13.Size = new System.Drawing.Size(602, 789);
-      this.tabPage13.TabIndex = 1;
-      this.tabPage13.Text = "Запросы из магазина";
-      this.tabPage13.Enter += new System.EventHandler(this.tabPage13_Enter);
+      this.LocationMaxItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.LocationMaxItems.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.LocationMaxItems.Location = new System.Drawing.Point(414, 423);
+      this.LocationMaxItems.Margin = new System.Windows.Forms.Padding(2);
+      this.LocationMaxItems.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.LocationMaxItems.Name = "LocationMaxItems";
+      this.LocationMaxItems.Size = new System.Drawing.Size(136, 29);
+      this.LocationMaxItems.TabIndex = 41;
+      this.LocationMaxItems.ThousandsSeparator = true;
+      this.LocationMaxItems.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
       // 
-      // HoldRequestButton
+      // AddLocationButton
       // 
-      this.HoldRequestButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.HoldRequestButton.Location = new System.Drawing.Point(15, 513);
-      this.HoldRequestButton.Margin = new System.Windows.Forms.Padding(2);
-      this.HoldRequestButton.Name = "HoldRequestButton";
-      this.HoldRequestButton.Size = new System.Drawing.Size(572, 38);
-      this.HoldRequestButton.TabIndex = 101;
-      this.HoldRequestButton.Text = "Провести";
-      this.HoldRequestButton.UseVisualStyleBackColor = true;
-      this.HoldRequestButton.Click += new System.EventHandler(this.HoldRequestButton_Click);
+      this.AddLocationButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.AddLocationButton.Location = new System.Drawing.Point(255, 504);
+      this.AddLocationButton.Margin = new System.Windows.Forms.Padding(2);
+      this.AddLocationButton.Name = "AddLocationButton";
+      this.AddLocationButton.Size = new System.Drawing.Size(332, 39);
+      this.AddLocationButton.TabIndex = 40;
+      this.AddLocationButton.Text = "button1";
+      this.AddLocationButton.UseVisualStyleBackColor = true;
+      this.AddLocationButton.Click += new System.EventHandler(this.AddLocationButton_Click);
       // 
-      // ShopRequestsDataGrid
+      // label157
       // 
-      this.ShopRequestsDataGrid.AllowUserToAddRows = false;
-      this.ShopRequestsDataGrid.AllowUserToDeleteRows = false;
-      this.ShopRequestsDataGrid.AllowUserToOrderColumns = true;
-      this.ShopRequestsDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.ShopRequestsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.ShopRequestsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.RequestItemsCount});
-      this.ShopRequestsDataGrid.Location = new System.Drawing.Point(5, 5);
-      this.ShopRequestsDataGrid.Margin = new System.Windows.Forms.Padding(2);
-      this.ShopRequestsDataGrid.MultiSelect = false;
-      this.ShopRequestsDataGrid.Name = "ShopRequestsDataGrid";
-      this.ShopRequestsDataGrid.ReadOnly = true;
-      this.ShopRequestsDataGrid.RowHeadersWidth = 51;
-      this.ShopRequestsDataGrid.RowTemplate.Height = 24;
-      this.ShopRequestsDataGrid.Size = new System.Drawing.Size(592, 470);
-      this.ShopRequestsDataGrid.TabIndex = 17;
-      this.ShopRequestsDataGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShopRequestsDataGrid_RowEnter);
+      this.label157.AutoSize = true;
+      this.label157.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label157.Location = new System.Drawing.Point(554, 427);
+      this.label157.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label157.Name = "label157";
+      this.label157.Size = new System.Drawing.Size(33, 21);
+      this.label157.TabIndex = 39;
+      this.label157.Text = "Шт";
       // 
-      // dataGridViewTextBoxColumn11
+      // label156
       // 
-      this.dataGridViewTextBoxColumn11.HeaderText = "ID";
-      this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-      this.dataGridViewTextBoxColumn11.ReadOnly = true;
-      this.dataGridViewTextBoxColumn11.Visible = false;
-      this.dataGridViewTextBoxColumn11.Width = 130;
+      this.label156.AutoSize = true;
+      this.label156.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label156.Location = new System.Drawing.Point(248, 425);
+      this.label156.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label156.Name = "label156";
+      this.label156.Size = new System.Drawing.Size(133, 25);
+      this.label156.TabIndex = 37;
+      this.label156.Text = "Макс. объём";
       // 
-      // dataGridViewTextBoxColumn12
+      // LocationNameTextBox
       // 
-      this.dataGridViewTextBoxColumn12.HeaderText = "Наименование товара";
-      this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-      this.dataGridViewTextBoxColumn12.ReadOnly = true;
-      this.dataGridViewTextBoxColumn12.Width = 400;
+      this.LocationNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
+      this.LocationNameTextBox.Location = new System.Drawing.Point(414, 383);
+      this.LocationNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.LocationNameTextBox.Name = "LocationNameTextBox";
+      this.LocationNameTextBox.Size = new System.Drawing.Size(173, 25);
+      this.LocationNameTextBox.TabIndex = 36;
       // 
-      // RequestItemsCount
+      // label155
       // 
-      this.RequestItemsCount.HeaderText = "Кол-во";
-      this.RequestItemsCount.Name = "RequestItemsCount";
-      this.RequestItemsCount.ReadOnly = true;
-      // 
-      // label152
-      // 
-      this.label152.AutoSize = true;
-      this.label152.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label152.Location = new System.Drawing.Point(0, 13);
-      this.label152.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label152.Name = "label152";
-      this.label152.Size = new System.Drawing.Size(231, 25);
-      this.label152.TabIndex = 9;
-      this.label152.Text = "Список мест хранения:";
-      // 
-      // LocationsListBox
-      // 
-      this.LocationsListBox.FormattingEnabled = true;
-      this.LocationsListBox.ItemHeight = 19;
-      this.LocationsListBox.Location = new System.Drawing.Point(5, 45);
-      this.LocationsListBox.Margin = new System.Windows.Forms.Padding(2);
-      this.LocationsListBox.Name = "LocationsListBox";
-      this.LocationsListBox.Size = new System.Drawing.Size(226, 498);
-      this.LocationsListBox.TabIndex = 8;
-      this.LocationsListBox.SelectedIndexChanged += new System.EventHandler(this.LocationsListBox_SelectedIndexChanged);
-      // 
-      // LocationInfoTextBox
-      // 
-      this.LocationInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.LocationInfoTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.LocationInfoTextBox.Location = new System.Drawing.Point(253, 45);
-      this.LocationInfoTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.LocationInfoTextBox.Name = "LocationInfoTextBox";
-      this.LocationInfoTextBox.ReadOnly = true;
-      this.LocationInfoTextBox.Size = new System.Drawing.Size(334, 146);
-      this.LocationInfoTextBox.TabIndex = 10;
-      this.LocationInfoTextBox.Text = "";
-      // 
-      // label153
-      // 
-      this.label153.AutoSize = true;
-      this.label153.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label153.Location = new System.Drawing.Point(250, 13);
-      this.label153.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label153.Name = "label153";
-      this.label153.Size = new System.Drawing.Size(186, 25);
-      this.label153.TabIndex = 11;
-      this.label153.Text = "Сведения о месте:";
-      // 
-      // label154
-      // 
-      this.label154.AutoSize = true;
-      this.label154.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label154.Location = new System.Drawing.Point(250, 208);
-      this.label154.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label154.Name = "label154";
-      this.label154.Size = new System.Drawing.Size(276, 25);
-      this.label154.TabIndex = 12;
-      this.label154.Text = "Добавить новое место для:";
+      this.label155.AutoSize = true;
+      this.label155.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label155.Location = new System.Drawing.Point(248, 383);
+      this.label155.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label155.Name = "label155";
+      this.label155.Size = new System.Drawing.Size(153, 25);
+      this.label155.TabIndex = 35;
+      this.label155.Text = "Наименование";
       // 
       // LocationsSDRadio
       // 
@@ -5247,80 +5196,155 @@ namespace Computer_house
       this.LocationsCPURadio.UseVisualStyleBackColor = true;
       this.LocationsCPURadio.CheckedChanged += new System.EventHandler(this.LocationsCPURadio_CheckedChanged);
       // 
-      // LocationNameTextBox
+      // label154
       // 
-      this.LocationNameTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
-      this.LocationNameTextBox.Location = new System.Drawing.Point(414, 383);
-      this.LocationNameTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.LocationNameTextBox.Name = "LocationNameTextBox";
-      this.LocationNameTextBox.Size = new System.Drawing.Size(173, 25);
-      this.LocationNameTextBox.TabIndex = 36;
+      this.label154.AutoSize = true;
+      this.label154.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label154.Location = new System.Drawing.Point(250, 208);
+      this.label154.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label154.Name = "label154";
+      this.label154.Size = new System.Drawing.Size(276, 25);
+      this.label154.TabIndex = 12;
+      this.label154.Text = "Добавить новое место для:";
       // 
-      // label155
+      // label153
       // 
-      this.label155.AutoSize = true;
-      this.label155.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label155.Location = new System.Drawing.Point(248, 383);
-      this.label155.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label155.Name = "label155";
-      this.label155.Size = new System.Drawing.Size(153, 25);
-      this.label155.TabIndex = 35;
-      this.label155.Text = "Наименование";
+      this.label153.AutoSize = true;
+      this.label153.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label153.Location = new System.Drawing.Point(250, 13);
+      this.label153.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label153.Name = "label153";
+      this.label153.Size = new System.Drawing.Size(186, 25);
+      this.label153.TabIndex = 11;
+      this.label153.Text = "Сведения о месте:";
       // 
-      // label156
+      // LocationInfoTextBox
       // 
-      this.label156.AutoSize = true;
-      this.label156.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label156.Location = new System.Drawing.Point(248, 425);
-      this.label156.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label156.Name = "label156";
-      this.label156.Size = new System.Drawing.Size(133, 25);
-      this.label156.TabIndex = 37;
-      this.label156.Text = "Макс. объём";
+      this.LocationInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.LocationInfoTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.LocationInfoTextBox.Location = new System.Drawing.Point(253, 45);
+      this.LocationInfoTextBox.Margin = new System.Windows.Forms.Padding(2);
+      this.LocationInfoTextBox.Name = "LocationInfoTextBox";
+      this.LocationInfoTextBox.ReadOnly = true;
+      this.LocationInfoTextBox.Size = new System.Drawing.Size(334, 146);
+      this.LocationInfoTextBox.TabIndex = 10;
+      this.LocationInfoTextBox.Text = "";
       // 
-      // label157
+      // label152
       // 
-      this.label157.AutoSize = true;
-      this.label157.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label157.Location = new System.Drawing.Point(554, 427);
-      this.label157.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label157.Name = "label157";
-      this.label157.Size = new System.Drawing.Size(33, 21);
-      this.label157.TabIndex = 39;
-      this.label157.Text = "Шт";
+      this.label152.AutoSize = true;
+      this.label152.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label152.Location = new System.Drawing.Point(0, 13);
+      this.label152.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.label152.Name = "label152";
+      this.label152.Size = new System.Drawing.Size(231, 25);
+      this.label152.TabIndex = 9;
+      this.label152.Text = "Список мест хранения:";
       // 
-      // AddLocationButton
+      // LocationsListBox
       // 
-      this.AddLocationButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.AddLocationButton.Location = new System.Drawing.Point(255, 504);
-      this.AddLocationButton.Margin = new System.Windows.Forms.Padding(2);
-      this.AddLocationButton.Name = "AddLocationButton";
-      this.AddLocationButton.Size = new System.Drawing.Size(332, 39);
-      this.AddLocationButton.TabIndex = 40;
-      this.AddLocationButton.Text = "button1";
-      this.AddLocationButton.UseVisualStyleBackColor = true;
-      this.AddLocationButton.Click += new System.EventHandler(this.AddLocationButton_Click);
+      this.LocationsListBox.FormattingEnabled = true;
+      this.LocationsListBox.ItemHeight = 19;
+      this.LocationsListBox.Location = new System.Drawing.Point(5, 45);
+      this.LocationsListBox.Margin = new System.Windows.Forms.Padding(2);
+      this.LocationsListBox.Name = "LocationsListBox";
+      this.LocationsListBox.Size = new System.Drawing.Size(226, 498);
+      this.LocationsListBox.TabIndex = 8;
+      this.LocationsListBox.SelectedIndexChanged += new System.EventHandler(this.LocationsListBox_SelectedIndexChanged);
       // 
-      // LocationMaxItems
+      // tabPage13
       // 
-      this.LocationMaxItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.LocationMaxItems.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.LocationMaxItems.Location = new System.Drawing.Point(414, 423);
-      this.LocationMaxItems.Margin = new System.Windows.Forms.Padding(2);
-      this.LocationMaxItems.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.LocationMaxItems.Name = "LocationMaxItems";
-      this.LocationMaxItems.Size = new System.Drawing.Size(136, 29);
-      this.LocationMaxItems.TabIndex = 41;
-      this.LocationMaxItems.ThousandsSeparator = true;
-      this.LocationMaxItems.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+      this.tabPage13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage13.Controls.Add(this.HoldRequestButton);
+      this.tabPage13.Controls.Add(this.ShopRequestsDataGrid);
+      this.tabPage13.Location = new System.Drawing.Point(4, 28);
+      this.tabPage13.Name = "tabPage13";
+      this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage13.Size = new System.Drawing.Size(602, 789);
+      this.tabPage13.TabIndex = 1;
+      this.tabPage13.Text = "Запросы из магазина";
+      this.tabPage13.Enter += new System.EventHandler(this.tabPage13_Enter);
+      // 
+      // HoldRequestButton
+      // 
+      this.HoldRequestButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.HoldRequestButton.Location = new System.Drawing.Point(15, 513);
+      this.HoldRequestButton.Margin = new System.Windows.Forms.Padding(2);
+      this.HoldRequestButton.Name = "HoldRequestButton";
+      this.HoldRequestButton.Size = new System.Drawing.Size(572, 38);
+      this.HoldRequestButton.TabIndex = 101;
+      this.HoldRequestButton.Text = "Провести";
+      this.HoldRequestButton.UseVisualStyleBackColor = true;
+      this.HoldRequestButton.Click += new System.EventHandler(this.HoldRequestButton_Click);
+      // 
+      // ShopRequestsDataGrid
+      // 
+      this.ShopRequestsDataGrid.AllowUserToAddRows = false;
+      this.ShopRequestsDataGrid.AllowUserToDeleteRows = false;
+      this.ShopRequestsDataGrid.AllowUserToOrderColumns = true;
+      this.ShopRequestsDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.ShopRequestsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.ShopRequestsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.TimeRequest,
+            this.RequestItemsCount});
+      this.ShopRequestsDataGrid.ContextMenuStrip = this.contextMenuStrip1;
+      this.ShopRequestsDataGrid.Location = new System.Drawing.Point(5, 5);
+      this.ShopRequestsDataGrid.Margin = new System.Windows.Forms.Padding(2);
+      this.ShopRequestsDataGrid.MultiSelect = false;
+      this.ShopRequestsDataGrid.Name = "ShopRequestsDataGrid";
+      this.ShopRequestsDataGrid.ReadOnly = true;
+      this.ShopRequestsDataGrid.RowHeadersWidth = 51;
+      this.ShopRequestsDataGrid.RowTemplate.Height = 24;
+      this.ShopRequestsDataGrid.Size = new System.Drawing.Size(592, 475);
+      this.ShopRequestsDataGrid.TabIndex = 17;
+      this.ShopRequestsDataGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShopRequestsDataGrid_RowEnter);
+      // 
+      // dataGridViewTextBoxColumn11
+      // 
+      this.dataGridViewTextBoxColumn11.HeaderText = "ID";
+      this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+      this.dataGridViewTextBoxColumn11.ReadOnly = true;
+      this.dataGridViewTextBoxColumn11.Visible = false;
+      this.dataGridViewTextBoxColumn11.Width = 130;
+      // 
+      // dataGridViewTextBoxColumn12
+      // 
+      this.dataGridViewTextBoxColumn12.HeaderText = "Наименование товара";
+      this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+      this.dataGridViewTextBoxColumn12.ReadOnly = true;
+      this.dataGridViewTextBoxColumn12.Width = 250;
+      // 
+      // TimeRequest
+      // 
+      this.TimeRequest.HeaderText = "Время запроса";
+      this.TimeRequest.Name = "TimeRequest";
+      this.TimeRequest.ReadOnly = true;
+      this.TimeRequest.Width = 150;
+      // 
+      // RequestItemsCount
+      // 
+      this.RequestItemsCount.HeaderText = "Кол-во";
+      this.RequestItemsCount.Name = "RequestItemsCount";
+      this.RequestItemsCount.ReadOnly = true;
+      // 
+      // contextMenuStrip1
+      // 
+      this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновитьToolStripMenuItem});
+      this.contextMenuStrip1.Name = "contextMenuStrip1";
+      this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+      // 
+      // обновитьToolStripMenuItem
+      // 
+      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+      this.обновитьToolStripMenuItem.Text = "Обновить";
+      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
       // 
       // ComponentsOptionsForm
       // 
@@ -5373,9 +5397,10 @@ namespace Computer_house
       this.tabControl3.ResumeLayout(false);
       this.tabPage11.ResumeLayout(false);
       this.tabPage11.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.LocationMaxItems)).EndInit();
       this.tabPage13.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.ShopRequestsDataGrid)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.LocationMaxItems)).EndInit();
+      this.contextMenuStrip1.ResumeLayout(false);
       this.ResumeLayout(false);
 
         }
@@ -5740,9 +5765,6 @@ namespace Computer_house
     private System.Windows.Forms.TabPage tabPage11;
     private System.Windows.Forms.TabPage tabPage13;
     internal System.Windows.Forms.DataGridView ShopRequestsDataGrid;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-    private System.Windows.Forms.DataGridViewTextBoxColumn RequestItemsCount;
     internal System.Windows.Forms.Button HoldRequestButton;
     internal System.Windows.Forms.Label label152;
     internal System.Windows.Forms.ListBox LocationsListBox;
@@ -5763,5 +5785,12 @@ namespace Computer_house
     internal System.Windows.Forms.Label label155;
     internal System.Windows.Forms.Button AddLocationButton;
     private System.Windows.Forms.NumericUpDown LocationMaxItems;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TimeRequest;
+    private System.Windows.Forms.DataGridViewTextBoxColumn RequestItemsCount;
+    private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+    private System.ComponentModel.IContainer components;
   }
 }

@@ -68,6 +68,8 @@ namespace Computer_house
 
     private string locationLabel = "";
 
+    private bool CheckUpdate = true;
+
     private bool othersTabsLostFocus = false;
 
     public ComponentsOptionsForm()
@@ -95,6 +97,7 @@ namespace Computer_house
     private void AddComponentsOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
     {
       authorizedForm = new AuthorizedForm(user,false);
+      CheckUpdate = false;
       this.Hide();
       authorizedForm.Show();
     }
@@ -161,7 +164,6 @@ namespace Computer_house
       {
         using(ApplicationContext db = new ApplicationContext())
           LocationsList = db.Locations_in_warehouse.ToList();
-
         Locations_in_warehouse locationInShop = LocationsList.Single(i => i.Location_label == "Shop");
         LocationsList.Remove(locationInShop);
       }
@@ -326,7 +328,7 @@ namespace Computer_house
     {
       ShopRequestsDataGrid.Rows.Clear();
       foreach(var i in ShopRequestsList)
-        ShopRequestsDataGrid.Rows.Add(i.ID, i.ProductName, i.Count);
+        ShopRequestsDataGrid.Rows.Add(i.ID, i.ProductName, i.Time, i.Count);
     }
 
     //Нужен для динамического изменения списка элементов
@@ -2046,11 +2048,11 @@ namespace Computer_house
       changedPSU.Length = Convert.ToInt32(PSULengthTextBox.Text);
       return changedPSU;
     }
-
+ 
     //Нужен для обновления списка документов движения
     private async void UpdateInfo()
     {
-      while(true)
+      while(CheckUpdate)
       {
         using (ApplicationContext db = new ApplicationContext())
         {
@@ -2059,6 +2061,17 @@ namespace Computer_house
           {
             //сюда нужно добавлять появляющиеся запросы
             //await Task.Run(() => LoadHoldingDocsFromDB());
+            ShopRequestsList.Clear();
+            foreach(ShopRequests s in db.ShopRequests)
+              if(!s.Status)
+                ShopRequestsList.Add(s);
+
+            foreach(ShopRequests sh in ShopRequestsList)
+            {
+              sh.GetDataFromDB();
+            }
+            
+            MessageBox.Show("Появился новый запрос из магазина");
             needToUpdate.UpdateStatus = false;
             db.NeedToUpdate.Update(needToUpdate);
             db.SaveChanges();
@@ -2280,7 +2293,6 @@ namespace Computer_house
 
         SQLRequests.RemoveShopRequestFromRequestList(request);
         ShopRequestsList.Remove(request);
-        ShopRequestsDataGrid.Rows.Clear();
         ViewRequestsInDataGrid();
         HoldRequestButton.Enabled = false;
       }
@@ -2377,6 +2389,11 @@ namespace Computer_house
       LocationInfoTextBox.Text = $"Адресная метка : {currentLocation.Location_label};\n" +
         $"Текущая заполненность: {currentLocation.Current_item_count};\n" +
         $"Максимальная заполненность: {currentLocation.Max_item_count}.";
+    }
+
+    private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      ViewRequestsInDataGrid();
     }
   }
 }
