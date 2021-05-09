@@ -29,6 +29,9 @@ namespace Computer_house
     private List<Memory_types> MemoryTypesList = new List<Memory_types>();
     private List<Connection_interfaces> ConnectionInterfacesList = new List<Connection_interfaces>();
     private List<Power_connectors> PowerConnectorsList = new List<Power_connectors>();
+    private List<ShopRequests> ShopRequestsList = new List<ShopRequests>();
+    private List<Warehouse_info> WarehouseInfoList = new List<Warehouse_info>();
+    private List<Locations_in_warehouse> LocationsList = new List<Locations_in_warehouse>();
 
     //Компоненты ПК
     private List<CPU> CPUList = new List<CPU>();
@@ -39,7 +42,6 @@ namespace Computer_house
     private List<Cooling_system> CoolingSystemList = new List<Cooling_system>();
     private List<PSU> PSUList = new List<PSU>();
     private List<Storage_devices> StorageDevicesList = new List<Storage_devices>();
-    private List<Holding_document> HoldingDocuments = new List<Holding_document>();
 
     private string GPUpowerTypeComboBoxText = "";
     private string GPUTypeComboBoxText = "";
@@ -64,6 +66,8 @@ namespace Computer_house
     private string SDFormFactorText = "";
     private string SDConnectionInterfaceText = "";
 
+    private string locationLabel = "";
+
     private bool othersTabsLostFocus = false;
 
     public ComponentsOptionsForm()
@@ -71,7 +75,8 @@ namespace Computer_house
       InitializeComponent();
     }
     public ComponentsOptionsForm(Users _user, List<CPU> _cpus, List<GPU> _gpus, List<Motherboard> _motherboards, 
-      List<Case> _cases, List<RAM> _rams, List<Cooling_system> _coolingSys, List<PSU> _psus, List<Storage_devices> _sd)
+      List<Case> _cases, List<RAM> _rams, List<Cooling_system> _coolingSys, List<PSU> _psus, List<Storage_devices> _sd, 
+      List<ShopRequests> _requests, List<Warehouse_info> _warehouseInfo)
     {
       InitializeComponent();
       GPUList = _gpus;
@@ -83,11 +88,13 @@ namespace Computer_house
       CoolingSystemList = _coolingSys;
       PSUList = _psus;
       StorageDevicesList = _sd;
+      ShopRequestsList = _requests;
+      WarehouseInfoList = _warehouseInfo;
     }
 
     private void AddComponentsOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
     {
-      authorizedForm = new AuthorizedForm(user);
+      authorizedForm = new AuthorizedForm(user,false);
       this.Hide();
       authorizedForm.Show();
     }
@@ -98,19 +105,19 @@ namespace Computer_house
       SystemFunctions.SetVisibleLables(this, false);
       SystemFunctions.ChangeButtonEnable(false, FindCPUIDButton, FindGPUIDButton,
         FindMotherboardIDButton, FindCaseIDButton, FindRAMIDButton, FindCoolingSystemIDButton,
-        FindPSUIDButton, FindSDIDButton);
+        FindPSUIDButton, FindSDIDButton, HoldRequestButton);
 
       SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU, ActWithMotherboard,
           ActWithCase, ActWithRAM, ActWithCoolingSystem,ActWithPSU, ActWithSD);
 
       Task[] tasks =
       {
-        Task.Run(() => LoadHoldingDocsFromDB()),Task.Run(() => LoadCPUCodeNameFromDB()),
+        Task.Run(() => LoadCPUCodeNameFromDB()),Task.Run(() => LoadCPUSeriesFromDB()),
         Task.Run(() => LoadSocketInfoFromDB()),Task.Run(() => LoadChipsetInfoFromDB()),
         Task.Run(() => LoadChanelInfoFromDB()),Task.Run(() => LoadFrequensyInfoFromDB()),
         Task.Run(() => LoadFormFactorsFromDB()), Task.Run(() => LoadMemoryTypesFromDB()),
         Task.Run(() => LoadConnectionInterfacesFromDB()), Task.Run(() => LoadPowerConnectorsFromDB()),
-        Task.Run(() => LoadCPUSeriesFromDB())
+        Task.Run(() => LoadLocationInfoFromDB())
       };
       await Task.WhenAll(tasks);
 
@@ -131,14 +138,38 @@ namespace Computer_house
       SystemFunctions.ChangeCoolingSystemTextBoxesEnable(this, false);
       SystemFunctions.ChangePSUTextBoxesEnable(this, false);
       SystemFunctions.ChangeSDTextBoxesEnable(this, false);
-
-      await Task.Run(() => ViewDocsInDataGrid());
+      SystemFunctions.SetEditOrAddButtonMode(AddLocationButton, true);
 
       await Task.Run(() => ViewInfoFromListsToFormElements(this));
       ViewSecondPartDataFromListsToFormEl(this);
+      ViewRequestsInDataGrid();//..await Task.Run(() => ());
       Task.Run(() => UpdateInfo());
     }
 
+    private void ViewLocationInListBox()
+    {
+      LocationsListBox.Items.Clear();
+      foreach(Locations_in_warehouse L in LocationsList)
+      {
+        LocationsListBox.Items.Add(L.Location_label);
+      }
+    }
+
+    private void LoadLocationInfoFromDB()
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+          LocationsList = db.Locations_in_warehouse.ToList();
+
+        Locations_in_warehouse locationInShop = LocationsList.Single(i => i.Location_label == "Shop");
+        LocationsList.Remove(locationInShop);
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
     //Методы для загрузки данных из БД
     private void LoadCPUSeriesFromDB()
     {
@@ -260,19 +291,6 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       }
     }
-    private void LoadHoldingDocsFromDB()
-    {
-      HoldingDocuments.Clear();
-      try
-      {
-        using(ApplicationContext db = new ApplicationContext())
-          HoldingDocuments = db.Holding_document.ToList();
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(ex.Message);
-      }
-    }
 
     //Нужен для отключения автоскрола и загрузки данных из комбобоксов
     private void tabPage2_Enter(object sender, EventArgs e)
@@ -302,6 +320,13 @@ namespace Computer_house
       SDFormFactorText = SDFormFactorComboBox.Text;
       SDConnectionInterfaceText = SDConnectionInterfaceComboBox.Text;
       //Вопрос в том очищать ли данные при переходе между страницами
+    }
+
+    private void ViewRequestsInDataGrid()
+    {
+      ShopRequestsDataGrid.Rows.Clear();
+      foreach(var i in ShopRequestsList)
+        ShopRequestsDataGrid.Rows.Add(i.ID, i.ProductName, i.Count);
     }
 
     //Нужен для динамического изменения списка элементов
@@ -1042,20 +1067,6 @@ namespace Computer_house
       this.AutoScroll = false;
     }
 
-    private void ViewDocsInDataGrid()
-    {
-      HoldingDocsDatagridView.Rows.Clear();
-      foreach (var i in HoldingDocuments)
-      {
-        i.GetDataFromDB();
-        string name;
-        using (ApplicationContext db = new ApplicationContext())
-          name = db.Users.Single(b => b.ID == i.User_ID).Name;
-
-        HoldingDocsDatagridView.Rows.Add(i.ID, i.Product_name, i.Time, i.State, i.Items_count_in_move, name, i.Location_name);
-      }
-    }
-
     private void SearchGPUIDButton_Click(object sender, EventArgs e)
     {
       SearchInfoInList<GPU>(GPUList, GPUIDTextBox, ActWithGPU);
@@ -1259,6 +1270,7 @@ namespace Computer_house
       LoadRamFrequencyInComboBox(_form.RAMFrequencyComboBox);
       LoadPowerTypeInComboBox(_form.CoolingSystemPowerTypeComboBox);
       LoadPowerTypeInComboBox(_form.PSUMotherboardPowerTypeComboBox);
+      ViewLocationInListBox();
     }
 
     private void tabPage1_Enter(object sender, EventArgs e)
@@ -2045,8 +2057,8 @@ namespace Computer_house
           NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
           if (needToUpdate.UpdateStatus)
           {
-            await Task.Run(() => LoadHoldingDocsFromDB());
-            await Task.Run(() => ViewDocsInDataGrid());
+            //сюда нужно добавлять появляющиеся запросы
+            //await Task.Run(() => LoadHoldingDocsFromDB());
             needToUpdate.UpdateStatus = false;
             db.NeedToUpdate.Update(needToUpdate);
             db.SaveChanges();
@@ -2211,6 +2223,160 @@ namespace Computer_house
           FindInfoFromTextBox(SDIDTextBox, StorageDevicesList, ActWithSD);
         }
       }
+    }
+
+    private void tabPage11_Enter(object sender, EventArgs e)
+    {
+      AutoScroll = false;
+    }
+
+    private void tabPage13_Enter(object sender, EventArgs e)
+    {
+      AutoScroll = false;
+    }
+
+    private void ShopRequestsDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+    {
+      if(ShopRequestsDataGrid.SelectedCells.Count > 0)
+      {
+        int selectedrowindex = ShopRequestsDataGrid.SelectedCells[0].RowIndex;
+        DataGridViewRow currentRow = ShopRequestsDataGrid.Rows[selectedrowindex];
+        ShopRequests request = new ShopRequests();
+        Warehouse_info warehouse = new Warehouse_info();
+        request = ShopRequestsList.Single(i => i.ID == (int)currentRow.Cells[0].Value);
+        warehouse = WarehouseInfoList.Single(i => i.Product_ID == request.Product_ID);
+
+        if(request.Count <= warehouse.Current_items_count)
+          HoldRequestButton.Enabled = true;
+        else
+          HoldRequestButton.Enabled = false;
+      }
+    }
+
+    private void HoldRequestButton_Click(object sender, EventArgs e)
+    {
+      int selectedrowindex = ShopRequestsDataGrid.SelectedCells[0].RowIndex;
+      DataGridViewRow currentRow = ShopRequestsDataGrid.Rows[selectedrowindex];
+      ShopRequests request = new ShopRequests();
+      request = ShopRequestsList.Single(i => i.ID == (int)currentRow.Cells[0].Value);
+      Warehouse_info itemInWarehouse = WarehouseInfoList.Single(i => i.Product_ID == request.Product_ID);
+      string question = "Сейчас будет снято со склада " + request.Count + " шт. "+ itemInWarehouse.ProductName + ".";
+      DialogResult questionResult = MessageBox.Show(question,
+                                    "Проведение товара",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Information,
+                                    MessageBoxDefaultButton.Button2,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+      if(questionResult == DialogResult.Yes)
+      {
+        string deviceType = "";
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          deviceType = db.Mediator.Single(i => i.ID == request.Product_ID).Components_type;
+        }
+
+        SQLRequests.CreateHoldingDocument(itemInWarehouse,
+        request.Count * -1, user, deviceType);
+
+        SQLRequests.RemoveShopRequestFromRequestList(request);
+        ShopRequestsList.Remove(request);
+        ShopRequestsDataGrid.Rows.Clear();
+        ViewRequestsInDataGrid();
+        HoldRequestButton.Enabled = false;
+      }
+      else
+        MessageBox.Show("Действие отменено");
+    }
+
+    private void LocationsCPURadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsCPURadio.Checked)
+        locationLabel = "CPU";
+    }
+
+    private void LocationsGPURadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsGPURadio.Checked)
+        locationLabel = "GPU";
+    }
+
+    private void LocationsMothersRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsMothersRadio.Checked)
+        locationLabel = "Motherboard";
+    }
+
+    private void LocationsCasesRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsCasesRadio.Checked)
+        locationLabel = "Case";
+    }
+
+    private void LocationsCoolingSystemRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsCoolingSystemRadio.Checked)
+        locationLabel = "Cooling system";
+    }
+
+    private void LocationsPSURadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsPSURadio.Checked)
+        locationLabel = "PSU";
+    }
+
+    private void LocationsRAMRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsRAMRadio.Checked)
+        locationLabel = "RAM";
+    }
+
+    private void LocationsSDRadio_CheckedChanged(object sender, EventArgs e)
+    {
+      if(LocationsSDRadio.Checked)
+        locationLabel = "SD";
+    }
+
+    private void AddLocationButton_Click(object sender, EventArgs e)
+    {
+      if((locationLabel != "") && (LocationNameTextBox.TextLength > 0))
+      {
+        string name = locationLabel + LocationNameTextBox.Text;
+        if(!SystemFunctions.FindIdenticalLocationName(name))
+        {
+          DialogResult questionResult = MessageBox.Show($"Вы действительно хотите добавить новое место на складе: \"{LocationNameTextBox.Text}\"",
+                          $"Добавление складского места.",
+                          MessageBoxButtons.YesNo,
+                          MessageBoxIcon.Information,
+                          MessageBoxDefaultButton.Button2,
+                          MessageBoxOptions.DefaultDesktopOnly); ;
+          if(questionResult == DialogResult.Yes)
+          {
+            Locations_in_warehouse newLocation = new Locations_in_warehouse(name, Convert.ToInt32(LocationMaxItems.Value));
+            SQLRequests.AddLocation(newLocation);
+            LocationNameTextBox.Clear();
+            LocationsSDRadio.Checked = true;
+            LocationsSDRadio.Checked = false;
+            locationLabel = "";
+            LocationMaxItems.Value = LocationMaxItems.Minimum;
+            MessageBox.Show("Действие прошло успешно");
+          }
+          else
+            MessageBox.Show ("Действие не прошло!");
+        }
+        else
+          MessageBox.Show("Такое название уже присутствует в базе!");
+      }
+      else
+        MessageBox.Show("Не все поля заполнены!");
+    }
+
+    private void LocationsListBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      Locations_in_warehouse currentLocation = new Locations_in_warehouse();
+      currentLocation = LocationsList.Single(i => i.Location_label == (string)LocationsListBox.SelectedItem);
+      LocationInfoTextBox.Text = $"Адресная метка : {currentLocation.Location_label};\n" +
+        $"Текущая заполненность: {currentLocation.Current_item_count};\n" +
+        $"Максимальная заполненность: {currentLocation.Max_item_count}.";
     }
   }
 }

@@ -66,7 +66,7 @@ namespace Computer_house
                             findUser = true;
                             user.Authorization_status = true;
                             db.SaveChanges();
-                            authorizedForm = new AuthorizedForm(user);
+                            authorizedForm = new AuthorizedForm(user, true);
                             authorizedForm.Show();
                             this.Hide();
                         }

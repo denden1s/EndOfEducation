@@ -28,14 +28,19 @@ namespace Computer_house
     private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
     private List<Products_location> ProductLocationsList = new List<Products_location>();
     private List<Mediator> Mediators = new List<Mediator>();
+    private List<ShopRequests> ShopRequests = new List<ShopRequests>();
 
     private string searchComponent = "";
     private List<Warehouse_info> FilteredInfo = new List<Warehouse_info>();
     private Users user;
+    private bool firstLoad = false;
 
     //организация блокирования функции перетаскивания формы
     const int SC_CLOSE = 0xF010;
     const int MF_BYCOMMAND = 0;
+    const int WM_NCLBUTTONDOWN = 0x00A1;
+    const int WM_NCHITTEST = 0x0084;
+    const int HTCAPTION = 2;
     [DllImport("User32.dll")]
     static extern int SendMessage(IntPtr hWnd,
     int Msg, IntPtr wParam, IntPtr lParam);
@@ -45,6 +50,18 @@ namespace Computer_house
 
     [DllImport("User32.dll")]
     static extern bool RemoveMenu(IntPtr hMenu, int uPosition, int uFlags);
+
+    protected override void WndProc(ref Message m)
+    {
+      if(m.Msg == WM_NCLBUTTONDOWN)
+      {
+        int result = SendMessage(m.HWnd, WM_NCHITTEST,
+        IntPtr.Zero, m.LParam);
+        if(result == HTCAPTION)
+          return;
+      }
+      base.WndProc(ref m);
+    }
 
     protected override void OnHandleCreated(EventArgs e)
     {
@@ -58,19 +75,20 @@ namespace Computer_house
     {
       InitializeComponent();
     }
-
-    public AuthorizedForm(Users _user)
+    public AuthorizedForm(Users _user, bool isFirstLoad)
     {
+      firstLoad = isFirstLoad;
       user = _user;
-      InitializeComponent();  
+      InitializeComponent();
     }
 
     private void AuthorizedForm_Load(object sender, EventArgs e)
     {
+      Width = Convert.ToInt32(DesktopScreen.Width / DesktopScreen.GetScalingFactor());
+      Height = Convert.ToInt32(DesktopScreen.Height / DesktopScreen.GetScalingFactor());
       CPUViewRadio.Checked = true;
       CPUViewRadio.Checked = false;
       ResetFilters.Enabled = false;
-
       Task.Run(() => LoadInfoAboutCPUFromDB());
       Task.Run(() => LoadInfoAboutCasesFromDB());
       Task.Run(() => LoadInfoAboutGPUFromDB());
@@ -82,7 +100,7 @@ namespace Computer_house
       Task.Run(() => LoadInfoAboutCooling());
       Task.Run(() => LoadInfoAboutPSU());
       Task.Run(() => LoadInfoAboutSD());
-
+      Task.Run(() => LoadShopRequestsFromDB(firstLoad));
       LoadInfoFromDBAndView();
       AllInfoDatagridView.Rows.Clear();
     }
@@ -280,6 +298,31 @@ namespace Computer_house
         MessageBox.Show(ex.Message);
       } 
     }
+    private void LoadShopRequestsFromDB(bool isFirst)
+    {
+      try
+      {
+        ShopRequests.Clear();
+        using(ApplicationContext db = new ApplicationContext())
+          if(db.ShopRequests.Count() > 0)
+          {
+            foreach(ShopRequests r in db.ShopRequests)
+              if(!r.Status)
+                ShopRequests.Add(r);
+
+            foreach(ShopRequests r in ShopRequests)
+              r.GetDataFromDB();                   
+          }
+        if(isFirst)
+          if(ShopRequests.Count > 0)
+            MessageBox.Show($"На данный момент не обработано {ShopRequests.Count} запроса(ов) из магазина!");
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
 
     public void ViewInfoInDataGrid(List<Warehouse_info> warehouseInfo)
     {
@@ -299,7 +342,7 @@ namespace Computer_house
     {
       if(AllInfoDatagridView.SelectedCells.Count > 0)
       {
-        AddProduct.Value = 0;
+        AddProduct.Value = AddProduct.Minimum;
         int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
         DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
 
@@ -517,7 +560,7 @@ namespace Computer_house
     private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
     {
       ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, Cpus, Gpus, 
-        Motherboards, Cases, Rams, CoolingSystems, Psus, StorageDevices);
+        Motherboards, Cases, Rams, CoolingSystems, Psus, StorageDevices, ShopRequests, WarehouseInformationList);
       this.Hide();
       addComponentsOptionsForm.Show();
     }
@@ -734,38 +777,47 @@ namespace Computer_house
 
     private void Move_Click(object sender, EventArgs e)
       {
-        string question = "Сейчас будет ";
-        question += Convert.ToInt32(AddProduct.Value) > 0 ? "добавлено на склад " : "снято со склада ";
-        question += Convert.ToInt32(AddProduct.Value) + " элементов товара.";
+        string question = "Сейчас будет добавлено на склад " + Convert.ToInt32(AddProduct.Value) + " шт. товара.";
         DialogResult questionResult = MessageBox.Show(question,
                                       "Проведение товара",
                                       MessageBoxButtons.YesNo,
                                       MessageBoxIcon.Information,
                                       MessageBoxDefaultButton.Button2,
                                       MessageBoxOptions.DefaultDesktopOnly);
-        if(questionResult == DialogResult.Yes)
+      if(questionResult == DialogResult.Yes)
+      {
+        string deviceType = "";
+            int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
+        DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
+        using(ApplicationContext db = new ApplicationContext())
         {
-          string deviceType = "";
-              int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
-          DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
-          using(ApplicationContext db = new ApplicationContext())
-          {
-            deviceType = db.Mediator.Single(i => i.ID == (int)currentRow.Cells[0].Value).Components_type;
-          }       
-          SQLRequests.CreateHoldingDocument(WarehouseInformationList[AllInfoDatagridView.SelectedCells[0].RowIndex],
-          Convert.ToInt32(AddProduct.Value), user,deviceType);
-          AllProductInfo.Clear();
-          LoadInfoFromDBAndView();
-          //LoadAllInfoFromDB();
-          //ViewInfoInDataGrid();
-          LoadLocationInWarehouseFromDB();
-          LoadProductLocationFromDB();
+          deviceType = db.Mediator.Single(i => i.ID == (int)currentRow.Cells[0].Value).Components_type;
         }
+        Warehouse_info adedItemInfo = new Warehouse_info();
+        if(searchComponent != "")
+          adedItemInfo = FilteredInfo[AllInfoDatagridView.SelectedCells[0].RowIndex];
         else
-          MessageBox.Show("Действие отменено");
+          adedItemInfo = WarehouseInformationList[AllInfoDatagridView.SelectedCells[0].RowIndex];
+        SQLRequests.CreateHoldingDocument(adedItemInfo,Convert.ToInt32(AddProduct.Value), user,deviceType);
+        AllProductInfo.Clear();
+        LoadAllInfoFromDB();
 
-        AddProduct.Value = 0;
+        //LoadInfoFromDBAndView();
+        //LoadAllInfoFromDB();
+        //ViewInfoInDataGrid();
+        if(searchComponent != "")
+          ViewInfoAfterChangeRadio();
+        else
+          ViewInfoInDataGrid(WarehouseInformationList);
+
+        LoadLocationInWarehouseFromDB();
+        LoadProductLocationFromDB();
       }
+      else
+        MessageBox.Show("Действие отменено");
+
+      AddProduct.Value = AddProduct.Minimum;
+    }
 
     private void CPUViewRadio_CheckedChanged(object sender, EventArgs e)
     {

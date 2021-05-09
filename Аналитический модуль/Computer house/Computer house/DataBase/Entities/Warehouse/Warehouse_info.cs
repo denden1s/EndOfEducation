@@ -7,22 +7,14 @@ namespace Computer_house.DataBase.Entities.Warehouse
   public class Warehouse_info
   {
     public int Product_ID { get; set; }
-    public int Current_items_count { get; set; }
-    public int Items_in_shop { get; set; } = 0;
     internal string ProductName { get; set; }
     internal string ProductType { get; set; }
 
     public Warehouse_info() { }
-
-    public Warehouse_info(int _productID)
+    public Warehouse_info(int _productID) 
     {
-      Product_ID = _productID;
-    }
-    public Warehouse_info(int _productID, int _currentCount)
-    {
-      Product_ID = _productID;
-      Current_items_count = _currentCount;
-      SetName();
+        Product_ID = _productID;
+        SetName();
     }
 
     public void SetName()
@@ -60,7 +52,7 @@ namespace Computer_house.DataBase.Entities.Warehouse
           default:
               break;
         }
-      } 
+      }        
     }
   }
 }

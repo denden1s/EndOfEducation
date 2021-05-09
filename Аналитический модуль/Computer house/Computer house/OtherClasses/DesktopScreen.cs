@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
+
 public static class DesktopScreen
 {
   [DllImport("user32.dll")]
@@ -22,8 +23,7 @@ public static class DesktopScreen
 
   public static int Width { get; private set; } = GetDeviceCaps(GetDC(IntPtr.Zero), DESKTOPHORZRES);
   public static int Height { get; private set; } = GetDeviceCaps(GetDC(IntPtr.Zero), DESKTOPVERTRES);
-
-  public enum DeviceCap
+   public enum DeviceCap
   {
     VERTRES = 10,
     DESKTOPVERTRES = 117

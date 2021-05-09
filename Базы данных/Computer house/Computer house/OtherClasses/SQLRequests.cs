@@ -1152,6 +1152,39 @@ namespace Computer_house.OtherClasses
       }
     }
 
+    public static void RemoveShopRequestFromRequestList(ShopRequests _request)
+    {
+      try
+      {
+        _request.Status = true;
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          db.ShopRequests.Update(_request);
+          db.SaveChanges();
+        }
+          
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+    public static void AddLocation(Locations_in_warehouse _locations)
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          db.Locations_in_warehouse.Add(_locations);
+          db.SaveChanges();
+        }
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
     public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, int _itemsCount, Users _user, string _deviceType)
     {
       if (_itemsCount < 0)
@@ -1199,7 +1232,7 @@ namespace Computer_house.OtherClasses
 
           List<Locations_in_warehouse> locations = (from b in db.Locations_in_warehouse
                                                     where b.Location_label.Contains(_deviceType) &&
-                                                    b.Max_item_count > b.Current_item_count + _itemsCount
+                                                    b.Max_item_count >= b.Current_item_count + _itemsCount
                                                     select b).ToList();
 
           if (locations.Count != 0)

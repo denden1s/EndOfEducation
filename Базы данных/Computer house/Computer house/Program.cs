@@ -46,7 +46,7 @@ namespace Computer_house
             Application.SetCompatibleTextRenderingDefault(false);
             if(login)
             {           
-                Application.Run(new AuthorizedForm(user));
+                Application.Run(new AuthorizedForm(user, true));
             }
             else
             {

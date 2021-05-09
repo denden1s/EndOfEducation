@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
 namespace Computer_house.OtherClasses
 {
@@ -640,6 +641,16 @@ namespace Computer_house.OtherClasses
           componentsOptions.ActToComponent.Enabled = false;
       else
         componentsOptions.ActToComponent.Enabled = true;
+    }
+
+    public static bool FindIdenticalLocationName(string name)
+    {
+      using(ApplicationContext db = new ApplicationContext())
+        foreach(Locations_in_warehouse L in db.Locations_in_warehouse)
+          if(L.Location_label == name)
+            return true;
+
+      return false;
     }
   }
 }

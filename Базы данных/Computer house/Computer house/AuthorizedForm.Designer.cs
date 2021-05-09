@@ -31,6 +31,7 @@ namespace Computer_house
         {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizedForm));
       this.panel1 = new System.Windows.Forms.Panel();
+      this.SDViewRadio = new System.Windows.Forms.RadioButton();
       this.PSUViewRadio = new System.Windows.Forms.RadioButton();
       this.CoolingSystemViewRadio = new System.Windows.Forms.RadioButton();
       this.RAMViewRadio = new System.Windows.Forms.RadioButton();
@@ -55,7 +56,6 @@ namespace Computer_house
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.выйтиИзУчётнойЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.label1 = new System.Windows.Forms.Label();
-      this.SDViewRadio = new System.Windows.Forms.RadioButton();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).BeginInit();
@@ -81,6 +81,21 @@ namespace Computer_house
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(150, 520);
       this.panel1.TabIndex = 0;
+      // 
+      // SDViewRadio
+      // 
+      this.SDViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
+      this.SDViewRadio.AutoSize = true;
+      this.SDViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.SDViewRadio.Location = new System.Drawing.Point(10, 447);
+      this.SDViewRadio.Margin = new System.Windows.Forms.Padding(2);
+      this.SDViewRadio.Name = "SDViewRadio";
+      this.SDViewRadio.Size = new System.Drawing.Size(118, 25);
+      this.SDViewRadio.TabIndex = 26;
+      this.SDViewRadio.TabStop = true;
+      this.SDViewRadio.Text = "Накопители";
+      this.SDViewRadio.UseVisualStyleBackColor = true;
+      this.SDViewRadio.CheckedChanged += new System.EventHandler(this.SDViewRadio_CheckedChanged);
       // 
       // PSUViewRadio
       // 
@@ -243,14 +258,19 @@ namespace Computer_house
       this.AddProduct.Location = new System.Drawing.Point(2, 492);
       this.AddProduct.Margin = new System.Windows.Forms.Padding(2);
       this.AddProduct.Minimum = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
-            -2147483648});
+            0});
       this.AddProduct.Name = "AddProduct";
       this.AddProduct.Size = new System.Drawing.Size(255, 29);
       this.AddProduct.TabIndex = 6;
       this.AddProduct.ThousandsSeparator = true;
+      this.AddProduct.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
       // 
       // AllProductInfo
       // 
@@ -383,21 +403,6 @@ namespace Computer_house
       this.label1.TabIndex = 5;
       this.label1.Text = "Поиск:";
       // 
-      // SDViewRadio
-      // 
-      this.SDViewRadio.Anchor = System.Windows.Forms.AnchorStyles.None;
-      this.SDViewRadio.AutoSize = true;
-      this.SDViewRadio.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.SDViewRadio.Location = new System.Drawing.Point(10, 447);
-      this.SDViewRadio.Margin = new System.Windows.Forms.Padding(2);
-      this.SDViewRadio.Name = "SDViewRadio";
-      this.SDViewRadio.Size = new System.Drawing.Size(118, 25);
-      this.SDViewRadio.TabIndex = 26;
-      this.SDViewRadio.TabStop = true;
-      this.SDViewRadio.Text = "Накопители";
-      this.SDViewRadio.UseVisualStyleBackColor = true;
-      this.SDViewRadio.CheckedChanged += new System.EventHandler(this.SDViewRadio_CheckedChanged);
-      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,9 +421,8 @@ namespace Computer_house
       this.Margin = new System.Windows.Forms.Padding(2);
       this.MaximizeBox = false;
       this.Name = "AuthorizedForm";
-      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.Text = "Computer house";
-      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthorizedForm_FormClosed);
       this.Load += new System.EventHandler(this.AuthorizedForm_Load);
       this.Enter += new System.EventHandler(this.AuthorizedForm_Enter);
