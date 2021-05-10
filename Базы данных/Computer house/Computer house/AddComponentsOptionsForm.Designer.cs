@@ -479,11 +479,11 @@ namespace Computer_house
       this.tabControl2.Controls.Add(this.tabPage10);
       this.tabControl2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tabControl2.HotTrack = true;
-      this.tabControl2.Location = new System.Drawing.Point(2, 4);
+      this.tabControl2.Location = new System.Drawing.Point(2, 2);
       this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
       this.tabControl2.Name = "tabControl2";
       this.tabControl2.SelectedIndex = 0;
-      this.tabControl2.Size = new System.Drawing.Size(609, 818);
+      this.tabControl2.Size = new System.Drawing.Size(609, 820);
       this.tabControl2.TabIndex = 0;
       // 
       // tabPage3
@@ -534,7 +534,7 @@ namespace Computer_house
       this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage3.Size = new System.Drawing.Size(601, 786);
+      this.tabPage3.Size = new System.Drawing.Size(601, 788);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "Процессор";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -5352,7 +5352,7 @@ namespace Computer_house
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScroll = true;
       this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.ClientSize = new System.Drawing.Size(650, 628);
+      this.ClientSize = new System.Drawing.Size(667, 628);
       this.Controls.Add(this.tabControl1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

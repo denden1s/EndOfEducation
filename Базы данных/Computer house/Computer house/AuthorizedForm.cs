@@ -39,9 +39,6 @@ namespace Computer_house
     //организация блокирования функции перетаскивания формы
     const int SC_CLOSE = 0xF010;
     const int MF_BYCOMMAND = 0;
-    const int WM_NCLBUTTONDOWN = 0x00A1;
-    const int WM_NCHITTEST = 0x0084;
-    const int HTCAPTION = 2;
     [DllImport("User32.dll")]
     static extern int SendMessage(IntPtr hWnd,
     int Msg, IntPtr wParam, IntPtr lParam);
@@ -51,18 +48,6 @@ namespace Computer_house
 
     [DllImport("User32.dll")]
     static extern bool RemoveMenu(IntPtr hMenu, int uPosition, int uFlags);
-
-    protected override void WndProc(ref Message m)
-    {
-      if(m.Msg == WM_NCLBUTTONDOWN)
-      {
-        int result = SendMessage(m.HWnd, WM_NCHITTEST,
-        IntPtr.Zero, m.LParam);
-        if(result == HTCAPTION)
-          return;
-      }
-      base.WndProc(ref m);
-    }
 
     protected override void OnHandleCreated(EventArgs e)
     {

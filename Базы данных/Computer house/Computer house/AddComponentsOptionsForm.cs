@@ -2294,6 +2294,8 @@ namespace Computer_house
         SQLRequests.RemoveShopRequestFromRequestList(request);
         ShopRequestsList.Remove(request);
         ViewRequestsInDataGrid();
+        LoadLocationInfoFromDB();
+        ViewLocationInListBox();
         HoldRequestButton.Enabled = false;
       }
       else

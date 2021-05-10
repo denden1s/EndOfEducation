@@ -1189,35 +1189,60 @@ namespace Computer_house.OtherClasses
     {
       if (_itemsCount < 0)
       {
+        string message = $"Со склада снято {_infoAboutProduct.ProductName} в объёме:\n";
         //расход 
         using (ApplicationContext db = new ApplicationContext())
         {
-          //Выбор мест откуда можно взять компонент
-          //Сделать switch case
           List<Products_location> locations = (from b in db.Products_location
                                               where b.Product_ID == _infoAboutProduct.Product_ID
-                                              && b.Items_count + _itemsCount >= 0
                                               select b).ToList();
           if (locations.Count != 0)
           {
-            locations[0].Items_count += _itemsCount;
-            _infoAboutProduct.Current_items_count += _itemsCount;
-            Locations_in_warehouse locationInWarehouse = new Locations_in_warehouse();
-            locationInWarehouse = db.Locations_in_warehouse.Single(i => i.ID == locations[0].Location_ID);
-            locationInWarehouse.Current_item_count += _itemsCount;
-            db.Warehouse_info.Update(_infoAboutProduct);
-            db.Locations_in_warehouse.Update(locationInWarehouse);
-            db.Products_location.Update(locations[0]);
-            //добавить холдинг документ
-            Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
-                _itemsCount, _user.ID, locations[0].Location_ID);
-            db.Holding_document.Add(holding_Document);
-            db.SaveChanges();
-            MessageBox.Show("Снятие со склада прошло успешно.");
+            if(_infoAboutProduct.Current_items_count >= Math.Abs(_itemsCount))
+            {
+              foreach(Products_location p in locations)
+              {
+                Locations_in_warehouse locationInWarehouse = new Locations_in_warehouse();
+                locationInWarehouse = db.Locations_in_warehouse.Single(i => i.ID == p.Location_ID);
+                if(p.Items_count < Math.Abs(_itemsCount))
+                { 
+                  message += Convert.ToString(p.Items_count) + " шт. с места " + locationInWarehouse.Location_label +";\n";
+                  _infoAboutProduct.Current_items_count += p.Items_count * -1;
+                  locationInWarehouse.Current_item_count += p.Items_count * -1;
+                  Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
+                    p.Items_count *-1, _user.ID, p.Location_ID);
+                  db.Holding_document.Add(holding_Document);
+                  _itemsCount += p.Items_count;
+                  p.Items_count = 0;
+                }
+                else
+                {
+                  message += Convert.ToString(Math.Abs(_itemsCount)) + " шт. с места " + locationInWarehouse.Location_label + ";\n";
+                  p.Items_count += _itemsCount;
+                  _infoAboutProduct.Current_items_count += _itemsCount;
+                  locationInWarehouse.Current_item_count += _itemsCount;
+                  Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
+                    _itemsCount, _user.ID, p.Location_ID);
+                  db.Holding_document.Add(holding_Document);
+                }
+                db.Warehouse_info.Update(_infoAboutProduct);
+                db.Locations_in_warehouse.Update(locationInWarehouse);
+                db.Products_location.Update(p);
+                db.SaveChanges();
+              }
+              MessageBox.Show(message);
+              return;
+            }
+            else
+            {
+              MessageBox.Show("На складе недостаточно материалов!");
+              return;
+            } 
           }
           else
           {
             MessageBox.Show("Товар отсутствует на складе");
+            return;
           }
         }
       }
@@ -1227,9 +1252,6 @@ namespace Computer_house.OtherClasses
         //приход
         using (ApplicationContext db = new ApplicationContext())
         {
-          //Выбор мест куда можно определить компонент
-          //Сделать switch case
-
           List<Locations_in_warehouse> locations = (from b in db.Locations_in_warehouse
                                                     where b.Location_label.Contains(_deviceType) &&
                                                     b.Max_item_count >= b.Current_item_count + _itemsCount
@@ -1257,7 +1279,8 @@ namespace Computer_house.OtherClasses
             else
             {
               Products_location productsLocation = (from b in db.Products_location
-                                                    where b.Location_ID == location_ID && b.Product_ID == _infoAboutProduct.Product_ID
+                                                    where b.Location_ID == location_ID && 
+                                                    b.Product_ID == _infoAboutProduct.Product_ID
                                                     select b).Single();
               productsLocation.Items_count += _itemsCount;
               db.Products_location.Update(productsLocation);
@@ -1274,9 +1297,32 @@ namespace Computer_house.OtherClasses
             db.Warehouse_info.Update(_infoAboutProduct);
             db.SaveChanges();
             MessageBox.Show("Добавление прошло успешно");
+            return;
           }
           else
-            MessageBox.Show("На складе нет места");
+          {
+            string message = "На склад можно добавить следующее кол-во элементов по отдельности:\n";
+            List<Locations_in_warehouse> locationsCanSet = (from b in db.Locations_in_warehouse
+                                                            where b.Location_label.Contains(_deviceType)
+                                                            select b).ToList();
+            int maxItems = 0;
+            foreach(Locations_in_warehouse item in locationsCanSet)
+              maxItems += item.Max_item_count - item.Current_item_count;
+
+            if(maxItems < _itemsCount)
+            {
+              MessageBox.Show("На складе нет места");
+              return;
+            }
+            else
+            {
+              foreach(Locations_in_warehouse item in locationsCanSet)
+                message += $"Месторасположение: {item.Location_label}, кол-во товара: " +
+                  $"{item.Max_item_count - item.Current_item_count};\n";
+
+              MessageBox.Show(message);
+            }
+          }
         }
       }
     }
