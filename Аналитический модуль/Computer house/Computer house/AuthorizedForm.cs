@@ -43,7 +43,6 @@ namespace Computer_house
       RemoveMenu(hMenu, SC_CLOSE, MF_BYCOMMAND);
     }
 
-
     public AuthorizedForm()
     {
       InitializeComponent();
