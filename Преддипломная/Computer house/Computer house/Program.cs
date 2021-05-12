@@ -32,12 +32,21 @@ namespace Computer_house
       }
       try
       {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
-        if (login)
-          Application.Run(new AuthorizedForm(user));
+        //Есть необходимость в запуске единственного экземпляра программы
+        if(System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+        {
+          MessageBox.Show("Экземпляр программы уже запущен!!!");
+          System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
         else
-          Application.Run(new AuthentificationForm());
+        {
+          Application.EnableVisualStyles();
+          Application.SetCompatibleTextRenderingDefault(false);
+          if(login)
+            Application.Run(new AuthorizedForm(user));
+          else
+            Application.Run(new AuthentificationForm());
+        }
       }
       catch (Exception ex)
       {

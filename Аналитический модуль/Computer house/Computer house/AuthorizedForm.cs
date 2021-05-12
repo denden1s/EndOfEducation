@@ -191,20 +191,27 @@ namespace Computer_house
 
     private async void UpdateInfo()
     {
-      while(true)
+      try
       {
-        using(ApplicationContext db = new ApplicationContext())
+        while(true)
         {
-          NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
-          if(needToUpdate.UpdateStatus)
+          using(ApplicationContext db = new ApplicationContext())
           {
-            await Task.Run(() => LoadHoldingDocsFromDB());
-            await Task.Run(() => ViewDocsInDataGrid());
-            needToUpdate.UpdateStatus = false;
-            db.NeedToUpdate.Update(needToUpdate);
-            db.SaveChanges();
+            NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
+            if(needToUpdate.UpdateStatus)
+            {
+              await Task.Run(() => LoadHoldingDocsFromDB());
+              await Task.Run(() => ViewDocsInDataGrid());
+              needToUpdate.UpdateStatus = false;
+              db.NeedToUpdate.Update(needToUpdate);
+              db.SaveChanges();
+            }
           }
         }
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
       }
     }
   }
