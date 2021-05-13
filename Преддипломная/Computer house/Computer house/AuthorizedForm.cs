@@ -58,6 +58,17 @@ namespace Computer_house
     private int cpuConsumptionForCooling = 0;
     private int psuConsumption = 0;
 
+    //списки фильтрованных комплектующих
+    private List<Case> filteredCases = new List<Case>();
+    private List<Cooling_system> filteredCoolingSystems = new List<Cooling_system>();
+    private List<CPU> filteredCpus = new List<CPU>();
+    private List<GPU> filteredGpus = new List<GPU>();
+    //private List<HDD> Hdds;
+    private List<Motherboard> filteredMotherboards = new List<Motherboard>();
+    private List<PSU> filteredPsus = new List<PSU>();
+    private List<RAM> filteredRams = new List<RAM>();
+    private List<Storage_devices> filteredStorageDevices = new List<Storage_devices>();
+
     private Users user;
 
     //организация блокирования функции перетаскивания формы
@@ -889,21 +900,31 @@ namespace Computer_house
         AddConfigItemInListBox(CPU_ComboBox, ref cpuNameInListBox);
         int productID = WarehouseInformationList.Single(i => i.ProductName == cpuNameInListBox).Product_ID;
         string cpuID = Mediators.Single(i => i.ID == productID).CPU_ID;
-        cpuConsumptionForCooling = Cpus.Single(i => i.ID == cpuID).Consumption;
-        socket = Cpus.Single(i => i.ID == cpuID).Socket;
-        if(Motherboard_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1)
+        CPU currentCPU = Cpus.Single(i => i.ID == cpuID);
+        cpuConsumptionForCooling = currentCPU.Consumption;
+        socket = currentCPU.Socket;
+
+        if(Motherboard_ComboBox.SelectedIndex == -1 && RAM_ComboBox.SelectedIndex == -1)
         {
           Motherboard_ComboBox.Items.Clear();
-          foreach(Motherboard m in Motherboards)
+          filteredMotherboards = Motherboards.Where(i => i.Socket == socket).ToList();
+          foreach(Motherboard m in filteredMotherboards)
           {
-            if(m.Socket == socket)
-              Motherboard_ComboBox.Items.Add(m.Name);
+            Motherboard_ComboBox.Items.Add(m.Name);
           }
-          maxRamFrequency = Cpus.Single(i => i.ID == cpuID).RAM_frequency;
+          maxRamFrequency = currentCPU.RAM_frequency;
+          filteredRams = (from b in Rams
+                          where b.RAM_frequency <= maxRamFrequency &&
+                          b.RAM_type == currentCPU.RAM_type
+                          select b).ToList();
+
+          RAM_ComboBox.Items.Clear();
+          foreach(RAM r in filteredRams)
+            RAM_ComboBox.Items.Add(r.Name);
           return;
         }
         //правка сокета материнской платы
-        if(Motherboard_ComboBox.SelectedIndex != -1)
+        if(Motherboard_ComboBox.SelectedIndex != -1 && RAM_ComboBox.SelectedIndex == -1)
         {
           int warehouseMotherboardID = WarehouseInformationList.Single(i => i.ProductName == motherboardNameInListBox).Product_ID;
           string motherboardID = Mediators.Single(i => i.ID == warehouseMotherboardID).Motherboard_ID;
@@ -914,27 +935,116 @@ namespace Computer_house
             motherboardNameInListBox = "";
             Motherboard_ComboBox.SelectedItem = null;
             Motherboard_ComboBox.BackColor = Color.White;
+
+            Motherboard_ComboBox.Items.Clear();
+            filteredMotherboards = Motherboards.Where(i => i.Socket == socket).ToList();
+            foreach(Motherboard m in filteredMotherboards)
+            {
+              Motherboard_ComboBox.Items.Add(m.Name);
+            }
           }
           else
           {
-            CheckIntegratedGraphicSupport(motherboardID, Cpus.Single(i => i.ID == cpuID));
+            CheckIntegratedGraphicSupport(motherboardID, currentCPU);
             //определение макс частоты памяти
             maxRamFrequency = Math.Min(Cpus.Single(i => i.ID == cpuID).RAM_frequency,
               Motherboards.Single(i => i.ID == motherboardID).RAM_frequency);
+            filteredRams = (from b in Rams
+                            where b.RAM_frequency <= maxRamFrequency &&
+                            b.RAM_type == currentCPU.RAM_type
+                            select b).ToList();
+            RAM_ComboBox.Items.Clear();
+            foreach(RAM r in filteredRams)
+              RAM_ComboBox.Items.Add(r.Name);
+          }
+        }
+        //если оперативная память уже выбрана
+        if(Motherboard_ComboBox.SelectedIndex == -1 && RAM_ComboBox.SelectedIndex != -1)
+        {
+          int warehouseRamID = WarehouseInformationList.Single(i => i.ProductName == ramNameInListBox).Product_ID;
+          string ramID = Mediators.Single(i => i.ID == warehouseRamID).RAM_ID;
+          RAM ram = Rams.Single(i => i.ID == ramID);
+          if(ram.RAM_type != currentCPU.RAM_type || ram.RAM_frequency > currentCPU.RAM_frequency)
+          {
+            SelectedConfigIntemsListBox.Items.Remove(ramNameInListBox);
+            ramNameInListBox = "";
+            RAM_ComboBox.SelectedItem = null;
+            RAM_ComboBox.BackColor = Color.White;
+          
+            maxRamFrequency = Cpus.Single(i => i.ID == cpuID).RAM_frequency;
+            filteredRams = (from b in Rams
+                            where b.RAM_frequency <= maxRamFrequency &&
+                            b.RAM_type == currentCPU.RAM_type
+                            select b).ToList();
 
+            RAM_ComboBox.Items.Clear();
+            foreach(RAM r in filteredRams)
+              RAM_ComboBox.Items.Add(r.Name);
+            SelectedConfigIntemsListBox.Items.Remove(ramNameInListBox);
+            ramNameInListBox = "";
+            RAM_ComboBox.SelectedItem = null;
+            RAM_ComboBox.BackColor = Color.White;
+            //return;
           }
         }
 
-        //правка охлаждения
-        if(CoolingSystem_ComboBox.SelectedIndex != -1)
+        if(Motherboard_ComboBox.SelectedIndex != -1 && RAM_ComboBox.SelectedIndex != -1)
         {
-          int warehouseCsID = WarehouseInformationList.Single(i => i.ProductName == coolingSystemNameInListBox).Product_ID;
-          string csID = Mediators.Single(i => i.ID == warehouseCsID).Cooling_system_ID;
+          int warehouseMotherboardID = WarehouseInformationList.Single(i => i.ProductName == motherboardNameInListBox).Product_ID;
+          string motherboardID = Mediators.Single(i => i.ID == warehouseMotherboardID).Motherboard_ID;
+          Motherboard motherboard = Motherboards.Single(i => i.ID == motherboardID);
+          RAM currentRam = Rams.Single(i => i.Name == ramNameInListBox);
+          if(motherboard.Socket != socket)
+          {
+            SelectedConfigIntemsListBox.Items.Remove(motherboardNameInListBox);
+            motherboardNameInListBox = "";
+            Motherboard_ComboBox.SelectedItem = null;
+            Motherboard_ComboBox.BackColor = Color.White;
 
-          Cooling_system selectedCS = CoolingSystems.Single(i => i.ID == csID);
-          if(selectedCS.Consumption < cpuConsumptionForCooling)
-            MessageBox.Show("Охлаждение в должной мере не сможет охладить процессор");
+            Motherboard_ComboBox.Items.Clear();
+            filteredMotherboards = Motherboards.Where(i => i.Socket == socket).ToList();
+            foreach(Motherboard m in filteredMotherboards)
+            {
+              Motherboard_ComboBox.Items.Add(m.Name);
+            }
+
+            maxRamFrequency = Cpus.Single(i => i.ID == cpuID).RAM_frequency;
+            if(currentRam.RAM_frequency > maxRamFrequency)
+              filteredRams = (from b in Rams
+                              where b.RAM_frequency <= maxRamFrequency &&
+                              b.RAM_type == currentCPU.RAM_type
+                              select b).ToList();
+            
+
+            RAM_ComboBox.Items.Clear();
+            foreach(RAM r in filteredRams)
+              RAM_ComboBox.Items.Add(r.Name);
+
+            SelectedConfigIntemsListBox.Items.Remove(ramNameInListBox);
+            ramNameInListBox = "";
+            RAM_ComboBox.SelectedItem = null;
+            RAM_ComboBox.BackColor = Color.White;
+          }
+          else
+          {
+            //RAM currentRam = Rams.Single(i => i.Name == ramNameInListBox);
+            //int warehouseMotherboardID = WarehouseInformationList.Single(i => i.ProductName == motherboardNameInListBox).Product_ID;
+            //string motherboardID = Mediators.Single(i => i.ID == warehouseMotherboardID).Motherboard_ID;
+            //Motherboard motherboard = Motherboards.Single(i => i.ID == motherboardID);
+            maxRamFrequency = Math.Min(currentCPU.RAM_frequency, motherboard.RAM_frequency);
+            if(currentRam.RAM_frequency > maxRamFrequency)
+              filteredRams = (from b in Rams
+                              where b.RAM_frequency <= maxRamFrequency &&
+                              b.RAM_type == currentCPU.RAM_type
+                              select b).ToList();
+
+            SelectedConfigIntemsListBox.Items.Remove(ramNameInListBox);
+            ramNameInListBox = "";
+            RAM_ComboBox.SelectedItem = null;
+            RAM_ComboBox.BackColor = Color.White;
+          }
         }
+      
 
         if(Motherboard_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex != -1)
         {
@@ -944,7 +1054,6 @@ namespace Computer_house
             if(m.Socket == socket)
               Motherboard_ComboBox.Items.Add(m.Name);
           }
-          return;
         }
       }
     }
@@ -1022,10 +1131,12 @@ namespace Computer_house
         AddConfigItemInListBox(Motherboard_ComboBox, ref motherboardNameInListBox);
         int productID = WarehouseInformationList.Single(i => i.ProductName == motherboardNameInListBox).Product_ID;
         string motherboardID = Mediators.Single(i => i.ID == productID).Motherboard_ID;
+        Motherboard currentMotherboard = Motherboards.Single(i => i.ID == motherboardID);
 
 
-        socket = Motherboards.Single(i => i.ID == motherboardID).Socket;
-        if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1)
+        socket = currentMotherboard.Socket;
+        if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1 && 
+          RAM_ComboBox.SelectedIndex == -1)
         {
           ChangeCPUComboBoxBySocket();
 
@@ -1035,6 +1146,15 @@ namespace Computer_house
             if(FindSupportedSocketByCoolingSystem(cs))
               CoolingSystem_ComboBox.Items.Add(cs.Name);
           }
+          maxRamFrequency = currentMotherboard.RAM_frequency;
+          filteredRams = (from b in Rams
+                          where b.RAM_frequency <= maxRamFrequency &&
+                          b.RAM_type == currentMotherboard.RAM_type
+                          select b).ToList();
+
+          RAM_ComboBox.Items.Clear();
+          foreach(RAM r in filteredRams)
+            RAM_ComboBox.Items.Add(r.Name);
           return;
         }
 
@@ -1164,15 +1284,13 @@ namespace Computer_house
       if(CoolingSystem_ComboBox.SelectedIndex != -1)
       {
         AddConfigItemInListBox(CoolingSystem_ComboBox, ref coolingSystemNameInListBox);
+        int warehouseCsID = WarehouseInformationList.Single(i => i.ProductName == coolingSystemNameInListBox).Product_ID;
+        string csID = Mediators.Single(i => i.ID == warehouseCsID).Cooling_system_ID;
 
-        if(CPU_ComboBox.SelectedIndex == 0)
+        Cooling_system selectedCS = CoolingSystems.Single(i => i.ID == csID);
+        cpuConsumptionForCooling = selectedCS.Consumption;
+        if(CPU_ComboBox.SelectedIndex == -1)
         {
-          int warehouseCsID = WarehouseInformationList.Single(i => i.ProductName == coolingSystemNameInListBox).Product_ID;
-          string csID = Mediators.Single(i => i.ID == warehouseCsID).Cooling_system_ID;
-
-          Cooling_system selectedCS = CoolingSystems.Single(i => i.ID == csID);
-          cpuConsumptionForCooling = selectedCS.Consumption;
-
           CPU_ComboBox.Items.Clear();
           foreach(CPU c in Cpus)
           {
@@ -1180,6 +1298,21 @@ namespace Computer_house
               CPU_ComboBox.Items.Add(c.Name);
           }
           return;
+        }
+        if(CPU_ComboBox.SelectedIndex != -1)
+        {
+          int warehouseCpuID = WarehouseInformationList.Single(i => i.ProductName == cpuNameInListBox).Product_ID;
+          string cpuID = Mediators.Single(i => i.ID == warehouseCpuID).CPU_ID;
+
+          CPU selectedCPU = Cpus.Single(i => i.ID == cpuID);
+          if(selectedCPU.Socket != socket)
+          {
+            ChangeCPUComboBoxBySocket();
+            SelectedConfigIntemsListBox.Items.Remove(cpuNameInListBox);
+            cpuNameInListBox = "";
+            CPU_ComboBox.SelectedItem = null;
+            CPU_ComboBox.BackColor = Color.White;
+          }            
         }
       }
     }
