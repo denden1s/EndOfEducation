@@ -688,6 +688,11 @@ namespace Computer_house
                                   where b.PSU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
                                   select b).ToList());
             break;
+          case "SD":
+            finalResult.AddRange((from b in tempRequest
+                                  where b.SD_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                                  select b).ToList());
+            break;
           default:
             break;
         }
@@ -733,6 +738,7 @@ namespace Computer_house
         List<Mediator> tempRequestRAM = new List<Mediator>();
         List<Mediator> tempRequestCoolingSys = new List<Mediator>();
         List<Mediator> tempRequestPSU = new List<Mediator>();
+        List<Mediator> tempRequestSD = new List<Mediator>();
         
         tempRequestCPU.AddRange(GetSearchInfo("CPU"));
         tempRequestGPU.AddRange(GetSearchInfo("GPU"));
@@ -741,6 +747,7 @@ namespace Computer_house
         tempRequestRAM.AddRange(GetSearchInfo("RAM"));
         tempRequestCoolingSys.AddRange(GetSearchInfo("Cooling system"));
         tempRequestPSU.AddRange(GetSearchInfo("PSU"));
+        tempRequestSD.AddRange(GetSearchInfo("SD"));
         tempRequest.AddRange((from b in tempRequestCPU
                               where b.CPU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
                               select b).ToList());
@@ -761,6 +768,9 @@ namespace Computer_house
                               select b).ToList());
         tempRequest.AddRange((from b in tempRequestPSU
                               where b.PSU_ID.ToLower().Contains(SearchInfo.Text.ToLower())
+                              select b).ToList());
+        tempRequest.AddRange((from b in tempRequestSD
+                              where b.SD_ID.ToLower().Contains(SearchInfo.Text.ToLower())
                               select b).ToList());
         //Проверка наличия такого ID как в строке поиска
         ViewInfoAfterSearch(tempRequest, SearchResultList);
