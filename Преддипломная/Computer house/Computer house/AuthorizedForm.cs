@@ -904,6 +904,7 @@ namespace Computer_house
         cpuConsumptionForCooling = currentCPU.Consumption;
         socket = currentCPU.Socket;
 
+
         if(Motherboard_ComboBox.SelectedIndex == -1 && RAM_ComboBox.SelectedIndex == -1)
         {
           Motherboard_ComboBox.Items.Clear();
@@ -985,6 +986,14 @@ namespace Computer_house
             RAM_ComboBox.SelectedItem = null;
             RAM_ComboBox.BackColor = Color.White;
             //return;
+
+            
+          }
+          Motherboard_ComboBox.Items.Clear();
+          filteredMotherboards = Motherboards.Where(i => i.Socket == socket).ToList();
+          foreach(Motherboard m in filteredMotherboards)
+          {
+            Motherboard_ComboBox.Items.Add(m.Name);
           }
         }
 
@@ -1052,14 +1061,13 @@ namespace Computer_house
           }
         }
       
-
         if(Motherboard_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex != -1)
         {
           Motherboard_ComboBox.Items.Clear();
-          foreach(Motherboard m in Motherboards)
+          filteredMotherboards = Motherboards.Where(i => i.Socket == socket).ToList();
+          foreach(Motherboard m in filteredMotherboards)
           {
-            if(m.Socket == socket)
-              Motherboard_ComboBox.Items.Add(m.Name);
+            Motherboard_ComboBox.Items.Add(m.Name);
           }
         }
       }
@@ -1084,8 +1092,37 @@ namespace Computer_house
       GPU currentGPU = Gpus.Single(i => i.ID == gpuID);
       if(Motherboard_ComboBox.SelectedIndex == -1)
       {
+        if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1 && 
+          RAM_ComboBox.SelectedIndex == -1)//и корпус
+        {
+          filteredMotherboards = Motherboards.Where(b => b.Expansion_slots.Contains
+            (currentGPU.ConnectionInterface)).ToList();
+          Motherboard_ComboBox.Items.Clear();
+          foreach(Motherboard m in filteredMotherboards)
+          {
+            Motherboard_ComboBox.Items.Add(m.Name);
+          }
+        }
+        else
+        {
+          List<Motherboard> secondFilterMotherboards = filteredMotherboards;
+          filteredMotherboards = secondFilterMotherboards.Where(b => b.Expansion_slots.Contains
+            (currentGPU.ConnectionInterface)).ToList();
+          Motherboard_ComboBox.Items.Clear();
+          foreach(Motherboard m in filteredMotherboards)
+          {
+            Motherboard_ComboBox.Items.Add(m.Name);
+          }
+        }
+
+       
+
         //продумать момент, что нужно брать отфильтрованные данные если cpu, cooling или ram заполнены
         //аналогично и с процессорами, оперативкой и системами охлаждения и тд.
+      }
+      else
+      {
+        //если материнка выбрана то ничего делать не нужно
       }
     }
 
@@ -1148,7 +1185,6 @@ namespace Computer_house
         string motherboardID = Mediators.Single(i => i.ID == productID).Motherboard_ID;
         Motherboard currentMotherboard = Motherboards.Single(i => i.ID == motherboardID);
 
-
         socket = currentMotherboard.Socket;
         if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1 && 
           RAM_ComboBox.SelectedIndex == -1)
@@ -1170,7 +1206,77 @@ namespace Computer_house
           RAM_ComboBox.Items.Clear();
           foreach(RAM r in filteredRams)
             RAM_ComboBox.Items.Add(r.Name);
-          return;
+        }
+
+        if(GPU_ComboBox.SelectedIndex == -1)
+        {
+          if(filteredGpus.Count == 0)
+          {
+            filteredGpus = Gpus.Where(g => currentMotherboard.Expansion_slots.Contains(g.ConnectionInterface)).ToList();
+            GPU_ComboBox.Items.Clear();
+            foreach(GPU g in filteredGpus)
+            {
+              GPU_ComboBox.Items.Add(g.Name);
+            }
+          }
+          else
+          {
+            List<GPU> tempGpus = filteredGpus;
+            filteredGpus = tempGpus.Where(g => currentMotherboard.Expansion_slots.Contains(g.ConnectionInterface)).ToList();
+            GPU_ComboBox.Items.Clear();
+            foreach(GPU g in filteredGpus)
+            {
+              GPU_ComboBox.Items.Add(g.Name);
+            }
+          }
+        }
+        else
+        {
+          GPU currentGPU = Gpus.Single(i => i.Name == gpuNameInListBox);
+          if(currentMotherboard.Expansion_slots.Contains(currentGPU.ConnectionInterface))
+          {
+            if(filteredGpus.Count == 0)
+            {
+              filteredGpus = Gpus.Where(g => currentMotherboard.Expansion_slots.Contains(g.ConnectionInterface)).ToList();
+              //в идеале конечно делать проверку на равенство
+              GPU_ComboBox.Items.Clear();
+              foreach(GPU g in filteredGpus)
+              {
+                GPU_ComboBox.Items.Add(g.Name);
+              }
+              GPU_ComboBox.SelectedItem = gpuNameInListBox;
+            }
+            else
+            {
+              List<GPU> tempGpus = filteredGpus;
+              filteredGpus = tempGpus.Where(g => currentMotherboard.Expansion_slots.Contains(g.ConnectionInterface)).ToList();
+              GPU_ComboBox.Items.Clear();
+              foreach(GPU g in filteredGpus)
+              {
+                GPU_ComboBox.Items.Add(g.Name);
+              }
+              GPU_ComboBox.SelectedItem = gpuNameInListBox;
+            }
+          }
+          else
+          {
+            SelectedConfigIntemsListBox.Items.Remove(gpuNameInListBox);
+            gpuNameInListBox = "";
+            GPU_ComboBox.SelectedItem = null;
+            GPU_ComboBox.BackColor = Color.White;
+          }
+
+        }
+
+        if(StorageDevice_ComboBox.SelectedIndex == -1)
+        {
+          filteredStorageDevices = StorageDevices.Where(sd =>
+          currentMotherboard.Storage_interfaces.Contains(sd.ConnectionInterface)).ToList();
+          StorageDevice_ComboBox.Items.Clear();
+          foreach(Storage_devices sd in filteredStorageDevices)
+          {
+            StorageDevice_ComboBox.Items.Add(sd.Name);
+          }
         }
 
         //Если пустой только бокс с процессорами
@@ -1219,24 +1325,6 @@ namespace Computer_house
           //  CheckIntegratedGraphicSupport(motherboardID, selectedCPU);
         }
 
-        //корректировка сокета процессора
-        //if(CPU_ComboBox.SelectedIndex != -1)
-        //{
-        //  int warehouseCpuID = WarehouseInformationList.Single(i => i.ProductName == cpuNameInListBox).Product_ID;
-        //  string cpuID = Mediators.Single(i => i.ID == warehouseCpuID).CPU_ID;
-
-        //  CPU selectedCPU = Cpus.Single(i => i.ID == cpuID);
-        //  if(selectedCPU.Socket != socket)
-        //  {
-        //    ChangeCPUComboBoxBySocket();
-        //    SelectedConfigIntemsListBox.Items.Remove(cpuNameInListBox);
-        //    cpuNameInListBox = "";
-        //    CPU_ComboBox.SelectedItem = null;
-        //    CPU_ComboBox.BackColor = Color.White;
-        //  }
-        //  else
-        //    CheckIntegratedGraphicSupport(motherboardID, selectedCPU);
-        //}
 
         if(CPU_ComboBox.SelectedIndex != -1 && RAM_ComboBox.SelectedIndex != -1)
         {
@@ -1401,6 +1489,7 @@ namespace Computer_house
       return false;
     }
 
+
     //Нужен для отображения детальных сведений о комплектующих
     private void SelectedConfigIntemsListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -1474,7 +1563,7 @@ namespace Computer_house
             cpuNameInListBox = "";
             CPU_ComboBox.SelectedItem = null;
             CPU_ComboBox.BackColor = Color.White;
-          }            
+          }
         }
       }
     }
@@ -1502,6 +1591,12 @@ namespace Computer_house
           i.ProductName == Convert.ToString(SelectedItemsListBox.SelectedItem));
         ViewInfoAboutComponent(AllProductInfo, warehouse);
       }
+    }
+
+    private void обновитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      //нужно обновлять список комплектующих если был добавлен или изменен определенный товар, 
+      //или если произошел привоз на складе
     }
   }
 }

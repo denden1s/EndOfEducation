@@ -43,6 +43,8 @@ namespace Computer_house.DataBase.Entities.PC_Options
         Name = storageDevice.Name;
         Interface_ID = storageDevice.Interface_ID;
         Form_factor_ID = storageDevice.Form_factor_ID;
+        FormFactor = db.Form_factors.Single(i => i.ID == Form_factor_ID).Name;
+        ConnectionInterface = db.Connection_interfaces.Single(i => i.ID == Interface_ID).Name;
         Buffer = storageDevice.Buffer;
         Hardware_encryption = storageDevice.Hardware_encryption;
         Sequential_read_speed = storageDevice.Sequential_read_speed;

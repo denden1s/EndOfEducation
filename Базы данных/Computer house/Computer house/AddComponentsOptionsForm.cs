@@ -823,6 +823,7 @@ namespace Computer_house
           SQLRequests.ChangeCPU(changedCPU);
           SQLRequests.EditCPUInMediator(changedCPU, "Edit");
           int temp = CPUList.IndexOf(CPUList.Single(i => i.ID == changedCPU.ID));
+          changedCPU.GetDataFromDB();
           CPUList[temp] = changedCPU;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
@@ -1130,6 +1131,7 @@ namespace Computer_house
           SQLRequests.ChangeGPU(changedGPU);
           SQLRequests.EditGPUInMediator(changedGPU, "Edit");
           int temp = GPUList.IndexOf(GPUList.Single(i => i.ID == changedGPU.ID));
+          changedGPU.GetDataFromDB();
           GPUList[temp] = changedGPU;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid(GPU_DatagridView, GPUList);
@@ -1197,7 +1199,7 @@ namespace Computer_house
 
     private void ActWithMotherboard_Click(object sender, EventArgs e)
     {
-      if (SystemFunctions.CheckNullForCaseTextBoxes(this))
+      if (SystemFunctions.CheckNullForMotherboardTextBoxes(this))
       {
         MessageBox.Show("Не все поля заполнены");
         return;
@@ -1229,6 +1231,7 @@ namespace Computer_house
           SQLRequests.ChangeMotherboard(changedMotherboard);
           SQLRequests.EditMotherboardMediator(changedMotherboard, "Edit");
           int temp = MotherBoardList.IndexOf(MotherBoardList.Single(i => i.ID == changedMotherboard.ID));
+          changedMotherboard.GetDataFromDB();
           MotherBoardList[temp] = changedMotherboard;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid(Motherboard_DatagridView, MotherBoardList);
@@ -1446,6 +1449,7 @@ namespace Computer_house
           SQLRequests.ChangeCase(changedCase);
           SQLRequests.EditCaseMediator(changedCase, "Edit");
           int temp = CaseList.IndexOf(CaseList.Single(i => i.ID == changedCase.ID));
+          changedCase.GetDataFromDB();
           CaseList[temp] = changedCase;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid(Case_DatagridView, CaseList);
@@ -1673,6 +1677,7 @@ namespace Computer_house
           SQLRequests.ChangeRAM(changedRAM);
           SQLRequests.EditRAMMediator(changedRAM, "Edit");
           int temp = RAMList.IndexOf(RAMList.Single(i => i.ID == changedRAM.ID));
+          changedRAM.GetDataFromDB();
           RAMList[temp] = changedRAM;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid(RAM_DatagridView, RAMList);
@@ -1852,6 +1857,7 @@ namespace Computer_house
           SQLRequests.ChangeCoolingSystem(changedCoolingSystem);
           SQLRequests.EditCoolingSystemMediator(changedCoolingSystem, "Edit");
           int temp = CoolingSystemList.IndexOf(CoolingSystemList.Single(i => i.ID == changedCoolingSystem.ID));
+          changedCoolingSystem.GetDataFromDB();
           CoolingSystemList[temp] = changedCoolingSystem;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid<Cooling_system>(CoolingSystem_DatagridView, CoolingSystemList);
@@ -2016,6 +2022,7 @@ namespace Computer_house
           SQLRequests.ChangePSU(changedPSU);
           SQLRequests.EditPSUMediator(changedPSU, "Edit");
           int temp = PSUList.IndexOf(PSUList.Single(i => i.ID == changedPSU.ID));
+          changedPSU.GetDataFromDB();
           PSUList[temp] = changedPSU;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid<PSU>(PSU_DatagridView, PSUList);
@@ -2155,6 +2162,7 @@ namespace Computer_house
           SQLRequests.ChangeSD(changedSD);
           SQLRequests.EditSDMediator(changedSD, "Edit");
           int temp = StorageDevicesList.IndexOf(StorageDevicesList.Single(i => i.ID == changedSD.ID));
+          changedSD.GetDataFromDB();
           StorageDevicesList[temp] = changedSD;
           MessageBox.Show("Изменение прошло успешно!");
           ViewInfoInDataGrid(SD_DatagridView, StorageDevicesList);

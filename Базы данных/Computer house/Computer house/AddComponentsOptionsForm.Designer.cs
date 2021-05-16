@@ -1145,7 +1145,7 @@ namespace Computer_house
       this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage4.Name = "tabPage4";
       this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage4.Size = new System.Drawing.Size(601, 786);
+      this.tabPage4.Size = new System.Drawing.Size(601, 788);
       this.tabPage4.TabIndex = 1;
       this.tabPage4.Text = "Видеокарта";
       this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
@@ -1714,7 +1714,7 @@ namespace Computer_house
       this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage5.Name = "tabPage5";
       this.tabPage5.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage5.Size = new System.Drawing.Size(601, 786);
+      this.tabPage5.Size = new System.Drawing.Size(601, 788);
       this.tabPage5.TabIndex = 2;
       this.tabPage5.Text = "Материнская плата";
       this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
@@ -2349,7 +2349,7 @@ namespace Computer_house
       this.tabPage6.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage6.Name = "tabPage6";
       this.tabPage6.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage6.Size = new System.Drawing.Size(601, 786);
+      this.tabPage6.Size = new System.Drawing.Size(601, 788);
       this.tabPage6.TabIndex = 3;
       this.tabPage6.Text = "Корпус";
       this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
@@ -3011,7 +3011,7 @@ namespace Computer_house
       this.tabPage7.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage7.Name = "tabPage7";
       this.tabPage7.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage7.Size = new System.Drawing.Size(601, 786);
+      this.tabPage7.Size = new System.Drawing.Size(601, 788);
       this.tabPage7.TabIndex = 4;
       this.tabPage7.Text = "Оперативная память";
       this.tabPage7.Enter += new System.EventHandler(this.tabPage7_Enter);
@@ -3414,7 +3414,7 @@ namespace Computer_house
       this.tabPage8.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage8.Name = "tabPage8";
       this.tabPage8.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage8.Size = new System.Drawing.Size(601, 786);
+      this.tabPage8.Size = new System.Drawing.Size(601, 788);
       this.tabPage8.TabIndex = 5;
       this.tabPage8.Text = "Охлаждение";
       this.tabPage8.Enter += new System.EventHandler(this.tabPage8_Enter);
@@ -3839,7 +3839,7 @@ namespace Computer_house
       this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage9.Name = "tabPage9";
       this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage9.Size = new System.Drawing.Size(601, 786);
+      this.tabPage9.Size = new System.Drawing.Size(601, 788);
       this.tabPage9.TabIndex = 6;
       this.tabPage9.Text = "Блок питания";
       this.tabPage9.Enter += new System.EventHandler(this.tabPage9_Enter);
@@ -4350,7 +4350,7 @@ namespace Computer_house
       this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
       this.tabPage10.Name = "tabPage10";
       this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
-      this.tabPage10.Size = new System.Drawing.Size(601, 786);
+      this.tabPage10.Size = new System.Drawing.Size(601, 788);
       this.tabPage10.TabIndex = 7;
       this.tabPage10.Text = "Накопители";
       this.tabPage10.Enter += new System.EventHandler(this.tabPage10_Enter);
@@ -5352,7 +5352,7 @@ namespace Computer_house
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScroll = true;
       this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.ClientSize = new System.Drawing.Size(667, 628);
+      this.ClientSize = new System.Drawing.Size(647, 628);
       this.Controls.Add(this.tabControl1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
