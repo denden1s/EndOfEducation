@@ -90,6 +90,7 @@ namespace Computer_house
       await Task.Run(() => LoadShopRequestsFromDB(firstLoad));
       LoadInfoFromDBAndView();
       AllInfoDatagridView.Rows.Clear();
+      searchComponent = "";
       Task.Run(() => UpdateInfo());
     }
     private async void UpdateInfo()
@@ -824,9 +825,14 @@ namespace Computer_house
         }
         Warehouse_info adedItemInfo = new Warehouse_info();
         if(searchComponent != "")
-          adedItemInfo = FilteredInfo[AllInfoDatagridView.SelectedCells[0].RowIndex];
+        {
+          adedItemInfo = FilteredInfo.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
+        }
         else
-          adedItemInfo = WarehouseInformationList[AllInfoDatagridView.SelectedCells[0].RowIndex];
+        {
+          adedItemInfo = WarehouseInformationList.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
+        }
+          
         SQLRequests.CreateHoldingDocument(adedItemInfo,Convert.ToInt32(AddProduct.Value), user,deviceType);
         AllProductInfo.Clear();
         LoadAllInfoFromDB();
@@ -944,6 +950,7 @@ namespace Computer_house
       ViewInfoInDataGrid(WarehouseInformationList);
       AllProductInfo.Clear();
       ResetFilters.Enabled = false;
+      searchComponent = "";
     }
 
     private void SDViewRadio_CheckedChanged(object sender, EventArgs e)

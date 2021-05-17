@@ -1282,7 +1282,7 @@ namespace Computer_house.OtherClasses
                                                     where b.Location_ID == location_ID && 
                                                     b.Product_ID == _infoAboutProduct.Product_ID
                                                     select b).Single();
-              productsLocation.Items_count += _itemsCount;
+              productsLocation.Items_count += _itemsCount; 
               db.Products_location.Update(productsLocation);
             }
             Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Приход",
@@ -1296,7 +1296,8 @@ namespace Computer_house.OtherClasses
             _infoAboutProduct.Current_items_count += _itemsCount;
             db.Warehouse_info.Update(_infoAboutProduct);
             db.SaveChanges();
-            MessageBox.Show("Добавление прошло успешно");
+            MessageBox.Show("Добавление прошло успешно в количестве:" + _itemsCount + "шт. в место: " + 
+              locations_InWarehouse.Location_label);
             return;
           }
           else
@@ -1309,19 +1310,11 @@ namespace Computer_house.OtherClasses
             foreach(Locations_in_warehouse item in locationsCanSet)
               maxItems += item.Max_item_count - item.Current_item_count;
 
-            if(maxItems < _itemsCount)
-            {
-              MessageBox.Show("На складе нет места");
-              return;
-            }
-            else
-            {
-              foreach(Locations_in_warehouse item in locationsCanSet)
-                message += $"Месторасположение: {item.Location_label}, кол-во товара: " +
-                  $"{item.Max_item_count - item.Current_item_count};\n";
+            foreach(Locations_in_warehouse item in locationsCanSet)
+              message += $"Месторасположение: {item.Location_label}, кол-во товара: " +
+                $"{item.Max_item_count - item.Current_item_count};\n";
 
-              MessageBox.Show(message);
-            }
+            MessageBox.Show(message);
           }
         }
       }
