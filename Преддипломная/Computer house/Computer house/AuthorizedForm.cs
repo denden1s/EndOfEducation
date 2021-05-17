@@ -551,7 +551,7 @@ namespace Computer_house
             int selectedrowindex = AllInfoDatagridView.SelectedCells[0].RowIndex;
             DataGridViewRow currentRow = AllInfoDatagridView.Rows[selectedrowindex];
             AddProduct.Value = (int)currentRow.Cells[3].Value;
-            AddProduct.Maximum = (int)currentRow.Cells[3].Value;
+            //AddProduct.Maximum = (int)currentRow.Cells[3].Value;
             Warehouse_info warehouseInfo = WarehouseInformationList.Single(i =>
               i.Product_ID == (int)currentRow.Cells[0].Value);
 
@@ -602,24 +602,12 @@ namespace Computer_house
           Convert.ToInt32(AddProduct.Value),user.ID);
         using (ApplicationContext db = new ApplicationContext())
         {
-          //false - означает что запрос необработан на складе
-          var items = (from b in db.ShopRequests
-                        where b.Product_ID == warehouseInfo.Product_ID && b.Status == false
-                        select b).ToList();
-          int requestedItemsCountBefore = items.Sum(i => i.Count);
-          //Нужно проверить есть ли запросы на товар, во избежание превышения кол-ва элементов в запросе
-          //над кол-вом элементов на складе
-          if (AddProduct.Value + requestedItemsCountBefore <= warehouseInfo.Current_items_count)
-          {
-            db.ShopRequests.Add(newRequest);
-            List<NeedToUpdate> update = db.NeedToUpdate.ToList();
-            update[0].UpdateStatus = true;
-            db.NeedToUpdate.Update(update[0]);
-            db.SaveChanges();
-            MessageBox.Show("Товар успешно запрошен");
-          }
-          else
-            MessageBox.Show("Невозможно запросить такое кол-во товара, возможно товар уже был запрошен.");
+          db.ShopRequests.Add(newRequest);
+          List<NeedToUpdate> update = db.NeedToUpdate.ToList();
+          update[0].UpdateStatus = true;
+          db.NeedToUpdate.Update(update[0]);
+          db.SaveChanges();
+          MessageBox.Show("Товар успешно запрошен");
         }
       }
       else
