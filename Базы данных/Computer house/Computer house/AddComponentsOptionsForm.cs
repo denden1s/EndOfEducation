@@ -112,7 +112,6 @@ namespace Computer_house
 
       SystemFunctions.SetButtonsDefaultOptions(ActToComponent, ActWithCPU, ActWithGPU, ActWithMotherboard,
           ActWithCase, ActWithRAM, ActWithCoolingSystem,ActWithPSU, ActWithSD);
-
       Task[] tasks =
       {
         Task.Run(() => LoadCPUCodeNameFromDB()),Task.Run(() => LoadCPUSeriesFromDB()),
@@ -122,8 +121,7 @@ namespace Computer_house
         Task.Run(() => LoadConnectionInterfacesFromDB()), Task.Run(() => LoadPowerConnectorsFromDB()),
         Task.Run(() => LoadLocationInfoFromDB())
       };
-      await Task.WhenAll(tasks);
-
+      
       ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
       ViewInfoInDataGrid<GPU>(GPU_DatagridView, GPUList);
       ViewInfoInDataGrid<Motherboard>(Motherboard_DatagridView, MotherBoardList);

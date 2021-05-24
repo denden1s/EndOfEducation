@@ -70,6 +70,7 @@ namespace Computer_house
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.SellingOtherComponentsPage = new System.Windows.Forms.TabPage();
+      this.PrintButton = new System.Windows.Forms.Button();
       this.PriceLabel = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.SellComponents = new System.Windows.Forms.Button();
@@ -194,7 +195,7 @@ namespace Computer_house
       this.CreateConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.CreateConfiguration.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.CreateConfiguration.Location = new System.Drawing.Point(927, 479);
+      this.CreateConfiguration.Location = new System.Drawing.Point(927, 481);
       this.CreateConfiguration.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.CreateConfiguration.Name = "CreateConfiguration";
       this.CreateConfiguration.Size = new System.Drawing.Size(387, 47);
@@ -208,7 +209,7 @@ namespace Computer_house
       this.EnterPurchaseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.EnterPurchaseWindow.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.EnterPurchaseWindow.Location = new System.Drawing.Point(927, 544);
+      this.EnterPurchaseWindow.Location = new System.Drawing.Point(927, 546);
       this.EnterPurchaseWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.EnterPurchaseWindow.Name = "EnterPurchaseWindow";
       this.EnterPurchaseWindow.Size = new System.Drawing.Size(387, 47);
@@ -244,7 +245,7 @@ namespace Computer_house
       this.PCConfigsDataGridView.ReadOnly = true;
       this.PCConfigsDataGridView.RowHeadersWidth = 51;
       this.PCConfigsDataGridView.RowTemplate.Height = 24;
-      this.PCConfigsDataGridView.Size = new System.Drawing.Size(387, 422);
+      this.PCConfigsDataGridView.Size = new System.Drawing.Size(387, 424);
       this.PCConfigsDataGridView.TabIndex = 43;
       // 
       // dataGridViewTextBoxColumn1
@@ -341,7 +342,7 @@ namespace Computer_house
       this.SelectedComponentInfoTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.SelectedComponentInfoTextBox.Name = "SelectedComponentInfoTextBox";
       this.SelectedComponentInfoTextBox.ReadOnly = true;
-      this.SelectedComponentInfoTextBox.Size = new System.Drawing.Size(333, 183);
+      this.SelectedComponentInfoTextBox.Size = new System.Drawing.Size(333, 185);
       this.SelectedComponentInfoTextBox.TabIndex = 41;
       this.SelectedComponentInfoTextBox.Text = "";
       // 
@@ -641,6 +642,7 @@ namespace Computer_house
       // SellingOtherComponentsPage
       // 
       this.SellingOtherComponentsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.SellingOtherComponentsPage.Controls.Add(this.PrintButton);
       this.SellingOtherComponentsPage.Controls.Add(this.PriceLabel);
       this.SellingOtherComponentsPage.Controls.Add(this.label4);
       this.SellingOtherComponentsPage.Controls.Add(this.SellComponents);
@@ -661,6 +663,19 @@ namespace Computer_house
       this.SellingOtherComponentsPage.TabIndex = 1;
       this.SellingOtherComponentsPage.Text = "Продажа отдельных комплектующих";
       this.SellingOtherComponentsPage.Enter += new System.EventHandler(this.SellingOtherComponentsPage_Enter);
+      // 
+      // PrintButton
+      // 
+      this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.PrintButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.PrintButton.Location = new System.Drawing.Point(1023, 479);
+      this.PrintButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.PrintButton.Name = "PrintButton";
+      this.PrintButton.Size = new System.Drawing.Size(291, 47);
+      this.PrintButton.TabIndex = 44;
+      this.PrintButton.Text = "Печать";
+      this.PrintButton.UseVisualStyleBackColor = true;
+      this.PrintButton.Click += new System.EventHandler(this.PrintButton_Click);
       // 
       // PriceLabel
       // 
@@ -766,7 +781,7 @@ namespace Computer_house
       this.SelectedItemsListBox.Location = new System.Drawing.Point(580, 59);
       this.SelectedItemsListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.SelectedItemsListBox.Name = "SelectedItemsListBox";
-      this.SelectedItemsListBox.Size = new System.Drawing.Size(416, 88);
+      this.SelectedItemsListBox.Size = new System.Drawing.Size(416, 60);
       this.SelectedItemsListBox.TabIndex = 12;
       this.SelectedItemsListBox.SelectedIndexChanged += new System.EventHandler(this.SelectedItemsListBox_SelectedIndexChanged);
       this.SelectedItemsListBox.DoubleClick += new System.EventHandler(this.SelectedItemsListBox_DoubleClick);
@@ -955,5 +970,6 @@ namespace Computer_house
     private System.Windows.Forms.DataGridViewTextBoxColumn CountInShop;
     private System.Windows.Forms.DataGridViewTextBoxColumn CountInSh;
     private System.Windows.Forms.ToolStripMenuItem обновитьДанныеToolStripMenuItem;
+    internal System.Windows.Forms.Button PrintButton;
   }
 }

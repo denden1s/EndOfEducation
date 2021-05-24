@@ -157,7 +157,7 @@ namespace Computer_house
       try
       {
         CoolingSystems.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           CoolingSystems = db.Cooling_system.ToList();
 
         foreach(Cooling_system i in CoolingSystems)
@@ -173,9 +173,9 @@ namespace Computer_house
       try
       {
         Cpus.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           Cpus = db.CPU.ToList();
-          
+
         foreach(CPU c in Cpus)
           c.GetDataFromDB();
       }
@@ -189,7 +189,7 @@ namespace Computer_house
       try
       {
         Gpus.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           Gpus = db.GPU.ToList();
 
         foreach(GPU g in Gpus)
@@ -205,7 +205,7 @@ namespace Computer_house
       try
       {
         Motherboards.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           Motherboards = db.Motherboard.ToList();
 
         foreach(Motherboard m in Motherboards)
@@ -221,7 +221,7 @@ namespace Computer_house
       try
       {
         Psus.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           Psus = db.PSU.ToList();
 
         foreach(PSU p in Psus)
@@ -237,7 +237,7 @@ namespace Computer_house
       try
       {
         Rams.Clear();
-        using (ApplicationContext db = new ApplicationContext())
+        using(ApplicationContext db = new ApplicationContext())
           Rams = db.RAM.ToList();
 
         foreach(RAM r in Rams)
@@ -257,7 +257,7 @@ namespace Computer_house
           StorageDevices = db.Storage_devices.ToList();
 
         foreach(Storage_devices s in StorageDevices)
-          s.GetDataFromDB();
+          s.GetDataFromDB();  
       }
       catch(Exception ex)
       {
@@ -302,7 +302,7 @@ namespace Computer_house
         WarehouseInformationList.Clear();
         using(ApplicationContext db = new ApplicationContext())
           if(db.Warehouse_info.Count() > 0)
-            WarehouseInformationList = db.Warehouse_info.ToList();
+          WarehouseInformationList = db.Warehouse_info.ToList();
 
         foreach(Warehouse_info w in WarehouseInformationList)
           w.SetName();

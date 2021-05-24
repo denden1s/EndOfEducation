@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
 namespace Computer_house
@@ -57,6 +58,11 @@ namespace Computer_house
     private int maxPsuLength = 0;
     private int cpuConsumptionForCooling = 0;
     private int psuConsumption = 0;
+
+    private List<Product> shoppingBasket = new List<Product>();
+
+    //Нужна для печати сведений о покупке
+    private string finalPrintMessage = "";
 
     //списки фильтрованных комплектующих
     private List<Case> filteredCases = new List<Case>();
@@ -136,6 +142,8 @@ namespace Computer_house
 
       LockOrEnableComboBox(true, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
         RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+
+      //загружать сборки компьютеров
     }
 
     private void LockOrEnableComboBox(bool status, params ComboBox[] comboBoxes)
@@ -520,9 +528,23 @@ namespace Computer_house
           if (warehouseInfo.Items_in_shop != 0)
           {
             SelectedItemsListBox.Items.Add(warehouseInfo.ProductName);
+            shoppingBasket.Add(new Product { Name = "Shop", ID = warehouseInfo.ProductName });
             int index = WarehouseInformationList.IndexOf(warehouseInfo);
             warehouseInfo.Items_in_shop--;
             WarehouseInformationList[index] = warehouseInfo;
+            currentRow.Cells[3].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[3].Value) - 1);
+            Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+            decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+            PriceLabel.Text = Convert.ToString(Math.Round(decimal.Parse(PriceLabel.Text) + currentPrice, 2));
+          }
+          else if(warehouseInfo.Current_items_count != 0)
+          {
+            //Доделать
+            SelectedItemsListBox.Items.Add(warehouseInfo.ProductName);
+            shoppingBasket.Add(new Product { Name = "Warehouse", ID = warehouseInfo.ProductName });
+            int index = WarehouseInformationList.IndexOf(warehouseInfo);
+            warehouseInfo.Current_items_count--;
+            //WarehouseInformationList[index] = warehouseInfo;
             currentRow.Cells[3].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[3].Value) - 1);
             Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
             decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
@@ -573,15 +595,32 @@ namespace Computer_house
           i.ProductName == (string)SelectedItemsListBox.Items[SelectedItemsListBox.SelectedIndex]);
          
         DataGridViewRow currentRow = AllInfoDatagridView.Rows.Cast<DataGridViewRow>().Where(i => 
-          (string)i.Cells[1].Value == warehouseInfo.ProductName).First(); 
-
+          (string)i.Cells[1].Value == warehouseInfo.ProductName).First();
+        Product currentProduct = (Product)(from b in shoppingBasket
+                              where b.ID == warehouseInfo.ProductName && b.Name == "Warehouse"
+                              select b).FirstOrDefault();
+        if(currentProduct == null)
+          currentProduct = (Product)(from b in shoppingBasket
+                                  where b.ID == warehouseInfo.ProductName
+                                  select b).FirstOrDefault();
         SelectedItemsListBox.Items.Remove(SelectedItemsListBox.SelectedItem);
         int index = WarehouseInformationList.IndexOf(warehouseInfo);
-        warehouseInfo.Items_in_shop++;
-        WarehouseInformationList[index] = warehouseInfo;
+        if(currentProduct.Name == "Shop")
+        {
+          warehouseInfo.Items_in_shop++;
+          currentRow.Cells[4].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[4].Value) + 1);
+          WarehouseInformationList[index] = warehouseInfo;
+        }
+        else
+        {
+          warehouseInfo.Current_items_count++;
+          currentRow.Cells[3].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[3].Value) + 1);
+        }
+        
         ViewInfoInDataGrid();
-        currentRow.Cells[4].Value = Convert.ToString(Convert.ToInt32(currentRow.Cells[4].Value) + 1);
-        Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+
+        shoppingBasket.RemoveAt(shoppingBasket.IndexOf(currentProduct));
+         Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
         decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
         PriceLabel.Text = Convert.ToString(Math.Round(decimal.Parse(PriceLabel.Text) - currentPrice, 2));
       }
@@ -629,20 +668,118 @@ namespace Computer_house
         if (questionResult == DialogResult.Yes)
         {
           string deviceType = "";
+          string ShopUserName = "";
+          string WarehouseUserName = "";
+          using(ApplicationContext db = new ApplicationContext())
+          {
+            ShopUserName = db.Users.Single(i => i.ID == user.ID).Name;
+            WarehouseUserName = db.Users.Single(i => i.Authorization_status == true).Name;
+          }
+          string namesInPrint = $"\t \t \t \t Работник магазина: {ShopUserName}\n";
+          
+          if(WarehouseUserName.Length != 0)
+            namesInPrint += $"\t \t \t \t Работник склада: {WarehouseUserName}\n";
           Warehouse_info warehouse = new Warehouse_info();
-          for (int i = 0; i < SelectedItemsListBox.Items.Count; i++)
+          for (int i = 0; i < shoppingBasket.Count; i++)
           {
             using (ApplicationContext db = new ApplicationContext())
             {
               warehouse = WarehouseInformationList.Single(k =>
-                k.ProductName == Convert.ToString(SelectedItemsListBox.Items[i]));
+                k.ProductName == Convert.ToString(shoppingBasket[i].ID));
               deviceType = db.Mediator.Single(k => k.ID == warehouse.Product_ID).Components_type;
             }
-            SQLRequests.CreateHoldingDocument(warehouse, user, deviceType, decimal.Parse(PriceLabel.Text));
+            if(shoppingBasket[i].Name == "Shop")
+            {
+              Price_list price = PriceList.Single(q => q.Product_ID == warehouse.Product_ID);
+              decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+              SQLRequests.CreateHoldingDocument(warehouse, user, deviceType, currentPrice);
+            }
+            else
+            {
+              ShopRequests newRequest = new ShopRequests(warehouse.Product_ID, 1, user.ID);
+              using(ApplicationContext db = new ApplicationContext())
+              {
+                db.ShopRequests.Add(newRequest);
+                List<NeedToUpdate> update = db.NeedToUpdate.ToList();
+                update[0].UpdateStatus = true;
+                db.NeedToUpdate.Update(update[0]);
+                db.SaveChanges();
+              }
+              string questionAboutWarehouse = "Будет осуществлён самовывоз товара?";
+              DialogResult questionResultWarehouse = MessageBox.Show(questionAboutWarehouse,
+                                          "Подготовка запроса",
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Information,
+                                            MessageBoxDefaultButton.Button2,
+                                            MessageBoxOptions.DefaultDesktopOnly);
+              if(questionResultWarehouse == DialogResult.Yes)
+              {
+                string printMessage = "";
+                finalPrintMessage += namesInPrint;
+                switch(warehouse.ProductType)
+                {
+                  case "CPU":
+                    CPU currentCPU = Cpus.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentCPU.ID};\n" +
+                      $"Наименование: {currentCPU.Name};\n";
+                    break;
+                  case "Cooling system":
+                    Cooling_system currentCoolSys = CoolingSystems.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentCoolSys.ID};\n" +
+                      $"Наименование: {currentCoolSys.Name};\n";
+                    break;
+                  case "GPU":
+                    GPU currentGPU = Gpus.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentGPU.ID};\n" +
+                      $"Наименование: {currentGPU.Name};\n";
+                    break;
+                  case "Motherboard":
+                    Motherboard currentMotherboard = Motherboards.Single(Q => Q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentMotherboard.ID};\n" +
+                      $"Наименование: {currentMotherboard.Name};\n";
+                    break;
+                  case "PSU":
+                    PSU currentPSU = Psus.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentPSU.ID};\n" +
+                      $"Наименование: {currentPSU.Name};\n";
+                    break;
+                  case "RAM":
+                    RAM currentRAM = Rams.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentRAM.ID};\n" +
+                      $"Наименование: {currentRAM.Name}; \n";
+                    break;
+                  case "SD":
+                    Storage_devices currentStorage = StorageDevices.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentStorage.ID};\n" +
+                      $"Наименование: {currentStorage.Name};\n";
+                    break;
+                  case "Case":
+                    Case currentCase = Cases.Single(q => q.Product_ID == warehouse.Product_ID);
+                    printMessage = $"ID товара: {currentCase.ID};\n" +
+                      $"Наименование: {currentCase.Name};\n";
+                    break;
+                  default:
+                    break;
+                }
+                finalPrintMessage += printMessage + "\n";
+              }
+            }
           }
-          SQLRequests.UpdateWarehouseData();
-          //Узнать нужно ли вывести информацию на печать
+          if(finalPrintMessage.Length != 0)
+          {
+            PrintDocument printDocument = new PrintDocument();
+            // обработчик события печати
+            printDocument.PrintPage += PrintPageHandler;
+            // диалог настройки печати
+            PrintDialog printDialog = new PrintDialog();
+            // установка объекта печати для его настройки
+            printDialog.Document = printDocument;
+            printDialog.Document.Print();
+            finalPrintMessage = "";
+          }
+          shoppingBasket.Clear();
           SelectedItemsListBox.Items.Clear();
+          SQLRequests.UpdateWarehouseData();
           AllProductInfo.Clear();
           PriceLabel.Text = "0";
           MessageBox.Show("Покупка оформлена успешно.");
@@ -1140,6 +1277,7 @@ namespace Computer_house
       //переносить в правое окно для оформления 
       //предусмотреть что не все выбранные элементы могут быть в магазине или на складе
 
+      //заполнить набор shopBasket
 
       //очистка полей
       SystemFunctions.ClearComboBoxes(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox, PSU_ComboBox,
@@ -1585,6 +1723,220 @@ namespace Computer_house
     {
       //нужно обновлять список комплектующих если был добавлен или изменен определенный товар, 
       //или если произошел привоз на складе
+    }
+
+    private void PrintButton_Click(object sender, EventArgs e)
+    {
+      if(SelectedItemsListBox.Items.Count > 0)
+      {
+        int count = 0;
+        int lastCount = 0;
+        //печать
+        string printMessage = "";
+        string userName = "";
+        using(ApplicationContext db = new ApplicationContext())
+          userName = db.Users.Single(i => i.ID == user.ID).Name;
+        finalPrintMessage = $"\t \t \t \t Работник магазина: {userName}\n";
+        List<Product> items = new List<Product>();
+        
+        foreach(string i in SelectedItemsListBox.Items)
+        {
+          Product p = new Product();
+          p.Name = i;
+          p.ID = "0";
+          items.Add(p);
+        }
+        var groupedItems = items.GroupBy(i => i.Name).Select(g => new Product{ Name = g.Key, ID = Convert.ToString(g.Count()) });
+        lastCount = items.Count();
+        foreach(var b in groupedItems)
+        {
+          count++;
+          Warehouse_info itemInfo = WarehouseInformationList.Single(i => i.ProductName == b.Name);
+          switch(itemInfo.ProductType)
+          {
+            case "CPU":
+              CPU currentCPU = Cpus.Single(i => i.Product_ID == itemInfo.Product_ID);
+              string integratedGPU = currentCPU.Integrated_graphic ? "поддерживается" : "не поддерживается";
+              int multi = currentCPU.Multithreading ? 2 : 1;
+              printMessage = $"ID товара: {currentCPU.ID};\n" +
+                $"Наименование: {currentCPU.Name};\n" +
+                $"Модельный ряд: {currentCPU.SeriesName};\n" +
+                $"Тип поставки: {currentCPU.Delivery_type};\n" +               
+                $"Сокет: {currentCPU.Socket};\n" +
+                $"Кол-во ядер: {currentCPU.Сores_count}, потоков: {currentCPU.Сores_count * multi};\n" +
+                $"Частоты (min/max): " +
+                $"{(float)currentCPU.Base_state / 1000}/{(float)currentCPU.Max_state / 1000} Ghz;\n" +
+                $"Тип памяти / кол-во каналов: {currentCPU.RAM_type} / {currentCPU.RAM_chanel}\n" +
+                $"Макс частота ОЗУ: {currentCPU.RAM_frequency} Mhz;\n" +
+                $"Встроенная графика: {integratedGPU};\n" +
+                $"Энергопотребление: {currentCPU.Consumption} Вт\n" +
+                $"Техпроцесс: {currentCPU.Technical_process} нм\n";
+              break;
+            case "Cooling system":
+              Cooling_system currentCoolSys = CoolingSystems.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentCoolSys.ID};\n" +
+                $"Наименование: {currentCoolSys.Name};\n" +
+                $"Поддерживаемые сокеты: {currentCoolSys.Supported_sockets};\n" +
+                $"Тип питания: {currentCoolSys.PowerType};\n" +
+                $"Рассеиваемая мощность /  диаметр: {currentCoolSys.Consumption} / {currentCoolSys.Diameter} мм;\n";
+              break;
+            case "GPU":
+              GPU currentGPU = Gpus.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentGPU.ID};\n" +
+                $"Наименование: {currentGPU.Name};\n" +
+                $"Интерфейс подключения: {currentGPU.ConnectionInterface};\n" +
+                $"Объём памяти: {Convert.ToString(currentGPU.Capacity)} Гб;\n" +
+                $"Тип видеопамяти: {currentGPU.GPU_type};\n";
+              printMessage += $"Энергопотребление: {Convert.ToString(currentGPU.Consumption)} Вт;\n" +
+                $"Внешние интерфейсы: {currentGPU.External_interfaces};\n" +
+                $"Тип питания: {currentGPU.PowerType};\n" +
+                $"Кол-во вентиляторов: {Convert.ToString(currentGPU.Coolers_count)};\n" +
+                $"Толщина системы охлаждения: {Convert.ToString(currentGPU.Cooling_system_thikness)} слотов;\n" +
+                $"Длина / высота видеокарты: {Convert.ToString(currentGPU.Length)} / " +
+                $"{Convert.ToString(currentGPU.Height)} мм;\n";
+              break;
+            case "Motherboard":
+              Motherboard currentMotherboard = Motherboards.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentMotherboard.ID};\n" +
+                $"Наименование: {currentMotherboard.Name};\n" +
+                $"Поддерживаемые процессоры: {currentMotherboard.Supported_CPU};\n" +
+                $"Сокет / чипсет: {currentMotherboard.Socket} / {currentMotherboard.Chipset};\n" +
+                $"Форм-фактор: {currentMotherboard.FormFactor};\n" +
+                $"Тип / объём ОЗУ: {currentMotherboard.RAM_type} /" +
+                $" {Convert.ToString(currentMotherboard.Capacity)} Гб;\n" +
+                $"Кол-во слотов / каналов памяти: {Convert.ToString(currentMotherboard.Count_of_memory_slots)} /" +
+                $" {Convert.ToString(currentMotherboard.RAM_chanel)}; \n" +
+                $"Максимальная частота памяти: {Convert.ToString(currentMotherboard.RAM_frequency)} МГц; \n" +
+                $"Слоты расширения: {currentMotherboard.Expansion_slots} \n" +
+                $"Интерфейсы накопителей: {currentMotherboard.Storage_interfaces} \n" +
+                $"Поддержка IGPU: ";
+              printMessage += currentMotherboard.Integrated_graphic ? "Да" : "Нет";
+              printMessage += "\n";
+              printMessage += $"Разъёмы: {currentMotherboard.Connectors}\n" +
+                $"Длина / ширина платы: {Convert.ToString(currentMotherboard.Length)} / " +
+                $"{Convert.ToString(currentMotherboard.Width)} мм\n";
+              break;
+            case "PSU":
+              PSU currentPSU = Psus.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentPSU.ID};\n" +
+                $"Наименование: {currentPSU.Name};\n" +
+                $"Стандарт блока питания: {currentPSU.PSU_standart};\n" +
+                $"Кол-во разъёмов SATA: {currentPSU.Sata_power_count};\n" +
+                $"{currentPSU.Efficiency} %;\n" +
+                $"Мощность: {currentPSU.Consumption} Вт;\n" +
+                $"Тип питания материнской платы: {currentPSU.PowerMotherboardType};\n" +
+                $"Питание CPU / IDE / PCIe: {currentPSU.Power_CPU} / {currentPSU.Power_IDE} /" +
+                $" {currentPSU.Power_PCIe};\n" +
+                $"Длина БП: {currentPSU.Length} мм;\n" +
+                $"Доп. опции: ";
+              var psuTuple = new List<(bool state, string elem)>
+          {
+            (currentPSU.Power_USB, "поддержка USB power"),
+            (currentPSU.Modularity, "модульность")
+          };
+              foreach(var i in psuTuple)
+                if(i.state)
+                  printMessage += i.elem + "; ";
+
+              printMessage += "\n";
+              break;
+            case "RAM":
+              RAM currentRAM = Rams.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentRAM.ID};\n" +
+                $"Наименование: {currentRAM.Name}; \n" +
+                $"Количество в наборе: {Convert.ToString(currentRAM.Kit)} шт.;\n" +
+                $"Тип / частота памяти: {currentRAM.RAM_type} / " +
+                $"{Convert.ToString(currentRAM.RAM_frequency)} МГц;\n" +
+                $"Объём памяти: {Convert.ToString(currentRAM.Capacity * currentRAM.Kit)} Гб;\n" +
+                $"Тайминги: {currentRAM.Timings};\n" +
+                $"Доп функции: ";
+              var ramTuple = new List<(bool state, string elem)>
+              {
+                (currentRAM.XMP_profile, "поддержка XMP"),
+                (currentRAM.Cooling, "охлаждение"),
+                (currentRAM.Low_profile_module, "низкопрофильный модуль")
+              };
+              foreach(var i in ramTuple)
+                if(i.state)
+                  printMessage += i.elem + "; ";
+
+              printMessage += "\n";
+              break;
+            case "SD":
+              Storage_devices currentStorage = StorageDevices.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentStorage.ID};\n" +
+                $"Наименование: {currentStorage.Name};\n" +
+                $"Объём / буфер: {currentStorage.Capacity} Гб / {currentStorage.Buffer} Мб;\n" +
+                $"Интерфейс подключения: {currentStorage.ConnectionInterface};\n" +
+                $"Форм-фактор: {currentStorage.FormFactor};\n" +
+                $"Скорость послед. чтения / записи: {currentStorage.Sequential_read_speed} / " +
+                $"{currentStorage.Sequeintial_write_speed} Мб/c;\n" +
+                $"Скорость случ. чтения / записи: {currentStorage.Random_read_speed} / {currentStorage.Random_write_speed} Мб/c;\n" +
+                $"Аппаратное шифрование: ";
+              printMessage += currentStorage.Hardware_encryption ? "Да" : "Нет";
+              printMessage += "\n";
+              break;
+            case "Case":
+              Case currentCase = Cases.Single(i => i.Product_ID == itemInfo.Product_ID);
+              printMessage = $"ID товара: {currentCase.ID};\n" +
+                $"Наименование: {currentCase.Name};\n" +
+                $"Блок питания / расположение: {currentCase.Power_supply_unit} / {currentCase.PSU_position};\n" +
+                $"Тип/материал корпуса: {currentCase.Form_factor_ID} / {currentCase.Material};\n" +
+                $"Совместимые мат. платы: {currentCase.Compatible_motherboard};\n" +
+                $"Вид охлаждения: {currentCase.Cooling_type};\n" +
+                $"Доп функции: ";
+              var caseTuple = new List<(bool state, string elem)>
+          {
+            (currentCase.Gaming, "игровой"),
+            (currentCase.Water_cooling_support, "жидкостное охлаждение"),
+            (currentCase.Cooler_in_set, "вентилятор в комплекте"),
+            (currentCase.Sound_isolation, "шумоизоляция"),
+            (currentCase.Dust_filter, "пылевые фильтры")
+          };
+              foreach(var i in caseTuple)
+                if(i.state)
+                  printMessage += i.elem + "; ";
+
+              printMessage += "\n" +
+                $"Высота/ширина/глубина: {Convert.ToString(currentCase.Height)} / " +
+                $"{Convert.ToString(currentCase.Width)} / {Convert.ToString(currentCase.Depth)} мм;\n" +
+                $"Макс. длина GPU/высота кулера CPU/длина БП: {Convert.ToString(currentCase.Max_GPU_length)} / " +
+                $"{Convert.ToString(currentCase.Max_CPU_cooler_height)} / " +
+                $"{Convert.ToString(currentCase.Max_PSU_length)} мм;\n" +
+                $"Вес: {Convert.ToString(currentCase.Weight)} Кг.\n";
+              break;
+            default:
+              break;
+          }
+          
+          Price_list price = PriceList.Single(i => i.Product_ID == itemInfo.Product_ID);
+          decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+          printMessage += $"Количество товара: {b.ID}, стоимость {Math.Round(currentPrice * Convert.ToInt32(b.ID),2)} руб. \n";
+          finalPrintMessage += printMessage + "\n";
+          
+          if(count % 4 == 0 || (lastCount - count == 0))
+          {
+            if(lastCount - count == 0)
+              finalPrintMessage += $"Общая стоимость составит: {PriceLabel.Text} руб.";
+            PrintDocument printDocument = new PrintDocument();
+            // обработчик события печати
+            printDocument.PrintPage += PrintPageHandler;
+            // диалог настройки печати
+            PrintDialog printDialog = new PrintDialog();
+            // установка объекта печати для его настройки
+            printDialog.Document = printDocument;
+            printDialog.Document.Print();
+            finalPrintMessage = "";
+          }
+        }
+        //также нужно печатать при оформлении элементы которые нужно забрать со склада!!!!
+      }
+      else
+        MessageBox.Show("Товар не выбран!!!");
+    }
+    void PrintPageHandler(object sender, PrintPageEventArgs e)
+    {
+      e.Graphics.DrawString(finalPrintMessage, new Font("Arial", 12), Brushes.Black, 0, 0);
     }
   }
 }

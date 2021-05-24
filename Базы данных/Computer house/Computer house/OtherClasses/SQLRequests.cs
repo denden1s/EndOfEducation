@@ -1208,6 +1208,7 @@ namespace Computer_house.OtherClasses
                 { 
                   message += Convert.ToString(p.Items_count) + " шт. с места " + locationInWarehouse.Location_label +";\n";
                   _infoAboutProduct.Current_items_count += p.Items_count * -1;
+                  
                   locationInWarehouse.Current_item_count += p.Items_count * -1;
                   Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
                     p.Items_count *-1, _user.ID, p.Location_ID);
@@ -1225,6 +1226,7 @@ namespace Computer_house.OtherClasses
                     _itemsCount, _user.ID, p.Location_ID);
                   db.Holding_document.Add(holding_Document);
                 }
+                _infoAboutProduct.Items_in_shop += Math.Abs(_itemsCount);
                 db.Warehouse_info.Update(_infoAboutProduct);
                 db.Locations_in_warehouse.Update(locationInWarehouse);
                 db.Products_location.Update(p);
