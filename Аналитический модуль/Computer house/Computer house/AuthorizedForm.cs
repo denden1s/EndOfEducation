@@ -21,6 +21,7 @@ namespace Computer_house
     private List<Products_location> ProductLocationsList = new List<Products_location>();
     private List<Mediator> Mediators = new List<Mediator>();
     private List<Holding_document> HoldingDocuments = new List<Holding_document>();
+    private List<Price_list> PriceList = new List<Price_list>();
     private Users user;
 
     //организация блокирования функции перетаскивания формы
@@ -60,7 +61,42 @@ namespace Computer_house
       Height = Convert.ToInt32(DesktopScreen.Height / DesktopScreen.GetScalingFactor());
       await Task.Run(() => LoadHoldingDocsFromDB());
       ViewDocsInDataGrid();
-      Task.Run(() => UpdateInfo());
+      await Task.Run(() => LoadPriceInfo());
+      await Task.Run(() => LoadAllInfoFromDB());
+      ViewPriceInfo();
+    }
+
+    private void LoadPriceInfo()
+    {
+      try
+      {
+        PriceList.Clear();
+        using(ApplicationContext db = new ApplicationContext())
+          PriceList = db.Price_list.ToList();
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }  
+    }
+
+    private void ViewPriceInfo()
+    {
+      int count = 0;
+      foreach(Price_list p in PriceList)
+      {
+        if(p.Purchasable_price == 0 && p.Markup_percent == 0)
+        {
+          UnsetPrice.Items.Add(WarehouseInformationList.Single(i => i.Product_ID == p.Product_ID).ProductName);
+          count++;
+        }
+        else
+          SetingPrice.Items.Add(WarehouseInformationList.Single(i => i.Product_ID == p.Product_ID).ProductName);
+      }
+      if(count > 0)
+      {
+        MessageBox.Show("Необходимо установить цены на " + count + " товаров.");
+      }
     }
 
     private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -137,14 +173,6 @@ namespace Computer_house
       SystemFunctions.SetNewDataBaseAdress();
     }
 
-    private void перейтиВРазделРедактированияToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      //ComponentsOptionsForm addComponentsOptionsForm = new ComponentsOptionsForm(user, Cpus, Gpus, 
-      //  Motherboards, Cases, Rams, CoolingSystems, Psus, StorageDevices);
-      //this.Hide();
-      //addComponentsOptionsForm.Show();
-    }
-
     private void выйтиИзУчётнойЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
     {
       AuthentificationForm authentificationForm = new AuthentificationForm();
@@ -189,29 +217,56 @@ namespace Computer_house
       }
     }
 
-    private async void UpdateInfo()
+    private void button1_Click(object sender, EventArgs e)
     {
-      try
+      if(SelectedItem.Text.Length != 0 && MarkUpPercent.Value > 0 && BuyingPrice.Value > 0)
       {
-        while(true)
+        int markUp = Convert.ToInt32(MarkUpPercent.Value);
+        int id = WarehouseInformationList.Single(i => i.ProductName == SelectedItem.Text).Product_ID;
+        Price_list price = new Price_list(id, (decimal)BuyingPrice.Value, markUp);
+        using(ApplicationContext db = new ApplicationContext())
         {
-          using(ApplicationContext db = new ApplicationContext())
+          db.Price_list.Update(price);
+          NeedToUpdate update = db.NeedToUpdate.Single(i => i.ID == 1);
+          if(!update.UpdateStatusForShop)
           {
-            NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
-            if(needToUpdate.UpdateStatus)
-            {
-              await Task.Run(() => LoadHoldingDocsFromDB());
-              await Task.Run(() => ViewDocsInDataGrid());
-              needToUpdate.UpdateStatus = false;
-              db.NeedToUpdate.Update(needToUpdate);
-              db.SaveChanges();
-            }
+            update.UpdateStatusForShop = true;
+            db.NeedToUpdate.Update(update);
           }
+          db.SaveChanges();
         }
+        MessageBox.Show("Сохранение прошло успешно");
+        LoadPriceInfo();
+        ViewPriceInfo();
+        BuyingPrice.Value = 0;
+        MarkUpPercent.Value = 0;
+        SelectedItem.Text = "";
+        //сохраняем
       }
-      catch(Exception ex)
+      else
+        MessageBox.Show("Не возможно сохранить данные");
+    }
+
+    private void UnsetPrice_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if(UnsetPrice.SelectedIndex != -1)
       {
-        MessageBox.Show(ex.Message);
+        SetingPrice.SelectedIndex = -1;
+        SelectedItem.Text = UnsetPrice.Items[UnsetPrice.SelectedIndex].ToString();
+        MarkUpPercent.Value = 0;
+        BuyingPrice.Value = 0;
+      }
+    }
+
+    private void SetingPrice_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if(SetingPrice.SelectedIndex != -1)
+      {
+        UnsetPrice.SelectedIndex = -1;
+        SelectedItem.Text = SetingPrice.Items[SetingPrice.SelectedIndex].ToString();
+        int id = WarehouseInformationList.Single(i => i.ProductName == SelectedItem.Text).Product_ID;
+        MarkUpPercent.Value = (decimal)PriceList.Single(i => i.Product_ID == id).Markup_percent;
+        BuyingPrice.Value = (decimal)PriceList.Single(i => i.Product_ID == id).Purchasable_price;
       }
     }
   }

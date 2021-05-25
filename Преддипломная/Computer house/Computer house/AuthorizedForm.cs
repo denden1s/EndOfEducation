@@ -116,9 +116,10 @@ namespace Computer_house
     {
       Width = Convert.ToInt32(DesktopScreen.Width / DesktopScreen.GetScalingFactor());
       Height = Convert.ToInt32(DesktopScreen.Height / DesktopScreen.GetScalingFactor());
+      UnsetUpdate();
 
-      LockOrEnableComboBox(false, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
-        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+        LockOrEnableComboBox(false, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+          RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
 
       await Task.Run(() => LoadPriceListFromDB());
       await Task.Run(() => LoadInfoAboutCPUFromDB());
@@ -152,6 +153,17 @@ namespace Computer_house
       
     }
 
+    //Нужен в случае первоначального запуска программы
+    private void UnsetUpdate()
+    {
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        NeedToUpdate update = db.NeedToUpdate.Single(i => i.ID == 1);
+        update.UpdateStatusForShop = false;
+        db.NeedToUpdate.Update(update);
+        db.SaveChanges();
+      }
+    }
     private void LoadPCConfigs()
     {
       PCs.Clear();

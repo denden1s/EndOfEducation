@@ -181,7 +181,6 @@
     </Compile>
     <Compile Include="DataBase\ApplicationContext.cs" />
     <Compile Include="DataBase\Entities\Mediator.cs" />
-    <Compile Include="DataBase\Entities\NeedToUpdate.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Case.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Motherboard.cs" />
     <Compile Include="DataBase\Entities\PC_Components\PSU.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="DataBase\Entities\Warehouse\Users.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Warehouse_info.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
+    <Compile Include="DataBase\Entities\NeedToUpdate.cs" />
     <Compile Include="OtherClasses\DesktopScreen.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
     <Compile Include="OtherClasses\SQLRequests.cs" />
