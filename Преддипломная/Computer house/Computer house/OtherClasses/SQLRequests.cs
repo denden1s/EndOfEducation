@@ -75,7 +75,7 @@ namespace Computer_house.OtherClasses
       using(ApplicationContext db = new ApplicationContext())
       {
         NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
-        needToUpdate.UpdateStatus = true;
+        needToUpdate.UpdateStatusForWarehouse = true;
         db.NeedToUpdate.Update(needToUpdate);
         db.SaveChanges();
       }

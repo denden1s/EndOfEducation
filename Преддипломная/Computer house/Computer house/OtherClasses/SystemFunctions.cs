@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using Computer_house.DataBase;
 
 namespace Computer_house.OtherClasses
 {
@@ -34,6 +37,26 @@ namespace Computer_house.OtherClasses
           return true;
 
       return false;
+    }
+
+    public static void Clear(params ComboBox[] comboBoxes)
+    {
+      foreach(ComboBox c in comboBoxes)
+      {
+        c.Items.Clear();
+        c.BackColor = Color.White;
+      }
+        
+    }
+    public static void Clear(params ListBox[] listBoxes)
+    {
+      foreach(ListBox l in listBoxes)
+        l.Items.Clear();
+    }
+    public static void Clear(params RichTextBox[] textBoxes)
+    {
+      foreach(RichTextBox t in textBoxes)
+        t.Clear();
     }
   }
 }

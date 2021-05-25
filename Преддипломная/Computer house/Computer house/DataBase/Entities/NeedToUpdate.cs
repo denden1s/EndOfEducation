@@ -3,7 +3,8 @@
   public class NeedToUpdate
   {
     public int ID { get; set; }
-    public bool UpdateStatus { get; set; }
+    public bool UpdateStatusForWarehouse { get; set; } = false;
+    public bool UpdateStatusForShop { get; set; }
     public NeedToUpdate() { }
   }
 }

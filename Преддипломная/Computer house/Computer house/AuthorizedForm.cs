@@ -35,6 +35,8 @@ namespace Computer_house
     private List<Price_list> PriceList = new List<Price_list>();
     private List<Storage_devices> StorageDevices = new List<Storage_devices>();
 
+    private List<Mediator> PCs = new List<Mediator>();
+
     private string cpuNameInListBox = "";
     private string gpuNameInListBox = "";
     private string motherboardNameInListBox = "";
@@ -58,6 +60,8 @@ namespace Computer_house
     private int maxPsuLength = 0;
     private int cpuConsumptionForCooling = 0;
     private int psuConsumption = 0;
+
+    private bool checkUpdate = true;
 
     private List<Product> shoppingBasket = new List<Product>();
 
@@ -128,6 +132,7 @@ namespace Computer_house
       await Task.Run(() => LoadInfoAboutCoolingFromDB());
       await Task.Run(() => LoadInfoAboutPSUFromDB());
       await Task.Run(() => LoadInfoAboutSDFromDB());
+      await Task.Run(() => LoadPCConfigs());
 
       ViewInfoInComboBox<CPU>(Cpus, CPU_ComboBox);
       ViewInfoInComboBox<GPU>(Gpus, GPU_ComboBox);
@@ -137,13 +142,117 @@ namespace Computer_house
       ViewInfoInComboBox<PSU>(Psus, PSU_ComboBox);
       ViewInfoInComboBox<Case>(Cases, Case_ComboBox);
       ViewInfoInComboBox<Storage_devices>(StorageDevices, StorageDevice_ComboBox);
-
+      ViewPCsInDataGrid();
       LoadInfoFromDBAndView();
 
       LockOrEnableComboBox(true, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
         RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
 
-      //загружать сборки компьютеров
+      Task.Run(() => UpdateInTime());
+      
+    }
+
+    private void LoadPCConfigs()
+    {
+      PCs.Clear();
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        PCs = db.Mediator.Where(i => i.Components_type == "PC").ToList();
+      }
+    }
+    private void ViewPCsInDataGrid()
+    {
+      PCConfigsDataGridView.Rows.Clear();
+      try
+      {
+        string cpu, gpu, mb, cas, cs, psu, sd, ram;
+        foreach(Mediator m in PCs)
+        {
+          using(ApplicationContext db = new ApplicationContext())
+          {
+            cpu = db.CPU.Single(i => i.ID == m.CPU_ID).Name;
+            gpu = db.GPU.Single(i => i.ID == m.GPU_ID).Name;
+            mb = db.Motherboard.Single(i => i.ID == m.Motherboard_ID).Name;
+            cas = db.Case.Single(i => i.ID == m.Case_ID).Name;
+            cs = db.Cooling_system.Single(i => i.ID == m.Cooling_system_ID).Name;
+            psu = db.PSU.Single(i => i.ID == m.PSU_ID).Name;
+            sd = db.Storage_devices.Single(i => i.ID == m.SD_ID).Name;
+            ram = db.RAM.Single(i => i.ID == m.RAM_ID).Name;
+            PCConfigsDataGridView.Rows.Add(cpu, gpu, mb, ram, cs, psu, sd, cas);
+          }
+        }
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+    private async void Update()
+    {
+      SystemFunctions.Clear(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+      SystemFunctions.Clear(SelectedConfigIntemsListBox, SelectedItemsListBox);
+      SystemFunctions.Clear(SelectedComponentInfoTextBox, AllProductInfo);
+      PriceLabel.Text = "0";
+      AddProduct.Value = AddProduct.Minimum;
+      LockOrEnableComboBox(false, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+
+      await Task.Run(() => LoadPriceListFromDB());
+      await Task.Run(() => LoadInfoAboutCPUFromDB());
+      await Task.Run(() => LoadInfoAboutCasesFromDB());
+      await Task.Run(() => LoadInfoAboutGPUFromDB());
+      await Task.Run(() => LoadInfoAboutMotherboardsFromDB());
+      await Task.Run(() => LoadLocationInWarehouseFromDB());
+      await Task.Run(() => LoadProductLocationFromDB());
+      await Task.Run(() => LoadInfoAboutMediatorFromDB());
+      await Task.Run(() => LoadInfoAboutRAMFromDB());
+      await Task.Run(() => LoadInfoAboutCoolingFromDB());
+      await Task.Run(() => LoadInfoAboutPSUFromDB());
+      await Task.Run(() => LoadInfoAboutSDFromDB());
+      await Task.Run(() => LoadPCConfigs());
+
+      ViewInfoInComboBox<CPU>(Cpus, CPU_ComboBox);
+      ViewInfoInComboBox<GPU>(Gpus, GPU_ComboBox);
+      ViewInfoInComboBox<Motherboard>(Motherboards, Motherboard_ComboBox);
+      ViewInfoInComboBox<RAM>(Rams, RAM_ComboBox);
+      ViewInfoInComboBox<Cooling_system>(CoolingSystems, CoolingSystem_ComboBox);
+      ViewInfoInComboBox<PSU>(Psus, PSU_ComboBox);
+      ViewInfoInComboBox<Case>(Cases, Case_ComboBox);
+      ViewInfoInComboBox<Storage_devices>(StorageDevices, StorageDevice_ComboBox);
+      ViewPCsInDataGrid();
+
+      LoadInfoFromDBAndView();
+
+      LockOrEnableComboBox(true, CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+    }
+
+    private async void UpdateInTime()
+    {
+      while(checkUpdate)
+      {
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
+          if(needToUpdate.UpdateStatusForShop)
+          {
+            string question = "Произошли изменения на складе, в связи с этим необходимо обновить информацию," +
+            "если сделать это сейчас, то все поля будут очищены. Обновить информацию?";
+            DialogResult questionResult = MessageBox.Show(question,
+                                          "Обновление информации",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Information,
+                                          MessageBoxDefaultButton.Button2,
+                                          MessageBoxOptions.DefaultDesktopOnly);
+            if(questionResult == DialogResult.Yes)
+            {
+              Update();
+            }
+          }
+        }
+      }
     }
 
     private void LockOrEnableComboBox(bool status, params ComboBox[] comboBoxes)
@@ -167,6 +276,7 @@ namespace Computer_house
     {
       try
       {
+        Mediators.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (Mediator c in db.Mediator)
             Mediators.Add(c);
@@ -181,6 +291,7 @@ namespace Computer_house
     {
       try
       {
+        PriceList.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (Price_list c in db.Price_list)
             PriceList.Add(new Price_list(c.Product_ID, c.Purchasable_price, c.Markup_percent));
@@ -201,6 +312,7 @@ namespace Computer_house
     {
       try
       {
+        StorageDevices.Clear();
         using(ApplicationContext db = new ApplicationContext())
           foreach(Storage_devices c in db.Storage_devices)
             StorageDevices.Add(new Storage_devices(c.ID));
@@ -217,9 +329,10 @@ namespace Computer_house
     {
       try
       {
-      using (ApplicationContext db = new ApplicationContext())
-        foreach (Case c in db.Case)
-          Cases.Add(new Case(c.ID));
+        Cases.Clear();
+        using (ApplicationContext db = new ApplicationContext())
+          foreach (Case c in db.Case)
+            Cases.Add(new Case(c.ID));
 
         LoadAdditionalInfo(Cases);
       }
@@ -232,6 +345,7 @@ namespace Computer_house
     {
       try
       {
+        CoolingSystems.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (Cooling_system c in db.Cooling_system)
             CoolingSystems.Add(new Cooling_system(c.ID));
@@ -247,6 +361,7 @@ namespace Computer_house
     {
       try
       {
+        Cpus.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (CPU c in db.CPU)
             Cpus.Add(new CPU(c.ID));
@@ -262,6 +377,7 @@ namespace Computer_house
     {
       try
       {
+        Gpus.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (GPU c in db.GPU)
             Gpus.Add(new GPU(c.ID));
@@ -278,6 +394,7 @@ namespace Computer_house
     {
       try
       {
+        Motherboards.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (Motherboard c in db.Motherboard)
             Motherboards.Add(new Motherboard(c.ID));
@@ -294,6 +411,7 @@ namespace Computer_house
     {
       try
       {
+        Psus.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (PSU c in db.PSU)
             Psus.Add(new PSU(c.ID));
@@ -310,6 +428,7 @@ namespace Computer_house
     {
       try
       {
+        Rams.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (RAM c in db.RAM)
             Rams.Add(new RAM(c.ID));
@@ -368,6 +487,7 @@ namespace Computer_house
     {
       try
       {
+        WarehouseInformationList.Clear();
         using (ApplicationContext db = new ApplicationContext())
           foreach (Warehouse_info c in db.Warehouse_info)
             WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count, c.Items_in_shop));
@@ -643,7 +763,7 @@ namespace Computer_house
         {
           db.ShopRequests.Add(newRequest);
           List<NeedToUpdate> update = db.NeedToUpdate.ToList();
-          update[0].UpdateStatus = true;
+          update[0].UpdateStatusForWarehouse = true;
           db.NeedToUpdate.Update(update[0]);
           db.SaveChanges();
           MessageBox.Show("Товар успешно запрошен");
@@ -701,7 +821,7 @@ namespace Computer_house
               {
                 db.ShopRequests.Add(newRequest);
                 List<NeedToUpdate> update = db.NeedToUpdate.ToList();
-                update[0].UpdateStatus = true;
+                update[0].UpdateStatusForWarehouse = true;
                 db.NeedToUpdate.Update(update[0]);
                 db.SaveChanges();
               }
@@ -1007,6 +1127,9 @@ namespace Computer_house
         default:
           break;
       }
+      Price_list price = PriceList.Single(i => i.Product_ID == currentItem.Product_ID);
+      textBox.Text += $"Стоимость элемента: " +
+        $"{Math.Round(price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100, 2)} руб.";
     }
 
     private void ViewRamToSet()
@@ -1047,7 +1170,6 @@ namespace Computer_house
           RAM_ComboBox.Items.Clear();
           foreach(RAM r in filteredRams)
             RAM_ComboBox.Items.Add(r.Name);
-          return;
         }
         //правка сокета материнской платы
         if(Motherboard_ComboBox.SelectedIndex != -1 && RAM_ComboBox.SelectedIndex == -1)
@@ -1110,7 +1232,6 @@ namespace Computer_house
             ramNameInListBox = "";
             RAM_ComboBox.SelectedItem = null;
             RAM_ComboBox.BackColor = Color.White;
-            //return;
 
             
           }
@@ -1196,6 +1317,7 @@ namespace Computer_house
           }
         }
       }
+      CalculatePCPrice();
     }
 
     private void CheckIntegratedGraphicSupport(string motherboardID, CPU selectedCPU)
@@ -1211,44 +1333,48 @@ namespace Computer_house
     }
     private void GPU_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      AddConfigItemInListBox(GPU_ComboBox, ref gpuNameInListBox);
-      int warehouseGpuID = WarehouseInformationList.Single(i => i.ProductName == gpuNameInListBox).Product_ID;
-      string gpuID = Mediators.Single(i => i.ID == warehouseGpuID).GPU_ID;
-      GPU currentGPU = Gpus.Single(i => i.ID == gpuID);
-      if(Motherboard_ComboBox.SelectedIndex == -1)
+      if(GPU_ComboBox.SelectedIndex != -1)
       {
-        if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1 && 
-          RAM_ComboBox.SelectedIndex == -1)//и корпус
+        AddConfigItemInListBox(GPU_ComboBox, ref gpuNameInListBox);
+        int warehouseGpuID = WarehouseInformationList.Single(i => i.ProductName == gpuNameInListBox).Product_ID;
+        string gpuID = Mediators.Single(i => i.ID == warehouseGpuID).GPU_ID;
+        GPU currentGPU = Gpus.Single(i => i.ID == gpuID);
+        if(Motherboard_ComboBox.SelectedIndex == -1)
         {
-          filteredMotherboards = Motherboards.Where(b => b.Expansion_slots.Contains
-            (currentGPU.ConnectionInterface)).ToList();
-          Motherboard_ComboBox.Items.Clear();
-          foreach(Motherboard m in filteredMotherboards)
+          if(CPU_ComboBox.SelectedIndex == -1 && CoolingSystem_ComboBox.SelectedIndex == -1 &&
+            RAM_ComboBox.SelectedIndex == -1)//и корпус
           {
-            Motherboard_ComboBox.Items.Add(m.Name);
+            filteredMotherboards = Motherboards.Where(b => b.Expansion_slots.Contains
+              (currentGPU.ConnectionInterface)).ToList();
+            Motherboard_ComboBox.Items.Clear();
+            foreach(Motherboard m in filteredMotherboards)
+            {
+              Motherboard_ComboBox.Items.Add(m.Name);
+            }
           }
+          else
+          {
+            List<Motherboard> secondFilterMotherboards = filteredMotherboards;
+            filteredMotherboards = secondFilterMotherboards.Where(b => b.Expansion_slots.Contains
+              (currentGPU.ConnectionInterface)).ToList();
+            Motherboard_ComboBox.Items.Clear();
+            foreach(Motherboard m in filteredMotherboards)
+            {
+              Motherboard_ComboBox.Items.Add(m.Name);
+            }
+          }
+
+
+
+          //продумать момент, что нужно брать отфильтрованные данные если cpu, cooling или ram заполнены
+          //аналогично и с процессорами, оперативкой и системами охлаждения и тд.
         }
         else
         {
-          List<Motherboard> secondFilterMotherboards = filteredMotherboards;
-          filteredMotherboards = secondFilterMotherboards.Where(b => b.Expansion_slots.Contains
-            (currentGPU.ConnectionInterface)).ToList();
-          Motherboard_ComboBox.Items.Clear();
-          foreach(Motherboard m in filteredMotherboards)
-          {
-            Motherboard_ComboBox.Items.Add(m.Name);
-          }
+          //если материнка выбрана то ничего делать не нужно
         }
-
-       
-
-        //продумать момент, что нужно брать отфильтрованные данные если cpu, cooling или ram заполнены
-        //аналогично и с процессорами, оперативкой и системами охлаждения и тд.
       }
-      else
-      {
-        //если материнка выбрана то ничего делать не нужно
-      }
+      CalculatePCPrice();
     }
 
     //Нужен для добавления компонентов в конфигураторе ПК
@@ -1600,6 +1726,7 @@ namespace Computer_house
           }
         }
       }
+      CalculatePCPrice();
     }
 
     private bool FindSupportedSocketByCoolingSystem(Cooling_system cs)
@@ -1653,7 +1780,9 @@ namespace Computer_house
           foreach(Motherboard m in filteredMotherboards)
             Motherboard_ComboBox.Items.Add(m.Name);
         }
+        
       }
+      CalculatePCPrice();
     }
 
     private void CoolingSystem_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1691,22 +1820,27 @@ namespace Computer_house
             CPU_ComboBox.BackColor = Color.White;
           }
         }
+        
       }
+      CalculatePCPrice();
     }
 
     private void PSU_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
       AddConfigItemInListBox(PSU_ComboBox, ref psuNameInListBox);
+      CalculatePCPrice();
     }
 
     private void StorageDevice_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
       AddConfigItemInListBox(StorageDevice_ComboBox, ref storageNameInListBox);
+      CalculatePCPrice();
     }
 
     private void Case_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
       AddConfigItemInListBox(Case_ComboBox, ref caseNameInListBox);
+      CalculatePCPrice();
     }
 
     private void SelectedItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1721,8 +1855,18 @@ namespace Computer_house
 
     private void обновитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      //нужно обновлять список комплектующих если был добавлен или изменен определенный товар, 
-      //или если произошел привоз на складе
+      string question = "При обновлении могут пропасть несохранённые данные," +
+        "продолжить?";
+      DialogResult questionResult = MessageBox.Show(question,
+                                    "Обновление информации",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Information,
+                                    MessageBoxDefaultButton.Button2,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+      if(questionResult == DialogResult.Yes)
+      {
+        Update();
+      }
     }
 
     private void PrintButton_Click(object sender, EventArgs e)
@@ -1937,6 +2081,21 @@ namespace Computer_house
     void PrintPageHandler(object sender, PrintPageEventArgs e)
     {
       e.Graphics.DrawString(finalPrintMessage, new Font("Arial", 12), Brushes.Black, 0, 0);
+    }
+
+    private void CalculatePCPrice()
+    {
+      List<Warehouse_info> items = new List<Warehouse_info>();
+      int index = 0;
+      ConfigPriceLabel.Text = "0";
+      foreach(var i in SelectedConfigIntemsListBox.Items)
+      {
+        items.Add(WarehouseInformationList.Single(q => q.ProductName == i.ToString()));
+        Price_list price = PriceList.Single(q => q.Product_ID == items[index].Product_ID);
+        decimal current_price = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+        ConfigPriceLabel.Text = Convert.ToString(Math.Round(Convert.ToDecimal(ConfigPriceLabel.Text) + current_price,2));
+        index++;
+      }
     }
   }
 }
