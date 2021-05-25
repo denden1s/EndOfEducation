@@ -29,6 +29,8 @@ namespace Computer_house
         /// </summary>
         private void InitializeComponent()
         {
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizedForm));
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.настроитьIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +39,17 @@ namespace Computer_house
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.button1 = new System.Windows.Forms.Button();
+      this.BuyingPrice = new System.Windows.Forms.NumericUpDown();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.SelectedItem = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
+      this.MarkUpPercent = new System.Windows.Forms.NumericUpDown();
+      this.label2 = new System.Windows.Forms.Label();
+      this.UnsetPrice = new System.Windows.Forms.ListBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.SetingPrice = new System.Windows.Forms.ListBox();
       this.HoldingDocsDatagridView = new System.Windows.Forms.DataGridView();
       this.HoldingDocumentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,23 +58,40 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.SetingPrice = new System.Windows.Forms.ListBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.UnsetPrice = new System.Windows.Forms.ListBox();
-      this.label2 = new System.Windows.Forms.Label();
-      this.MarkUpPercent = new System.Windows.Forms.NumericUpDown();
-      this.label3 = new System.Windows.Forms.Label();
-      this.SelectedItem = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
-      this.BuyingPrice = new System.Windows.Forms.NumericUpDown();
-      this.button1 = new System.Windows.Forms.Button();
+      this.tabControl2 = new System.Windows.Forms.TabControl();
+      this.tabPage3 = new System.Windows.Forms.TabPage();
+      this.tabPage4 = new System.Windows.Forms.TabPage();
+      this.tabPage5 = new System.Windows.Forms.TabPage();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.label6 = new System.Windows.Forms.Label();
+      this.DateLabel = new System.Windows.Forms.Label();
+      this.label7 = new System.Windows.Forms.Label();
+      this.StartOfPeriodTextBox = new System.Windows.Forms.MaskedTextBox();
+      this.EndPeriod = new System.Windows.Forms.MaskedTextBox();
+      this.label8 = new System.Windows.Forms.Label();
+      this.button2 = new System.Windows.Forms.Button();
+      this.DemandedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+      this.tabControl3 = new System.Windows.Forms.TabControl();
+      this.tabPage6 = new System.Windows.Forms.TabPage();
+      this.tabPage7 = new System.Windows.Forms.TabPage();
+      this.DemandedTable = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
+      this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
+      this.tabControl2.SuspendLayout();
+      this.tabPage4.SuspendLayout();
+      this.panel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.DemandedChart)).BeginInit();
+      this.tabControl3.SuspendLayout();
+      this.tabPage6.SuspendLayout();
+      this.tabPage7.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.DemandedTable)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -107,7 +137,7 @@ namespace Computer_house
       this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F);
       this.tabControl1.Location = new System.Drawing.Point(0, 30);
-      this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
       this.tabControl1.Size = new System.Drawing.Size(1324, 652);
@@ -116,11 +146,13 @@ namespace Computer_house
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage1.Controls.Add(this.panel1);
+      this.tabPage1.Controls.Add(this.tabControl2);
       this.tabPage1.Location = new System.Drawing.Point(4, 37);
-      this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage1.Name = "tabPage1";
-      this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-      this.tabPage1.Size = new System.Drawing.Size(1316, 613);
+      this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+      this.tabPage1.Size = new System.Drawing.Size(1316, 611);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Статистика";
       // 
@@ -140,12 +172,134 @@ namespace Computer_house
       this.tabPage2.Controls.Add(this.SetingPrice);
       this.tabPage2.Controls.Add(this.HoldingDocsDatagridView);
       this.tabPage2.Location = new System.Drawing.Point(4, 37);
-      this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
       this.tabPage2.Size = new System.Drawing.Size(1316, 611);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Складской учёт";
+      // 
+      // button1
+      // 
+      this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button1.Location = new System.Drawing.Point(752, 543);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(541, 56);
+      this.button1.TabIndex = 12;
+      this.button1.Text = "Сохранить";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
+      // 
+      // BuyingPrice
+      // 
+      this.BuyingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.BuyingPrice.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.BuyingPrice.Location = new System.Drawing.Point(1172, 406);
+      this.BuyingPrice.Maximum = new decimal(new int[] {
+            -1773790777,
+            2,
+            0,
+            0});
+      this.BuyingPrice.Name = "BuyingPrice";
+      this.BuyingPrice.Size = new System.Drawing.Size(120, 34);
+      this.BuyingPrice.TabIndex = 11;
+      // 
+      // label5
+      // 
+      this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.label5.AutoSize = true;
+      this.label5.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label5.Location = new System.Drawing.Point(746, 412);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(234, 28);
+      this.label5.TabIndex = 10;
+      this.label5.Text = "Закупочная стоимость";
+      // 
+      // label4
+      // 
+      this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.Location = new System.Drawing.Point(747, 483);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(198, 28);
+      this.label4.TabIndex = 9;
+      this.label4.Text = "Процент надбавки";
+      // 
+      // SelectedItem
+      // 
+      this.SelectedItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.SelectedItem.AutoSize = true;
+      this.SelectedItem.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.SelectedItem.Location = new System.Drawing.Point(951, 342);
+      this.SelectedItem.Name = "SelectedItem";
+      this.SelectedItem.Size = new System.Drawing.Size(0, 28);
+      this.SelectedItem.TabIndex = 8;
+      // 
+      // label3
+      // 
+      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.label3.AutoSize = true;
+      this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.Location = new System.Drawing.Point(746, 342);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(199, 28);
+      this.label3.TabIndex = 7;
+      this.label3.Text = "Выбранный товар:";
+      // 
+      // MarkUpPercent
+      // 
+      this.MarkUpPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.MarkUpPercent.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.MarkUpPercent.Location = new System.Drawing.Point(1172, 477);
+      this.MarkUpPercent.Name = "MarkUpPercent";
+      this.MarkUpPercent.Size = new System.Drawing.Size(120, 34);
+      this.MarkUpPercent.TabIndex = 6;
+      // 
+      // label2
+      // 
+      this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.label2.AutoSize = true;
+      this.label2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label2.Location = new System.Drawing.Point(391, 299);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(255, 28);
+      this.label2.TabIndex = 5;
+      this.label2.Text = "Не установленные цены";
+      // 
+      // UnsetPrice
+      // 
+      this.UnsetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.UnsetPrice.FormattingEnabled = true;
+      this.UnsetPrice.ItemHeight = 28;
+      this.UnsetPrice.Location = new System.Drawing.Point(396, 343);
+      this.UnsetPrice.Name = "UnsetPrice";
+      this.UnsetPrice.Size = new System.Drawing.Size(318, 256);
+      this.UnsetPrice.TabIndex = 4;
+      this.UnsetPrice.SelectedIndexChanged += new System.EventHandler(this.UnsetPrice_SelectedIndexChanged);
+      // 
+      // label1
+      // 
+      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.label1.AutoSize = true;
+      this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.Location = new System.Drawing.Point(22, 299);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(177, 28);
+      this.label1.TabIndex = 3;
+      this.label1.Text = "Цены на товары";
+      // 
+      // SetingPrice
+      // 
+      this.SetingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.SetingPrice.FormattingEnabled = true;
+      this.SetingPrice.ItemHeight = 28;
+      this.SetingPrice.Location = new System.Drawing.Point(27, 343);
+      this.SetingPrice.Name = "SetingPrice";
+      this.SetingPrice.Size = new System.Drawing.Size(318, 256);
+      this.SetingPrice.TabIndex = 2;
+      this.SetingPrice.SelectedIndexChanged += new System.EventHandler(this.SetingPrice_SelectedIndexChanged);
       // 
       // HoldingDocsDatagridView
       // 
@@ -231,127 +385,236 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 200;
       // 
-      // SetingPrice
+      // tabControl2
       // 
-      this.SetingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.SetingPrice.FormattingEnabled = true;
-      this.SetingPrice.ItemHeight = 28;
-      this.SetingPrice.Location = new System.Drawing.Point(27, 343);
-      this.SetingPrice.Name = "SetingPrice";
-      this.SetingPrice.Size = new System.Drawing.Size(318, 256);
-      this.SetingPrice.TabIndex = 2;
-      this.SetingPrice.SelectedIndexChanged += new System.EventHandler(this.SetingPrice_SelectedIndexChanged);
+      this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tabControl2.Controls.Add(this.tabPage3);
+      this.tabControl2.Controls.Add(this.tabPage4);
+      this.tabControl2.Controls.Add(this.tabPage5);
+      this.tabControl2.Location = new System.Drawing.Point(7, 3);
+      this.tabControl2.Multiline = true;
+      this.tabControl2.Name = "tabControl2";
+      this.tabControl2.SelectedIndex = 0;
+      this.tabControl2.Size = new System.Drawing.Size(1302, 354);
+      this.tabControl2.TabIndex = 0;
       // 
-      // label1
+      // tabPage3
       // 
-      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.label1.AutoSize = true;
-      this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(22, 299);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(177, 28);
-      this.label1.TabIndex = 3;
-      this.label1.Text = "Цены на товары";
+      this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage3.Location = new System.Drawing.Point(4, 37);
+      this.tabPage3.Name = "tabPage3";
+      this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage3.Size = new System.Drawing.Size(1294, 315);
+      this.tabPage3.TabIndex = 0;
+      this.tabPage3.Text = "График затрат и доходов";
+      this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
       // 
-      // UnsetPrice
+      // tabPage4
       // 
-      this.UnsetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.UnsetPrice.FormattingEnabled = true;
-      this.UnsetPrice.ItemHeight = 28;
-      this.UnsetPrice.Location = new System.Drawing.Point(396, 343);
-      this.UnsetPrice.Name = "UnsetPrice";
-      this.UnsetPrice.Size = new System.Drawing.Size(318, 256);
-      this.UnsetPrice.TabIndex = 4;
-      this.UnsetPrice.SelectedIndexChanged += new System.EventHandler(this.UnsetPrice_SelectedIndexChanged);
+      this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage4.Controls.Add(this.tabControl3);
+      this.tabPage4.Location = new System.Drawing.Point(4, 37);
+      this.tabPage4.Name = "tabPage4";
+      this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage4.Size = new System.Drawing.Size(1294, 313);
+      this.tabPage4.TabIndex = 1;
+      this.tabPage4.Text = "График востребованности";
+      this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
       // 
-      // label2
+      // tabPage5
       // 
-      this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.label2.AutoSize = true;
-      this.label2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.Location = new System.Drawing.Point(391, 299);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(255, 28);
-      this.label2.TabIndex = 5;
-      this.label2.Text = "Не установленные цены";
+      this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.tabPage5.Location = new System.Drawing.Point(4, 37);
+      this.tabPage5.Name = "tabPage5";
+      this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage5.Size = new System.Drawing.Size(1294, 315);
+      this.tabPage5.TabIndex = 2;
+      this.tabPage5.Text = "График эффективности труда";
+      this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
       // 
-      // MarkUpPercent
+      // panel1
       // 
-      this.MarkUpPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.MarkUpPercent.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.MarkUpPercent.Location = new System.Drawing.Point(1172, 477);
-      this.MarkUpPercent.Name = "MarkUpPercent";
-      this.MarkUpPercent.Size = new System.Drawing.Size(120, 34);
-      this.MarkUpPercent.TabIndex = 6;
+      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel1.Controls.Add(this.button2);
+      this.panel1.Controls.Add(this.label8);
+      this.panel1.Controls.Add(this.EndPeriod);
+      this.panel1.Controls.Add(this.StartOfPeriodTextBox);
+      this.panel1.Controls.Add(this.label7);
+      this.panel1.Controls.Add(this.DateLabel);
+      this.panel1.Controls.Add(this.label6);
+      this.panel1.Location = new System.Drawing.Point(7, 429);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(1302, 172);
+      this.panel1.TabIndex = 1;
       // 
-      // label3
+      // label6
       // 
-      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.label3.AutoSize = true;
-      this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(746, 342);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(199, 28);
-      this.label3.TabIndex = 7;
-      this.label3.Text = "Выбранный товар:";
+      this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+      this.label6.AutoSize = true;
+      this.label6.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label6.Location = new System.Drawing.Point(260, 12);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(507, 28);
+      this.label6.TabIndex = 4;
+      this.label6.Text = "Текущий график отражает информацию по дате:";
       // 
-      // SelectedItem
+      // DateLabel
       // 
-      this.SelectedItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.SelectedItem.AutoSize = true;
-      this.SelectedItem.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.SelectedItem.Location = new System.Drawing.Point(951, 342);
-      this.SelectedItem.Name = "SelectedItem";
-      this.SelectedItem.Size = new System.Drawing.Size(0, 28);
-      this.SelectedItem.TabIndex = 8;
+      this.DateLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+      this.DateLabel.AutoSize = true;
+      this.DateLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.DateLabel.Location = new System.Drawing.Point(773, 12);
+      this.DateLabel.Name = "DateLabel";
+      this.DateLabel.Size = new System.Drawing.Size(55, 28);
+      this.DateLabel.TabIndex = 5;
+      this.DateLabel.Text = "date";
       // 
-      // label4
+      // label7
       // 
-      this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.label4.AutoSize = true;
-      this.label4.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label4.Location = new System.Drawing.Point(747, 483);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(198, 28);
-      this.label4.TabIndex = 9;
-      this.label4.Text = "Процент надбавки";
+      this.label7.AutoSize = true;
+      this.label7.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label7.Location = new System.Drawing.Point(16, 76);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(650, 28);
+      this.label7.TabIndex = 6;
+      this.label7.Text = "Введите период за который необходимо собрать информацию";
       // 
-      // label5
+      // StartOfPeriodTextBox
       // 
-      this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.label5.AutoSize = true;
-      this.label5.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label5.Location = new System.Drawing.Point(746, 412);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(234, 28);
-      this.label5.TabIndex = 10;
-      this.label5.Text = "Закупочная стоимость";
+      this.StartOfPeriodTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.StartOfPeriodTextBox.Location = new System.Drawing.Point(672, 76);
+      this.StartOfPeriodTextBox.Mask = "0000-00";
+      this.StartOfPeriodTextBox.Name = "StartOfPeriodTextBox";
+      this.StartOfPeriodTextBox.Size = new System.Drawing.Size(100, 30);
+      this.StartOfPeriodTextBox.TabIndex = 7;
       // 
-      // BuyingPrice
+      // EndPeriod
       // 
-      this.BuyingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.BuyingPrice.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.BuyingPrice.Location = new System.Drawing.Point(1172, 406);
-      this.BuyingPrice.Maximum = new decimal(new int[] {
-            -1773790777,
-            2,
-            0,
-            0});
-      this.BuyingPrice.Name = "BuyingPrice";
-      this.BuyingPrice.Size = new System.Drawing.Size(120, 34);
-      this.BuyingPrice.TabIndex = 11;
+      this.EndPeriod.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.EndPeriod.Location = new System.Drawing.Point(823, 76);
+      this.EndPeriod.Mask = "0000-00";
+      this.EndPeriod.Name = "EndPeriod";
+      this.EndPeriod.Size = new System.Drawing.Size(100, 30);
+      this.EndPeriod.TabIndex = 8;
+      this.EndPeriod.ValidatingType = typeof(System.DateTime);
       // 
-      // button1
+      // label8
       // 
-      this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button1.Location = new System.Drawing.Point(752, 543);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(541, 56);
-      this.button1.TabIndex = 12;
-      this.button1.Text = "Сохранить";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+      this.label8.AutoSize = true;
+      this.label8.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label8.Location = new System.Drawing.Point(787, 75);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(21, 28);
+      this.label8.TabIndex = 9;
+      this.label8.Text = "/";
+      // 
+      // button2
+      // 
+      this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.button2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button2.Location = new System.Drawing.Point(973, 9);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(325, 157);
+      this.button2.TabIndex = 13;
+      this.button2.Text = "Составить представления";
+      this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
+      // 
+      // DemandedChart
+      // 
+      this.DemandedChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      chartArea1.Name = "ChartArea1";
+      this.DemandedChart.ChartAreas.Add(chartArea1);
+      legend1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      legend1.IsTextAutoFit = false;
+      legend1.Name = "Legend1";
+      this.DemandedChart.Legends.Add(legend1);
+      this.DemandedChart.Location = new System.Drawing.Point(3, 6);
+      this.DemandedChart.Name = "DemandedChart";
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 253);
+      this.DemandedChart.TabIndex = 0;
+      this.DemandedChart.Text = "chart1";
+      // 
+      // tabControl3
+      // 
+      this.tabControl3.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+      this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tabControl3.Controls.Add(this.tabPage6);
+      this.tabControl3.Controls.Add(this.tabPage7);
+      this.tabControl3.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tabControl3.Location = new System.Drawing.Point(6, 6);
+      this.tabControl3.Multiline = true;
+      this.tabControl3.Name = "tabControl3";
+      this.tabControl3.SelectedIndex = 0;
+      this.tabControl3.Size = new System.Drawing.Size(1282, 301);
+      this.tabControl3.TabIndex = 1;
+      // 
+      // tabPage6
+      // 
+      this.tabPage6.Controls.Add(this.DemandedChart);
+      this.tabPage6.Location = new System.Drawing.Point(4, 4);
+      this.tabPage6.Name = "tabPage6";
+      this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage6.Size = new System.Drawing.Size(1274, 265);
+      this.tabPage6.TabIndex = 0;
+      this.tabPage6.Text = "График";
+      this.tabPage6.UseVisualStyleBackColor = true;
+      // 
+      // tabPage7
+      // 
+      this.tabPage7.Controls.Add(this.DemandedTable);
+      this.tabPage7.Location = new System.Drawing.Point(4, 4);
+      this.tabPage7.Name = "tabPage7";
+      this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage7.Size = new System.Drawing.Size(1274, 265);
+      this.tabPage7.TabIndex = 1;
+      this.tabPage7.Text = "Таблица";
+      this.tabPage7.UseVisualStyleBackColor = true;
+      // 
+      // DemandedTable
+      // 
+      this.DemandedTable.AllowUserToAddRows = false;
+      this.DemandedTable.AllowUserToDeleteRows = false;
+      this.DemandedTable.AllowUserToOrderColumns = true;
+      this.DemandedTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.DemandedTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.DemandedTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.DemandedTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn5});
+      this.DemandedTable.Location = new System.Drawing.Point(7, 5);
+      this.DemandedTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.DemandedTable.Name = "DemandedTable";
+      this.DemandedTable.ReadOnly = true;
+      this.DemandedTable.RowHeadersWidth = 51;
+      this.DemandedTable.RowTemplate.Height = 24;
+      this.DemandedTable.Size = new System.Drawing.Size(1261, 255);
+      this.DemandedTable.TabIndex = 2;
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Наименование товара";
+      this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      this.dataGridViewTextBoxColumn2.ReadOnly = true;
+      this.dataGridViewTextBoxColumn2.Width = 600;
+      // 
+      // dataGridViewTextBoxColumn5
+      // 
+      this.dataGridViewTextBoxColumn5.HeaderText = "Кол-во";
+      this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+      this.dataGridViewTextBoxColumn5.ReadOnly = true;
+      this.dataGridViewTextBoxColumn5.Width = 150;
       // 
       // AuthorizedForm
       // 
@@ -375,11 +638,21 @@ namespace Computer_house
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.tabControl1.ResumeLayout(false);
+      this.tabPage1.ResumeLayout(false);
       this.tabPage2.ResumeLayout(false);
       this.tabPage2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
+      this.tabControl2.ResumeLayout(false);
+      this.tabPage4.ResumeLayout(false);
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.DemandedChart)).EndInit();
+      this.tabControl3.ResumeLayout(false);
+      this.tabPage6.ResumeLayout(false);
+      this.tabPage7.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.DemandedTable)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -412,5 +685,24 @@ namespace Computer_house
     private System.Windows.Forms.Label SelectedItem;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.NumericUpDown MarkUpPercent;
+    private System.Windows.Forms.TabControl tabControl2;
+    private System.Windows.Forms.TabPage tabPage3;
+    private System.Windows.Forms.TabPage tabPage4;
+    private System.Windows.Forms.Panel panel1;
+    private System.Windows.Forms.Label DateLabel;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.TabPage tabPage5;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.MaskedTextBox EndPeriod;
+    private System.Windows.Forms.MaskedTextBox StartOfPeriodTextBox;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.DataVisualization.Charting.Chart DemandedChart;
+    private System.Windows.Forms.TabControl tabControl3;
+    private System.Windows.Forms.TabPage tabPage6;
+    private System.Windows.Forms.TabPage tabPage7;
+    internal System.Windows.Forms.DataGridView DemandedTable;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
   }
 }

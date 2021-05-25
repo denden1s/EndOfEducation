@@ -1,4 +1,5 @@
-﻿using Computer_house.DataBase.Entities;
+﻿using Computer_house.DataBase;
+using Computer_house.DataBase.Entities;
 using Computer_house.DataBase.Entities.PC_Components;
 using Computer_house.DataBase.Entities.PC_Options;
 using Computer_house.DataBase.Entities.Warehouse;
@@ -22,7 +23,9 @@ namespace Computer_house
     private List<Mediator> Mediators = new List<Mediator>();
     private List<Holding_document> HoldingDocuments = new List<Holding_document>();
     private List<Price_list> PriceList = new List<Price_list>();
+    private List<ShopRequests> ShopRequests = new List<ShopRequests>();
     private Users user;
+    private string enteredPage = "График затрат и доходов";
 
     //организация блокирования функции перетаскивания формы
     const int SC_CLOSE = 0xF010;
@@ -63,7 +66,24 @@ namespace Computer_house
       ViewDocsInDataGrid();
       await Task.Run(() => LoadPriceInfo());
       await Task.Run(() => LoadAllInfoFromDB());
+      await Task.Run(() => LoadShopRequests());
       ViewPriceInfo();
+    }
+
+    private void LoadShopRequests()
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+          ShopRequests = db.ShopRequests.ToList();
+
+        foreach(ShopRequests r in ShopRequests)
+          r.GetDataFromDB();
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
     }
 
     private void LoadPriceInfo()
@@ -241,7 +261,6 @@ namespace Computer_house
         BuyingPrice.Value = 0;
         MarkUpPercent.Value = 0;
         SelectedItem.Text = "";
-        //сохраняем
       }
       else
         MessageBox.Show("Не возможно сохранить данные");
@@ -268,6 +287,166 @@ namespace Computer_house
         MarkUpPercent.Value = (decimal)PriceList.Single(i => i.Product_ID == id).Markup_percent;
         BuyingPrice.Value = (decimal)PriceList.Single(i => i.Product_ID == id).Purchasable_price;
       }
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      DemandedTable.Rows.Clear();
+      DemandedChart.Series.Clear();
+
+      ViewGraphic();
+
+    }
+
+    private void ViewGraphic()
+    {
+      string[] firstPeriod = StartOfPeriodTextBox.Text.Split(new char[] { '-' });
+      string year = firstPeriod[0].Trim();
+      string[] secondPeriod = EndPeriod.Text.Split(new char[] { '-' });
+      string lastYear = secondPeriod[0].Trim();
+
+      switch(enteredPage)
+      {
+        case "График затрат и доходов":
+          //ситуация если сразу вводится начало периода
+          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          {
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            {
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
+                (Convert.ToInt32(lastYear) - Convert.ToInt32(year) > 0 || (
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) == 0 &&
+                Convert.ToInt32(secondPeriod[1]) - Convert.ToInt32(firstPeriod[1]) > 0)))
+              {
+                //счет от начала до конца
+              }
+              else
+              {
+                //счет по одному периоду
+              }
+            }
+            else
+              MessageBox.Show("Месяц указан неверно!");
+          }
+          else
+            MessageBox.Show("Данные введены некорректно");
+          break;
+        case "График востребованности":
+          //нужен для составления графика востребованности
+          List<Holding_document> docs = new List<Holding_document>();
+          List<ShopRequests> requests = new List<ShopRequests>();
+          List<Product> demandedInfo = new List<Product>();
+          //ситуация если сразу вводится начало периода
+          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          {
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            {
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
+                (Convert.ToInt32(lastYear) - Convert.ToInt32(year) > 0 || (
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) == 0 &&
+                Convert.ToInt32(secondPeriod[1]) - Convert.ToInt32(firstPeriod[1]) > 0)))
+              {
+                docs = (from b in HoldingDocuments
+                        where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                        b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
+                        select b).ToList();
+                requests = (from b in ShopRequests
+                            where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                            b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                            select b).ToList();
+              }
+              else
+              {
+                MessageBox.Show("Окончательный период введён неверно");
+                docs = (from b in HoldingDocuments
+                        where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.State == "Расход"
+                        select b).ToList();
+                requests = (from b in ShopRequests
+                            where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.Status == true
+                            select b).ToList();
+              }
+              foreach(Holding_document d in docs)
+              {
+                if(demandedInfo.Where(i => i.Name == d.Product_name).Count() == 0)
+                {
+                  demandedInfo.Add(new Product { Name = d.Product_name, ID = Convert.ToString(Math.Abs(d.Items_count_in_move)) });
+                }
+                else
+                {
+                  int index = demandedInfo.IndexOf(demandedInfo.Single(i => i.Name == d.Product_name));
+                  demandedInfo[index].ID = Convert.ToString(Convert.ToInt32(demandedInfo[index].ID) + Math.Abs(d.Items_count_in_move));
+                }
+              }
+              foreach(ShopRequests d in requests)
+              {
+                if(demandedInfo.Single(i => i.Name == d.ProductName) == null)
+                {
+                  demandedInfo.Add(new Product { Name = d.ProductName, ID = Convert.ToString(d.Count) });
+                }
+                else
+                {
+                  int index = demandedInfo.IndexOf(demandedInfo.Single(i => i.Name == d.ProductName));
+                  demandedInfo[index].ID = Convert.ToString(Convert.ToInt32(demandedInfo[index].ID) + d.Count);
+                }
+              }
+              DemandedChart.ChartAreas[0].AxisX.Title = "Товары";
+              DemandedChart.ChartAreas[0].AxisY.Title = "Количество";
+              foreach(Product p in demandedInfo)
+              {
+                var chart = DemandedChart.Series.Add(p.Name);
+                chart.Points.Add(Convert.ToDouble(p.ID));
+                DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
+              }
+
+            }
+            else
+              MessageBox.Show("Месяц указан неверно!");
+          }
+          else
+            MessageBox.Show("Данные введены некорректно");
+          break;
+        case "График эффективности труда":
+          //ситуация если сразу вводится начало периода
+          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          {
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            {
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
+                (Convert.ToInt32(lastYear) - Convert.ToInt32(year) > 0 || (
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) == 0 &&
+                Convert.ToInt32(secondPeriod[1]) - Convert.ToInt32(firstPeriod[1]) > 0)))
+              {
+                //счет от начала до конца
+              }
+              else
+              {
+                //счет по одному периоду
+              }
+            }
+            else
+              MessageBox.Show("Месяц указан неверно!");
+          }
+          else
+            MessageBox.Show("Данные введены некорректно");
+          break;
+        default:
+          break;
+      }
+    }
+
+    private void tabPage3_Enter(object sender, EventArgs e)
+    {
+      enteredPage = tabPage3.Text;
+    }
+
+    private void tabPage4_Enter(object sender, EventArgs e)
+    {
+      enteredPage = tabPage4.Text;
+    }
+
+    private void tabPage5_Enter(object sender, EventArgs e)
+    {
+      enteredPage = tabPage5.Text;
     }
   }
 }
