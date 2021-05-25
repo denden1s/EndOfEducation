@@ -827,6 +827,7 @@ namespace Computer_house
           ViewInfoInDataGrid<CPU>(CPU_DatagridView, CPUList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearCPUTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -1135,6 +1136,7 @@ namespace Computer_house
           ViewInfoInDataGrid(GPU_DatagridView, GPUList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearGPUTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -1235,6 +1237,7 @@ namespace Computer_house
           ViewInfoInDataGrid(Motherboard_DatagridView, MotherBoardList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearMotherboardTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -1453,6 +1456,7 @@ namespace Computer_house
           ViewInfoInDataGrid(Case_DatagridView, CaseList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearCaseTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -1681,6 +1685,7 @@ namespace Computer_house
           ViewInfoInDataGrid(RAM_DatagridView, RAMList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearRAMTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -1861,6 +1866,7 @@ namespace Computer_house
           ViewInfoInDataGrid<Cooling_system>(CoolingSystem_DatagridView, CoolingSystemList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearCoolingSystemTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -2026,6 +2032,7 @@ namespace Computer_house
           ViewInfoInDataGrid<PSU>(PSU_DatagridView, PSUList);
         }
       }
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearPSUTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -2062,10 +2069,9 @@ namespace Computer_house
         using (ApplicationContext db = new ApplicationContext())
         {
           NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
-          if (needToUpdate.UpdateStatus)
+          if (needToUpdate.UpdateStatusForWarehouse)
           {
             //сюда нужно добавлять появляющиеся запросы
-            //await Task.Run(() => LoadHoldingDocsFromDB());
             ShopRequestsList.Clear();
             foreach(ShopRequests s in db.ShopRequests)
               if(!s.Status)
@@ -2077,7 +2083,7 @@ namespace Computer_house
             }
             
             MessageBox.Show("Появился новый запрос из магазина");
-            needToUpdate.UpdateStatus = false;
+            needToUpdate.UpdateStatusForWarehouse = false;
             db.NeedToUpdate.Update(needToUpdate);
             db.SaveChanges();
           }
@@ -2166,7 +2172,7 @@ namespace Computer_house
           ViewInfoInDataGrid(SD_DatagridView, StorageDevicesList);
         }
       }
-
+      SystemFunctions.SendInfoInShopToUpdate();
       SystemFunctions.ClearSDTextBoxes(this);
       this.ActiveControl = null;
     }
@@ -2303,6 +2309,7 @@ namespace Computer_house
         LoadLocationInfoFromDB();
         ViewLocationInListBox();
         HoldRequestButton.Enabled = false;
+        SystemFunctions.SendInfoInShopToUpdate();
       }
       else
         MessageBox.Show("Действие отменено");
@@ -2379,6 +2386,7 @@ namespace Computer_house
             locationLabel = "";
             LocationMaxItems.Value = LocationMaxItems.Minimum;
             MessageBox.Show("Действие прошло успешно");
+            SystemFunctions.SendInfoInShopToUpdate();
           }
           else
             MessageBox.Show ("Действие не прошло!");

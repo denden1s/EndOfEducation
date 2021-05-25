@@ -1,6 +1,7 @@
 ﻿using Computer_house.DataBase.Entities;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ApplicationContext = Computer_house.DataBase.ApplicationContext;
@@ -653,5 +654,15 @@ namespace Computer_house.OtherClasses
       return false;
     }
 
+    public static void SendInfoInShopToUpdate()
+    {
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
+        needToUpdate.UpdateStatusForShop = true;
+        db.NeedToUpdate.Update(needToUpdate);
+        db.SaveChanges();
+      }
+    }
   }
 }

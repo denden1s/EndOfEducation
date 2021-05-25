@@ -100,7 +100,7 @@ namespace Computer_house
         using(ApplicationContext db = new ApplicationContext())
         {
           NeedToUpdate needToUpdate = db.NeedToUpdate.Single(i => i.ID == 1);
-          if(needToUpdate.UpdateStatus)
+          if(needToUpdate.UpdateStatusForWarehouse)
           {
             ShopRequests.Clear();
             foreach(ShopRequests s in db.ShopRequests)
@@ -111,7 +111,7 @@ namespace Computer_house
             foreach(ShopRequests r in ShopRequests)
               r.GetDataFromDB();
             MessageBox.Show("Появился новый запрос из магазина!");
-            needToUpdate.UpdateStatus = false;
+            needToUpdate.UpdateStatusForWarehouse = false;
             db.NeedToUpdate.Update(needToUpdate);
             db.SaveChanges();
           }
@@ -329,7 +329,7 @@ namespace Computer_house
             foreach(ShopRequests r in ShopRequests)
               r.GetDataFromDB();
           }
-          needUpdate = db.NeedToUpdate.Single(i => i.ID == 1).UpdateStatus;
+          needUpdate = db.NeedToUpdate.Single(i => i.ID == 1).UpdateStatusForWarehouse;
         }
           
         if(isFirst && !needUpdate)
@@ -825,21 +825,14 @@ namespace Computer_house
         }
         Warehouse_info adedItemInfo = new Warehouse_info();
         if(searchComponent != "")
-        {
           adedItemInfo = FilteredInfo.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
-        }
         else
-        {
           adedItemInfo = WarehouseInformationList.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
-        }
           
         SQLRequests.CreateHoldingDocument(adedItemInfo,Convert.ToInt32(AddProduct.Value), user,deviceType);
         AllProductInfo.Clear();
         LoadAllInfoFromDB();
 
-        //LoadInfoFromDBAndView();
-        //LoadAllInfoFromDB();
-        //ViewInfoInDataGrid();
         if(searchComponent != "")
           ViewInfoAfterChangeRadio();
         else
@@ -847,6 +840,7 @@ namespace Computer_house
 
         LoadLocationInWarehouseFromDB();
         LoadProductLocationFromDB();
+        SystemFunctions.SendInfoInShopToUpdate();
       }
       else
         MessageBox.Show("Действие отменено");
