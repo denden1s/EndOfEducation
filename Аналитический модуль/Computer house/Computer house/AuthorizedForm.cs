@@ -24,6 +24,8 @@ namespace Computer_house
     private List<Holding_document> HoldingDocuments = new List<Holding_document>();
     private List<Price_list> PriceList = new List<Price_list>();
     private List<ShopRequests> ShopRequests = new List<ShopRequests>();
+    private List<Purchases> Purchases = new List<Purchases>();
+    private List<Sellings> Sellings = new List<Sellings>();
     private Users user;
     private string enteredPage = "График затрат и доходов";
 
@@ -67,7 +69,36 @@ namespace Computer_house
       await Task.Run(() => LoadPriceInfo());
       await Task.Run(() => LoadAllInfoFromDB());
       await Task.Run(() => LoadShopRequests());
+      await Task.Run(() => LoadPurchases());
+      await Task.Run(() => LoadSellings());
       ViewPriceInfo();
+    }
+
+
+    private void LoadSellings()
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+          Sellings = db.Sellings.ToList();
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+    private void LoadPurchases()
+    {
+      try
+      {
+        using(ApplicationContext db = new ApplicationContext())
+          Purchases = db.Purchases.ToList();
+      }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
     }
 
     private void LoadShopRequests()
@@ -296,6 +327,9 @@ namespace Computer_house
 
       EfficiencyChart.Series.Clear();
       EfficiencyTable.Rows.Clear();
+
+      PurchasingChart.Series.Clear();
+      PurchasingTable.Rows.Clear();
       //вывод сведений о дате
 
 
@@ -303,35 +337,69 @@ namespace Computer_house
 
     }
 
+    private void CreatePurchaseDocsWithOnlyStartTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
+    {
+      purchases = (from b in Purchases
+                   where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text)
+                   select b).ToList();
+      sellings = (from b in Sellings
+                  where b.Selling_date.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text)
+                  select b).ToList();
+    }
+
+    private void CreatePurchaseDocsWithAllTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
+    {
+      purchases = (from b in Purchases
+                   where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                   b.Time.Date <= Convert.ToDateTime(StartOfPeriodTextBox.Text)
+                   select b).ToList();
+      sellings = (from b in Sellings
+                  where b.Selling_date.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                  b.Selling_date.Date <= Convert.ToDateTime(EndPeriod.Text)
+                  select b).ToList();
+    }
+
+
+    private void CreatePurchaseDocsWithOnlyEndTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
+    {
+      purchases = (from b in Purchases
+                   where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
+                   select b).ToList();
+      sellings = (from b in Sellings
+                  where b.Selling_date.Date <= Convert.ToDateTime(EndPeriod.Text)
+                  select b).ToList();
+    }
+
+
     private void CreateEfficiencyDocsWithOnlyStartTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
       MessageBox.Show("Окончательный период введён неверно");
       docs = (from b in HoldingDocuments
-              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text)
+              where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text)
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.Status == true
+                  where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.Status == true
                   select b).ToList();
     }
 
     private void CreateEfficiencyDocsWithOnlyEndTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
       docs = (from b in HoldingDocuments
-              where b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
+              where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                  where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text) && b.Status == true
                   select b).ToList();
     }
 
     private void CreateEfficiencyDocsWithAllTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
       docs = (from b in HoldingDocuments
-              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
-              b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
+              where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+              b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                  where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
                   b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
                   select b).ToList();
     }
@@ -341,31 +409,31 @@ namespace Computer_house
     {
       MessageBox.Show("Окончательный период введён неверно");
       docs = (from b in HoldingDocuments
-              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.State == "Расход"
+              where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.State == "Расход"
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text)
+                  where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text)
                   select b).ToList();
     }
 
     private void CreateDemendedDocsWithOnlyEndTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
       docs = (from b in HoldingDocuments
-              where b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
+              where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
+                  where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
                   select b).ToList();
     }
 
     private void CreateDemendedDocsWithAllTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
       docs = (from b in HoldingDocuments
-              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+              where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
               b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                  where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
                   b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
                   select b).ToList();
     }
@@ -380,27 +448,96 @@ namespace Computer_house
       switch(enteredPage)
       {
         case "График затрат и доходов":
+          List<PurchaseStatistic> purchasingStatistic = new
+            List<PurchaseStatistic>();
+          List<Purchases> purchases = new List<Purchases>();
+          List<Sellings> sellings = new List<Sellings>();
           //ситуация если сразу вводится начало периода
-          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          if(year.Length == 4 && firstPeriod[1].Length == 2 && firstPeriod[2].Length == 2)
           {
-            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0 &&
+              Convert.ToInt32(firstPeriod[2]) <= 31 && Convert.ToInt32(firstPeriod[2]) > 0)
             {
-              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
-                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
-                 Convert.ToInt32(secondPeriod[1]) <= 12)
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2) &&
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1)
               {
-                //счет от начала до конца
+                //ситуация когда начальные и конечные данные введены верно
+                CreatePurchaseDocsWithAllTime(ref purchases, ref sellings);
+              }
+              else//ситуация когда введены верно только начальные данные
+                CreatePurchaseDocsWithOnlyStartTime(ref purchases, ref sellings);
+
+            }
+            else
+            {
+              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
+              {
+                CreatePurchaseDocsWithOnlyEndTime(ref purchases, ref sellings);
+              }
+            }
+          }
+          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2)
+          {
+            if((Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0) &&
+                (Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0))
+            {
+              CreatePurchaseDocsWithOnlyEndTime(ref purchases, ref sellings);
+            }
+          }
+          if(purchases.Count > 0 || sellings.Count > 0)
+          {
+            foreach(Purchases p in purchases)
+            {
+              if(purchasingStatistic.Where(i => i.Time.ToString("d") == p.Time.ToString("d")).Count() == 0)
+              {
+                purchasingStatistic.Add(new PurchaseStatistic(p.Time, p.Price, (decimal)0.0));
               }
               else
               {
-                //счет по одному периоду
+                int index = purchasingStatistic.IndexOf(purchasingStatistic.Single(i => i.Time.ToString("d") == p.Time.ToString("d")));
+                purchasingStatistic[index].Purchase += + p.Price;
               }
             }
-            else
-              MessageBox.Show("Месяц указан неверно!");
+            foreach(Sellings s in sellings)
+            {
+              if(purchasingStatistic.Where(i => i.Time.ToString("d") == s.Selling_date.ToString("d")).Count() == 0)
+              {
+                purchasingStatistic.Add(new PurchaseStatistic(s.Selling_date, (decimal)0.0, s.Price));
+              }
+              else
+              {
+                int index = purchasingStatistic.IndexOf(purchasingStatistic.Single(i => i.Time.ToString("d") == s.Selling_date.ToString("d")));
+                purchasingStatistic[index].Sales += s.Price;
+              }
+            }
+            foreach(PurchaseStatistic st in purchasingStatistic)
+            {
+              st.SetIncome();
+            }
+
+            PurchasingChart.ChartAreas[0].AxisX.Title = "Время";
+            PurchasingChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            PurchasingChart.ChartAreas[0].AxisY.Title = "Прибыль";
+            PurchasingChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            PurchasingChart.Series.Add("Прибыль");
+            PurchasingChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            PurchasingChart.Series[0].BorderWidth = 3;
+            purchasingStatistic = (from b in purchasingStatistic
+                                   orderby b.Time ascending
+                                   select b).ToList();
+            foreach(PurchaseStatistic p in purchasingStatistic)
+            {
+              PurchasingChart.Series[0].Points.AddXY(p.Time.ToString("d"),Convert.ToDouble(p.Income));
+              PurchasingTable.Rows.Add(p.Time.ToString("d"), Math.Round(p.Purchase,2), Math.Round(p.Sales, 2), Math.Round(p.Income, 2));
+            }
+            //StartOfPeriodTextBox.Clear();
+            //EndPeriod.Clear();
           }
           else
-            MessageBox.Show("Данные введены некорректно");
+            MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
           break;
         case "График востребованности":
           //нужен для составления графика востребованности
@@ -478,8 +615,8 @@ namespace Computer_house
               chart.Points.Add(Convert.ToDouble(p.ID));
               DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
-            StartOfPeriodTextBox.Clear();
-            EndPeriod.Clear();
+            //StartOfPeriodTextBox.Clear();
+            //EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
