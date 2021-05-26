@@ -294,9 +294,48 @@ namespace Computer_house
       DemandedTable.Rows.Clear();
       DemandedChart.Series.Clear();
 
+      EfficiencyChart.Series.Clear();
+      EfficiencyTable.Rows.Clear();
+      //вывод сведений о дате
+
+
       ViewGraphic();
 
     }
+
+    private void CreateEfficiencyDocsWithOnlyStartTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
+    {
+      MessageBox.Show("Окончательный период введён неверно");
+      docs = (from b in HoldingDocuments
+              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text)
+              select b).ToList();
+      requests = (from b in ShopRequests
+                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.Status == true
+                  select b).ToList();
+    }
+
+    private void CreateEfficiencyDocsWithOnlyEndTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
+    {
+      docs = (from b in HoldingDocuments
+              where b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
+              select b).ToList();
+      requests = (from b in ShopRequests
+                  where b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                  select b).ToList();
+    }
+
+    private void CreateEfficiencyDocsWithAllTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
+    {
+      docs = (from b in HoldingDocuments
+              where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+              b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
+              select b).ToList();
+      requests = (from b in ShopRequests
+                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
+                  b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                  select b).ToList();
+    }
+
 
     private void CreateDemendedDocsWithOnlyStartTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
@@ -305,7 +344,7 @@ namespace Computer_house
               where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.State == "Расход"
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) && b.Status == true
+                  where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text)
                   select b).ToList();
     }
 
@@ -315,7 +354,7 @@ namespace Computer_house
               where b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
               select b).ToList();
       requests = (from b in ShopRequests
-                  where b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                  where b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
                   select b).ToList();
     }
 
@@ -327,7 +366,7 @@ namespace Computer_house
               select b).ToList();
       requests = (from b in ShopRequests
                   where b.Time.Date > Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
-                  b.Time.Date < Convert.ToDateTime(EndPeriod.Text) && b.Status == true
+                  b.Time.Date < Convert.ToDateTime(EndPeriod.Text)
                   select b).ToList();
     }
 
@@ -347,9 +386,8 @@ namespace Computer_house
             if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
             {
               if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
-                (Convert.ToInt32(lastYear) - Convert.ToInt32(year) > 0 || (
-                Convert.ToInt32(lastYear) - Convert.ToInt32(year) == 0 &&
-                Convert.ToInt32(secondPeriod[1]) - Convert.ToInt32(firstPeriod[1]) > 0)))
+                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                 Convert.ToInt32(secondPeriod[1]) <= 12)
               {
                 //счет от начала до конца
               }
@@ -375,7 +413,6 @@ namespace Computer_house
             if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
             {
               if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
-                 
                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 && 
                 Convert.ToInt32(secondPeriod[1]) <= 12)
               {
@@ -417,7 +454,7 @@ namespace Computer_house
             }
             foreach(ShopRequests d in requests)
             {
-              if(demandedInfo.Single(i => i.Name == d.ProductName) == null)
+              if(demandedInfo.Where(i => i.Name == d.ProductName).Count() == 0)
               {
                 demandedInfo.Add(new Product { Name = d.ProductName, ID = Convert.ToString(d.Count) });
               }
@@ -428,37 +465,111 @@ namespace Computer_house
               }
             }
             DemandedChart.ChartAreas[0].AxisX.Title = "Товары";
+            DemandedChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             DemandedChart.ChartAreas[0].AxisY.Title = "Количество";
+            DemandedChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             foreach(Product p in demandedInfo)
             {
               var chart = DemandedChart.Series.Add(p.Name);
               chart.Points.Add(Convert.ToDouble(p.ID));
               DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
+            StartOfPeriodTextBox.Clear();
+            EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно");
           break;
         case "График эффективности труда":
+
+          List<Holding_document> docsOfEfficiency = new List<Holding_document>();
+          List<ShopRequests> requestsOfEfficiency = new List<ShopRequests>();
+          List<Product> efficiencyInfo = new List<Product>();
+
           //ситуация если сразу вводится начало периода
           if(year.Length == 4 && firstPeriod[1].Length == 2)
           {
             if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
             {
               if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
-                (Convert.ToInt32(lastYear) - Convert.ToInt32(year) > 0 || (
-                Convert.ToInt32(lastYear) - Convert.ToInt32(year) == 0 &&
-                Convert.ToInt32(secondPeriod[1]) - Convert.ToInt32(firstPeriod[1]) > 0)))
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                Convert.ToInt32(secondPeriod[1]) <= 12)
               {
                 //счет от начала до конца
+                CreateEfficiencyDocsWithAllTime(ref docsOfEfficiency, ref requestsOfEfficiency);
               }
               else
               {
                 //счет по одному периоду
+                CreateEfficiencyDocsWithOnlyStartTime(ref docsOfEfficiency, ref requestsOfEfficiency);
               }
             }
             else
-              MessageBox.Show("Месяц указан неверно!");
+            {
+              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+              {
+                CreateEfficiencyDocsWithOnlyEndTime(ref docsOfEfficiency, ref requestsOfEfficiency);
+              }
+            }
+          }
+          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2)
+          {
+            if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+            {
+              CreateEfficiencyDocsWithOnlyEndTime(ref docsOfEfficiency, ref requestsOfEfficiency);
+            }
+          }
+
+          if(docsOfEfficiency.Count > 0 || requestsOfEfficiency.Count > 0)
+          {
+            List<Users> users = new List<Users>();
+            using(ApplicationContext db = new ApplicationContext())
+              users = db.Users.ToList();
+            
+            //выборка данных из документов движения
+            foreach(Holding_document d in docsOfEfficiency)
+            {
+              string name = users.Single(i => i.ID == d.User_ID).Name;
+              if(efficiencyInfo.Where(i => i.Name == name).Count() == 0)
+              {
+                efficiencyInfo.Add(new Product { Name = name, ID = Convert.ToString(Math.Abs(d.Items_count_in_move)) });
+              }
+              else
+              {
+                int index = efficiencyInfo.IndexOf(efficiencyInfo.Single(i => i.Name == name));
+                efficiencyInfo[index].ID = Convert.ToString(Convert.ToInt32(efficiencyInfo[index].ID) + Math.Abs(d.Items_count_in_move));
+              }
+            }
+
+            //выборка данных из запросов на склад
+            foreach(ShopRequests d in requestsOfEfficiency)
+            {
+              string name = users.Single(i => i.ID == d.User_ID).Name;
+              if(efficiencyInfo.Where(i => i.Name == name).Count() == 0)
+              {
+                efficiencyInfo.Add(new Product { Name = name, ID = Convert.ToString(d.Count) });
+              }
+              else
+              {
+                int index = efficiencyInfo.IndexOf(efficiencyInfo.Single(i => i.Name == name));
+                efficiencyInfo[index].ID = Convert.ToString(Convert.ToInt32(efficiencyInfo[index].ID) + d.Count);
+              }
+            }
+
+            //построение графика
+            EfficiencyChart.ChartAreas[0].AxisX.Title = "Работники";
+            EfficiencyChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            EfficiencyChart.ChartAreas[0].AxisY.Title = "Количество реализованного товара";
+            EfficiencyChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            foreach(Product p in efficiencyInfo)
+            {
+              var chart = EfficiencyChart.Series.Add(p.Name);
+              chart.Points.Add(Convert.ToDouble(p.ID));
+              EfficiencyTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
+            }
+
+            StartOfPeriodTextBox.Clear();
+            EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно");
