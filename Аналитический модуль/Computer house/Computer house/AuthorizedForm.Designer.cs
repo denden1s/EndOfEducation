@@ -54,7 +54,16 @@ namespace Computer_house
       this.DemandedChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.tabPage7 = new System.Windows.Forms.TabPage();
       this.DemandedTable = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage5 = new System.Windows.Forms.TabPage();
+      this.tabControl4 = new System.Windows.Forms.TabControl();
+      this.tabPage8 = new System.Windows.Forms.TabPage();
+      this.EfficiencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+      this.tabPage9 = new System.Windows.Forms.TabPage();
+      this.EfficiencyTable = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.button1 = new System.Windows.Forms.Button();
       this.BuyingPrice = new System.Windows.Forms.NumericUpDown();
@@ -75,15 +84,6 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.tabControl4 = new System.Windows.Forms.TabControl();
-      this.tabPage8 = new System.Windows.Forms.TabPage();
-      this.EfficiencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.tabPage9 = new System.Windows.Forms.TabPage();
-      this.EfficiencyTable = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -96,15 +96,15 @@ namespace Computer_house
       this.tabPage7.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.DemandedTable)).BeginInit();
       this.tabPage5.SuspendLayout();
-      this.tabPage2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
       this.tabControl4.SuspendLayout();
       this.tabPage8.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.EfficiencyChart)).BeginInit();
       this.tabPage9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.EfficiencyTable)).BeginInit();
+      this.tabPage2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -211,18 +211,17 @@ namespace Computer_house
       this.EndPeriod.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.EndPeriod.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.EndPeriod.Location = new System.Drawing.Point(840, 58);
-      this.EndPeriod.Mask = "0000-00";
+      this.EndPeriod.Mask = "0000-00-00";
       this.EndPeriod.Name = "EndPeriod";
       this.EndPeriod.Size = new System.Drawing.Size(100, 30);
       this.EndPeriod.TabIndex = 8;
-      this.EndPeriod.ValidatingType = typeof(System.DateTime);
       // 
       // StartOfPeriodTextBox
       // 
       this.StartOfPeriodTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.StartOfPeriodTextBox.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.StartOfPeriodTextBox.Location = new System.Drawing.Point(689, 58);
-      this.StartOfPeriodTextBox.Mask = "0000-00";
+      this.StartOfPeriodTextBox.Mask = "0000-00-00";
       this.StartOfPeriodTextBox.Name = "StartOfPeriodTextBox";
       this.StartOfPeriodTextBox.Size = new System.Drawing.Size(100, 30);
       this.StartOfPeriodTextBox.TabIndex = 7;
@@ -258,7 +257,7 @@ namespace Computer_house
       this.tabPage3.Location = new System.Drawing.Point(4, 37);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage3.Size = new System.Drawing.Size(1294, 440);
+      this.tabPage3.Size = new System.Drawing.Size(1294, 442);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "График затрат и доходов";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -315,7 +314,7 @@ namespace Computer_house
       this.DemandedChart.Legends.Add(legend1);
       this.DemandedChart.Location = new System.Drawing.Point(3, 6);
       this.DemandedChart.Name = "DemandedChart";
-      this.DemandedChart.Size = new System.Drawing.Size(1265, 382);
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 385);
       this.DemandedChart.TabIndex = 0;
       this.DemandedChart.Text = "chart1";
       // 
@@ -352,6 +351,22 @@ namespace Computer_house
       this.DemandedTable.Size = new System.Drawing.Size(1261, 384);
       this.DemandedTable.TabIndex = 2;
       // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Наименование товара";
+      this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      this.dataGridViewTextBoxColumn2.ReadOnly = true;
+      this.dataGridViewTextBoxColumn2.Width = 700;
+      // 
+      // dataGridViewTextBoxColumn5
+      // 
+      this.dataGridViewTextBoxColumn5.HeaderText = "Кол-во";
+      this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+      this.dataGridViewTextBoxColumn5.ReadOnly = true;
+      this.dataGridViewTextBoxColumn5.Width = 200;
+      // 
       // tabPage5
       // 
       this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -363,6 +378,99 @@ namespace Computer_house
       this.tabPage5.TabIndex = 2;
       this.tabPage5.Text = "График эффективности труда";
       this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
+      // 
+      // tabControl4
+      // 
+      this.tabControl4.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+      this.tabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tabControl4.Controls.Add(this.tabPage8);
+      this.tabControl4.Controls.Add(this.tabPage9);
+      this.tabControl4.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tabControl4.Location = new System.Drawing.Point(6, 6);
+      this.tabControl4.Multiline = true;
+      this.tabControl4.Name = "tabControl4";
+      this.tabControl4.SelectedIndex = 0;
+      this.tabControl4.Size = new System.Drawing.Size(1282, 442);
+      this.tabControl4.TabIndex = 2;
+      // 
+      // tabPage8
+      // 
+      this.tabPage8.Controls.Add(this.EfficiencyChart);
+      this.tabPage8.Location = new System.Drawing.Point(4, 4);
+      this.tabPage8.Name = "tabPage8";
+      this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage8.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage8.TabIndex = 0;
+      this.tabPage8.Text = "График";
+      this.tabPage8.UseVisualStyleBackColor = true;
+      // 
+      // EfficiencyChart
+      // 
+      this.EfficiencyChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      chartArea2.Name = "ChartArea1";
+      this.EfficiencyChart.ChartAreas.Add(chartArea2);
+      legend2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      legend2.IsTextAutoFit = false;
+      legend2.Name = "Legend1";
+      this.EfficiencyChart.Legends.Add(legend2);
+      this.EfficiencyChart.Location = new System.Drawing.Point(3, 6);
+      this.EfficiencyChart.Name = "EfficiencyChart";
+      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 394);
+      this.EfficiencyChart.TabIndex = 0;
+      this.EfficiencyChart.Text = "chart1";
+      // 
+      // tabPage9
+      // 
+      this.tabPage9.Controls.Add(this.EfficiencyTable);
+      this.tabPage9.Location = new System.Drawing.Point(4, 4);
+      this.tabPage9.Name = "tabPage9";
+      this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage9.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage9.TabIndex = 1;
+      this.tabPage9.Text = "Таблица";
+      this.tabPage9.UseVisualStyleBackColor = true;
+      // 
+      // EfficiencyTable
+      // 
+      this.EfficiencyTable.AllowUserToAddRows = false;
+      this.EfficiencyTable.AllowUserToDeleteRows = false;
+      this.EfficiencyTable.AllowUserToOrderColumns = true;
+      this.EfficiencyTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.EfficiencyTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.EfficiencyTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.EfficiencyTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn3});
+      this.EfficiencyTable.Location = new System.Drawing.Point(7, 5);
+      this.EfficiencyTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.EfficiencyTable.Name = "EfficiencyTable";
+      this.EfficiencyTable.ReadOnly = true;
+      this.EfficiencyTable.RowHeadersWidth = 51;
+      this.EfficiencyTable.RowTemplate.Height = 24;
+      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 384);
+      this.EfficiencyTable.TabIndex = 2;
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.HeaderText = "Наименование товара";
+      this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      this.dataGridViewTextBoxColumn1.ReadOnly = true;
+      this.dataGridViewTextBoxColumn1.Width = 700;
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.HeaderText = "Кол-во";
+      this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      this.dataGridViewTextBoxColumn3.ReadOnly = true;
+      this.dataGridViewTextBoxColumn3.Width = 200;
       // 
       // tabPage2
       // 
@@ -593,115 +701,6 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 200;
       // 
-      // dataGridViewTextBoxColumn2
-      // 
-      this.dataGridViewTextBoxColumn2.HeaderText = "Наименование товара";
-      this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      this.dataGridViewTextBoxColumn2.ReadOnly = true;
-      this.dataGridViewTextBoxColumn2.Width = 700;
-      // 
-      // dataGridViewTextBoxColumn5
-      // 
-      this.dataGridViewTextBoxColumn5.HeaderText = "Кол-во";
-      this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-      this.dataGridViewTextBoxColumn5.ReadOnly = true;
-      this.dataGridViewTextBoxColumn5.Width = 200;
-      // 
-      // tabControl4
-      // 
-      this.tabControl4.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-      this.tabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tabControl4.Controls.Add(this.tabPage8);
-      this.tabControl4.Controls.Add(this.tabPage9);
-      this.tabControl4.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tabControl4.Location = new System.Drawing.Point(6, 6);
-      this.tabControl4.Multiline = true;
-      this.tabControl4.Name = "tabControl4";
-      this.tabControl4.SelectedIndex = 0;
-      this.tabControl4.Size = new System.Drawing.Size(1282, 430);
-      this.tabControl4.TabIndex = 2;
-      // 
-      // tabPage8
-      // 
-      this.tabPage8.Controls.Add(this.EfficiencyChart);
-      this.tabPage8.Location = new System.Drawing.Point(4, 4);
-      this.tabPage8.Name = "tabPage8";
-      this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage8.Size = new System.Drawing.Size(1274, 394);
-      this.tabPage8.TabIndex = 0;
-      this.tabPage8.Text = "График";
-      this.tabPage8.UseVisualStyleBackColor = true;
-      // 
-      // EfficiencyChart
-      // 
-      this.EfficiencyChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      chartArea2.Name = "ChartArea1";
-      this.EfficiencyChart.ChartAreas.Add(chartArea2);
-      legend2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      legend2.IsTextAutoFit = false;
-      legend2.Name = "Legend1";
-      this.EfficiencyChart.Legends.Add(legend2);
-      this.EfficiencyChart.Location = new System.Drawing.Point(3, 6);
-      this.EfficiencyChart.Name = "EfficiencyChart";
-      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 382);
-      this.EfficiencyChart.TabIndex = 0;
-      this.EfficiencyChart.Text = "chart1";
-      // 
-      // tabPage9
-      // 
-      this.tabPage9.Controls.Add(this.EfficiencyTable);
-      this.tabPage9.Location = new System.Drawing.Point(4, 4);
-      this.tabPage9.Name = "tabPage9";
-      this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage9.Size = new System.Drawing.Size(1274, 394);
-      this.tabPage9.TabIndex = 1;
-      this.tabPage9.Text = "Таблица";
-      this.tabPage9.UseVisualStyleBackColor = true;
-      // 
-      // EfficiencyTable
-      // 
-      this.EfficiencyTable.AllowUserToAddRows = false;
-      this.EfficiencyTable.AllowUserToDeleteRows = false;
-      this.EfficiencyTable.AllowUserToOrderColumns = true;
-      this.EfficiencyTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.EfficiencyTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.EfficiencyTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.EfficiencyTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3});
-      this.EfficiencyTable.Location = new System.Drawing.Point(7, 5);
-      this.EfficiencyTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.EfficiencyTable.Name = "EfficiencyTable";
-      this.EfficiencyTable.ReadOnly = true;
-      this.EfficiencyTable.RowHeadersWidth = 51;
-      this.EfficiencyTable.RowTemplate.Height = 24;
-      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 384);
-      this.EfficiencyTable.TabIndex = 2;
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.HeaderText = "Наименование товара";
-      this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      this.dataGridViewTextBoxColumn1.ReadOnly = true;
-      this.dataGridViewTextBoxColumn1.Width = 700;
-      // 
-      // dataGridViewTextBoxColumn3
-      // 
-      this.dataGridViewTextBoxColumn3.HeaderText = "Кол-во";
-      this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-      this.dataGridViewTextBoxColumn3.ReadOnly = true;
-      this.dataGridViewTextBoxColumn3.Width = 200;
-      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -735,16 +734,16 @@ namespace Computer_house
       this.tabPage7.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.DemandedTable)).EndInit();
       this.tabPage5.ResumeLayout(false);
-      this.tabPage2.ResumeLayout(false);
-      this.tabPage2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
       this.tabControl4.ResumeLayout(false);
       this.tabPage8.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.EfficiencyChart)).EndInit();
       this.tabPage9.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.EfficiencyTable)).EndInit();
+      this.tabPage2.ResumeLayout(false);
+      this.tabPage2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 

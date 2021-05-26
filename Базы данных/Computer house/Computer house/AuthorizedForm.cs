@@ -824,12 +824,24 @@ namespace Computer_house
           deviceType = db.Mediator.Single(i => i.ID == (int)currentRow.Cells[0].Value).Components_type;
         }
         Warehouse_info adedItemInfo = new Warehouse_info();
-        if(searchComponent != "")
+       
+        if(searchComponent != "")          
           adedItemInfo = FilteredInfo.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
         else
           adedItemInfo = WarehouseInformationList.Single(i => i.Product_ID == (int)currentRow.Cells[0].Value);
-          
-        SQLRequests.CreateHoldingDocument(adedItemInfo,Convert.ToInt32(AddProduct.Value), user,deviceType);
+
+        Price_list price = new Price_list();
+        using(ApplicationContext db = new ApplicationContext())
+          price = db.Price_list.Single(i => i.Product_ID == adedItemInfo.Product_ID);
+        decimal priceForAll = price.Purchasable_price * Convert.ToInt32(AddProduct.Value);
+        Purchases purchase = new Purchases(adedItemInfo.Product_ID, priceForAll, Convert.ToInt32(AddProduct.Value));
+        using(ApplicationContext db = new ApplicationContext())
+        {
+          db.Purchases.Add(purchase);
+          db.SaveChanges();
+        }
+
+        SQLRequests.CreateHoldingDocument(adedItemInfo, Convert.ToInt32(AddProduct.Value), user, deviceType);
         AllProductInfo.Clear();
         LoadAllInfoFromDB();
 

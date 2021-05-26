@@ -31,6 +31,7 @@ namespace Computer_house.DataBase
     public DbSet<PSU> PSU { get; set; }
     public DbSet<RAM> RAM { get; set; }
     public DbSet<ShopRequests> ShopRequests { get; set;}
+    public DbSet<Purchases> Purchases { get; set; }
  
     //Посредник
     public DbSet<Mediator> Mediator { get; set; }
@@ -66,6 +67,7 @@ namespace Computer_house.DataBase
       modelBuilder.Entity<Storage_devices>().HasKey(i => i.ID);
       modelBuilder.Entity<NeedToUpdate>().HasKey(i => i.ID);
       modelBuilder.Entity<ShopRequests>().HasKey(i => i.ID);
+      modelBuilder.Entity<Purchases>().HasKey(i => i.ID);
     }
   }
 }

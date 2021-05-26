@@ -20,6 +20,7 @@ namespace Computer_house.DataBase
     public DbSet<Products_location> Products_location { get; set; }
     public DbSet<Warehouse_info> Warehouse_info { get; set; }
     public DbSet<ShopRequests> ShopRequests { get; set; }
+    public DbSet<Purchases> Purchases { get; set; }
 
     public DbSet<NeedToUpdate> NeedToUpdate { get; set; }
 
@@ -98,6 +99,7 @@ namespace Computer_house.DataBase
       modelBuilder.Entity<NeedToUpdate>().HasKey(i => i.ID);
       modelBuilder.Entity<Storage_devices>().HasKey(i => i.ID);
       modelBuilder.Entity<ShopRequests>().HasKey(i => i.ID);
+      modelBuilder.Entity<Purchases>().HasKey(i => i.ID);
     }
   }
 }

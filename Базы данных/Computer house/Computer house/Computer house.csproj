@@ -214,6 +214,7 @@
     <Compile Include="DataBase\Entities\PC_Options\Power_connectors.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Price_list.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Products_location.cs" />
+    <Compile Include="DataBase\Entities\Warehouse\Purchases.cs" />
     <Compile Include="DataBase\Entities\Warehouse\ShopRequests.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Users.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Warehouse_info.cs" />

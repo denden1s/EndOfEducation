@@ -500,9 +500,15 @@ namespace Computer_house
       try
       {
         WarehouseInformationList.Clear();
-        using (ApplicationContext db = new ApplicationContext())
-          foreach (Warehouse_info c in db.Warehouse_info)
+        using(ApplicationContext db = new ApplicationContext())
+          foreach(Warehouse_info c in db.Warehouse_info)
             WarehouseInformationList.Add(new Warehouse_info(c.Product_ID, c.Current_items_count, c.Items_in_shop));
+        
+        List<Warehouse_info> tempList = (from b in WarehouseInformationList
+                                        orderby b.Items_in_shop descending, b.Current_items_count descending
+                                         select b).ToList();
+
+        WarehouseInformationList = tempList;
       }
       catch (Exception ex)
       {
@@ -685,7 +691,14 @@ namespace Computer_house
           else
             MessageBox.Show($"Нет возможности выбрать {warehouseInfo.ProductName}!");
 
-          ViewInfoInDataGrid();
+          if(SearchInfo.Text.Length > 0)
+          {
+            SearchInfo_TextChanged(sender, e);
+          }
+          else
+          {
+            ViewInfoInDataGrid();
+          }
         }
       }
       catch(Exception ex)
@@ -788,6 +801,7 @@ namespace Computer_house
     //Нужен для оформления покупки
     private void SellComponents_Click(object sender, EventArgs e)
     {
+      bool takeFromWarehouse = false;//для отсутствия повторного запроса на самовызов
       if(SelectedItemsListBox.Items.Count > 0)
       {
         string question = "Вы действительно хотите оформить покупку";
@@ -828,6 +842,7 @@ namespace Computer_house
             }
             else
             {
+              takeFromWarehouse = true;
               ShopRequests newRequest = new ShopRequests(warehouse.Product_ID, 1, user.ID);
               using(ApplicationContext db = new ApplicationContext())
               {
@@ -837,15 +852,7 @@ namespace Computer_house
                 db.NeedToUpdate.Update(update[0]);
                 db.SaveChanges();
               }
-              string questionAboutWarehouse = "Будет осуществлён самовывоз товара?";
-              DialogResult questionResultWarehouse = MessageBox.Show(questionAboutWarehouse,
-                                          "Подготовка запроса",
-                                            MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Information,
-                                            MessageBoxDefaultButton.Button2,
-                                            MessageBoxOptions.DefaultDesktopOnly);
-              if(questionResultWarehouse == DialogResult.Yes)
-              {
+              
                 string printMessage = "";
                 finalPrintMessage += namesInPrint;
                 switch(warehouse.ProductType)
@@ -894,19 +901,28 @@ namespace Computer_house
                     break;
                 }
                 finalPrintMessage += printMessage + "\n";
-              }
             }
           }
-          if(finalPrintMessage.Length != 0)
+          if(takeFromWarehouse)
           {
-            PrintDocument printDocument = new PrintDocument();
-            // обработчик события печати
-            printDocument.PrintPage += PrintPageHandler;
-            // диалог настройки печати
-            PrintDialog printDialog = new PrintDialog();
-            // установка объекта печати для его настройки
-            printDialog.Document = printDocument;
-            printDialog.Document.Print();
+            string questionAboutWarehouse = "Будет осуществлён самовывоз товара?";
+            DialogResult questionResultWarehouse = MessageBox.Show(questionAboutWarehouse,
+                                        "Подготовка запроса",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Information,
+                                          MessageBoxDefaultButton.Button2,
+                                          MessageBoxOptions.DefaultDesktopOnly);
+            if(questionResultWarehouse == DialogResult.Yes)
+            {
+              PrintDocument printDocument = new PrintDocument();
+              // обработчик события печати
+              printDocument.PrintPage += PrintPageHandler;
+              // диалог настройки печати
+              PrintDialog printDialog = new PrintDialog();
+              // установка объекта печати для его настройки
+              printDialog.Document = printDocument;
+              printDialog.Document.Print();
+            }
             finalPrintMessage = "";
           }
           shoppingBasket.Clear();

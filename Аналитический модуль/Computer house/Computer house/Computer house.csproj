@@ -190,6 +190,7 @@
     <Compile Include="DataBase\Entities\PC_Components\CPU.cs" />
     <Compile Include="DataBase\Entities\PC_Components\GPU.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Storage_devices.cs" />
+    <Compile Include="DataBase\Entities\Warehouse\Purchases.cs" />
     <Compile Include="DataBase\Entities\Warehouse\ShopRequests.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Holding_document.cs" />
     <Compile Include="DataBase\Entities\Warehouse\Locations_in_warehouse.cs" />

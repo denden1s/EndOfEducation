@@ -408,13 +408,15 @@ namespace Computer_house
           List<ShopRequests> requests = new List<ShopRequests>();
           List<Product> demandedInfo = new List<Product>();
           //ситуация если сразу вводится начало периода
-          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          if(year.Length == 4 && firstPeriod[1].Length == 2 && firstPeriod[2].Length == 2)
           {
-            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0 && 
+              Convert.ToInt32(firstPeriod[2]) <= 31 && Convert.ToInt32(firstPeriod[2]) > 0)
             {
-              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2) &&
                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 && 
-                Convert.ToInt32(secondPeriod[1]) <= 12)
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1) 
               {
                 //ситуация когда начальные и конечные данные введены верно
                 CreateDemendedDocsWithAllTime(ref docs, ref requests);
@@ -425,15 +427,17 @@ namespace Computer_house
             }
             else
             {
-              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 && 
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
               {
                 CreateDemendedDocsWithOnlyEndTime(ref docs, ref requests);
               }
             }
           }
-          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2)
+          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2)
           {
-            if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+            if((Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0) &&
+                (Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0))
             {
               CreateDemendedDocsWithOnlyEndTime(ref docs, ref requests);
             }
@@ -478,7 +482,7 @@ namespace Computer_house
             EndPeriod.Clear();
           }
           else
-            MessageBox.Show("Данные введены некорректно");
+            MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
           break;
         case "График эффективности труда":
 
@@ -487,13 +491,15 @@ namespace Computer_house
           List<Product> efficiencyInfo = new List<Product>();
 
           //ситуация если сразу вводится начало периода
-          if(year.Length == 4 && firstPeriod[1].Length == 2)
+          if(year.Length == 4 && firstPeriod[1].Length == 2 && firstPeriod[2].Length == 2)
           {
-            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0)
+            if(Convert.ToInt32(firstPeriod[1]) <= 12 && Convert.ToInt32(firstPeriod[1]) > 0 &&
+              Convert.ToInt32(firstPeriod[2]) <= 31 && Convert.ToInt32(firstPeriod[2]) > 0)
             {
-              if((lastYear.Length == 4 && secondPeriod[1].Length == 2) &&
+              if((lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2) &&
                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
-                Convert.ToInt32(secondPeriod[1]) <= 12)
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1)
               {
                 //счет от начала до конца
                 CreateEfficiencyDocsWithAllTime(ref docsOfEfficiency, ref requestsOfEfficiency);
@@ -506,15 +512,17 @@ namespace Computer_house
             }
             else
             {
-              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
               {
                 CreateEfficiencyDocsWithOnlyEndTime(ref docsOfEfficiency, ref requestsOfEfficiency);
               }
             }
           }
-          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2)
+          else if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2)
           {
-            if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0)
+            if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
             {
               CreateEfficiencyDocsWithOnlyEndTime(ref docsOfEfficiency, ref requestsOfEfficiency);
             }
@@ -568,11 +576,11 @@ namespace Computer_house
               EfficiencyTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
 
-            StartOfPeriodTextBox.Clear();
-            EndPeriod.Clear();
+            //StartOfPeriodTextBox.Clear();
+            //EndPeriod.Clear();
           }
           else
-            MessageBox.Show("Данные введены некорректно");
+            MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
           //нужно предусмотреть что могут быть введены корректно только правые данные
           break;
         default:
