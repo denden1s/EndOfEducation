@@ -295,6 +295,7 @@ namespace Computer_house
 
     private void CreatePurchaseDocsWithOnlyStartTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
     {
+      MessageBox.Show("Окончательный период введён неверно");
       purchases = (from b in Purchases
                    where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text)
                    select b).ToList();
@@ -318,6 +319,7 @@ namespace Computer_house
 
     private void CreatePurchaseDocsWithOnlyEndTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
     {
+      MessageBox.Show("Начальный период введён неверно");
       purchases = (from b in Purchases
                    where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
                    select b).ToList();
@@ -340,6 +342,7 @@ namespace Computer_house
 
     private void CreateEfficiencyDocsWithOnlyEndTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
+      MessageBox.Show("Начальный период введён неверно");
       docs = (from b in HoldingDocuments
               where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
               select b).ToList();
@@ -374,6 +377,7 @@ namespace Computer_house
 
     private void CreateDemendedDocsWithOnlyEndTime(ref List<Holding_document> docs, ref List<ShopRequests> requests)
     {
+      MessageBox.Show("Начальный период введён неверно");
       docs = (from b in HoldingDocuments
               where b.Time.Date <= Convert.ToDateTime(EndPeriod.Text) && b.State == "Расход"
               select b).ToList();
@@ -428,8 +432,11 @@ namespace Computer_house
             }
             else
             {
-              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 &&
-                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
+
+              if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2 &&
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1)
               {
                 CreatePurchaseDocsWithOnlyEndTime(ref purchases, ref sellings);
               }
@@ -489,8 +496,6 @@ namespace Computer_house
               PurchasingChart.Series[0].Points.AddXY(p.Time.ToString("d"),Convert.ToDouble(p.Income));
               PurchasingTable.Rows.Add(p.Time.ToString("d"), Math.Round(p.Purchase,2), Math.Round(p.Sales, 2), Math.Round(p.Income, 2));
             }
-            //StartOfPeriodTextBox.Clear();
-            //EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
@@ -520,8 +525,10 @@ namespace Computer_house
             }
             else
             {
-              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 && 
-                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
+              if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2 &&
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1)
               {
                 CreateDemendedDocsWithOnlyEndTime(ref docs, ref requests);
               }
@@ -571,8 +578,6 @@ namespace Computer_house
               chart.Points.Add(Convert.ToDouble(p.ID));
               DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
-            //StartOfPeriodTextBox.Clear();
-            //EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
@@ -605,8 +610,10 @@ namespace Computer_house
             }
             else
             {
-              if(Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) > 0 &&
-                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) > 0)
+              if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2 &&
+                Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
+                Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
+                Convert.ToInt32(secondPeriod[2]) <= 31 && Convert.ToInt32(secondPeriod[2]) >= 1)
               {
                 CreateEfficiencyDocsWithOnlyEndTime(ref docsOfEfficiency, ref requestsOfEfficiency);
               }

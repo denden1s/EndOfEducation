@@ -29,12 +29,12 @@ namespace Computer_house
         /// </summary>
         private void InitializeComponent()
         {
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizedForm));
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.настроитьIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +50,15 @@ namespace Computer_house
       this.label7 = new System.Windows.Forms.Label();
       this.tabControl2 = new System.Windows.Forms.TabControl();
       this.tabPage3 = new System.Windows.Forms.TabPage();
+      this.tabControl5 = new System.Windows.Forms.TabControl();
+      this.tabPage10 = new System.Windows.Forms.TabPage();
+      this.PurchasingChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+      this.tabPage11 = new System.Windows.Forms.TabPage();
+      this.PurchasingTable = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.sales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.income = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage4 = new System.Windows.Forms.TabPage();
       this.tabControl3 = new System.Windows.Forms.TabControl();
       this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -86,21 +95,17 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.tabControl5 = new System.Windows.Forms.TabControl();
-      this.tabPage10 = new System.Windows.Forms.TabPage();
-      this.PurchasingChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.tabPage11 = new System.Windows.Forms.TabPage();
-      this.PurchasingTable = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.sales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.income = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.panel1.SuspendLayout();
       this.tabControl2.SuspendLayout();
       this.tabPage3.SuspendLayout();
+      this.tabControl5.SuspendLayout();
+      this.tabPage10.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.PurchasingChart)).BeginInit();
+      this.tabPage11.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.PurchasingTable)).BeginInit();
       this.tabPage4.SuspendLayout();
       this.tabControl3.SuspendLayout();
       this.tabPage6.SuspendLayout();
@@ -117,11 +122,6 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
-      this.tabControl5.SuspendLayout();
-      this.tabPage10.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.PurchasingChart)).BeginInit();
-      this.tabPage11.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.PurchasingTable)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -217,7 +217,7 @@ namespace Computer_house
       this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.label8.AutoSize = true;
       this.label8.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label8.Location = new System.Drawing.Point(804, 57);
+      this.label8.Location = new System.Drawing.Point(850, 57);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(21, 28);
       this.label8.TabIndex = 9;
@@ -227,10 +227,10 @@ namespace Computer_house
       // 
       this.EndPeriod.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.EndPeriod.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.EndPeriod.Location = new System.Drawing.Point(840, 58);
+      this.EndPeriod.Location = new System.Drawing.Point(879, 58);
       this.EndPeriod.Mask = "0000-00-00";
       this.EndPeriod.Name = "EndPeriod";
-      this.EndPeriod.Size = new System.Drawing.Size(100, 30);
+      this.EndPeriod.Size = new System.Drawing.Size(150, 30);
       this.EndPeriod.TabIndex = 8;
       // 
       // StartOfPeriodTextBox
@@ -240,7 +240,7 @@ namespace Computer_house
       this.StartOfPeriodTextBox.Location = new System.Drawing.Point(689, 58);
       this.StartOfPeriodTextBox.Mask = "0000-00-00";
       this.StartOfPeriodTextBox.Name = "StartOfPeriodTextBox";
-      this.StartOfPeriodTextBox.Size = new System.Drawing.Size(100, 30);
+      this.StartOfPeriodTextBox.Size = new System.Drawing.Size(150, 30);
       this.StartOfPeriodTextBox.TabIndex = 7;
       // 
       // label7
@@ -280,6 +280,117 @@ namespace Computer_house
       this.tabPage3.Text = "График затрат и доходов";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
       // 
+      // tabControl5
+      // 
+      this.tabControl5.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+      this.tabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tabControl5.Controls.Add(this.tabPage10);
+      this.tabControl5.Controls.Add(this.tabPage11);
+      this.tabControl5.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tabControl5.Location = new System.Drawing.Point(6, 6);
+      this.tabControl5.Multiline = true;
+      this.tabControl5.Name = "tabControl5";
+      this.tabControl5.SelectedIndex = 0;
+      this.tabControl5.Size = new System.Drawing.Size(1282, 430);
+      this.tabControl5.TabIndex = 2;
+      // 
+      // tabPage10
+      // 
+      this.tabPage10.Controls.Add(this.PurchasingChart);
+      this.tabPage10.Location = new System.Drawing.Point(4, 4);
+      this.tabPage10.Name = "tabPage10";
+      this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage10.Size = new System.Drawing.Size(1274, 394);
+      this.tabPage10.TabIndex = 0;
+      this.tabPage10.Text = "График";
+      this.tabPage10.UseVisualStyleBackColor = true;
+      // 
+      // PurchasingChart
+      // 
+      this.PurchasingChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      chartArea1.Name = "ChartArea1";
+      this.PurchasingChart.ChartAreas.Add(chartArea1);
+      legend1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      legend1.IsTextAutoFit = false;
+      legend1.Name = "Legend1";
+      this.PurchasingChart.Legends.Add(legend1);
+      this.PurchasingChart.Location = new System.Drawing.Point(3, 6);
+      this.PurchasingChart.Name = "PurchasingChart";
+      this.PurchasingChart.Size = new System.Drawing.Size(1265, 385);
+      this.PurchasingChart.TabIndex = 0;
+      this.PurchasingChart.Text = "chart1";
+      // 
+      // tabPage11
+      // 
+      this.tabPage11.Controls.Add(this.PurchasingTable);
+      this.tabPage11.Location = new System.Drawing.Point(4, 4);
+      this.tabPage11.Name = "tabPage11";
+      this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage11.Size = new System.Drawing.Size(1274, 394);
+      this.tabPage11.TabIndex = 1;
+      this.tabPage11.Text = "Таблица";
+      this.tabPage11.UseVisualStyleBackColor = true;
+      // 
+      // PurchasingTable
+      // 
+      this.PurchasingTable.AllowUserToAddRows = false;
+      this.PurchasingTable.AllowUserToDeleteRows = false;
+      this.PurchasingTable.AllowUserToOrderColumns = true;
+      this.PurchasingTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.PurchasingTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.PurchasingTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.PurchasingTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn6,
+            this.sales,
+            this.income});
+      this.PurchasingTable.Location = new System.Drawing.Point(7, 5);
+      this.PurchasingTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.PurchasingTable.Name = "PurchasingTable";
+      this.PurchasingTable.ReadOnly = true;
+      this.PurchasingTable.RowHeadersWidth = 51;
+      this.PurchasingTable.RowTemplate.Height = 24;
+      this.PurchasingTable.Size = new System.Drawing.Size(1261, 384);
+      this.PurchasingTable.TabIndex = 2;
+      // 
+      // dataGridViewTextBoxColumn4
+      // 
+      this.dataGridViewTextBoxColumn4.HeaderText = "Дата";
+      this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+      this.dataGridViewTextBoxColumn4.ReadOnly = true;
+      this.dataGridViewTextBoxColumn4.Width = 300;
+      // 
+      // dataGridViewTextBoxColumn6
+      // 
+      this.dataGridViewTextBoxColumn6.HeaderText = "Затраты,р";
+      this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+      this.dataGridViewTextBoxColumn6.ReadOnly = true;
+      this.dataGridViewTextBoxColumn6.Width = 300;
+      // 
+      // sales
+      // 
+      this.sales.HeaderText = "Доходы,р";
+      this.sales.MinimumWidth = 6;
+      this.sales.Name = "sales";
+      this.sales.ReadOnly = true;
+      this.sales.Width = 300;
+      // 
+      // income
+      // 
+      this.income.HeaderText = "Прибыль,р";
+      this.income.MinimumWidth = 6;
+      this.income.Name = "income";
+      this.income.ReadOnly = true;
+      this.income.Width = 300;
+      // 
       // tabPage4
       // 
       this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -287,7 +398,7 @@ namespace Computer_house
       this.tabPage4.Location = new System.Drawing.Point(4, 37);
       this.tabPage4.Name = "tabPage4";
       this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage4.Size = new System.Drawing.Size(1294, 440);
+      this.tabPage4.Size = new System.Drawing.Size(1294, 442);
       this.tabPage4.TabIndex = 1;
       this.tabPage4.Text = "График востребованности";
       this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
@@ -305,7 +416,7 @@ namespace Computer_house
       this.tabControl3.Multiline = true;
       this.tabControl3.Name = "tabControl3";
       this.tabControl3.SelectedIndex = 0;
-      this.tabControl3.Size = new System.Drawing.Size(1282, 428);
+      this.tabControl3.Size = new System.Drawing.Size(1282, 442);
       this.tabControl3.TabIndex = 1;
       // 
       // tabPage6
@@ -314,7 +425,7 @@ namespace Computer_house
       this.tabPage6.Location = new System.Drawing.Point(4, 4);
       this.tabPage6.Name = "tabPage6";
       this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage6.Size = new System.Drawing.Size(1274, 392);
+      this.tabPage6.Size = new System.Drawing.Size(1274, 406);
       this.tabPage6.TabIndex = 0;
       this.tabPage6.Text = "График";
       this.tabPage6.UseVisualStyleBackColor = true;
@@ -332,7 +443,7 @@ namespace Computer_house
       this.DemandedChart.Legends.Add(legend2);
       this.DemandedChart.Location = new System.Drawing.Point(3, 6);
       this.DemandedChart.Name = "DemandedChart";
-      this.DemandedChart.Size = new System.Drawing.Size(1265, 383);
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 397);
       this.DemandedChart.TabIndex = 0;
       this.DemandedChart.Text = "chart1";
       // 
@@ -342,7 +453,7 @@ namespace Computer_house
       this.tabPage7.Location = new System.Drawing.Point(4, 4);
       this.tabPage7.Name = "tabPage7";
       this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage7.Size = new System.Drawing.Size(1274, 394);
+      this.tabPage7.Size = new System.Drawing.Size(1274, 406);
       this.tabPage7.TabIndex = 1;
       this.tabPage7.Text = "Таблица";
       this.tabPage7.UseVisualStyleBackColor = true;
@@ -366,7 +477,7 @@ namespace Computer_house
       this.DemandedTable.ReadOnly = true;
       this.DemandedTable.RowHeadersWidth = 51;
       this.DemandedTable.RowTemplate.Height = 24;
-      this.DemandedTable.Size = new System.Drawing.Size(1261, 384);
+      this.DemandedTable.Size = new System.Drawing.Size(1261, 382);
       this.DemandedTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn2
@@ -410,7 +521,7 @@ namespace Computer_house
       this.tabControl4.Multiline = true;
       this.tabControl4.Name = "tabControl4";
       this.tabControl4.SelectedIndex = 0;
-      this.tabControl4.Size = new System.Drawing.Size(1282, 442);
+      this.tabControl4.Size = new System.Drawing.Size(1282, 454);
       this.tabControl4.TabIndex = 2;
       // 
       // tabPage8
@@ -419,7 +530,7 @@ namespace Computer_house
       this.tabPage8.Location = new System.Drawing.Point(4, 4);
       this.tabPage8.Name = "tabPage8";
       this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage8.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage8.Size = new System.Drawing.Size(1274, 418);
       this.tabPage8.TabIndex = 0;
       this.tabPage8.Text = "График";
       this.tabPage8.UseVisualStyleBackColor = true;
@@ -437,7 +548,7 @@ namespace Computer_house
       this.EfficiencyChart.Legends.Add(legend3);
       this.EfficiencyChart.Location = new System.Drawing.Point(3, 6);
       this.EfficiencyChart.Name = "EfficiencyChart";
-      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 394);
+      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 406);
       this.EfficiencyChart.TabIndex = 0;
       this.EfficiencyChart.Text = "chart1";
       // 
@@ -447,7 +558,7 @@ namespace Computer_house
       this.tabPage9.Location = new System.Drawing.Point(4, 4);
       this.tabPage9.Name = "tabPage9";
       this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage9.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage9.Size = new System.Drawing.Size(1274, 418);
       this.tabPage9.TabIndex = 1;
       this.tabPage9.Text = "Таблица";
       this.tabPage9.UseVisualStyleBackColor = true;
@@ -509,7 +620,7 @@ namespace Computer_house
       this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-      this.tabPage2.Size = new System.Drawing.Size(1316, 611);
+      this.tabPage2.Size = new System.Drawing.Size(1316, 613);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Складской учёт";
       // 
@@ -531,8 +642,8 @@ namespace Computer_house
       this.BuyingPrice.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.BuyingPrice.Location = new System.Drawing.Point(1172, 404);
       this.BuyingPrice.Maximum = new decimal(new int[] {
-            -1773790777,
-            2,
+            1000000,
+            0,
             0,
             0});
       this.BuyingPrice.Name = "BuyingPrice";
@@ -719,117 +830,6 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 200;
       // 
-      // tabControl5
-      // 
-      this.tabControl5.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-      this.tabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tabControl5.Controls.Add(this.tabPage10);
-      this.tabControl5.Controls.Add(this.tabPage11);
-      this.tabControl5.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tabControl5.Location = new System.Drawing.Point(6, 6);
-      this.tabControl5.Multiline = true;
-      this.tabControl5.Name = "tabControl5";
-      this.tabControl5.SelectedIndex = 0;
-      this.tabControl5.Size = new System.Drawing.Size(1282, 430);
-      this.tabControl5.TabIndex = 2;
-      // 
-      // tabPage10
-      // 
-      this.tabPage10.Controls.Add(this.PurchasingChart);
-      this.tabPage10.Location = new System.Drawing.Point(4, 4);
-      this.tabPage10.Name = "tabPage10";
-      this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage10.Size = new System.Drawing.Size(1274, 392);
-      this.tabPage10.TabIndex = 0;
-      this.tabPage10.Text = "График";
-      this.tabPage10.UseVisualStyleBackColor = true;
-      // 
-      // PurchasingChart
-      // 
-      this.PurchasingChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      chartArea1.Name = "ChartArea1";
-      this.PurchasingChart.ChartAreas.Add(chartArea1);
-      legend1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      legend1.IsTextAutoFit = false;
-      legend1.Name = "Legend1";
-      this.PurchasingChart.Legends.Add(legend1);
-      this.PurchasingChart.Location = new System.Drawing.Point(3, 6);
-      this.PurchasingChart.Name = "PurchasingChart";
-      this.PurchasingChart.Size = new System.Drawing.Size(1265, 383);
-      this.PurchasingChart.TabIndex = 0;
-      this.PurchasingChart.Text = "chart1";
-      // 
-      // tabPage11
-      // 
-      this.tabPage11.Controls.Add(this.PurchasingTable);
-      this.tabPage11.Location = new System.Drawing.Point(4, 4);
-      this.tabPage11.Name = "tabPage11";
-      this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage11.Size = new System.Drawing.Size(1274, 394);
-      this.tabPage11.TabIndex = 1;
-      this.tabPage11.Text = "Таблица";
-      this.tabPage11.UseVisualStyleBackColor = true;
-      // 
-      // PurchasingTable
-      // 
-      this.PurchasingTable.AllowUserToAddRows = false;
-      this.PurchasingTable.AllowUserToDeleteRows = false;
-      this.PurchasingTable.AllowUserToOrderColumns = true;
-      this.PurchasingTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.PurchasingTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.PurchasingTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.PurchasingTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn6,
-            this.sales,
-            this.income});
-      this.PurchasingTable.Location = new System.Drawing.Point(7, 5);
-      this.PurchasingTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.PurchasingTable.Name = "PurchasingTable";
-      this.PurchasingTable.ReadOnly = true;
-      this.PurchasingTable.RowHeadersWidth = 51;
-      this.PurchasingTable.RowTemplate.Height = 24;
-      this.PurchasingTable.Size = new System.Drawing.Size(1261, 384);
-      this.PurchasingTable.TabIndex = 2;
-      // 
-      // dataGridViewTextBoxColumn4
-      // 
-      this.dataGridViewTextBoxColumn4.HeaderText = "Дата";
-      this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-      this.dataGridViewTextBoxColumn4.ReadOnly = true;
-      this.dataGridViewTextBoxColumn4.Width = 300;
-      // 
-      // dataGridViewTextBoxColumn6
-      // 
-      this.dataGridViewTextBoxColumn6.HeaderText = "Затраты,р";
-      this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-      this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-      this.dataGridViewTextBoxColumn6.ReadOnly = true;
-      this.dataGridViewTextBoxColumn6.Width = 300;
-      // 
-      // sales
-      // 
-      this.sales.HeaderText = "Доходы,р";
-      this.sales.MinimumWidth = 6;
-      this.sales.Name = "sales";
-      this.sales.ReadOnly = true;
-      this.sales.Width = 300;
-      // 
-      // income
-      // 
-      this.income.HeaderText = "Прибыль,р";
-      this.income.MinimumWidth = 6;
-      this.income.Name = "income";
-      this.income.ReadOnly = true;
-      this.income.Width = 300;
-      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -857,6 +857,11 @@ namespace Computer_house
       this.panel1.PerformLayout();
       this.tabControl2.ResumeLayout(false);
       this.tabPage3.ResumeLayout(false);
+      this.tabControl5.ResumeLayout(false);
+      this.tabPage10.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.PurchasingChart)).EndInit();
+      this.tabPage11.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.PurchasingTable)).EndInit();
       this.tabPage4.ResumeLayout(false);
       this.tabControl3.ResumeLayout(false);
       this.tabPage6.ResumeLayout(false);
@@ -874,11 +879,6 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
-      this.tabControl5.ResumeLayout(false);
-      this.tabPage10.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.PurchasingChart)).EndInit();
-      this.tabPage11.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.PurchasingTable)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
