@@ -1,7 +1,5 @@
 ﻿using Computer_house.DataBase;
 using Computer_house.DataBase.Entities;
-using Computer_house.DataBase.Entities.PC_Components;
-using Computer_house.DataBase.Entities.PC_Options;
 using Computer_house.DataBase.Entities.Warehouse;
 using Computer_house.OtherClasses;
 using System;
@@ -18,9 +16,6 @@ namespace Computer_house
   public partial class AuthorizedForm : Form
   {
     private List<Warehouse_info> WarehouseInformationList = new List<Warehouse_info>();
-    private List<Locations_in_warehouse> LocationInWarehouseList = new List<Locations_in_warehouse>();
-    private List<Products_location> ProductLocationsList = new List<Products_location>();
-    private List<Mediator> Mediators = new List<Mediator>();
     private List<Holding_document> HoldingDocuments = new List<Holding_document>();
     private List<Price_list> PriceList = new List<Price_list>();
     private List<ShopRequests> ShopRequests = new List<ShopRequests>();
@@ -154,46 +149,7 @@ namespace Computer_house
     {
       Application.Exit();
     }
-    private void LoadInfoAboutMediatorFromDB()
-    {
-      try
-      {
-        Mediators.Clear();
-        using(ApplicationContext db = new ApplicationContext())
-          Mediators = db.Mediator.ToList();
-      }
-      catch(Exception ex)
-      {
-        MessageBox.Show(ex.Message);
-      }
-    }
 
-    private void LoadProductLocationFromDB()
-    {
-      try
-      {
-        ProductLocationsList.Clear();
-        using(ApplicationContext db = new ApplicationContext())
-          ProductLocationsList = db.Products_location.ToList();
-      }
-      catch(Exception ex)
-      {
-        MessageBox.Show(ex.Message);
-      }
-    }
-    private void LoadLocationInWarehouseFromDB()
-    {
-      try
-      {
-        LocationInWarehouseList.Clear();
-        using(ApplicationContext db = new ApplicationContext())
-          LocationInWarehouseList = db.Locations_in_warehouse.ToList();
-      }
-      catch(Exception ex)
-      {
-        MessageBox.Show(ex.Message);
-      }
-    }      
     private void LoadAllInfoFromDB()
     {
       try

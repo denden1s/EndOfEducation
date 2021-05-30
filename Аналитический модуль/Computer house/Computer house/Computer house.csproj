@@ -181,26 +181,25 @@
       <DependentUpon>AuthorizedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\ApplicationContext.cs" />
-    <Compile Include="DataBase\Entities\Mediator.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\Case.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\Motherboard.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\PSU.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\RAM.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\Cooling_system.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\CPU.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\GPU.cs" />
-    <Compile Include="DataBase\Entities\PC_Components\Storage_devices.cs" />
+    <Compile Include="DataBase\Entities\Others\Locations_in_warehouse.cs" />
+    <Compile Include="DataBase\Entities\Others\Mediator.cs" />
     <Compile Include="DataBase\Entities\Others\Purchases.cs" />
     <Compile Include="DataBase\Entities\Others\Sellings.cs" />
     <Compile Include="DataBase\Entities\Others\ShopRequests.cs" />
     <Compile Include="DataBase\Entities\Others\Holding_document.cs" />
-    <Compile Include="DataBase\Entities\Others\Locations_in_warehouse.cs" />
     <Compile Include="DataBase\Entities\Others\Price_list.cs" />
-    <Compile Include="DataBase\Entities\Others\Products_location.cs" />
     <Compile Include="DataBase\Entities\Others\Users.cs" />
     <Compile Include="DataBase\Entities\Others\Warehouse_info.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\Case.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\Cooling_system.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\CPU.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\GPU.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\Motherboard.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\PSU.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\RAM.cs" />
+    <Compile Include="DataBase\Entities\PC_Components\Storage_devices.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
-    <Compile Include="DataBase\Entities\NeedToUpdate.cs" />
+    <Compile Include="DataBase\Entities\Others\NeedToUpdate.cs" />
     <Compile Include="OtherClasses\DesktopScreen.cs" />
     <Compile Include="OtherClasses\PurchaseStatistic.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
@@ -223,6 +222,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -240,6 +240,7 @@
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

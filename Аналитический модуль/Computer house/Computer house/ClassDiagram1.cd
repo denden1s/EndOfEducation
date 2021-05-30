@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Computer_house.DataBase.Entities.Holding_document" Collapsed="true">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAgAAAAgAAAAEAAAAAAAAAAAAAAABAAhAAABRA=</HashCode>
+      <FileName>DataBase\Entities\Others\Holding_document.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Locations_in_warehouse" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAEAAAIAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Locations_in_warehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Mediator" Collapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAkAggAAgAAAAAAAAAgAAIAAACAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Mediator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.NeedToUpdate" Collapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\NeedToUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.Price_list" Collapsed="true">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Price_list.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.Purchases" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>DataBase\Entities\Others\Purchases.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.Sellings" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQBAAAAQAAgAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Sellings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.ShopRequests" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAkAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAIARA=</HashCode>
+      <FileName>DataBase\Entities\Others\ShopRequests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.Users" Collapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAIAAACAAAQAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Warehouse.Warehouse_info" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAIAAA=</HashCode>
+      <FileName>DataBase\Entities\Others\Warehouse_info.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Case" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\Case.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.Cooling_system" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\Cooling_system.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.CPU" Collapsed="true">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\CPU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.GPU" Collapsed="true">
+    <Position X="4" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\GPU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.PC_Components.Motherboard" Collapsed="true">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\Motherboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.PC_Components.PSU" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\PSU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.PC_Components.RAM" Collapsed="true">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\RAM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Entities.PC_Options.Storage_devices" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Entities\PC_Components\Storage_devices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.Product" Collapsed="true">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\Limited\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.DataBase.ApplicationContext" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KASgAHAAAQAAAAgAAAAAAACIGAgAAQAAQAgggAAAIAA=</HashCode>
+      <FileName>DataBase\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopScreen" Collapsed="true">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAABAAAAAAAQAAAIEAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>OtherClasses\DesktopScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.OtherClasses.PurchaseStatistic" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAABAAAAAACAAAAAAAAgAAAAQA=</HashCode>
+      <FileName>OtherClasses\PurchaseStatistic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.OtherClasses.SetupIP" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAKAAAAAAIAAAAAAAAIIEAggAAAAAA=</HashCode>
+      <FileName>OtherClasses\SetupIP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.OtherClasses.SQLRequests" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OtherClasses\SQLRequests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Computer_house.OtherClasses.SystemFunctions" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>OtherClasses\SystemFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

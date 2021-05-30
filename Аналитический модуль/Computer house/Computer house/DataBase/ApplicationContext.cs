@@ -15,11 +15,10 @@ namespace Computer_house.DataBase
     //Информация склада
     public DbSet<Users> Users { get; set; }
     public DbSet<Holding_document> Holding_document { get; set; }
-    public DbSet<Locations_in_warehouse> Locations_in_warehouse { get; set; }
     public DbSet<Price_list> Price_list { get; set; }
-    public DbSet<Products_location> Products_location { get; set; }
     public DbSet<Warehouse_info> Warehouse_info { get; set; }
     public DbSet<Storage_devices> Storage_devices { get; set; }
+    public DbSet<Locations_in_warehouse> Locations_in_warehouse { get; set; }
 
     //Комплектующие
     public DbSet<Case> Case { get; set; }
@@ -53,9 +52,7 @@ namespace Computer_house.DataBase
     {
       modelBuilder.Entity<Users>().HasKey(i => i.ID);
       modelBuilder.Entity<Holding_document>().HasKey(i => i.ID);
-      modelBuilder.Entity<Locations_in_warehouse>().HasKey(i => i.ID);
       modelBuilder.Entity<Price_list>().HasKey(i => i.Product_ID);
-      modelBuilder.Entity<Products_location>().HasKey(k => new { k.Product_ID, k.Location_ID });
       modelBuilder.Entity<Warehouse_info>().HasKey(i => i.Product_ID); 
       modelBuilder.Entity<Case>().HasKey(i => i.ID);
       modelBuilder.Entity<Cooling_system>().HasKey(i => i.ID);
@@ -70,6 +67,7 @@ namespace Computer_house.DataBase
       modelBuilder.Entity<ShopRequests>().HasKey(i => i.ID);
       modelBuilder.Entity<Purchases>().HasKey(i => i.ID);
       modelBuilder.Entity<Sellings>().HasKey(i => i.ID);
+      modelBuilder.Entity<Locations_in_warehouse>().HasKey(i => i.ID);
     }
   }
 }
