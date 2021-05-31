@@ -180,6 +180,8 @@
       <DependentUpon>AuthorizedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\ApplicationContext.cs" />
+    <Compile Include="DataBase\Shop\Holding_document.cs" />
+    <Compile Include="DataBase\Shop\Locations_in_warehouse.cs" />
     <Compile Include="DataBase\Entities\Mediator.cs" />
     <Compile Include="DataBase\Entities\NeedToUpdate.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Case.cs" />
@@ -202,16 +204,14 @@
     <Compile Include="DataBase\Entities\PC_Options\Sizes_of_components.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Sockets.cs" />
     <Compile Include="DataBase\Entities\PC_Components\Storage_devices.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Holding_document.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Locations_in_warehouse.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Memory_types.cs" />
     <Compile Include="DataBase\Entities\PC_Options\Power_connectors.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Price_list.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Products_location.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Sellings.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\ShopRequests.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Users.cs" />
-    <Compile Include="DataBase\Entities\Warehouse\Warehouse_info.cs" />
+    <Compile Include="DataBase\Shop\Price_list.cs" />
+    <Compile Include="DataBase\Shop\Products_location.cs" />
+    <Compile Include="DataBase\Shop\Sellings.cs" />
+    <Compile Include="DataBase\Shop\ShopRequests.cs" />
+    <Compile Include="DataBase\Shop\Users.cs" />
+    <Compile Include="DataBase\Shop\Warehouse_info.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
     <Compile Include="DataBase\Limited\ProductWithOnlyName.cs" />
     <Compile Include="OtherClasses\DesktopScreen.cs" />
@@ -252,6 +252,7 @@
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

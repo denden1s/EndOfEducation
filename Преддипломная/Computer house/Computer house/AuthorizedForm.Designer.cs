@@ -90,6 +90,8 @@ namespace Computer_house
       this.CountInShop = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.CountInSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.SearchInfo = new System.Windows.Forms.TextBox();
+      this.InTimeRadio = new System.Windows.Forms.RadioButton();
+      this.InManyTimeRadio = new System.Windows.Forms.RadioButton();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.PCConfigurationPage.SuspendLayout();
@@ -111,35 +113,35 @@ namespace Computer_house
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(1336, 28);
+      this.menuStrip1.Size = new System.Drawing.Size(1336, 30);
       this.menuStrip1.TabIndex = 4;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // настроитьIPToolStripMenuItem
       // 
       this.настроитьIPToolStripMenuItem.Name = "настроитьIPToolStripMenuItem";
-      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
       this.настроитьIPToolStripMenuItem.Text = "Настроить IP";
       this.настроитьIPToolStripMenuItem.Click += new System.EventHandler(this.настроитьIPToolStripMenuItem_Click);
       // 
       // справкаToolStripMenuItem
       // 
       this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
       this.справкаToolStripMenuItem.Text = "Справка";
       this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
       // 
       // обновитьДанныеToolStripMenuItem
       // 
       this.обновитьДанныеToolStripMenuItem.Name = "обновитьДанныеToolStripMenuItem";
-      this.обновитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
+      this.обновитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
       this.обновитьДанныеToolStripMenuItem.Text = "Обновить данные";
       this.обновитьДанныеToolStripMenuItem.Click += new System.EventHandler(this.обновитьДанныеToolStripMenuItem_Click);
       // 
       // выйтиИзУчётнойЗаписиToolStripMenuItem
       // 
       this.выйтиИзУчётнойЗаписиToolStripMenuItem.Name = "выйтиИзУчётнойЗаписиToolStripMenuItem";
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
+      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
       this.выйтиИзУчётнойЗаписиToolStripMenuItem.Text = "Выйти из учётной записи";
       this.выйтиИзУчётнойЗаписиToolStripMenuItem.Click += new System.EventHandler(this.выйтиИзУчётнойЗаписиToolStripMenuItem_Click);
       // 
@@ -149,11 +151,11 @@ namespace Computer_house
       this.tabControl1.Controls.Add(this.SellingOtherComponentsPage);
       this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tabControl1.Location = new System.Drawing.Point(0, 28);
+      this.tabControl1.Location = new System.Drawing.Point(0, 30);
       this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(1336, 656);
+      this.tabControl1.Size = new System.Drawing.Size(1336, 654);
       this.tabControl1.TabIndex = 5;
       // 
       // PCConfigurationPage
@@ -393,6 +395,7 @@ namespace Computer_house
       // 
       // Case_ComboBox
       // 
+      this.Case_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.Case_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.Case_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.Case_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -417,6 +420,7 @@ namespace Computer_house
       // 
       // StorageDevice_ComboBox
       // 
+      this.StorageDevice_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.StorageDevice_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.StorageDevice_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.StorageDevice_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -441,6 +445,7 @@ namespace Computer_house
       // 
       // PSU_ComboBox
       // 
+      this.PSU_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.PSU_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.PSU_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.PSU_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -465,6 +470,7 @@ namespace Computer_house
       // 
       // CoolingSystem_ComboBox
       // 
+      this.CoolingSystem_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.CoolingSystem_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.CoolingSystem_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.CoolingSystem_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -489,6 +495,7 @@ namespace Computer_house
       // 
       // RAM_ComboBox
       // 
+      this.RAM_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.RAM_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.RAM_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.RAM_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -513,6 +520,7 @@ namespace Computer_house
       // 
       // Motherboard_ComboBox
       // 
+      this.Motherboard_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.Motherboard_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.Motherboard_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.Motherboard_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -537,6 +545,7 @@ namespace Computer_house
       // 
       // GPU_ComboBox
       // 
+      this.GPU_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.GPU_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.GPU_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.GPU_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -561,6 +570,7 @@ namespace Computer_house
       // 
       // CPU_ComboBox
       // 
+      this.CPU_ComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.CPU_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.CPU_ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
       this.CPU_ComboBox.Font = new System.Drawing.Font("Malgun Gothic", 10F);
@@ -585,6 +595,7 @@ namespace Computer_house
       // 
       // label12
       // 
+      this.label12.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label12.AutoSize = true;
       this.label12.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label12.Location = new System.Drawing.Point(20, 554);
@@ -595,6 +606,7 @@ namespace Computer_house
       // 
       // label11
       // 
+      this.label11.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label11.AutoSize = true;
       this.label11.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label11.Location = new System.Drawing.Point(20, 478);
@@ -605,6 +617,7 @@ namespace Computer_house
       // 
       // label10
       // 
+      this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label10.AutoSize = true;
       this.label10.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label10.Location = new System.Drawing.Point(20, 402);
@@ -615,6 +628,7 @@ namespace Computer_house
       // 
       // label9
       // 
+      this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label9.AutoSize = true;
       this.label9.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label9.Location = new System.Drawing.Point(20, 326);
@@ -625,6 +639,7 @@ namespace Computer_house
       // 
       // label8
       // 
+      this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label8.AutoSize = true;
       this.label8.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label8.Location = new System.Drawing.Point(19, 250);
@@ -635,6 +650,7 @@ namespace Computer_house
       // 
       // label7
       // 
+      this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label7.AutoSize = true;
       this.label7.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label7.Location = new System.Drawing.Point(20, 174);
@@ -645,6 +661,7 @@ namespace Computer_house
       // 
       // label6
       // 
+      this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label6.AutoSize = true;
       this.label6.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label6.Location = new System.Drawing.Point(20, 103);
@@ -655,6 +672,7 @@ namespace Computer_house
       // 
       // label5
       // 
+      this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label5.AutoSize = true;
       this.label5.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label5.Location = new System.Drawing.Point(20, 32);
@@ -666,6 +684,8 @@ namespace Computer_house
       // SellingOtherComponentsPage
       // 
       this.SellingOtherComponentsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.SellingOtherComponentsPage.Controls.Add(this.InManyTimeRadio);
+      this.SellingOtherComponentsPage.Controls.Add(this.InTimeRadio);
       this.SellingOtherComponentsPage.Controls.Add(this.PrintButton);
       this.SellingOtherComponentsPage.Controls.Add(this.PriceLabel);
       this.SellingOtherComponentsPage.Controls.Add(this.label4);
@@ -683,7 +703,7 @@ namespace Computer_house
       this.SellingOtherComponentsPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.SellingOtherComponentsPage.Name = "SellingOtherComponentsPage";
       this.SellingOtherComponentsPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.SellingOtherComponentsPage.Size = new System.Drawing.Size(1328, 615);
+      this.SellingOtherComponentsPage.Size = new System.Drawing.Size(1328, 613);
       this.SellingOtherComponentsPage.TabIndex = 1;
       this.SellingOtherComponentsPage.Text = "Продажа отдельных комплектующих";
       this.SellingOtherComponentsPage.Enter += new System.EventHandler(this.SellingOtherComponentsPage_Enter);
@@ -692,7 +712,7 @@ namespace Computer_house
       // 
       this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.PrintButton.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.PrintButton.Location = new System.Drawing.Point(1023, 479);
+      this.PrintButton.Location = new System.Drawing.Point(1023, 477);
       this.PrintButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.PrintButton.Name = "PrintButton";
       this.PrintButton.Size = new System.Drawing.Size(291, 47);
@@ -727,7 +747,7 @@ namespace Computer_house
       // 
       this.SellComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.SellComponents.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.SellComponents.Location = new System.Drawing.Point(1023, 549);
+      this.SellComponents.Location = new System.Drawing.Point(1023, 547);
       this.SellComponents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.SellComponents.Name = "SellComponents";
       this.SellComponents.Size = new System.Drawing.Size(291, 47);
@@ -741,7 +761,7 @@ namespace Computer_house
       this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(575, 226);
+      this.label3.Location = new System.Drawing.Point(575, 224);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(178, 28);
       this.label3.TabIndex = 40;
@@ -751,7 +771,7 @@ namespace Computer_house
       // 
       this.AllProductInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.AllProductInfo.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.AllProductInfo.Location = new System.Drawing.Point(580, 254);
+      this.AllProductInfo.Location = new System.Drawing.Point(580, 252);
       this.AllProductInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.AllProductInfo.Name = "AllProductInfo";
       this.AllProductInfo.ReadOnly = true;
@@ -763,7 +783,7 @@ namespace Computer_house
       // 
       this.AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.AddProduct.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.AddProduct.Location = new System.Drawing.Point(12, 561);
+      this.AddProduct.Location = new System.Drawing.Point(12, 559);
       this.AddProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.AddProduct.Name = "AddProduct";
       this.AddProduct.Size = new System.Drawing.Size(164, 34);
@@ -775,7 +795,7 @@ namespace Computer_house
       this.RequestComponents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.RequestComponents.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.RequestComponents.Location = new System.Drawing.Point(181, 558);
+      this.RequestComponents.Location = new System.Drawing.Point(181, 556);
       this.RequestComponents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.RequestComponents.Name = "RequestComponents";
       this.RequestComponents.Size = new System.Drawing.Size(388, 38);
@@ -805,7 +825,7 @@ namespace Computer_house
       this.SelectedItemsListBox.Location = new System.Drawing.Point(580, 59);
       this.SelectedItemsListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.SelectedItemsListBox.Name = "SelectedItemsListBox";
-      this.SelectedItemsListBox.Size = new System.Drawing.Size(416, 32);
+      this.SelectedItemsListBox.Size = new System.Drawing.Size(416, 4);
       this.SelectedItemsListBox.TabIndex = 12;
       this.SelectedItemsListBox.SelectedIndexChanged += new System.EventHandler(this.SelectedItemsListBox_SelectedIndexChanged);
       this.SelectedItemsListBox.DoubleClick += new System.EventHandler(this.SelectedItemsListBox_DoubleClick);
@@ -844,7 +864,7 @@ namespace Computer_house
       this.AllInfoDatagridView.ReadOnly = true;
       this.AllInfoDatagridView.RowHeadersWidth = 51;
       this.AllInfoDatagridView.RowTemplate.Height = 24;
-      this.AllInfoDatagridView.Size = new System.Drawing.Size(556, 488);
+      this.AllInfoDatagridView.Size = new System.Drawing.Size(556, 486);
       this.AllInfoDatagridView.TabIndex = 10;
       this.AllInfoDatagridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AllInfoDatagridView_CellContentDoubleClick);
       this.AllInfoDatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.AllInfoDatagridView_RowEnter);
@@ -901,6 +921,30 @@ namespace Computer_house
       this.SearchInfo.Size = new System.Drawing.Size(457, 30);
       this.SearchInfo.TabIndex = 9;
       this.SearchInfo.TextChanged += new System.EventHandler(this.SearchInfo_TextChanged);
+      // 
+      // InTimeRadio
+      // 
+      this.InTimeRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.InTimeRadio.AutoSize = true;
+      this.InTimeRadio.Location = new System.Drawing.Point(1024, 424);
+      this.InTimeRadio.Name = "InTimeRadio";
+      this.InTimeRadio.Size = new System.Drawing.Size(185, 32);
+      this.InTimeRadio.TabIndex = 45;
+      this.InTimeRadio.TabStop = true;
+      this.InTimeRadio.Text = "Единовременно";
+      this.InTimeRadio.UseVisualStyleBackColor = true;
+      // 
+      // InManyTimeRadio
+      // 
+      this.InManyTimeRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.InManyTimeRadio.AutoSize = true;
+      this.InManyTimeRadio.Location = new System.Drawing.Point(1024, 386);
+      this.InManyTimeRadio.Name = "InManyTimeRadio";
+      this.InManyTimeRadio.Size = new System.Drawing.Size(148, 32);
+      this.InManyTimeRadio.TabIndex = 46;
+      this.InManyTimeRadio.TabStop = true;
+      this.InManyTimeRadio.Text = "В рассрочку";
+      this.InManyTimeRadio.UseVisualStyleBackColor = true;
       // 
       // AuthorizedForm
       // 
@@ -996,5 +1040,7 @@ namespace Computer_house
     internal System.Windows.Forms.Button PrintButton;
     private System.Windows.Forms.Label PriceConfig;
     private System.Windows.Forms.Label ConfigPriceLabel;
+    private System.Windows.Forms.RadioButton InManyTimeRadio;
+    private System.Windows.Forms.RadioButton InTimeRadio;
   }
 }

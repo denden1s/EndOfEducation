@@ -51,7 +51,7 @@ namespace Computer_house.OtherClasses
 
     //Нужен для проведения документов при оформлении покупки
     public static void CreateHoldingDocument(Warehouse_info _infoAboutProduct, Users _user, 
-      string _deviceType, decimal _price)
+      string _deviceType, decimal _price, string paymentMethod)
     {
       using (ApplicationContext db = new ApplicationContext())
       {
@@ -63,7 +63,7 @@ namespace Computer_house.OtherClasses
         Holding_document holding_Document = new Holding_document(_infoAboutProduct.Product_ID, "Расход",
           1, _user.ID, 9);
         db.Holding_document.Add(holding_Document);
-        Sellings selling = new Sellings(_infoAboutProduct.Product_ID, "единовременно", _user.ID, _price);
+        Sellings selling = new Sellings(_infoAboutProduct.Product_ID, paymentMethod, _user.ID, _price);
         db.Sellings.Add(selling);
         //позже нужно сделать чтобы работало и в обратную сторону
         db.SaveChanges();
