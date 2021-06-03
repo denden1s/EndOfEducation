@@ -38,7 +38,9 @@ namespace Computer_house.DataBase.Entities.PC_Options
     {
       using(ApplicationContext db = new ApplicationContext())
       {
-        Product_ID = db.Mediator.Single(i => i.SD_ID == ID).ID;
+        Product_ID = (from b in db.Mediator
+                      where b.Components_type == "SD" && b.SD_ID == ID
+                      select b.ID).FirstOrDefault();
         Storage_devices storageDevice = db.Storage_devices.Single(i => i.ID == ID);
         Name = storageDevice.Name;
         Interface_ID = storageDevice.Interface_ID;

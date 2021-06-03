@@ -16,7 +16,9 @@ namespace Computer_house.OtherClasses
     {
       using (ApplicationContext db = new ApplicationContext())
       {
-        var findProductName = db.Mediator.Single(i => i.ID == _product_ID);
+        var findProductName = (from b in db.Mediator
+                               where b.ID == _product_ID
+                               select b).FirstOrDefault();
         string productID = "";
         switch (findProductName.Components_type)
         {
@@ -52,19 +54,7 @@ namespace Computer_house.OtherClasses
       }
     }
 
-    public static List<int> FindIntID(string _componentType)
-    {
-      using (ApplicationContext db = new ApplicationContext())
-        return (from b in db.Mediator
-                where b.Components_type == _componentType
-                select b.ID).ToList();
-    }
-
-    public static string FindCPU(string productID)
-    {
-      using (ApplicationContext db = new ApplicationContext())
-        return db.CPU.Single(i => i.ID == productID).ID;
-    }
+    
 
     //Добавление данных 
     public static void AddCPUSeries(CPU_series _series, bool _option)

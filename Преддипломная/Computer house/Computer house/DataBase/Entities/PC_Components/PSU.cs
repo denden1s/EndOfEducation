@@ -65,12 +65,16 @@ namespace Computer_house.DataBase.Entities.PC_Components
 
     private void SetEnergy_consumption(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.PSU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "PSU" && b.PSU_ID == ID
+                    select b.ID).FirstOrDefault();
       Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
     }
     private void SetBaseAndMaxState(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.PSU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "PSU" && b.PSU_ID == ID
+                    select b.ID).FirstOrDefault();
       Length = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID).Length;
     }
   }

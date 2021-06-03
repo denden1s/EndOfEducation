@@ -2381,12 +2381,16 @@ namespace Computer_house
             Locations_in_warehouse newLocation = new Locations_in_warehouse(name, Convert.ToInt32(LocationMaxItems.Value));
             SQLRequests.AddLocation(newLocation);
             LocationNameTextBox.Clear();
+            LocationsListBox.Items.Clear();
             LocationsSDRadio.Checked = true;
             LocationsSDRadio.Checked = false;
             locationLabel = "";
             LocationMaxItems.Value = LocationMaxItems.Minimum;
             MessageBox.Show("Действие прошло успешно");
             SystemFunctions.SendInfoInShopToUpdate();
+
+            LoadLocationInfoFromDB();
+            ViewLocationInListBox();
           }
           else
             MessageBox.Show ("Действие не прошло!");

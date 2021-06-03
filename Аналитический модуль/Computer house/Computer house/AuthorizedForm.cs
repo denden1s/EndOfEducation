@@ -289,8 +289,11 @@ namespace Computer_house
       //вывод сведений о дате
 
 
-      ViewGraphic();
 
+
+      ViewGraphic();
+      //EfficiencyChart.Printing.PageSetup();
+      //EfficiencyChart.Printing.PrintPreview();
     }
 
     private void CreatePurchaseDocsWithOnlyStartTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
@@ -408,8 +411,7 @@ namespace Computer_house
       switch(enteredPage)
       {
         case "График затрат и доходов":
-          List<PurchaseStatistic> purchasingStatistic = new
-            List<PurchaseStatistic>();
+          List<PurchaseStatistic> purchasingStatistic = new List<PurchaseStatistic>();
           List<Purchases> purchases = new List<Purchases>();
           List<Sellings> sellings = new List<Sellings>();
           //ситуация если сразу вводится начало периода
@@ -432,7 +434,6 @@ namespace Computer_house
             }
             else
             {
-
               if(lastYear.Length == 4 && secondPeriod[1].Length == 2 && secondPeriod[2].Length == 2 &&
                 Convert.ToInt32(lastYear) - Convert.ToInt32(year) >= 0 &&
                 Convert.ToInt32(secondPeriod[1]) <= 12 && Convert.ToInt32(secondPeriod[1]) >= 1 &&
@@ -480,7 +481,6 @@ namespace Computer_house
             {
               st.SetIncome();
             }
-
             PurchasingChart.ChartAreas[0].AxisX.Title = "Время";
             PurchasingChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             PurchasingChart.ChartAreas[0].AxisY.Title = "Прибыль";
@@ -675,13 +675,9 @@ namespace Computer_house
               chart.Points.Add(Convert.ToDouble(p.ID));
               EfficiencyTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
-
-            //StartOfPeriodTextBox.Clear();
-            //EndPeriod.Clear();
           }
           else
             MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
-          //нужно предусмотреть что могут быть введены корректно только правые данные
           break;
         default:
           break;

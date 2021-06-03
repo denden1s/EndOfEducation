@@ -633,7 +633,6 @@ namespace Computer_house
     //Нужен для поиска информации с учётом фильтрации
     private void SearchInfoWithFilter()
     {
-      //проверка на выбор радиокнопки
       List<Warehouse_info> SearchResultList = SearchByName(FilteredInfo);
       List<Mediator> tempRequest = new List<Mediator>();
       tempRequest.AddRange(GetSearchInfo(searchComponent));
@@ -684,11 +683,10 @@ namespace Computer_house
         default:
           break;
       }
-      //Проверка наличия такого ID как в строке поиска
       ViewInfoAfterSearch(finalResult, SearchResultList);
     }
 
-    //нужен для поиска данных по имени в списке переданном в параметрах
+    //Нужен для поиска данных по имени в списке переданном в параметрах
     private List<Warehouse_info> SearchByName(List<Warehouse_info> WarehouseInfo)
     {
       List<Warehouse_info> SearchResultList = new List<Warehouse_info>();
@@ -749,11 +747,11 @@ namespace Computer_house
     }
 
     //Нужен для отображения информации после поиска
-    private void ViewInfoAfterSearch(List<Mediator> RequestList, List<Warehouse_info> SearchResultList)
+    private void ViewInfoAfterSearch(List<Mediator> ListOfIds, List<Warehouse_info> SearchResultList)
     {
-      if(RequestList != null)
+      if(ListOfIds.Count != 0)
       {
-        foreach(Mediator i in RequestList)
+        foreach(Mediator i in ListOfIds)
         {
           if(!SearchResultList.Contains(WarehouseInformationList.Single(a => a.Product_ID == i.ID)))
             SearchResultList.Add(WarehouseInformationList.Single(a => a.Product_ID == i.ID));
@@ -764,10 +762,7 @@ namespace Computer_house
       {
         foreach(Warehouse_info wi in SearchResultList)
           AllInfoDatagridView.Rows.Add(wi.Product_ID, wi.ProductName, wi.Current_items_count);
-      }
-      
-      if(RequestList.Count == 0 && SearchResultList.Count == 0)
-        AllInfoDatagridView.Rows.Clear();
+      }  
     }
 
     //Аналог  FilterInfo только по таблице Nediator

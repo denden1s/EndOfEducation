@@ -87,7 +87,9 @@ public class Case : Product
 
     private void SetBaseAndMaxOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Case_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Case" && b.Case_ID == ID
+                    select b.ID).FirstOrDefault();
       var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
       Coolers_count = baseAndMaxOptions.Base_state;
       Coolers_slots = baseAndMaxOptions.Max_state;
@@ -95,7 +97,9 @@ public class Case : Product
 
     private void SetSizesOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Case_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Case" && b.Case_ID == ID
+                    select b.ID).FirstOrDefault();
       var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
       Height = sizes.Height;
       Width = sizes.Width;

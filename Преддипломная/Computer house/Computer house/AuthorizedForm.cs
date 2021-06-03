@@ -74,7 +74,6 @@ namespace Computer_house
     private List<Cooling_system> filteredCoolingSystems = new List<Cooling_system>();
     private List<CPU> filteredCpus = new List<CPU>();
     private List<GPU> filteredGpus = new List<GPU>();
-    //private List<HDD> Hdds;
     private List<Motherboard> filteredMotherboards = new List<Motherboard>();
     private List<PSU> filteredPsus = new List<PSU>();
     private List<RAM> filteredRams = new List<RAM>();
@@ -191,7 +190,7 @@ namespace Computer_house
             psu = db.PSU.Single(i => i.ID == m.PSU_ID).Name;
             sd = db.Storage_devices.Single(i => i.ID == m.SD_ID).Name;
             ram = db.RAM.Single(i => i.ID == m.RAM_ID).Name;
-            PCConfigsDataGridView.Rows.Add(cpu, gpu, mb, ram, cs, psu, sd, cas);
+            PCConfigsDataGridView.Rows.Add(m.ID, cpu, gpu, mb, ram, cs, psu, sd, cas);
           }
         }
       }
@@ -964,23 +963,37 @@ namespace Computer_house
         CoolingSystem_ComboBox, StorageDevice_ComboBox);
       if (!isNullComboBoxes)
       {
+        bool pcInDb = false;
         List<Mediator> Computers = new List<Mediator>();
+        Mediator currentPC = new Mediator(CPU_ComboBox.Text, GPU_ComboBox.Text, Case_ComboBox.Text,
+          RAM_ComboBox.Text, CoolingSystem_ComboBox.Text, PSU_ComboBox.Text, StorageDevice_ComboBox.Text, 
+          Motherboard_ComboBox.Text);
         using (ApplicationContext db = new ApplicationContext())
         {
           Computers = db.Mediator.Where(i => i.Components_type == "PC").ToList();
-          if(Computers != null)
+          foreach(Mediator m in Computers)
           {
-            //проверка на соответствие
+            if(m.Case_ID == currentPC.Case_ID && m.Cooling_system_ID == currentPC.Cooling_system_ID &&
+               m.CPU_ID == currentPC.CPU_ID && m.GPU_ID == currentPC.GPU_ID && m.Motherboard_ID == currentPC.Motherboard_ID &&
+               m.PSU_ID == currentPC.PSU_ID && m.RAM_ID == currentPC.RAM_ID && m.SD_ID == currentPC.SD_ID)
+              pcInDb = true;
+          }
+          if(pcInDb)
+          {
+            MessageBox.Show("Такая конфигурация присутствует в базе данных");
           }
           else
           {
-            //добавление сборки
+            db.Mediator.Add(currentPC);
+            db.SaveChanges();
+            LoadPCConfigs();
+            ViewPCsInDataGrid();
+            MessageBox.Show("Добавление прошло успешно");
+            ClearConfig_Click(sender, e);
           }
         }
       }
       else MessageBox.Show("Не все поля заполнены!");
-      // нужно проверить есть ли такая же конфигурация в базе
-      //нужно сразу проверить заполнены ли все поля данными
     }
 
     //Нужен для отображения детальных сведений о комплектующих
@@ -1170,7 +1183,7 @@ namespace Computer_house
 
     private void CPU_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if(CPU_ComboBox.SelectedIndex != -1)
+      if(CPU_ComboBox.SelectedIndex != -1 && CPU_ComboBox.Items.Count > 0)
       {
         AddConfigItemInListBox(CPU_ComboBox, ref cpuNameInListBox);
         int productID = WarehouseInformationList.Single(i => i.ProductName == cpuNameInListBox).Product_ID;
@@ -1343,10 +1356,12 @@ namespace Computer_house
             Motherboard_ComboBox.Items.Add(m.Name);
           }
         }
+        
       }
-      
-      CalculatePCPrice();
       CalculatePCConsumption();
+      SetPSUByConsumption();
+      CalculatePCPrice();
+     
     }
 
     private void CalculatePCConsumption()
@@ -1359,13 +1374,49 @@ namespace Computer_house
         items.Add(WarehouseInformationList.Single(q => q.ProductName == i.ToString()));
         using(ApplicationContext db = new ApplicationContext())
         {
-          Energy_consumption consumption = db.Energy_consumption.Single(q => q.Product_ID == items[index].Product_ID);
-          maxConsumption += consumption.Consumption;
+          if(db.CPU.Where(q => q.Name == items[index].ProductName).Count() > 0 || 
+            db.GPU.Where(q => q.Name == items[index].ProductName).Count() > 0)
+          {
+            Energy_consumption consumption = db.Energy_consumption.Single(q => q.Product_ID == items[index].Product_ID);
+            maxConsumption += consumption.Consumption;
+          }
         }
           index++;
       }
-      MessageBox.Show(Convert.ToString(maxConsumption));
+      //SetPSUByConsumption();
     }
+
+    private void SetPSUByConsumption()
+    {
+      if(PSU_ComboBox.SelectedIndex == -1)
+      {
+        PSU_ComboBox.Items.Clear();
+        filteredPsus.Clear();
+        foreach(PSU p in Psus)
+        {
+          if(p.Consumption >= maxConsumption)
+          {
+            filteredPsus.Add(p);
+            PSU_ComboBox.Items.Add(p.Name);
+          }
+        }
+      }
+      else
+      {
+        PSU currentPSU = Psus.Single(i => i.Name == PSU_ComboBox.Text);
+        string name = currentPSU.Consumption >= maxConsumption ? currentPSU.Name : "";
+        PSU_ComboBox.Items.Clear();
+        List<PSU> tempPSU;
+        tempPSU = Psus.Where(i => i.Consumption >= maxConsumption).ToList();
+        filteredPsus = tempPSU;
+        foreach(PSU cs in filteredPsus)
+        {
+          PSU_ComboBox.Items.Add(cs.Name);
+        }
+        PSU_ComboBox.SelectedItem = name;
+      }
+    }
+
 
     private void CheckIntegratedGraphicSupport(string motherboardID, CPU selectedCPU)
     {
@@ -1410,19 +1461,41 @@ namespace Computer_house
               Motherboard_ComboBox.Items.Add(m.Name);
             }
           }
-
-
-
-          //продумать момент, что нужно брать отфильтрованные данные если cpu, cooling или ram заполнены
-          //аналогично и с процессорами, оперативкой и системами охлаждения и тд.
         }
         else
         {
           //если материнка выбрана то ничего делать не нужно
         }
+        if(Case_ComboBox.SelectedIndex == -1)
+        {
+          Case_ComboBox.Items.Clear();
+          filteredCases.Clear();
+          foreach(Case cs in Cases)
+          {
+            if(cs.Max_GPU_length >= currentGPU.Length)
+            {
+              Case_ComboBox.Items.Add(cs.Name);
+              filteredCases.Add(cs);
+            }
+          }
+        }
+        else
+        {
+          Case currentCase = Cases.Single(i => i.Name == Case_ComboBox.Text);
+          string name = currentCase.Max_GPU_length >= currentGPU.Length ? currentCase.Name : "";
+          Case_ComboBox.Items.Clear();
+          List<Case> tempCases = filteredCases.Where(i => i.Max_GPU_length >= currentGPU.Length).ToList();
+          filteredCases = tempCases;
+          foreach(Case cs in filteredCases)
+          {
+            Case_ComboBox.Items.Add(cs.Name);
+          }
+          Case_ComboBox.SelectedItem = name;
+        }
       }
       CalculatePCPrice();
       CalculatePCConsumption();
+      SetPSUByConsumption();
     }
 
     //Нужен для добавления компонентов в конфигураторе ПК
@@ -1430,7 +1503,7 @@ namespace Computer_house
     {
       if (comboBox.SelectedIndex != -1)
       {
-        if (prevName != "")
+        if (prevName != "" && SelectedConfigIntemsListBox.Items.Count > 0)
         {
           int index = SelectedConfigIntemsListBox.Items.IndexOf(prevName);
           SelectedConfigIntemsListBox.Items[index] = comboBox.Text;
@@ -1448,24 +1521,87 @@ namespace Computer_house
 
     private void EnterPurchaseWindow_Click(object sender, EventArgs e)
     {
-      //переносить в правое окно для оформления 
-      //предусмотреть что не все выбранные элементы могут быть в магазине или на складе
+      if(SelectedConfigIntemsListBox.Items.Count > 0)
+      {
+        string needToBuy = "В данный момент купить следующие товары не предоставляется возможным: ";
+        //переносить в правое окно для оформления 
+        //предусмотреть что не все выбранные элементы могут быть в магазине или на складе
+        ComboBox[] comboboxes = {CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox, PSU_ComboBox,
+          RAM_ComboBox, Case_ComboBox, CoolingSystem_ComboBox, StorageDevice_ComboBox};
+        foreach(ComboBox cb in comboboxes)
+        {
+          if(cb.BackColor == Color.Red)
+          {
+            needToBuy += cb.Text + "; ";
+          }
+          else
+          {
+            Warehouse_info warehouseInfo = WarehouseInformationList.Single(i =>
+             i.ProductName == cb.Text);
+            if(warehouseInfo.Items_in_shop != 0)
+            {
+              SelectedItemsListBox.Items.Add(warehouseInfo.ProductName);
+              shoppingBasket.Add(new Product { Name = "Shop", ID = warehouseInfo.ProductName });
+              int index = WarehouseInformationList.IndexOf(warehouseInfo);
+              warehouseInfo.Items_in_shop--;
+              WarehouseInformationList[index] = warehouseInfo;
+              Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+              decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+              PriceLabel.Text = Convert.ToString(Math.Round(decimal.Parse(PriceLabel.Text) + currentPrice, 2));
+              ViewInfoInDataGrid();
+            }
+            else if(warehouseInfo.Current_items_count != 0)
+            {
+              //Доделать
+              SelectedItemsListBox.Items.Add(warehouseInfo.ProductName);
+              shoppingBasket.Add(new Product { Name = "Warehouse", ID = warehouseInfo.ProductName });
+              int index = WarehouseInformationList.IndexOf(warehouseInfo);
+              warehouseInfo.Current_items_count--;
+              //WarehouseInformationList[index] = warehouseInfo;
+              Price_list price = PriceList.Single(i => i.Product_ID == warehouseInfo.Product_ID);
+              decimal currentPrice = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
+              PriceLabel.Text = Convert.ToString(Math.Round(decimal.Parse(PriceLabel.Text) + currentPrice, 2));
+              ViewInfoInDataGrid();
+            }
+          }
+        }
+        //сделать диалог, если нужен запрос, то сделать запрос
+        string question = needToBuy + "\nВы хотите сформировать запрос на склад?";
+        DialogResult questionResult = MessageBox.Show(question,
+                                    "Оформление покупки",
+                                      MessageBoxButtons.YesNo,
+                                      MessageBoxIcon.Information,
+                                      MessageBoxDefaultButton.Button2,
+                                      MessageBoxOptions.DefaultDesktopOnly);
+        if(questionResult == DialogResult.Yes)
+        {
+          foreach(ComboBox cb in comboboxes)
+          {
+            Warehouse_info warehouseInfo = WarehouseInformationList.Single(i =>
+             i.ProductName == cb.Text);
+            ShopRequests newRequest = new ShopRequests(warehouseInfo.Product_ID, 1, user.ID);
+            using(ApplicationContext db = new ApplicationContext())
+            {
+              db.ShopRequests.Add(newRequest);
+              List<NeedToUpdate> update = db.NeedToUpdate.ToList();
+              update[0].UpdateStatusForWarehouse = true;
+              db.NeedToUpdate.Update(update[0]);
+              db.SaveChanges();
+            }
+          }
+          MessageBox.Show("Товары успешно запрошены");
+        }
 
-      //заполнить набор shopBasket
+        tabControl1.SelectedIndex = 1;
 
-      //очистка полей
-      SystemFunctions.ClearComboBoxes(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox, PSU_ComboBox,
-          RAM_ComboBox, Case_ComboBox, CoolingSystem_ComboBox, StorageDevice_ComboBox);
-      cpuNameInListBox = "";
-      gpuNameInListBox = "";
-      motherboardNameInListBox = "";
-      ramNameInListBox = "";
-      coolingSystemNameInListBox = "";
-      psuNameInListBox = "";
-      storageNameInListBox = "";
-      caseNameInListBox = "";
-      SelectedConfigIntemsListBox.Items.Clear();
-      SelectedComponentInfoTextBox.Clear();
+        //заполнить набор shopBasket
+
+        ClearConfig_Click(sender, e);
+      }
+      else
+      {
+        MessageBox.Show("Нужно выбрать товары для покупки");
+      }
     }
 
     private void ChangeCPUComboBoxBySocket()
@@ -1773,6 +1909,72 @@ namespace Computer_house
             CoolingSystem_ComboBox.BackColor = Color.White;
           }
         }
+
+
+        if(Case_ComboBox.SelectedIndex == -1)
+        {
+          Case_ComboBox.Items.Clear();
+          filteredCases.Clear();
+          foreach(Case cs in Cases)
+          {
+            string[] forms = cs.Compatible_motherboard.Split(new char[] { ',' });
+            for(int i = 0; i < forms.Length; i++)
+            {
+              forms[i] = forms[i].Trim();
+            }
+            foreach(var f in forms)
+            {
+              if(f.Equals(currentMotherboard.FormFactor))
+              {
+                Case_ComboBox.Items.Add(cs.Name);
+                filteredCases.Add(cs);
+                break;
+              }
+            }
+          }
+        }
+        else
+        {
+          Case currentCase = Cases.Single(i => i.Name == Case_ComboBox.Text);
+          string name = "";
+          string[] forms = currentCase.FormFactor.Split(new char[] { ',' });
+          for(int i = 0; i < forms.Length; i++)
+          {
+            forms[i] = forms[i].Trim();
+          }
+          foreach(var f in forms)
+          {
+            if(f == currentMotherboard.FormFactor)
+            {
+              name = currentCase.Name;
+              break;
+            }
+          }
+          Case_ComboBox.Items.Clear();
+          List<Case> tempCases = new List<Case>();
+          foreach(Case cs in filteredCases)
+          {
+            string[] forms1 = cs.FormFactor.Split(new char[] { ',' });
+            for(int i = 0; i < forms1.Length; i++)
+            {
+              forms1[i] = forms1[i].Trim();
+            }
+            foreach(var f in forms)
+            {
+              if(f == currentMotherboard.FormFactor)
+              {
+                tempCases.Add(cs);
+                break;
+              }
+            }
+          }
+          filteredCases = tempCases;
+          foreach(Case cs in filteredCases)
+          {
+            Case_ComboBox.Items.Add(cs.Name);
+          }
+          Case_ComboBox.SelectedItem = name;
+        }
       }
       CalculatePCPrice();
     }
@@ -1868,18 +2070,50 @@ namespace Computer_house
             CPU_ComboBox.BackColor = Color.White;
           }
         }
-        
       }
+      
       CalculatePCConsumption();
       CalculatePCPrice();
     }
 
     private void PSU_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      AddConfigItemInListBox(PSU_ComboBox, ref psuNameInListBox);
+      if(PSU_ComboBox.SelectedIndex != -1)
+      {
+        PSU currentPSU = Psus.Single(i => i.Name == PSU_ComboBox.Text);
+        AddConfigItemInListBox(PSU_ComboBox, ref psuNameInListBox);
+
+        if(Case_ComboBox.SelectedIndex == -1)
+        {
+          Case_ComboBox.Items.Clear();
+          filteredCases.Clear();
+          foreach(Case cs in Cases)
+          {
+            if(cs.Max_PSU_length >= currentPSU.Length)
+            {
+              Case_ComboBox.Items.Add(cs.Name);
+              filteredCases.Add(cs);
+            }
+          }
+        }
+        else
+        {
+          Case currentCase = Cases.Single(i => i.Name == Case_ComboBox.Text);
+          string name = currentCase.Max_PSU_length >= currentPSU.Length ? currentCase.Name : "";
+          Case_ComboBox.Items.Clear();
+          List<Case> tempCases = filteredCases.Where(i => i.Max_PSU_length >= currentPSU.Length).ToList();
+          filteredCases = tempCases;
+          foreach(Case cs in filteredCases)
+          {
+            Case_ComboBox.Items.Add(cs.Name);
+          }
+          Case_ComboBox.SelectedItem = name;
+        }
+
+      }
       CalculatePCPrice();
-      CalculatePCConsumption();
     }
+
 
     private void StorageDevice_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -1890,9 +2124,12 @@ namespace Computer_house
 
     private void Case_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      AddConfigItemInListBox(Case_ComboBox, ref caseNameInListBox);
-      CalculatePCPrice();
-      CalculatePCConsumption();
+      if(Case_ComboBox.SelectedIndex != -1)
+      {
+        AddConfigItemInListBox(Case_ComboBox, ref caseNameInListBox);
+        CalculatePCPrice();
+        CalculatePCConsumption();
+      }
     }
 
     private void SelectedItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2147,6 +2384,87 @@ namespace Computer_house
         decimal current_price = price.Purchasable_price + price.Purchasable_price * price.Markup_percent / 100;
         ConfigPriceLabel.Text = Convert.ToString(Math.Round(Convert.ToDecimal(ConfigPriceLabel.Text) + current_price,2));
         index++;
+      }
+    }
+
+    private void ClearConfig_Click(object sender, EventArgs e)
+    {
+      filteredCases.Clear();
+      filteredCoolingSystems.Clear();
+      filteredCpus.Clear();
+      filteredGpus.Clear();
+      filteredMotherboards.Clear();
+      filteredPsus.Clear();
+      filteredRams.Clear();
+      filteredStorageDevices.Clear();
+
+      ConfigPriceLabel.Text = "0";
+      SelectedComponentInfoTextBox.Clear();
+      SelectedConfigIntemsListBox.Items.Clear();
+
+      SystemFunctions.Clear(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+      ViewInfoInComboBox<CPU>(Cpus, CPU_ComboBox);
+      ViewInfoInComboBox<GPU>(Gpus, GPU_ComboBox);
+      ViewInfoInComboBox<Motherboard>(Motherboards, Motherboard_ComboBox);
+      ViewInfoInComboBox<RAM>(Rams, RAM_ComboBox);
+      ViewInfoInComboBox<Cooling_system>(CoolingSystems, CoolingSystem_ComboBox);
+      ViewInfoInComboBox<PSU>(Psus, PSU_ComboBox);
+      ViewInfoInComboBox<Case>(Cases, Case_ComboBox);
+      ViewInfoInComboBox<Storage_devices>(StorageDevices, StorageDevice_ComboBox);
+      
+      
+    }
+
+    private void ClearConfigInfoAfterChoosePC()
+    {
+      filteredCases.Clear();
+      filteredCoolingSystems.Clear();
+      filteredCpus.Clear();
+      filteredGpus.Clear();
+      filteredMotherboards.Clear();
+      filteredPsus.Clear();
+      filteredRams.Clear();
+      filteredStorageDevices.Clear();
+
+      ConfigPriceLabel.Text = "0";
+      SelectedComponentInfoTextBox.Clear();
+      //SelectedConfigIntemsListBox.Items.Clear();
+
+      SystemFunctions.Clear(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
+        RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
+      ViewInfoInComboBox<CPU>(Cpus, CPU_ComboBox);
+      ViewInfoInComboBox<GPU>(Gpus, GPU_ComboBox);
+      ViewInfoInComboBox<Motherboard>(Motherboards, Motherboard_ComboBox);
+      ViewInfoInComboBox<RAM>(Rams, RAM_ComboBox);
+      ViewInfoInComboBox<Cooling_system>(CoolingSystems, CoolingSystem_ComboBox);
+      ViewInfoInComboBox<PSU>(Psus, PSU_ComboBox);
+      ViewInfoInComboBox<Case>(Cases, Case_ComboBox);
+      ViewInfoInComboBox<Storage_devices>(StorageDevices, StorageDevice_ComboBox);
+    }
+
+    private void PCConfigsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+    {
+      if(PCConfigsDataGridView.SelectedCells.Count > 0)
+      {
+        ConfigPriceLabel.Text = "0";
+        ClearConfigInfoAfterChoosePC();
+
+        int selectedrowindex = PCConfigsDataGridView.SelectedCells[0].RowIndex;
+        DataGridViewRow currentRow = PCConfigsDataGridView.Rows[selectedrowindex];
+        Mediator SelectedPC = PCs.Single(i => i.ID == (int)currentRow.Cells[0].Value);
+        using(ApplicationContext db = new ApplicationContext())
+        {     
+          CPU_ComboBox.SelectedItem = db.CPU.Single(i => i.ID == SelectedPC.CPU_ID).Name;
+          GPU_ComboBox.SelectedItem = db.GPU.Single(i => i.ID == SelectedPC.GPU_ID).Name;
+          Motherboard_ComboBox.SelectedItem = db.Motherboard.Single(i => i.ID == SelectedPC.Motherboard_ID).Name;
+          RAM_ComboBox.SelectedItem = db.RAM.Single(i => i.ID == SelectedPC.RAM_ID).Name;
+          CoolingSystem_ComboBox.SelectedItem = db.Cooling_system.Single(i => i.ID == SelectedPC.Cooling_system_ID).Name;
+          PSU_ComboBox.SelectedItem = db.PSU.Single(i => i.ID == SelectedPC.PSU_ID).Name;
+          StorageDevice_ComboBox.SelectedItem = db.Storage_devices.Single(i => i.ID == SelectedPC.SD_ID).Name;
+          Case_ComboBox.SelectedItem = db.Case.Single(i => i.ID == SelectedPC.Case_ID).Name;
+        }
+        
       }
     }
   }

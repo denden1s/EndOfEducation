@@ -39,7 +39,6 @@ namespace Computer_house
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.настроитьIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.panel1 = new System.Windows.Forms.Panel();
@@ -130,8 +129,7 @@ namespace Computer_house
       this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.настроитьIPToolStripMenuItem,
-            this.справкаToolStripMenuItem,
-            this.выйтиИзУчётнойЗаписиToolStripMenuItem});
+            this.справкаToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -152,13 +150,6 @@ namespace Computer_house
       this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
       this.справкаToolStripMenuItem.Text = "Справка";
       this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
-      // 
-      // выйтиИзУчётнойЗаписиToolStripMenuItem
-      // 
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Name = "выйтиИзУчётнойЗаписиToolStripMenuItem";
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Text = "Выйти из учётной записи";
-      this.выйтиИзУчётнойЗаписиToolStripMenuItem.Click += new System.EventHandler(this.выйтиИзУчётнойЗаписиToolStripMenuItem_Click);
       // 
       // tabControl1
       // 
@@ -265,7 +256,7 @@ namespace Computer_house
       this.tabControl2.Multiline = true;
       this.tabControl2.Name = "tabControl2";
       this.tabControl2.SelectedIndex = 0;
-      this.tabControl2.Size = new System.Drawing.Size(1302, 483);
+      this.tabControl2.Size = new System.Drawing.Size(1302, 493);
       this.tabControl2.TabIndex = 0;
       // 
       // tabPage3
@@ -275,7 +266,7 @@ namespace Computer_house
       this.tabPage3.Location = new System.Drawing.Point(4, 37);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage3.Size = new System.Drawing.Size(1294, 442);
+      this.tabPage3.Size = new System.Drawing.Size(1294, 452);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "График затрат и доходов";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -293,7 +284,7 @@ namespace Computer_house
       this.tabControl5.Multiline = true;
       this.tabControl5.Name = "tabControl5";
       this.tabControl5.SelectedIndex = 0;
-      this.tabControl5.Size = new System.Drawing.Size(1282, 430);
+      this.tabControl5.Size = new System.Drawing.Size(1282, 440);
       this.tabControl5.TabIndex = 2;
       // 
       // tabPage10
@@ -302,7 +293,7 @@ namespace Computer_house
       this.tabPage10.Location = new System.Drawing.Point(4, 4);
       this.tabPage10.Name = "tabPage10";
       this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage10.Size = new System.Drawing.Size(1274, 394);
+      this.tabPage10.Size = new System.Drawing.Size(1274, 404);
       this.tabPage10.TabIndex = 0;
       this.tabPage10.Text = "График";
       this.tabPage10.UseVisualStyleBackColor = true;
@@ -320,7 +311,7 @@ namespace Computer_house
       this.PurchasingChart.Legends.Add(legend1);
       this.PurchasingChart.Location = new System.Drawing.Point(3, 6);
       this.PurchasingChart.Name = "PurchasingChart";
-      this.PurchasingChart.Size = new System.Drawing.Size(1265, 385);
+      this.PurchasingChart.Size = new System.Drawing.Size(1265, 395);
       this.PurchasingChart.TabIndex = 0;
       this.PurchasingChart.Text = "chart1";
       // 
@@ -398,7 +389,7 @@ namespace Computer_house
       this.tabPage4.Location = new System.Drawing.Point(4, 37);
       this.tabPage4.Name = "tabPage4";
       this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage4.Size = new System.Drawing.Size(1294, 442);
+      this.tabPage4.Size = new System.Drawing.Size(1294, 452);
       this.tabPage4.TabIndex = 1;
       this.tabPage4.Text = "График востребованности";
       this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
@@ -416,7 +407,7 @@ namespace Computer_house
       this.tabControl3.Multiline = true;
       this.tabControl3.Name = "tabControl3";
       this.tabControl3.SelectedIndex = 0;
-      this.tabControl3.Size = new System.Drawing.Size(1282, 442);
+      this.tabControl3.Size = new System.Drawing.Size(1282, 440);
       this.tabControl3.TabIndex = 1;
       // 
       // tabPage6
@@ -425,7 +416,7 @@ namespace Computer_house
       this.tabPage6.Location = new System.Drawing.Point(4, 4);
       this.tabPage6.Name = "tabPage6";
       this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage6.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage6.Size = new System.Drawing.Size(1274, 404);
       this.tabPage6.TabIndex = 0;
       this.tabPage6.Text = "График";
       this.tabPage6.UseVisualStyleBackColor = true;
@@ -443,7 +434,7 @@ namespace Computer_house
       this.DemandedChart.Legends.Add(legend2);
       this.DemandedChart.Location = new System.Drawing.Point(3, 6);
       this.DemandedChart.Name = "DemandedChart";
-      this.DemandedChart.Size = new System.Drawing.Size(1265, 397);
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 395);
       this.DemandedChart.TabIndex = 0;
       this.DemandedChart.Text = "chart1";
       // 
@@ -453,7 +444,7 @@ namespace Computer_house
       this.tabPage7.Location = new System.Drawing.Point(4, 4);
       this.tabPage7.Name = "tabPage7";
       this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage7.Size = new System.Drawing.Size(1274, 406);
+      this.tabPage7.Size = new System.Drawing.Size(1274, 418);
       this.tabPage7.TabIndex = 1;
       this.tabPage7.Text = "Таблица";
       this.tabPage7.UseVisualStyleBackColor = true;
@@ -503,7 +494,7 @@ namespace Computer_house
       this.tabPage5.Location = new System.Drawing.Point(4, 37);
       this.tabPage5.Name = "tabPage5";
       this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage5.Size = new System.Drawing.Size(1294, 442);
+      this.tabPage5.Size = new System.Drawing.Size(1294, 452);
       this.tabPage5.TabIndex = 2;
       this.tabPage5.Text = "График эффективности труда";
       this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
@@ -521,7 +512,7 @@ namespace Computer_house
       this.tabControl4.Multiline = true;
       this.tabControl4.Name = "tabControl4";
       this.tabControl4.SelectedIndex = 0;
-      this.tabControl4.Size = new System.Drawing.Size(1282, 454);
+      this.tabControl4.Size = new System.Drawing.Size(1282, 440);
       this.tabControl4.TabIndex = 2;
       // 
       // tabPage8
@@ -530,7 +521,7 @@ namespace Computer_house
       this.tabPage8.Location = new System.Drawing.Point(4, 4);
       this.tabPage8.Name = "tabPage8";
       this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage8.Size = new System.Drawing.Size(1274, 418);
+      this.tabPage8.Size = new System.Drawing.Size(1274, 404);
       this.tabPage8.TabIndex = 0;
       this.tabPage8.Text = "График";
       this.tabPage8.UseVisualStyleBackColor = true;
@@ -546,9 +537,9 @@ namespace Computer_house
       legend3.IsTextAutoFit = false;
       legend3.Name = "Legend1";
       this.EfficiencyChart.Legends.Add(legend3);
-      this.EfficiencyChart.Location = new System.Drawing.Point(3, 6);
+      this.EfficiencyChart.Location = new System.Drawing.Point(9, 6);
       this.EfficiencyChart.Name = "EfficiencyChart";
-      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 406);
+      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 392);
       this.EfficiencyChart.TabIndex = 0;
       this.EfficiencyChart.Text = "chart1";
       // 
@@ -558,7 +549,7 @@ namespace Computer_house
       this.tabPage9.Location = new System.Drawing.Point(4, 4);
       this.tabPage9.Name = "tabPage9";
       this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage9.Size = new System.Drawing.Size(1274, 418);
+      this.tabPage9.Size = new System.Drawing.Size(1274, 430);
       this.tabPage9.TabIndex = 1;
       this.tabPage9.Text = "Таблица";
       this.tabPage9.UseVisualStyleBackColor = true;
@@ -887,7 +878,6 @@ namespace Computer_house
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настроитьIPToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выйтиИзУчётнойЗаписиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
     private System.Windows.Forms.TabControl tabControl1;
     private System.Windows.Forms.TabPage tabPage1;

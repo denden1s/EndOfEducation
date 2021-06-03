@@ -53,6 +53,8 @@ namespace Computer_house.OtherClasses
       foreach(ListBox l in listBoxes)
         l.Items.Clear();
     }
+
+
     public static void Clear(params RichTextBox[] textBoxes)
     {
       foreach(RichTextBox t in textBoxes)

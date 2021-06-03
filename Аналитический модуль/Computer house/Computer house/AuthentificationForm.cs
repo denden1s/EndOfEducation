@@ -48,7 +48,7 @@ namespace Computer_house
       Application.Exit();
     }
 
-    private void настроитьIPToolStripMenuItem_Click(object sender, EventArgs e)
+    private void настроитьIPToolStripMenuItem_Click_1(object sender, EventArgs e)
     {
       SystemFunctions.SetNewDataBaseAdress();
     }

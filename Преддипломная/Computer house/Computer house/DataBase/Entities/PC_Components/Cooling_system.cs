@@ -60,20 +60,26 @@ namespace Computer_house.DataBase.Entities
 
     private void SetBaseAndMaxOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Cooling system" && b.Cooling_system_ID == ID
+                    select b.ID).FirstOrDefault();
       var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
       Max_state = baseAndMaxOptions.Max_state;
     }
 
     private void SetEnergy_consumption(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Cooling system" && b.Cooling_system_ID == ID
+                    select b.ID).FirstOrDefault();
       Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
     }
 
     private void SetSizesOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Cooling_system_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Cooling system" && b.Cooling_system_ID == ID
+                    select b.ID).FirstOrDefault();
       var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
       Diameter = sizes.Diameter;
     }

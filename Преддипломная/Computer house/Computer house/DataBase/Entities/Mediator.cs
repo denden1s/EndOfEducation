@@ -1,4 +1,6 @@
-﻿namespace Computer_house.DataBase.Entities
+﻿using System.Linq;
+
+namespace Computer_house.DataBase.Entities
 {
   public class Mediator
   {
@@ -14,5 +16,21 @@
     public string Motherboard_ID { get; set; }
 
     public Mediator() { }
+
+    public Mediator(params string[] components)
+    {
+      Components_type = "PC";
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        CPU_ID = db.CPU.Single(i => i.Name == components[0]).ID;
+        GPU_ID = db.GPU.Single(i => i.Name ==  components[1]).ID;
+        Case_ID = db.Case.Single(i => i.Name == components[2]).ID;
+        RAM_ID = db.RAM.Single(i => i.Name ==  components[3]).ID;
+        Cooling_system_ID = db.Cooling_system.Single(i => i.Name == components[4]).ID;
+        PSU_ID = db.PSU.Single(i => i.Name == components[5]).ID;
+        SD_ID = db.Storage_devices.Single(i => i.Name == components[6]).ID;
+        Motherboard_ID = db.Motherboard.Single(i => i.Name == components[7]).ID;
+      }
+    }
   }
 }

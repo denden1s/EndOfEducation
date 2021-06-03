@@ -82,19 +82,25 @@ namespace Computer_house.DataBase.Entities
 
     private void SetMemoryCapacity(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "GPU" && b.GPU_ID == ID
+                    select b.ID).FirstOrDefault();
       Capacity = db.Memory_capacity.Single(i => i.Product_ID == Product_ID).Capacity;
     }
 
     private void SetEnergy_consumption(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "GPU" && b.GPU_ID == ID
+                    select b.ID).FirstOrDefault();
       Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
     }
 
     private void SetSizesOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.GPU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "GPU" && b.GPU_ID == ID
+                    select b.ID).FirstOrDefault();
       var sizes = db.Sizes_of_components.Single(i => i.Product_ID == Product_ID);
       Length = sizes.Length;
       Height = sizes.Height;

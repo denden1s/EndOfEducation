@@ -82,7 +82,9 @@ namespace Computer_house.DataBase.Entities
 
     public void SetBaseAndMaxOptions(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.CPU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "CPU" && b.CPU_ID == ID
+                    select b.ID).FirstOrDefault();
       var baseAndMaxOptions = db.Base_and_max_options.Single(i => i.Product_ID == Product_ID);
       Base_state = baseAndMaxOptions.Base_state;
       Max_state = baseAndMaxOptions.Max_state;
@@ -90,7 +92,9 @@ namespace Computer_house.DataBase.Entities
 
     public void SetEnergy_consumption(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.CPU_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "CPU" && b.CPU_ID == ID
+                    select b.ID).FirstOrDefault();
       Consumption = db.Energy_consumption.Single(i => i.Product_ID == Product_ID).Consumption;
     }
   }

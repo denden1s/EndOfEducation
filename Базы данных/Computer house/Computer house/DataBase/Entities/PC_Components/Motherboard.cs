@@ -95,7 +95,9 @@ namespace Computer_house.DataBase.Entities.PC_Components
 
     private void SetMemoryCapacity(ApplicationContext db)
     {
-      Product_ID = db.Mediator.Single(i => i.Motherboard_ID == ID).ID;
+      Product_ID = (from b in db.Mediator
+                    where b.Components_type == "Motherboard" && b.Motherboard_ID == ID
+                    select b.ID).FirstOrDefault();
       Capacity = db.Memory_capacity.Single(i => i.Product_ID == Product_ID).Capacity;
     }
 
