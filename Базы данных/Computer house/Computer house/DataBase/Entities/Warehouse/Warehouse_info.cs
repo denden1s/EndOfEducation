@@ -1,5 +1,4 @@
-﻿
-using Computer_house.OtherClasses;
+﻿using Computer_house.OtherClasses;
 using System.Linq;
 
 namespace Computer_house.DataBase.Entities.Warehouse

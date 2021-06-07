@@ -1,9 +1,6 @@
-﻿using Computer_house.DataBase.Entities.Warehouse;
-using Computer_house.OtherClasses;
+﻿using Computer_house.OtherClasses;
 using System;
-using System.Linq;
 using System.Windows.Forms;
-using ApplicationContext = Computer_house.DataBase.ApplicationContext;
 
 namespace Computer_house
 {
@@ -18,10 +15,7 @@ namespace Computer_house
       InitializeComponent();
     }
 
-    private void Form1_Load(object sender, EventArgs e)
-    {
-        
-    }
+    private void Form1_Load(object sender, EventArgs e){}
 
     private void BAuthentificate_Click(object sender, EventArgs e)
     {

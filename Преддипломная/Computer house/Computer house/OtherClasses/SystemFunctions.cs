@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using Computer_house.DataBase;
 
 namespace Computer_house.OtherClasses
 {

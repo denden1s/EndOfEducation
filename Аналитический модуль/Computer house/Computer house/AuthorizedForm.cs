@@ -288,12 +288,7 @@ namespace Computer_house
       PurchasingTable.Rows.Clear();
       //вывод сведений о дате
 
-
-
-
       ViewGraphic();
-      //EfficiencyChart.Printing.PageSetup();
-      //EfficiencyChart.Printing.PrintPreview();
     }
 
     private void CreatePurchaseDocsWithOnlyStartTime(ref List<Purchases> purchases, ref List<Sellings> sellings)
@@ -496,6 +491,17 @@ namespace Computer_house
               PurchasingChart.Series[0].Points.AddXY(p.Time.ToString("d"),Convert.ToDouble(p.Income));
               PurchasingTable.Rows.Add(p.Time.ToString("d"), Math.Round(p.Purchase,2), Math.Round(p.Sales, 2), Math.Round(p.Income, 2));
             }
+            DialogResult questionResult = MessageBox.Show("Распечатать график затрат?",
+                                          "Печать документов",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Information,
+                                          MessageBoxDefaultButton.Button2,
+                                          MessageBoxOptions.DefaultDesktopOnly);
+            if(questionResult == DialogResult.Yes)
+            {
+              PurchasingChart.Printing.PageSetup();
+              PurchasingChart.Printing.PrintPreview();
+            }
           }
           else
             MessageBox.Show("Данные введены некорректно, либо они отсутствуют");
@@ -577,6 +583,17 @@ namespace Computer_house
               var chart = DemandedChart.Series.Add(p.Name);
               chart.Points.Add(Convert.ToDouble(p.ID));
               DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
+            }
+            DialogResult questionResult = MessageBox.Show("Распечатать график востребованности?",
+                                          "Печать документов",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Information,
+                                          MessageBoxDefaultButton.Button2,
+                                          MessageBoxOptions.DefaultDesktopOnly);
+            if(questionResult == DialogResult.Yes)
+            {
+              DemandedChart.Printing.PageSetup();
+              DemandedChart.Printing.PrintPreview();
             }
           }
           else
@@ -674,6 +691,17 @@ namespace Computer_house
               var chart = EfficiencyChart.Series.Add(p.Name);
               chart.Points.Add(Convert.ToDouble(p.ID));
               EfficiencyTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
+            }
+            DialogResult questionResult = MessageBox.Show("Распечатать график эффективности?",
+                                          "Печать документов",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Information,
+                                          MessageBoxDefaultButton.Button2,
+                                          MessageBoxOptions.DefaultDesktopOnly);
+            if(questionResult == DialogResult.Yes)
+            {
+              EfficiencyChart.Printing.PageSetup();
+              EfficiencyChart.Printing.PrintPreview();
             }
           }
           else

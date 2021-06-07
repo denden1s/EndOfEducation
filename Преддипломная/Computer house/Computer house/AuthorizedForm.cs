@@ -202,6 +202,9 @@ namespace Computer_house
 
     private async void Update()
     {
+      object s = new object();
+      EventArgs e = new EventArgs();
+      ClearConfig_Click(s, e);
       SystemFunctions.Clear(CPU_ComboBox, GPU_ComboBox, Motherboard_ComboBox,
         RAM_ComboBox, CoolingSystem_ComboBox, PSU_ComboBox, StorageDevice_ComboBox, Case_ComboBox);
       SystemFunctions.Clear(SelectedConfigIntemsListBox, SelectedItemsListBox);
