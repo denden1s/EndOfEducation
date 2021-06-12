@@ -286,6 +286,10 @@ namespace Computer_house
 
       PurchasingChart.Series.Clear();
       PurchasingTable.Rows.Clear();
+
+      DemandedChart.Titles.Clear();
+      EfficiencyChart.Titles.Clear();
+      PurchasingChart.Titles.Clear();
       //вывод сведений о дате
 
       ViewGraphic();
@@ -483,6 +487,8 @@ namespace Computer_house
             PurchasingChart.Series.Add("Прибыль");
             PurchasingChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             PurchasingChart.Series[0].BorderWidth = 3;
+            PurchasingChart.Titles.Add("График затрат и доходов");
+            PurchasingChart.Titles[0].Font = new System.Drawing.Font("Malgun Gothic;", 12F);
             purchasingStatistic = (from b in purchasingStatistic
                                    orderby b.Time ascending
                                    select b).ToList();
@@ -578,6 +584,8 @@ namespace Computer_house
             DemandedChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             DemandedChart.ChartAreas[0].AxisY.Title = "Количество";
             DemandedChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            DemandedChart.Titles.Add("График востребованности");
+            DemandedChart.Titles[0].Font = new System.Drawing.Font("Malgun Gothic;", 12F);
             foreach(Product p in demandedInfo)
             {
               var chart = DemandedChart.Series.Add(p.Name);
@@ -686,6 +694,8 @@ namespace Computer_house
             EfficiencyChart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             EfficiencyChart.ChartAreas[0].AxisY.Title = "Количество реализованного товара";
             EfficiencyChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
+            EfficiencyChart.Titles.Add("График эффективности");
+            EfficiencyChart.Titles[0].Font = new System.Drawing.Font("Malgun Gothic;", 12F);
             foreach(Product p in efficiencyInfo)
             {
               var chart = EfficiencyChart.Series.Add(p.Name);

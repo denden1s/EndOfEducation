@@ -1434,7 +1434,7 @@ namespace Computer_house
     }
     private void GPU_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if(GPU_ComboBox.SelectedIndex != -1)
+      if(GPU_ComboBox.SelectedIndex != -1 && GPU_ComboBox.Items.Count > 0)
       {
         AddConfigItemInListBox(GPU_ComboBox, ref gpuNameInListBox);
         int warehouseGpuID = WarehouseInformationList.Single(i => i.ProductName == gpuNameInListBox).Product_ID;
@@ -1508,8 +1508,12 @@ namespace Computer_house
       {
         if (prevName != "" && SelectedConfigIntemsListBox.Items.Count > 0)
         {
-          int index = SelectedConfigIntemsListBox.Items.IndexOf(prevName);
-          SelectedConfigIntemsListBox.Items[index] = comboBox.Text;
+          int index = -1;
+          index = SelectedConfigIntemsListBox.Items.IndexOf(prevName);
+          if(index != -1)
+            SelectedConfigIntemsListBox.Items[index] = comboBox.Text;
+          else
+            SelectedConfigIntemsListBox.Items.Add(comboBox.Text);
         }
         else
           SelectedConfigIntemsListBox.Items.Add(comboBox.Text);

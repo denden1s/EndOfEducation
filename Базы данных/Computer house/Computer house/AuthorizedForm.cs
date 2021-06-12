@@ -819,6 +819,7 @@ namespace Computer_house
         LoadLocationInWarehouseFromDB();
         LoadProductLocationFromDB();
         SystemFunctions.SendInfoInShopToUpdate();
+        SearchInfo.Clear();
       }
       else
         MessageBox.Show("Действие отменено");
