@@ -1311,5 +1311,14 @@ namespace Computer_house.OtherClasses
         }
       }
     }
+
+    public static void CreateAuthentificationLog(Authentification_logs log)
+    {
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        db.Authentification_logs.Add(log);
+        db.SaveChanges();
+      }
+    }
   }
 }

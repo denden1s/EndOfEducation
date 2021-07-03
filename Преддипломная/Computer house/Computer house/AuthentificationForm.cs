@@ -63,6 +63,8 @@ namespace Computer_house
               {
                 user.Authorization_status_in_shop = true;
                 db.SaveChanges();
+                Authentification_logs log = new Authentification_logs(user.ID, true);
+                SQLRequests.CreateAuthentificationLog(log);
                 authorizedForm = new AuthorizedForm(user);
                 authorizedForm.Show();
                 this.Hide();

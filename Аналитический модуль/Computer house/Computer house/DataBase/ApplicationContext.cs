@@ -13,6 +13,7 @@ namespace Computer_house.DataBase
     private SetupIP Adress;
 
     //Информация склада
+    public DbSet<Authentification_logs> Authentification_logs { get; set; }
     public DbSet<Users> Users { get; set; }
     public DbSet<Holding_document> Holding_document { get; set; }
     public DbSet<Price_list> Price_list { get; set; }
@@ -50,6 +51,7 @@ namespace Computer_house.DataBase
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<Authentification_logs>().HasKey(i => i.ID);
       modelBuilder.Entity<Users>().HasKey(i => i.ID);
       modelBuilder.Entity<Holding_document>().HasKey(i => i.ID);
       modelBuilder.Entity<Price_list>().HasKey(i => i.Product_ID);

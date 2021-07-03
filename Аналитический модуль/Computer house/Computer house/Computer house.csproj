@@ -181,6 +181,7 @@
       <DependentUpon>AuthorizedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\ApplicationContext.cs" />
+    <Compile Include="DataBase\Entities\Others\Authentification_logs.cs" />
     <Compile Include="DataBase\Entities\Others\Locations_in_warehouse.cs" />
     <Compile Include="DataBase\Entities\Others\Mediator.cs" />
     <Compile Include="DataBase\Entities\Others\Purchases.cs" />

@@ -214,6 +214,7 @@
     <Compile Include="DataBase\Shop\Warehouse_info.cs" />
     <Compile Include="DataBase\Limited\Product.cs" />
     <Compile Include="DataBase\Limited\ProductWithOnlyName.cs" />
+    <Compile Include="OtherClasses\Authentification_logs.cs" />
     <Compile Include="OtherClasses\DesktopScreen.cs" />
     <Compile Include="OtherClasses\SetupIP.cs" />
     <Compile Include="OtherClasses\SQLRequests.cs" />

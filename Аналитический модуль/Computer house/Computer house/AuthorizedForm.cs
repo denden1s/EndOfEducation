@@ -5,6 +5,7 @@ using Computer_house.OtherClasses;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Computer_house
     private List<ShopRequests> ShopRequests = new List<ShopRequests>();
     private List<Purchases> Purchases = new List<Purchases>();
     private List<Sellings> Sellings = new List<Sellings>();
-    private Users user;
+    private List<Authentification_logs> Logs = new List<Authentification_logs>();
     private string enteredPage = "График затрат и доходов";
 
     //организация блокирования функции перетаскивания формы
@@ -44,29 +45,41 @@ namespace Computer_house
       RemoveMenu(hMenu, SC_CLOSE, MF_BYCOMMAND);
     }
 
-    public AuthorizedForm()
-    {
-      InitializeComponent();
-    }
-
-    public AuthorizedForm(Users _user)
-    {
-      user = _user;
-      InitializeComponent();  
-    }
+    public AuthorizedForm(){InitializeComponent();}
 
     private async void AuthorizedForm_Load(object sender, EventArgs e)
     {
       Width = Convert.ToInt32(DesktopScreen.Width / DesktopScreen.GetScalingFactor());
       Height = Convert.ToInt32(DesktopScreen.Height / DesktopScreen.GetScalingFactor());
       await Task.Run(() => LoadHoldingDocsFromDB());
-      ViewDocsInDataGrid();
+      SystemFunctions.ViewHoldingDocsInDataGrid(HoldingDocsDatagridView, HoldingDocuments);
       await Task.Run(() => LoadPriceInfo());
-      await Task.Run(() => LoadAllInfoFromDB());
+      await Task.Run(() => LoadWarehouseInfoFromDB());
       await Task.Run(() => LoadShopRequests());
       await Task.Run(() => LoadPurchases());
       await Task.Run(() => LoadSellings());
+
+      await Task.Run(() => LoadLogInfo());
+      ViewLogsInfo();
       ViewPriceInfo();
+    }
+
+    private void LoadLogInfo()
+    {
+      using(ApplicationContext db = new ApplicationContext())
+        Logs = db.Authentification_logs.ToList();
+
+      foreach(Authentification_logs lg in Logs)
+        lg.GetData();
+    }
+
+    private void ViewLogsInfo()
+    {
+      LogsDataGrid.Rows.Clear();
+      foreach(Authentification_logs log in Logs)
+      {
+        LogsDataGrid.Rows.Add(log.ID, log.userName, log.Place, log.status, log.Time);
+      }
     }
 
 
@@ -145,19 +158,15 @@ namespace Computer_house
       }
     }
 
-    private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e)
-    {
-      Application.Exit();
-    }
+    private void AuthorizedForm_FormClosed(object sender, FormClosedEventArgs e){Application.Exit();}
 
-    private void LoadAllInfoFromDB()
+    private void LoadWarehouseInfoFromDB()
     {
       try
       {
         WarehouseInformationList.Clear();
         using(ApplicationContext db = new ApplicationContext())
-          if(db.Warehouse_info.Count() > 0)
-            WarehouseInformationList = db.Warehouse_info.ToList();
+          WarehouseInformationList = db.Warehouse_info.ToList();
 
         foreach(Warehouse_info w in WarehouseInformationList)
           w.SetName();
@@ -170,15 +179,9 @@ namespace Computer_house
 
 
     //Нужен для того, чтобы после добавления данных обновить список в таблице
-    private void AuthorizedForm_Enter(object sender, EventArgs e)
-    {
-      AuthorizedForm_Load(sender, e);
-    }
+    private void AuthorizedForm_Enter(object sender, EventArgs e){AuthorizedForm_Load(sender, e);}
 
-    private void настроитьIPToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      SystemFunctions.SetNewDataBaseAdress();
-    }
+    private void настроитьIPToolStripMenuItem_Click(object sender, EventArgs e){SystemFunctions.SetNewDataBaseAdress();}
 
     private void выйтиИзУчётнойЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -189,26 +192,12 @@ namespace Computer_house
 
     private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      //Открыть PDF
       string fbPath = Application.StartupPath;
       string fname = "Справка.pdf";
       string filename = fbPath + @"\" + fname;
       Help.ShowHelp(this, filename, HelpNavigator.Find, "");
     }
 
-    private void ViewDocsInDataGrid()
-    {
-      HoldingDocsDatagridView.Rows.Clear();
-      foreach(var i in HoldingDocuments)
-      {
-        i.GetDataFromDB();
-        string name;
-        using(ApplicationContext db = new ApplicationContext())
-          name = db.Users.Single(b => b.ID == i.User_ID).Name;
-
-        HoldingDocsDatagridView.Rows.Add(i.ID, i.Product_name, i.Time, i.State, i.Items_count_in_move, name, i.Location_name);
-      }
-    }
 
     private void LoadHoldingDocsFromDB()
     {
@@ -310,7 +299,7 @@ namespace Computer_house
     {
       purchases = (from b in Purchases
                    where b.Time.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&
-                   b.Time.Date <= Convert.ToDateTime(StartOfPeriodTextBox.Text)
+                   b.Time.Date <= Convert.ToDateTime(EndPeriod.Text)
                    select b).ToList();
       sellings = (from b in Sellings
                   where b.Selling_date.Date >= Convert.ToDateTime(StartOfPeriodTextBox.Text) &&

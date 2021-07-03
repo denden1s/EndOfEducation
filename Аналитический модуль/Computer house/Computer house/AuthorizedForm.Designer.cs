@@ -42,7 +42,7 @@ namespace Computer_house
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.button2 = new System.Windows.Forms.Button();
+      this.CollectStatistic = new System.Windows.Forms.Button();
       this.label8 = new System.Windows.Forms.Label();
       this.EndPeriod = new System.Windows.Forms.MaskedTextBox();
       this.StartOfPeriodTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -75,7 +75,7 @@ namespace Computer_house
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.button1 = new System.Windows.Forms.Button();
+      this.SetPrice = new System.Windows.Forms.Button();
       this.BuyingPrice = new System.Windows.Forms.NumericUpDown();
       this.label5 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
@@ -94,6 +94,13 @@ namespace Computer_house
       this.ProductsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.WorkerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.AuthentificationLogs = new System.Windows.Forms.TabPage();
+      this.LogsDataGrid = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Fio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Место_работы = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Статус = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Время = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -121,6 +128,8 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
+      this.AuthentificationLogs.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.LogsDataGrid)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -133,21 +142,21 @@ namespace Computer_house
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(1324, 28);
+      this.menuStrip1.Size = new System.Drawing.Size(1324, 30);
       this.menuStrip1.TabIndex = 4;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // настроитьIPToolStripMenuItem
       // 
       this.настроитьIPToolStripMenuItem.Name = "настроитьIPToolStripMenuItem";
-      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
       this.настроитьIPToolStripMenuItem.Text = "Настроить IP";
       this.настроитьIPToolStripMenuItem.Click += new System.EventHandler(this.настроитьIPToolStripMenuItem_Click);
       // 
       // справкаToolStripMenuItem
       // 
       this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
       this.справкаToolStripMenuItem.Text = "Справка";
       this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
       // 
@@ -155,13 +164,14 @@ namespace Computer_house
       // 
       this.tabControl1.Controls.Add(this.tabPage1);
       this.tabControl1.Controls.Add(this.tabPage2);
+      this.tabControl1.Controls.Add(this.AuthentificationLogs);
       this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F);
-      this.tabControl1.Location = new System.Drawing.Point(0, 28);
+      this.tabControl1.Location = new System.Drawing.Point(0, 30);
       this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(1324, 654);
+      this.tabControl1.Size = new System.Drawing.Size(1324, 652);
       this.tabControl1.TabIndex = 5;
       // 
       // tabPage1
@@ -173,7 +183,7 @@ namespace Computer_house
       this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-      this.tabPage1.Size = new System.Drawing.Size(1316, 613);
+      this.tabPage1.Size = new System.Drawing.Size(1316, 611);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Статистика";
       // 
@@ -181,27 +191,28 @@ namespace Computer_house
       // 
       this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.panel1.Controls.Add(this.button2);
+      this.panel1.Controls.Add(this.CollectStatistic);
       this.panel1.Controls.Add(this.label8);
       this.panel1.Controls.Add(this.EndPeriod);
       this.panel1.Controls.Add(this.StartOfPeriodTextBox);
       this.panel1.Controls.Add(this.label7);
-      this.panel1.Location = new System.Drawing.Point(7, 502);
+      this.panel1.Location = new System.Drawing.Point(7, 500);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(1302, 101);
       this.panel1.TabIndex = 1;
       // 
-      // button2
+      // CollectStatistic
       // 
-      this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.button2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button2.Location = new System.Drawing.Point(973, 14);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(325, 74);
-      this.button2.TabIndex = 13;
-      this.button2.Text = "Составить представления";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
+      this.CollectStatistic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.CollectStatistic.BackColor = System.Drawing.Color.Transparent;
+      this.CollectStatistic.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.CollectStatistic.Location = new System.Drawing.Point(973, 14);
+      this.CollectStatistic.Name = "CollectStatistic";
+      this.CollectStatistic.Size = new System.Drawing.Size(325, 74);
+      this.CollectStatistic.TabIndex = 13;
+      this.CollectStatistic.Text = "Составить представления";
+      this.CollectStatistic.UseVisualStyleBackColor = false;
+      this.CollectStatistic.Click += new System.EventHandler(this.button2_Click);
       // 
       // label8
       // 
@@ -256,7 +267,7 @@ namespace Computer_house
       this.tabControl2.Multiline = true;
       this.tabControl2.Name = "tabControl2";
       this.tabControl2.SelectedIndex = 0;
-      this.tabControl2.Size = new System.Drawing.Size(1302, 493);
+      this.tabControl2.Size = new System.Drawing.Size(1302, 491);
       this.tabControl2.TabIndex = 0;
       // 
       // tabPage3
@@ -266,7 +277,7 @@ namespace Computer_house
       this.tabPage3.Location = new System.Drawing.Point(4, 37);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage3.Size = new System.Drawing.Size(1294, 452);
+      this.tabPage3.Size = new System.Drawing.Size(1294, 450);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "График затрат и доходов";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -284,7 +295,7 @@ namespace Computer_house
       this.tabControl5.Multiline = true;
       this.tabControl5.Name = "tabControl5";
       this.tabControl5.SelectedIndex = 0;
-      this.tabControl5.Size = new System.Drawing.Size(1282, 440);
+      this.tabControl5.Size = new System.Drawing.Size(1282, 438);
       this.tabControl5.TabIndex = 2;
       // 
       // tabPage10
@@ -293,7 +304,7 @@ namespace Computer_house
       this.tabPage10.Location = new System.Drawing.Point(4, 4);
       this.tabPage10.Name = "tabPage10";
       this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage10.Size = new System.Drawing.Size(1274, 404);
+      this.tabPage10.Size = new System.Drawing.Size(1274, 402);
       this.tabPage10.TabIndex = 0;
       this.tabPage10.Text = "График";
       this.tabPage10.UseVisualStyleBackColor = true;
@@ -311,7 +322,7 @@ namespace Computer_house
       this.PurchasingChart.Legends.Add(legend1);
       this.PurchasingChart.Location = new System.Drawing.Point(3, 6);
       this.PurchasingChart.Name = "PurchasingChart";
-      this.PurchasingChart.Size = new System.Drawing.Size(1265, 395);
+      this.PurchasingChart.Size = new System.Drawing.Size(1265, 393);
       this.PurchasingChart.TabIndex = 0;
       this.PurchasingChart.Text = "chart1";
       // 
@@ -321,7 +332,7 @@ namespace Computer_house
       this.tabPage11.Location = new System.Drawing.Point(4, 4);
       this.tabPage11.Name = "tabPage11";
       this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage11.Size = new System.Drawing.Size(1274, 394);
+      this.tabPage11.Size = new System.Drawing.Size(1274, 404);
       this.tabPage11.TabIndex = 1;
       this.tabPage11.Text = "Таблица";
       this.tabPage11.UseVisualStyleBackColor = true;
@@ -347,7 +358,7 @@ namespace Computer_house
       this.PurchasingTable.ReadOnly = true;
       this.PurchasingTable.RowHeadersWidth = 51;
       this.PurchasingTable.RowTemplate.Height = 24;
-      this.PurchasingTable.Size = new System.Drawing.Size(1261, 384);
+      this.PurchasingTable.Size = new System.Drawing.Size(1261, 394);
       this.PurchasingTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn4
@@ -407,7 +418,7 @@ namespace Computer_house
       this.tabControl3.Multiline = true;
       this.tabControl3.Name = "tabControl3";
       this.tabControl3.SelectedIndex = 0;
-      this.tabControl3.Size = new System.Drawing.Size(1282, 440);
+      this.tabControl3.Size = new System.Drawing.Size(1282, 464);
       this.tabControl3.TabIndex = 1;
       // 
       // tabPage6
@@ -416,7 +427,7 @@ namespace Computer_house
       this.tabPage6.Location = new System.Drawing.Point(4, 4);
       this.tabPage6.Name = "tabPage6";
       this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage6.Size = new System.Drawing.Size(1274, 404);
+      this.tabPage6.Size = new System.Drawing.Size(1274, 428);
       this.tabPage6.TabIndex = 0;
       this.tabPage6.Text = "График";
       this.tabPage6.UseVisualStyleBackColor = true;
@@ -434,7 +445,7 @@ namespace Computer_house
       this.DemandedChart.Legends.Add(legend2);
       this.DemandedChart.Location = new System.Drawing.Point(3, 6);
       this.DemandedChart.Name = "DemandedChart";
-      this.DemandedChart.Size = new System.Drawing.Size(1265, 395);
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 419);
       this.DemandedChart.TabIndex = 0;
       this.DemandedChart.Text = "chart1";
       // 
@@ -444,7 +455,7 @@ namespace Computer_house
       this.tabPage7.Location = new System.Drawing.Point(4, 4);
       this.tabPage7.Name = "tabPage7";
       this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage7.Size = new System.Drawing.Size(1274, 418);
+      this.tabPage7.Size = new System.Drawing.Size(1274, 428);
       this.tabPage7.TabIndex = 1;
       this.tabPage7.Text = "Таблица";
       this.tabPage7.UseVisualStyleBackColor = true;
@@ -468,7 +479,7 @@ namespace Computer_house
       this.DemandedTable.ReadOnly = true;
       this.DemandedTable.RowHeadersWidth = 51;
       this.DemandedTable.RowTemplate.Height = 24;
-      this.DemandedTable.Size = new System.Drawing.Size(1261, 382);
+      this.DemandedTable.Size = new System.Drawing.Size(1261, 368);
       this.DemandedTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn2
@@ -512,7 +523,7 @@ namespace Computer_house
       this.tabControl4.Multiline = true;
       this.tabControl4.Name = "tabControl4";
       this.tabControl4.SelectedIndex = 0;
-      this.tabControl4.Size = new System.Drawing.Size(1282, 440);
+      this.tabControl4.Size = new System.Drawing.Size(1282, 464);
       this.tabControl4.TabIndex = 2;
       // 
       // tabPage8
@@ -521,7 +532,7 @@ namespace Computer_house
       this.tabPage8.Location = new System.Drawing.Point(4, 4);
       this.tabPage8.Name = "tabPage8";
       this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage8.Size = new System.Drawing.Size(1274, 404);
+      this.tabPage8.Size = new System.Drawing.Size(1274, 428);
       this.tabPage8.TabIndex = 0;
       this.tabPage8.Text = "График";
       this.tabPage8.UseVisualStyleBackColor = true;
@@ -539,7 +550,7 @@ namespace Computer_house
       this.EfficiencyChart.Legends.Add(legend3);
       this.EfficiencyChart.Location = new System.Drawing.Point(9, 6);
       this.EfficiencyChart.Name = "EfficiencyChart";
-      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 392);
+      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 416);
       this.EfficiencyChart.TabIndex = 0;
       this.EfficiencyChart.Text = "chart1";
       // 
@@ -549,7 +560,7 @@ namespace Computer_house
       this.tabPage9.Location = new System.Drawing.Point(4, 4);
       this.tabPage9.Name = "tabPage9";
       this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage9.Size = new System.Drawing.Size(1274, 430);
+      this.tabPage9.Size = new System.Drawing.Size(1274, 428);
       this.tabPage9.TabIndex = 1;
       this.tabPage9.Text = "Таблица";
       this.tabPage9.UseVisualStyleBackColor = true;
@@ -573,7 +584,7 @@ namespace Computer_house
       this.EfficiencyTable.ReadOnly = true;
       this.EfficiencyTable.RowHeadersWidth = 51;
       this.EfficiencyTable.RowTemplate.Height = 24;
-      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 384);
+      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 358);
       this.EfficiencyTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn1
@@ -595,7 +606,7 @@ namespace Computer_house
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-      this.tabPage2.Controls.Add(this.button1);
+      this.tabPage2.Controls.Add(this.SetPrice);
       this.tabPage2.Controls.Add(this.BuyingPrice);
       this.tabPage2.Controls.Add(this.label5);
       this.tabPage2.Controls.Add(this.label4);
@@ -615,23 +626,23 @@ namespace Computer_house
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Складской учёт";
       // 
-      // button1
+      // SetPrice
       // 
-      this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button1.Location = new System.Drawing.Point(752, 541);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(541, 56);
-      this.button1.TabIndex = 12;
-      this.button1.Text = "Сохранить";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+      this.SetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.SetPrice.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.SetPrice.Location = new System.Drawing.Point(752, 539);
+      this.SetPrice.Name = "SetPrice";
+      this.SetPrice.Size = new System.Drawing.Size(541, 56);
+      this.SetPrice.TabIndex = 12;
+      this.SetPrice.Text = "Сохранить";
+      this.SetPrice.UseVisualStyleBackColor = true;
+      this.SetPrice.Click += new System.EventHandler(this.button1_Click);
       // 
       // BuyingPrice
       // 
       this.BuyingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.BuyingPrice.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.BuyingPrice.Location = new System.Drawing.Point(1172, 404);
+      this.BuyingPrice.Location = new System.Drawing.Point(1172, 402);
       this.BuyingPrice.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -646,7 +657,7 @@ namespace Computer_house
       this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.label5.AutoSize = true;
       this.label5.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label5.Location = new System.Drawing.Point(746, 410);
+      this.label5.Location = new System.Drawing.Point(746, 408);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(234, 28);
       this.label5.TabIndex = 10;
@@ -657,7 +668,7 @@ namespace Computer_house
       this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.label4.AutoSize = true;
       this.label4.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label4.Location = new System.Drawing.Point(747, 481);
+      this.label4.Location = new System.Drawing.Point(747, 479);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(198, 28);
       this.label4.TabIndex = 9;
@@ -668,7 +679,7 @@ namespace Computer_house
       this.SelectedItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.SelectedItem.AutoSize = true;
       this.SelectedItem.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.SelectedItem.Location = new System.Drawing.Point(951, 340);
+      this.SelectedItem.Location = new System.Drawing.Point(951, 338);
       this.SelectedItem.Name = "SelectedItem";
       this.SelectedItem.Size = new System.Drawing.Size(0, 28);
       this.SelectedItem.TabIndex = 8;
@@ -678,7 +689,7 @@ namespace Computer_house
       this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(746, 340);
+      this.label3.Location = new System.Drawing.Point(746, 338);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(199, 28);
       this.label3.TabIndex = 7;
@@ -688,7 +699,7 @@ namespace Computer_house
       // 
       this.MarkUpPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.MarkUpPercent.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.MarkUpPercent.Location = new System.Drawing.Point(1172, 475);
+      this.MarkUpPercent.Location = new System.Drawing.Point(1172, 473);
       this.MarkUpPercent.Name = "MarkUpPercent";
       this.MarkUpPercent.Size = new System.Drawing.Size(120, 34);
       this.MarkUpPercent.TabIndex = 6;
@@ -698,7 +709,7 @@ namespace Computer_house
       this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.Location = new System.Drawing.Point(391, 297);
+      this.label2.Location = new System.Drawing.Point(391, 295);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(255, 28);
       this.label2.TabIndex = 5;
@@ -709,7 +720,7 @@ namespace Computer_house
       this.UnsetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.UnsetPrice.FormattingEnabled = true;
       this.UnsetPrice.ItemHeight = 28;
-      this.UnsetPrice.Location = new System.Drawing.Point(396, 341);
+      this.UnsetPrice.Location = new System.Drawing.Point(396, 339);
       this.UnsetPrice.Name = "UnsetPrice";
       this.UnsetPrice.Size = new System.Drawing.Size(318, 256);
       this.UnsetPrice.TabIndex = 4;
@@ -720,7 +731,7 @@ namespace Computer_house
       this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.label1.AutoSize = true;
       this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(22, 297);
+      this.label1.Location = new System.Drawing.Point(22, 295);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(177, 28);
       this.label1.TabIndex = 3;
@@ -731,7 +742,7 @@ namespace Computer_house
       this.SetingPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.SetingPrice.FormattingEnabled = true;
       this.SetingPrice.ItemHeight = 28;
-      this.SetingPrice.Location = new System.Drawing.Point(27, 341);
+      this.SetingPrice.Location = new System.Drawing.Point(27, 339);
       this.SetingPrice.Name = "SetingPrice";
       this.SetingPrice.Size = new System.Drawing.Size(318, 256);
       this.SetingPrice.TabIndex = 2;
@@ -761,7 +772,7 @@ namespace Computer_house
       this.HoldingDocsDatagridView.ReadOnly = true;
       this.HoldingDocsDatagridView.RowHeadersWidth = 51;
       this.HoldingDocsDatagridView.RowTemplate.Height = 24;
-      this.HoldingDocsDatagridView.Size = new System.Drawing.Size(1305, 183);
+      this.HoldingDocsDatagridView.Size = new System.Drawing.Size(1305, 181);
       this.HoldingDocsDatagridView.TabIndex = 1;
       // 
       // HoldingDocumentID
@@ -821,6 +832,81 @@ namespace Computer_house
       this.Location.ReadOnly = true;
       this.Location.Width = 200;
       // 
+      // AuthentificationLogs
+      // 
+      this.AuthentificationLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.AuthentificationLogs.Controls.Add(this.LogsDataGrid);
+      this.AuthentificationLogs.Location = new System.Drawing.Point(4, 37);
+      this.AuthentificationLogs.Name = "AuthentificationLogs";
+      this.AuthentificationLogs.Padding = new System.Windows.Forms.Padding(3);
+      this.AuthentificationLogs.Size = new System.Drawing.Size(1316, 613);
+      this.AuthentificationLogs.TabIndex = 2;
+      this.AuthentificationLogs.Text = "Системные логи";
+      // 
+      // LogsDataGrid
+      // 
+      this.LogsDataGrid.AllowUserToAddRows = false;
+      this.LogsDataGrid.AllowUserToDeleteRows = false;
+      this.LogsDataGrid.AllowUserToOrderColumns = true;
+      this.LogsDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+      this.LogsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.LogsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.Fio,
+            this.Место_работы,
+            this.Статус,
+            this.Время});
+      this.LogsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.LogsDataGrid.Location = new System.Drawing.Point(3, 3);
+      this.LogsDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.LogsDataGrid.Name = "LogsDataGrid";
+      this.LogsDataGrid.ReadOnly = true;
+      this.LogsDataGrid.RowHeadersWidth = 51;
+      this.LogsDataGrid.RowTemplate.Height = 24;
+      this.LogsDataGrid.Size = new System.Drawing.Size(1310, 607);
+      this.LogsDataGrid.TabIndex = 2;
+      // 
+      // dataGridViewTextBoxColumn7
+      // 
+      this.dataGridViewTextBoxColumn7.HeaderText = "ID";
+      this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+      this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+      this.dataGridViewTextBoxColumn7.ReadOnly = true;
+      this.dataGridViewTextBoxColumn7.Visible = false;
+      this.dataGridViewTextBoxColumn7.Width = 125;
+      // 
+      // Fio
+      // 
+      this.Fio.HeaderText = "ФИО работника";
+      this.Fio.MinimumWidth = 6;
+      this.Fio.Name = "Fio";
+      this.Fio.ReadOnly = true;
+      this.Fio.Width = 600;
+      // 
+      // Место_работы
+      // 
+      this.Место_работы.HeaderText = "Место работы";
+      this.Место_работы.MinimumWidth = 6;
+      this.Место_работы.Name = "Место_работы";
+      this.Место_работы.ReadOnly = true;
+      this.Место_работы.Width = 200;
+      // 
+      // Статус
+      // 
+      this.Статус.HeaderText = "Статус";
+      this.Статус.MinimumWidth = 6;
+      this.Статус.Name = "Статус";
+      this.Статус.ReadOnly = true;
+      this.Статус.Width = 200;
+      // 
+      // Время
+      // 
+      this.Время.HeaderText = "Время";
+      this.Время.MinimumWidth = 6;
+      this.Время.Name = "Время";
+      this.Время.ReadOnly = true;
+      this.Время.Width = 200;
+      // 
       // AuthorizedForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -870,6 +956,8 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.BuyingPrice)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.MarkUpPercent)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
+      this.AuthentificationLogs.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.LogsDataGrid)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -894,7 +982,7 @@ namespace Computer_house
     private System.Windows.Forms.ListBox SetingPrice;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.ListBox UnsetPrice;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button SetPrice;
     private System.Windows.Forms.NumericUpDown BuyingPrice;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label4;
@@ -910,7 +998,7 @@ namespace Computer_house
     private System.Windows.Forms.MaskedTextBox EndPeriod;
     private System.Windows.Forms.MaskedTextBox StartOfPeriodTextBox;
     private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.Button CollectStatistic;
     private System.Windows.Forms.DataVisualization.Charting.Chart DemandedChart;
     private System.Windows.Forms.TabControl tabControl3;
     private System.Windows.Forms.TabPage tabPage6;
@@ -934,5 +1022,12 @@ namespace Computer_house
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     private System.Windows.Forms.DataGridViewTextBoxColumn sales;
     private System.Windows.Forms.DataGridViewTextBoxColumn income;
+    private System.Windows.Forms.TabPage AuthentificationLogs;
+    internal System.Windows.Forms.DataGridView LogsDataGrid;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Fio;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Место_работы;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Статус;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Время;
   }
 }

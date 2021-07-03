@@ -587,6 +587,8 @@ namespace Computer_house
 
     private void выйтиИзУчётнойЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
     {
+      Authentification_logs log = new Authentification_logs(user.ID, false);
+      SQLRequests.CreateAuthentificationLog(log);
       AuthentificationForm authentificationForm = new AuthentificationForm();
       authentificationForm.Show();
       this.Hide();
