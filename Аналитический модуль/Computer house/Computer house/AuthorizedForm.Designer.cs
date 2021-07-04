@@ -29,6 +29,7 @@ namespace Computer_house
         /// </summary>
         private void InitializeComponent()
         {
+      this.components = new System.ComponentModel.Container();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -101,6 +102,8 @@ namespace Computer_house
       this.Место_работы = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Статус = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Время = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -130,6 +133,7 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).BeginInit();
       this.AuthentificationLogs.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.LogsDataGrid)).BeginInit();
+      this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -142,21 +146,21 @@ namespace Computer_house
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(1324, 30);
+      this.menuStrip1.Size = new System.Drawing.Size(1324, 28);
       this.menuStrip1.TabIndex = 4;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // настроитьIPToolStripMenuItem
       // 
       this.настроитьIPToolStripMenuItem.Name = "настроитьIPToolStripMenuItem";
-      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+      this.настроитьIPToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
       this.настроитьIPToolStripMenuItem.Text = "Настроить IP";
       this.настроитьIPToolStripMenuItem.Click += new System.EventHandler(this.настроитьIPToolStripMenuItem_Click);
       // 
       // справкаToolStripMenuItem
       // 
       this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+      this.справкаToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
       this.справкаToolStripMenuItem.Text = "Справка";
       this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
       // 
@@ -167,11 +171,11 @@ namespace Computer_house
       this.tabControl1.Controls.Add(this.AuthentificationLogs);
       this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControl1.Font = new System.Drawing.Font("Malgun Gothic", 12F);
-      this.tabControl1.Location = new System.Drawing.Point(0, 30);
+      this.tabControl1.Location = new System.Drawing.Point(0, 28);
       this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(1324, 652);
+      this.tabControl1.Size = new System.Drawing.Size(1324, 654);
       this.tabControl1.TabIndex = 5;
       // 
       // tabPage1
@@ -183,7 +187,7 @@ namespace Computer_house
       this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-      this.tabPage1.Size = new System.Drawing.Size(1316, 611);
+      this.tabPage1.Size = new System.Drawing.Size(1316, 613);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Статистика";
       // 
@@ -196,7 +200,7 @@ namespace Computer_house
       this.panel1.Controls.Add(this.EndPeriod);
       this.panel1.Controls.Add(this.StartOfPeriodTextBox);
       this.panel1.Controls.Add(this.label7);
-      this.panel1.Location = new System.Drawing.Point(7, 500);
+      this.panel1.Location = new System.Drawing.Point(7, 502);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(1302, 101);
       this.panel1.TabIndex = 1;
@@ -267,7 +271,7 @@ namespace Computer_house
       this.tabControl2.Multiline = true;
       this.tabControl2.Name = "tabControl2";
       this.tabControl2.SelectedIndex = 0;
-      this.tabControl2.Size = new System.Drawing.Size(1302, 491);
+      this.tabControl2.Size = new System.Drawing.Size(1302, 493);
       this.tabControl2.TabIndex = 0;
       // 
       // tabPage3
@@ -277,7 +281,7 @@ namespace Computer_house
       this.tabPage3.Location = new System.Drawing.Point(4, 37);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage3.Size = new System.Drawing.Size(1294, 450);
+      this.tabPage3.Size = new System.Drawing.Size(1294, 452);
       this.tabPage3.TabIndex = 0;
       this.tabPage3.Text = "График затрат и доходов";
       this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
@@ -295,7 +299,7 @@ namespace Computer_house
       this.tabControl5.Multiline = true;
       this.tabControl5.Name = "tabControl5";
       this.tabControl5.SelectedIndex = 0;
-      this.tabControl5.Size = new System.Drawing.Size(1282, 438);
+      this.tabControl5.Size = new System.Drawing.Size(1282, 440);
       this.tabControl5.TabIndex = 2;
       // 
       // tabPage10
@@ -304,7 +308,7 @@ namespace Computer_house
       this.tabPage10.Location = new System.Drawing.Point(4, 4);
       this.tabPage10.Name = "tabPage10";
       this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage10.Size = new System.Drawing.Size(1274, 402);
+      this.tabPage10.Size = new System.Drawing.Size(1274, 404);
       this.tabPage10.TabIndex = 0;
       this.tabPage10.Text = "График";
       this.tabPage10.UseVisualStyleBackColor = true;
@@ -322,7 +326,7 @@ namespace Computer_house
       this.PurchasingChart.Legends.Add(legend1);
       this.PurchasingChart.Location = new System.Drawing.Point(3, 6);
       this.PurchasingChart.Name = "PurchasingChart";
-      this.PurchasingChart.Size = new System.Drawing.Size(1265, 393);
+      this.PurchasingChart.Size = new System.Drawing.Size(1265, 395);
       this.PurchasingChart.TabIndex = 0;
       this.PurchasingChart.Text = "chart1";
       // 
@@ -332,7 +336,7 @@ namespace Computer_house
       this.tabPage11.Location = new System.Drawing.Point(4, 4);
       this.tabPage11.Name = "tabPage11";
       this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage11.Size = new System.Drawing.Size(1274, 404);
+      this.tabPage11.Size = new System.Drawing.Size(1274, 402);
       this.tabPage11.TabIndex = 1;
       this.tabPage11.Text = "Таблица";
       this.tabPage11.UseVisualStyleBackColor = true;
@@ -358,7 +362,7 @@ namespace Computer_house
       this.PurchasingTable.ReadOnly = true;
       this.PurchasingTable.RowHeadersWidth = 51;
       this.PurchasingTable.RowTemplate.Height = 24;
-      this.PurchasingTable.Size = new System.Drawing.Size(1261, 394);
+      this.PurchasingTable.Size = new System.Drawing.Size(1261, 392);
       this.PurchasingTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn4
@@ -418,7 +422,7 @@ namespace Computer_house
       this.tabControl3.Multiline = true;
       this.tabControl3.Name = "tabControl3";
       this.tabControl3.SelectedIndex = 0;
-      this.tabControl3.Size = new System.Drawing.Size(1282, 464);
+      this.tabControl3.Size = new System.Drawing.Size(1282, 440);
       this.tabControl3.TabIndex = 1;
       // 
       // tabPage6
@@ -427,7 +431,7 @@ namespace Computer_house
       this.tabPage6.Location = new System.Drawing.Point(4, 4);
       this.tabPage6.Name = "tabPage6";
       this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage6.Size = new System.Drawing.Size(1274, 428);
+      this.tabPage6.Size = new System.Drawing.Size(1274, 404);
       this.tabPage6.TabIndex = 0;
       this.tabPage6.Text = "График";
       this.tabPage6.UseVisualStyleBackColor = true;
@@ -445,7 +449,7 @@ namespace Computer_house
       this.DemandedChart.Legends.Add(legend2);
       this.DemandedChart.Location = new System.Drawing.Point(3, 6);
       this.DemandedChart.Name = "DemandedChart";
-      this.DemandedChart.Size = new System.Drawing.Size(1265, 419);
+      this.DemandedChart.Size = new System.Drawing.Size(1265, 392);
       this.DemandedChart.TabIndex = 0;
       this.DemandedChart.Text = "chart1";
       // 
@@ -455,7 +459,7 @@ namespace Computer_house
       this.tabPage7.Location = new System.Drawing.Point(4, 4);
       this.tabPage7.Name = "tabPage7";
       this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage7.Size = new System.Drawing.Size(1274, 428);
+      this.tabPage7.Size = new System.Drawing.Size(1274, 404);
       this.tabPage7.TabIndex = 1;
       this.tabPage7.Text = "Таблица";
       this.tabPage7.UseVisualStyleBackColor = true;
@@ -479,7 +483,7 @@ namespace Computer_house
       this.DemandedTable.ReadOnly = true;
       this.DemandedTable.RowHeadersWidth = 51;
       this.DemandedTable.RowTemplate.Height = 24;
-      this.DemandedTable.Size = new System.Drawing.Size(1261, 368);
+      this.DemandedTable.Size = new System.Drawing.Size(1261, 394);
       this.DemandedTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn2
@@ -523,7 +527,7 @@ namespace Computer_house
       this.tabControl4.Multiline = true;
       this.tabControl4.Name = "tabControl4";
       this.tabControl4.SelectedIndex = 0;
-      this.tabControl4.Size = new System.Drawing.Size(1282, 464);
+      this.tabControl4.Size = new System.Drawing.Size(1282, 440);
       this.tabControl4.TabIndex = 2;
       // 
       // tabPage8
@@ -532,7 +536,7 @@ namespace Computer_house
       this.tabPage8.Location = new System.Drawing.Point(4, 4);
       this.tabPage8.Name = "tabPage8";
       this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage8.Size = new System.Drawing.Size(1274, 428);
+      this.tabPage8.Size = new System.Drawing.Size(1274, 404);
       this.tabPage8.TabIndex = 0;
       this.tabPage8.Text = "График";
       this.tabPage8.UseVisualStyleBackColor = true;
@@ -550,7 +554,7 @@ namespace Computer_house
       this.EfficiencyChart.Legends.Add(legend3);
       this.EfficiencyChart.Location = new System.Drawing.Point(9, 6);
       this.EfficiencyChart.Name = "EfficiencyChart";
-      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 416);
+      this.EfficiencyChart.Size = new System.Drawing.Size(1265, 392);
       this.EfficiencyChart.TabIndex = 0;
       this.EfficiencyChart.Text = "chart1";
       // 
@@ -560,7 +564,7 @@ namespace Computer_house
       this.tabPage9.Location = new System.Drawing.Point(4, 4);
       this.tabPage9.Name = "tabPage9";
       this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage9.Size = new System.Drawing.Size(1274, 428);
+      this.tabPage9.Size = new System.Drawing.Size(1274, 404);
       this.tabPage9.TabIndex = 1;
       this.tabPage9.Text = "Таблица";
       this.tabPage9.UseVisualStyleBackColor = true;
@@ -584,7 +588,7 @@ namespace Computer_house
       this.EfficiencyTable.ReadOnly = true;
       this.EfficiencyTable.RowHeadersWidth = 51;
       this.EfficiencyTable.RowTemplate.Height = 24;
-      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 358);
+      this.EfficiencyTable.Size = new System.Drawing.Size(1261, 394);
       this.EfficiencyTable.TabIndex = 2;
       // 
       // dataGridViewTextBoxColumn1
@@ -622,7 +626,7 @@ namespace Computer_house
       this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-      this.tabPage2.Size = new System.Drawing.Size(1316, 613);
+      this.tabPage2.Size = new System.Drawing.Size(1316, 611);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Складской учёт";
       // 
@@ -856,6 +860,7 @@ namespace Computer_house
             this.Место_работы,
             this.Статус,
             this.Время});
+      this.LogsDataGrid.ContextMenuStrip = this.contextMenuStrip1;
       this.LogsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.LogsDataGrid.Location = new System.Drawing.Point(3, 3);
       this.LogsDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -906,6 +911,21 @@ namespace Computer_house
       this.Время.Name = "Время";
       this.Время.ReadOnly = true;
       this.Время.Width = 200;
+      // 
+      // contextMenuStrip1
+      // 
+      this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+      this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновитьToolStripMenuItem});
+      this.contextMenuStrip1.Name = "contextMenuStrip1";
+      this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
+      // 
+      // обновитьToolStripMenuItem
+      // 
+      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+      this.обновитьToolStripMenuItem.Text = "Обновить";
+      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
       // 
       // AuthorizedForm
       // 
@@ -958,6 +978,7 @@ namespace Computer_house
       ((System.ComponentModel.ISupportInitialize)(this.HoldingDocsDatagridView)).EndInit();
       this.AuthentificationLogs.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.LogsDataGrid)).EndInit();
+      this.contextMenuStrip1.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -1029,5 +1050,7 @@ namespace Computer_house
     private System.Windows.Forms.DataGridViewTextBoxColumn Место_работы;
     private System.Windows.Forms.DataGridViewTextBoxColumn Статус;
     private System.Windows.Forms.DataGridViewTextBoxColumn Время;
+    private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
   }
 }

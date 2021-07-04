@@ -477,6 +477,9 @@ namespace Computer_house
             PurchasingChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             PurchasingChart.Series[0].BorderWidth = 3;
             PurchasingChart.Titles.Add("График затрат и доходов");
+            PurchasingChart.Series[0].IsValueShownAsLabel = true;
+            PurchasingChart.Series[0].LabelFormat = "#0.00";
+            PurchasingChart.Series[0].Font = new System.Drawing.Font("Malgun Gothic;", 8F);
             PurchasingChart.Titles[0].Font = new System.Drawing.Font("Malgun Gothic;", 12F);
             purchasingStatistic = (from b in purchasingStatistic
                                    orderby b.Time ascending
@@ -578,6 +581,9 @@ namespace Computer_house
             foreach(Product p in demandedInfo)
             {
               var chart = DemandedChart.Series.Add(p.Name);
+              chart.IsValueShownAsLabel = true;
+              chart.LabelFormat = "#0";
+              chart.Font = new System.Drawing.Font("Malgun Gothic;", 8F);
               chart.Points.Add(Convert.ToDouble(p.ID));
               DemandedTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
@@ -684,10 +690,14 @@ namespace Computer_house
             EfficiencyChart.ChartAreas[0].AxisY.Title = "Количество реализованного товара";
             EfficiencyChart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Malgun Gothic;", 12F);
             EfficiencyChart.Titles.Add("График эффективности");
+           
             EfficiencyChart.Titles[0].Font = new System.Drawing.Font("Malgun Gothic;", 12F);
             foreach(Product p in efficiencyInfo)
             {
               var chart = EfficiencyChart.Series.Add(p.Name);
+              chart.IsValueShownAsLabel = true;
+              chart.LabelFormat = "#0";
+              chart.Font = new System.Drawing.Font("Malgun Gothic;", 8F);
               chart.Points.Add(Convert.ToDouble(p.ID));
               EfficiencyTable.Rows.Add(p.Name, Convert.ToInt32(p.ID));
             }
@@ -724,6 +734,12 @@ namespace Computer_house
     private void tabPage5_Enter(object sender, EventArgs e)
     {
       enteredPage = tabPage5.Text;
+    }
+
+    private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      LoadLogInfo();
+      ViewLogsInfo();
     }
   }
 }
