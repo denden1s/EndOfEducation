@@ -47,15 +47,16 @@ namespace Computer_house
       this.AllProductInfo = new System.Windows.Forms.RichTextBox();
       this.Move = new System.Windows.Forms.Button();
       this.AllInfoDatagridView = new System.Windows.Forms.DataGridView();
+      this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.настроитьIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.перейтиВРазделРедактированияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.выйтиИзУчётнойЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.label1 = new System.Windows.Forms.Label();
-      this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.сформироватьДневнойОтчётToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.AddProduct)).BeginInit();
@@ -322,11 +323,37 @@ namespace Computer_house
       this.AllInfoDatagridView.TabIndex = 3;
       this.AllInfoDatagridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
       // 
+      // Product_ID
+      // 
+      this.Product_ID.HeaderText = "Product_ID";
+      this.Product_ID.MinimumWidth = 6;
+      this.Product_ID.Name = "Product_ID";
+      this.Product_ID.ReadOnly = true;
+      this.Product_ID.Visible = false;
+      this.Product_ID.Width = 125;
+      // 
+      // Product_name
+      // 
+      this.Product_name.HeaderText = "Имя";
+      this.Product_name.MinimumWidth = 6;
+      this.Product_name.Name = "Product_name";
+      this.Product_name.ReadOnly = true;
+      this.Product_name.Width = 600;
+      // 
+      // Count
+      // 
+      this.Count.HeaderText = "Кол-во ";
+      this.Count.MinimumWidth = 6;
+      this.Count.Name = "Count";
+      this.Count.ReadOnly = true;
+      this.Count.Width = 200;
+      // 
       // menuStrip1
       // 
       this.menuStrip1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сформироватьДневнойОтчётToolStripMenuItem,
             this.настроитьIPToolStripMenuItem,
             this.перейтиВРазделРедактированияToolStripMenuItem,
             this.справкаToolStripMenuItem,
@@ -376,30 +403,12 @@ namespace Computer_house
       this.label1.TabIndex = 5;
       this.label1.Text = "Поиск:";
       // 
-      // Product_ID
+      // сформироватьДневнойОтчётToolStripMenuItem
       // 
-      this.Product_ID.HeaderText = "Product_ID";
-      this.Product_ID.MinimumWidth = 6;
-      this.Product_ID.Name = "Product_ID";
-      this.Product_ID.ReadOnly = true;
-      this.Product_ID.Visible = false;
-      this.Product_ID.Width = 125;
-      // 
-      // Product_name
-      // 
-      this.Product_name.HeaderText = "Имя";
-      this.Product_name.MinimumWidth = 6;
-      this.Product_name.Name = "Product_name";
-      this.Product_name.ReadOnly = true;
-      this.Product_name.Width = 600;
-      // 
-      // Count
-      // 
-      this.Count.HeaderText = "Кол-во ";
-      this.Count.MinimumWidth = 6;
-      this.Count.Name = "Count";
-      this.Count.ReadOnly = true;
-      this.Count.Width = 200;
+      this.сформироватьДневнойОтчётToolStripMenuItem.Name = "сформироватьДневнойОтчётToolStripMenuItem";
+      this.сформироватьДневнойОтчётToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
+      this.сформироватьДневнойОтчётToolStripMenuItem.Text = "Сформировать дневной отчёт";
+      this.сформироватьДневнойОтчётToolStripMenuItem.Click += new System.EventHandler(this.сформироватьДневнойОтчётToolStripMenuItem_Click);
       // 
       // AuthorizedForm
       // 
@@ -464,5 +473,6 @@ namespace Computer_house
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_name;
     private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+    private System.Windows.Forms.ToolStripMenuItem сформироватьДневнойОтчётToolStripMenuItem;
   }
 }

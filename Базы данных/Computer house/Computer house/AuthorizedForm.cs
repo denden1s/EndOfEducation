@@ -812,7 +812,7 @@ namespace Computer_house
         SQLRequests.CreateHoldingDocument(adedItemInfo, Convert.ToInt32(AddProduct.Value), user, deviceType);
         AllProductInfo.Clear();
         LoadAllInfoFromDB();
-
+       
         if(searchComponent != "")
           ViewInfoAfterChangeRadio();
         else
@@ -935,6 +935,81 @@ namespace Computer_house
         FilteredInfo = FilterInfo();
       }
       ViewInfoAfterChangeRadio();
+    }
+
+    private void сформироватьДневнойОтчётToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      DateTime currentDate = DateTime.Now;
+      List<Holding_document> itemsMoveToday = new List<Holding_document>();
+      using(ApplicationContext db = new ApplicationContext())
+      {
+        itemsMoveToday = (from b in db.Holding_document
+                          where b.State == "Приход" && b.Time.Day == currentDate.Day
+                          select b).ToList();
+      }
+      if(itemsMoveToday.Count > 0)
+      {
+        //создание датагрида
+        DataGridView dayReportDataGrid = new DataGridView();
+        dayReportDataGrid.Columns.Add("Serial No", "Серийный номер");
+        dayReportDataGrid.Columns.Add("Name", "Наименование");
+        dayReportDataGrid.Columns.Add("Count", "Количество товара");
+        dayReportDataGrid.Columns.Add("Location", "Расположение");
+        dayReportDataGrid.Columns.Add("Worker", "Работник");
+        dayReportDataGrid.Columns.Add("Sinature", "Подпись");
+
+        foreach(Holding_document doc in itemsMoveToday)
+        {
+          Users worker = new Users();
+          Warehouse_info currentItem = WarehouseInformationList.Single(i => i.Product_ID == doc.Product_ID);
+          using(ApplicationContext db = new ApplicationContext())
+            worker = db.Users.Single(i => i.ID == doc.User_ID);
+          Locations_in_warehouse currentLoc = LocationInWarehouseList.Single(i => i.ID == doc.Location_ID);
+          string serial = "";
+          switch(currentItem.ProductType)
+          {
+            case "CPU":
+              serial = Cpus.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "Cooling system":
+              serial = CoolingSystems.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "GPU":
+              serial = Gpus.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "SD":
+              serial = StorageDevices.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "Motherboard":
+              serial = Motherboards.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "PSU":
+              serial = Psus.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "RAM":
+              serial = Rams.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            case "Case":
+              serial = Cases.Single(i => i.Name == currentItem.ProductName).ID;
+              break;
+            default:
+              break;
+          }
+
+          dayReportDataGrid.Rows.Add(serial, currentItem.ProductName, doc.Items_count_in_move,
+            currentLoc.Location_label, worker.Name," ");
+        }
+        //https://coderoad.ru/27482183/Печать-datagridview-в-c
+        MessageBox.Show("Сегодня было выполнено несколько переводов");
+      }
+      else
+        MessageBox.Show($"На данный момент: \"{currentDate.ToString("d")}\"\nне было получено товаров на склад!!!");
+      
+      //определить текущий день
+      //сделать выборку из бд
+      //создать датагрид и внести в него данные
+      //вызвать метод для печати (желательно с предварительным просмотром)\
+      //помимо этого можно сделать автоматическое формирование в определённое время
     }
   }
 }
